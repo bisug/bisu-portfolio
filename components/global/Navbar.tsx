@@ -6,6 +6,7 @@ import { routes } from "@/data/global";
 function Navbar({ currentPage }: { currentPage: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -14,7 +15,11 @@ function Navbar({ currentPage }: { currentPage: string }) {
       if (!menuRef.current?.contains(event.target as Node)) setIsMenuOpen(false);
     }
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsMenuOpen(false);
+      // Return focus to the toggle so keyboard users aren't dropped to <body>.
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        buttonRef.current?.focus();
+      }
     }
 
     document.addEventListener("pointerdown", handlePointerDown);
@@ -54,12 +59,13 @@ function Navbar({ currentPage }: { currentPage: string }) {
           <ThemeToggle />
           <div className="relative" ref={menuRef}>
             <button
+              ref={buttonRef}
               className={`flex h-11 w-11 items-center justify-center rounded-lg transition ${
                 isMenuOpen ? "bg-white/10 text-white" : "text-gray-100 hover:bg-white/10"
               }`}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
-              aria-haspopup="menu"
+              aria-haspopup="true"
               type="button"
               onClick={() => setIsMenuOpen((open) => !open)}
             >
