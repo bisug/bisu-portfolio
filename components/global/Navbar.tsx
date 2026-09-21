@@ -1,14 +1,26 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { routes } from "@/data/global";
 
 function Navbar({ currentPage }: { currentPage: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    if (!isMenuOpen) return;
+
+    function handlePointerDown(event: PointerEvent) {
+      if (!menuRef.current?.contains(event.target as Node)) setIsMenuOpen(false);
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = "";
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isMenuOpen]);
 
@@ -35,62 +47,52 @@ function Navbar({ currentPage }: { currentPage: string }) {
             })}
           </span>
         </Link>
-        <button
-          className="flex h-11 w-11 items-center justify-center rounded-lg text-gray-100 transition hover:bg-white/10"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}
-          type="button"
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
-        </button>
-      </div>
-      <div
-        className={`fixed inset-0 z-50 flex flex-col bg-bg/95 backdrop-blur transition-opacity duration-200 ${
-          isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-      >
-        <div className="flex w-full items-center justify-between px-5 py-4 sm:px-8">
-          <Link
-            href="/"
-            aria-label="Home"
-            className="flex items-center gap-2 font-black text-xl"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <img src="/static/logos/logo_no_text.svg" width="48" alt="" />
-            <span aria-hidden="true">Bisu</span>
-          </Link>
+        <div className="relative" ref={menuRef}>
           <button
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-gray-100 transition hover:bg-white/10"
-            aria-label="Close menu"
+            className={`flex h-11 w-11 items-center justify-center rounded-lg transition ${
+              isMenuOpen ? "bg-white/10 text-white" : "text-gray-100 hover:bg-white/10"
+            }`}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            aria-haspopup="menu"
             type="button"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => setIsMenuOpen((open) => !open)}
           >
-            <CrossIcon />
+            <MenuIcon />
           </button>
-        </div>
-        <ul className="flex flex-1 flex-col items-center justify-center gap-2 px-5">
-          {routes.map((item, index) => (
-            <li
-              key={item.path}
-              className={`transition-all duration-200 ${
-                isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-              }`}
-              style={{ transitionDelay: isMenuOpen ? `${100 + index * 60}ms` : "0ms" }}
+          <div
+            className={`absolute right-0 top-full z-50 mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-white/10 bg-fun-pink-darker shadow-2xl shadow-black/60 transition-all duration-150 ${
+              isMenuOpen
+                ? "scale-100 opacity-100"
+                : "pointer-events-none -translate-y-2 scale-95 opacity-0"
+            }`}
+          >
+            <ul className="p-2">
+              {routes.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    href={item.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    aria-current={currentPage === item.title ? "page" : undefined}
+                    className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                      currentPage === item.title
+                        ? "bg-white/10 text-fun-pink"
+                        : "text-white/70 hover:bg-white/5 hover:text-white"
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="mailto:bisu.ghlan@gmail.com"
+              className="block border-t border-white/10 px-6 py-3 font-mono text-xs text-fun-gray transition-colors hover:text-white"
             >
-              <Link
-                href={item.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block px-6 py-3 text-3xl sm:text-4xl font-bold tracking-tight transition-colors ${
-                  currentPage === item.title ? "text-fun-pink" : "text-white/70 hover:text-white"
-                }`}
-              >
-                {item.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="pb-10 text-center font-mono text-sm text-fun-gray">bisu.ghlan@gmail.com</p>
+              bisu.ghlan@gmail.com
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
   );
@@ -103,27 +105,6 @@ function MenuIcon() {
       <path d="M3 7H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       <path d="M3 12H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       <path d="M3 17H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function CrossIcon() {
-  return (
-    <svg
-      className="h-6 w-6 text-gray-100"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
-    >
-      <title>Close</title>
-      <path d="M18 6L6 18" />
-      <path d="M6 6l12 12" />
     </svg>
   );
 }
