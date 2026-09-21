@@ -27,7 +27,10 @@ function Footer() {
           ))}
         </div>
         <div className="text-center sm:text-right text-sm text-fun-gray">
-          <a href="mailto:bisu.ghlan@gmail.com" className="hover:text-white transition-colors">
+          <a
+            href="mailto:bisu.ghlan@gmail.com"
+            className="inline-block py-1 hover:text-white transition-colors"
+          >
             bisu.ghlan@gmail.com
           </a>
           <p className="text-xs pt-1">Based in Bhaktapur, Nepal</p>
@@ -36,7 +39,10 @@ function Footer() {
       <div className="max-w-5xl w-full mx-auto mt-6 pt-3 flex items-center justify-center text-center border-t border-white/10">
         <p className="text-xs text-fun-gray">
           Made by{" "}
-          <a href="mailto:bisu.ghlan@gmail.com" className="text-fun-gray-light font-medium">
+          <a
+            href="mailto:bisu.ghlan@gmail.com"
+            className="inline-block py-1 text-fun-gray-light font-medium"
+          >
             Bisu Ghalan
           </a>
           {" — "}All rights reserved.

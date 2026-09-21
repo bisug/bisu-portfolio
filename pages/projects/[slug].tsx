@@ -51,7 +51,7 @@ function ProjectPage({ project }: ProjectPageProps) {
       <article className="w-full pt-10 sm:pt-16">
         <Link
           href="/projects"
-          className="font-mono text-xs uppercase tracking-widest text-fun-accent hover:underline"
+          className="inline-block py-1.5 font-mono text-xs uppercase tracking-widest text-fun-accent hover:underline"
         >
           ← All projects
         </Link>
