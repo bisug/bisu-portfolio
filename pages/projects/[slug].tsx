@@ -74,10 +74,12 @@ function ProjectPage({ project }: ProjectPageProps) {
         <ul className="mt-6 flex flex-wrap items-center gap-1.5 list-none">
           {project.tags.map((tag) => (
             <li key={tag}>
-              <Link href={`/projects/tag/${kebabCase(tag)}`} prefetch={false}>
-                <div className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-accent hover:text-fun-navy-darkest">
-                  {tag}
-                </div>
+              <Link
+                href={`/projects/tag/${kebabCase(tag)}`}
+                prefetch={false}
+                className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light transition hover:bg-fun-accent hover:text-fun-navy-darkest"
+              >
+                {tag}
               </Link>
             </li>
           ))}

@@ -15,15 +15,17 @@ function Hero() {
         apps — and I break things to learn how to defend them.
       </p>
       <div className="flex flex-col sm:flex-row items-center gap-4">
-        <Link href="/projects">
-          <div className="cursor-pointer font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25">
-            See featured work
-          </div>
+        <Link
+          href="/projects"
+          className="font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25"
+        >
+          See featured work
         </Link>
-        <a href="mailto:bisu.ghlan@gmail.com">
-          <div className="cursor-pointer font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-gray-light border border-white/20 hover:border-fun-accent hover:text-white transition">
-            Get in touch
-          </div>
+        <a
+          href="mailto:bisu.ghlan@gmail.com"
+          className="font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-gray-light border border-white/20 hover:border-fun-accent hover:text-white transition"
+        >
+          Get in touch
         </a>
       </div>
     </div>
