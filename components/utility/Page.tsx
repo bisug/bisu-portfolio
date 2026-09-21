@@ -12,12 +12,20 @@ const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 const OG_IMAGE = `${SITE_URL}/static/misc/og.png`;
 const OG_IMAGE_ALT = `${SITE_NAME} — developer and security researcher`;
 
-function Page({ currentPage, meta: { title, desc, noindex }, path = "/", children }: PageProps) {
+function Page({
+  currentPage,
+  meta: { title, desc, noindex, image },
+  path = "/",
+  schema,
+  children,
+}: PageProps) {
   const pageTitle =
     currentPage === "Home"
       ? "Bisu Ghalan - Developer, Security Researcher."
       : `${title ?? currentPage} - Bisu Ghalan`;
   const pageUrl = `${SITE_URL}${path}`;
+  const ogImage = image ? `${SITE_URL}${image}` : OG_IMAGE;
+  const ogImageAlt = image ? `${title ?? currentPage} — preview` : OG_IMAGE_ALT;
   return (
     <div className="w-full m-auto flex flex-col items-center min-h-screen text-white">
       <Head>
@@ -34,24 +42,24 @@ function Page({ currentPage, meta: { title, desc, noindex }, path = "/", childre
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image" content={ogImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={OG_IMAGE_ALT} />
+        <meta property="og:image:alt" content={ogImageAlt} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={pageUrl} />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={desc} />
-        <meta name="twitter:image" content={OG_IMAGE} />
-        <meta name="twitter:image:alt" content={OG_IMAGE_ALT} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content={ogImageAlt} />
 
         <meta name="author" content={SITE_NAME} />
         <meta name="theme-color" content="#000a1f" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#f4f7fc" media="(prefers-color-scheme: light)" />
 
         {/* A noindex page (404) carries no entity data worth publishing. */}
-        {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} />}
+        {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} extra={schema} />}
 
         {GA_ID && (
           <>
@@ -107,7 +115,11 @@ type PageProps = {
     title?: string;
     desc: string;
     noindex?: boolean;
+    /** Site-relative path to a page-specific social preview image. */
+    image?: string;
   };
   path?: string;
+  /** Extra JSON-LD nodes (e.g. a project) appended to the page's schema graph. */
+  schema?: Record<string, unknown>[];
   children?: ReactNode;
 };

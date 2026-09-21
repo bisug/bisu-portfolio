@@ -6,7 +6,7 @@ const projects: Project[] = [
     id: 0,
     title: "BinaryInspector",
     desc: "Safe, local Rust CLI for inspecting ELF binaries without executing them.",
-    img: "https://opengraph.githubassets.com/1/bisug/BinaryInspector",
+    img: "/static/projects/BinaryInspector.png",
     github: "https://github.com/bisug/BinaryInspector",
     tags: ["Rust", "CLI", "Security"],
   },
@@ -14,7 +14,7 @@ const projects: Project[] = [
     id: 1,
     title: "Paila",
     desc: "A seamless travel & community platform bridging tourists and local communities in Nepal.",
-    img: "https://opengraph.githubassets.com/1/bisug/Paila",
+    img: "/static/projects/Paila.png",
     link: "https://paila-prototype.vercel.app",
     github: "https://github.com/bisug/Paila",
     tags: ["NextJS", "TypeScript", "TailwindCSS"],
@@ -23,7 +23,7 @@ const projects: Project[] = [
     id: 2,
     title: "TG-GithubBot",
     desc: "GitHub webhook handler bot for Telegram, formatting push, deployment, and all events.",
-    img: "https://opengraph.githubassets.com/1/bisug/TG-GithubBot",
+    img: "/static/projects/TG-GithubBot.png",
     link: "https://t.me/DearGitNotifyBot",
     github: "https://github.com/bisug/TG-GithubBot",
     tags: ["Go", "Telegram", "MongoDB"],
@@ -32,7 +32,7 @@ const projects: Project[] = [
     id: 3,
     title: "ninfo",
     desc: "A Linux system information CLI written in Nim that does a whole-system snapshot as JSON in a single call.",
-    img: "https://opengraph.githubassets.com/1/bisug/ninfo",
+    img: "/static/projects/ninfo.png",
     github: "https://github.com/bisug/ninfo",
     tags: ["Nim", "CLI", "Linux"],
   },
@@ -40,7 +40,7 @@ const projects: Project[] = [
     id: 4,
     title: "TG-WordGame",
     desc: "Wordle-style word game bot for Telegram — solo & multiplayer rounds, daily challenge, leaderboards.",
-    img: "https://opengraph.githubassets.com/1/bisug/TG-WordGame",
+    img: "/static/projects/TG-WordGame.png",
     github: "https://github.com/bisug/TG-WordGame",
     tags: ["TypeScript", "Telegram", "Game"],
   },
@@ -48,7 +48,7 @@ const projects: Project[] = [
     id: 5,
     title: "Melody",
     desc: "Telegram group calls streaming bot with useful features, written in Python with Pyrogram.",
-    img: "https://opengraph.githubassets.com/1/bisug/Melody",
+    img: "/static/projects/Melody.png",
     github: "https://github.com/bisug/Melody",
     tags: ["Python", "Telegram", "API"],
   },
@@ -56,7 +56,7 @@ const projects: Project[] = [
     id: 6,
     title: "heroku-buildpack-bun",
     desc: "Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, runs bun install.",
-    img: "https://opengraph.githubassets.com/1/bisug/heroku-buildpack-bun",
+    img: "/static/projects/heroku-buildpack-bun.png",
     link: "https://bun.sh",
     github: "https://github.com/bisug/heroku-buildpack-bun",
     tags: ["Shell", "Bun", "DevOps"],
@@ -65,7 +65,7 @@ const projects: Project[] = [
     id: 7,
     title: "SnakeGame-CLI",
     desc: "A cross-platform Snake game that runs entirely in the terminal.",
-    img: "https://opengraph.githubassets.com/1/bisug/SnakeGame-CLI",
+    img: "/static/projects/SnakeGame-CLI.png",
     github: "https://github.com/bisug/SnakeGame-CLI",
     tags: ["C++", "CLI", "Game"],
   },
@@ -74,5 +74,8 @@ const projects: Project[] = [
 export const allTags: string[] = [...new Set(projects.flatMap((project) => project.tags))];
 
 export const allKebabTags = allTags.map((tag) => kebabCase(tag));
+
+/** URL segment for a project's detail page — derived so titles stay the source of truth. */
+export const projectSlug = (project: Project) => kebabCase(project.title);
 
 export default projects;

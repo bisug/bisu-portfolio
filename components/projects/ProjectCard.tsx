@@ -1,17 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "types";
+import { projectSlug } from "@/data/content/projects";
 import { kebabCase } from "@/utils/utils";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
-      {/* biome-ignore lint/a11y/useAnchorContent: pointer-only duplicate of the title link below, intentionally removed from tab order and AT to avoid a redundant stop */}
-      <a
-        href={project.link || project.github}
-        target="_blank"
+      <Link
+        href={`/projects/${projectSlug(project)}`}
         className="relative block aspect-[16/9] overflow-hidden bg-fun-navy-darkest"
-        rel="noopener"
         tabIndex={-1}
         aria-hidden="true"
       >
@@ -19,16 +17,18 @@ function ProjectCard({ project }: { project: Project }) {
           className="h-full w-full object-cover object-top transition duration-300 hover:scale-[1.03]"
           src={project.img}
           alt={project.title}
+          width={1200}
+          height={600}
           loading="lazy"
         />
-      </a>
+      </Link>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center justify-between gap-2">
-          <a href={project.link || project.github} target="_blank" rel="noopener">
+          <Link href={`/projects/${projectSlug(project)}`}>
             <h3 className="text-lg font-bold hover:text-fun-accent transition-colors">
               {project.title}
             </h3>
-          </a>
+          </Link>
           <div className="flex items-center gap-3">
             {project.link && (
               <a

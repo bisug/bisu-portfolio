@@ -1,11 +1,12 @@
 import { education, skills } from "@/data/content/home";
-import projects from "@/data/content/projects";
+import projects, { projectSlug } from "@/data/content/projects";
 import { SITE_DESC, SITE_NAME, SITE_URL, socials } from "@/data/global";
 
 type StructuredDataProps = {
   path: string;
   title: string;
   desc: string;
+  extra?: Record<string, unknown>[];
 };
 
 /**
@@ -13,7 +14,7 @@ type StructuredDataProps = {
  * is (WebSite/WebPage), and — on the projects page — the works themselves.
  * Answer engines and search engines both read this instead of guessing from prose.
  */
-function StructuredData({ path, title, desc }: StructuredDataProps) {
+function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) {
   const personId = `${SITE_URL}/#person`;
 
   const graph: Record<string, unknown>[] = [
@@ -70,14 +71,17 @@ function StructuredData({ path, title, desc }: StructuredDataProps) {
           "@type": "SoftwareSourceCode",
           name: project.title,
           description: project.desc,
-          url: project.link ?? project.github,
+          url: `${SITE_URL}/projects/${projectSlug(project)}`,
           codeRepository: project.github,
+          sameAs: project.link,
           keywords: project.tags.join(", "),
           author: { "@id": personId },
         },
       })),
     });
   }
+
+  graph.push(...extra);
 
   return (
     <script

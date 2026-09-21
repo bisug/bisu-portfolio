@@ -15,14 +15,14 @@ Language: English
 
 ## Projects
 
-- **BinaryInspector** — safe, local Rust CLI for inspecting ELF binaries without executing them. https://github.com/bisug/BinaryInspector
-- **Paila** — travel and community platform bridging tourists and local communities in Nepal. https://paila-prototype.vercel.app · https://github.com/bisug/Paila
-- **TG-GithubBot** — GitHub webhook handler bot for Telegram that formats push, deployment, and other events. https://t.me/DearGitNotifyBot · https://github.com/bisug/TG-GithubBot
-- **ninfo** — Linux system information CLI in Nim that returns a whole-system snapshot as JSON in a single call. https://github.com/bisug/ninfo
-- **TG-WordGame** — Wordle-style word game bot for Telegram with solo and multiplayer rounds, daily challenge, and leaderboards. https://github.com/bisug/TG-WordGame
-- **Melody** — Telegram group-call streaming bot written in Python with Pyrogram. https://github.com/bisug/Melody
-- **heroku-buildpack-bun** — unofficial Heroku buildpack for Bun. https://github.com/bisug/heroku-buildpack-bun
-- **SnakeGame-CLI** — cross-platform Snake game that runs entirely in the terminal. https://github.com/bisug/SnakeGame-CLI
+- **BinaryInspector** — safe, local Rust CLI for inspecting ELF binaries without executing them. https://bisu.com.np/projects/binary-inspector (source: https://github.com/bisug/BinaryInspector)
+- **Paila** — travel and community platform bridging tourists and local communities in Nepal. https://bisu.com.np/projects/paila (live: https://paila-prototype.vercel.app · source: https://github.com/bisug/Paila)
+- **TG-GithubBot** — GitHub webhook handler bot for Telegram that formats push, deployment, and other events. https://bisu.com.np/projects/tg-github-bot (live: https://t.me/DearGitNotifyBot · source: https://github.com/bisug/TG-GithubBot)
+- **ninfo** — Linux system information CLI in Nim that returns a whole-system snapshot as JSON in a single call. https://bisu.com.np/projects/ninfo (source: https://github.com/bisug/ninfo)
+- **TG-WordGame** — Wordle-style word game bot for Telegram with solo and multiplayer rounds, daily challenge, and leaderboards. https://bisu.com.np/projects/tg-word-game (source: https://github.com/bisug/TG-WordGame)
+- **Melody** — Telegram group-call streaming bot written in Python with Pyrogram. https://bisu.com.np/projects/melody (source: https://github.com/bisug/Melody)
+- **heroku-buildpack-bun** — unofficial Heroku buildpack for Bun. https://bisu.com.np/projects/heroku-buildpack-bun (source: https://github.com/bisug/heroku-buildpack-bun)
+- **SnakeGame-CLI** — cross-platform Snake game that runs entirely in the terminal. https://bisu.com.np/projects/snake-game-cli (source: https://github.com/bisug/SnakeGame-CLI)
 
 Also on GitHub: https://github.com/bisug
 

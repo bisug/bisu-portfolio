@@ -36,6 +36,8 @@ export const getStaticProps: GetStaticProps<TagPageProps, { tag: string }> = asy
 
 function PostPage({ filteredProjects, tag }: TagPageProps) {
   const capsTag = allTags[allKebabTags.indexOf(tag)];
+  const names = filteredProjects.map((project) => project.title).join(", ");
+  const count = filteredProjects.length;
   return (
     <Page
       currentPage="Projects"
@@ -45,7 +47,10 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
         desc: `A showcase for all of my ${capsTag} projects.`,
       }}
     >
-      <Heading tag={capsTag} />
+      <Heading
+        tag={capsTag}
+        subtitle={`${count} of my ${projects.length} featured projects ${count === 1 ? "uses" : "use"} ${capsTag}: ${names}. Each one is open source.`}
+      />
       <Projects overwriteProjects={filteredProjects} />
 
       <Link href="/projects">

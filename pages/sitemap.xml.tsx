@@ -1,5 +1,5 @@
 import type { GetServerSideProps } from "next";
-import { allKebabTags } from "@/data/content/projects";
+import projects, { allKebabTags, projectSlug } from "@/data/content/projects";
 import { routes, SITE_URL } from "@/data/global";
 
 function buildSitemap(paths: string[]): string {
@@ -12,6 +12,7 @@ function buildSitemap(paths: string[]): string {
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const paths = [
     ...routes.map((route) => route.path),
+    ...projects.map((project) => `/projects/${projectSlug(project)}`),
     ...allKebabTags.map((tag) => `/projects/tag/${tag}`),
   ];
 
