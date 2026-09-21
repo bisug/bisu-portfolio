@@ -12,9 +12,9 @@ function Experience() {
       </div>
       <div className="flex-1 w-full space-y-10">
         <div>
-          <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
             Freelancing
-          </h3>
+          </h2>
           <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5">
             <p className="text-sm sm:text-base leading-relaxed">
               Freelancing — building Telegram bots and full-stack apps for clients and communities.
@@ -25,14 +25,14 @@ function Experience() {
           </div>
         </div>
         <div>
-          <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">Events</h3>
+          <h2 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">Events</h2>
           <div className="space-y-4">
             {events.map((event) => (
               <div
                 key={event.title}
                 className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition hover:border-fun-accent/60"
               >
-                <h4 className="text-base sm:text-lg font-bold leading-snug">
+                <h3 className="text-base sm:text-lg font-bold leading-snug">
                   {event.link ? (
                     <a
                       href={event.link}
@@ -53,7 +53,7 @@ function Experience() {
                   ) : (
                     event.title
                   )}
-                </h4>
+                </h3>
                 <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
                   {(
                     [

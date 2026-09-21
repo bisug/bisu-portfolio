@@ -28,7 +28,7 @@ function Education() {
                 </div>
               )}
               <div className="min-w-0">
-                <h3 className="text-base sm:text-lg font-bold leading-snug">{item.degree}</h3>
+                <h2 className="text-base sm:text-lg font-bold leading-snug">{item.degree}</h2>
                 <p className="text-fun-accent text-sm mt-0.5 flex items-center gap-1.5">
                   {item.school}
                   {item.link && (

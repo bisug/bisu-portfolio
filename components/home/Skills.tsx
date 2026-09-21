@@ -17,9 +17,9 @@ function Skills() {
           const items = skills.filter((skill) => skill.category === category);
           return (
             <div key={category}>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
+              <h2 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
                 {category}
-              </h3>
+              </h2>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 sm:gap-4">
                 {items.map((item, index) => {
                   return (
