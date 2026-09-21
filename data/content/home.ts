@@ -162,12 +162,16 @@ type Testimonial = {
   job: string;
 };
 
-type ExperienceItem = {
-  role: string;
-  org: string;
-  period: string;
-  desc: string;
-  tags: string[];
+type EventItem = {
+  title: string;
+  organizer: string;
+  date: string;
+  venue: string;
+  team: string;
+  project: string;
+  projectDesc?: string;
+  status: string;
+  link?: string;
 };
 
 type EducationItem = {
@@ -179,34 +183,29 @@ type EducationItem = {
   link?: string;
 };
 
-export const experience: ExperienceItem[] = [
+export const events: EventItem[] = [
   {
-    role: "Lead Developer",
-    org: "Seal Your Waifu",
-    period: "2026 — Present",
-    desc: "Large-scale Telegram game bot + mini-app. High-concurrency state for thousands of players.",
-    tags: ["FastAPI", "React", "Redis", "MongoDB"],
+    title: "Build Nepal Hackathon",
+    organizer: "Mid-Valley International College (MVIC)",
+    date: "1–2 August 2026",
+    venue: "Mid Valley International College, Gyaneshwor, Kathmandu",
+    team: "Team Bugger",
+    project: "NetGuard",
+    projectDesc:
+      "An explainable intrusion detection and prevention platform designed for small organizations.",
+    status: "Participant",
   },
   {
-    role: "Creator",
-    org: "Sumi Vibes AI",
-    period: "2025",
-    desc: "Gemini-powered Telegram chatbot. Reached 3,000+ users with games and group-management tools.",
-    tags: ["Python", "Pyrogram", "Gemini AI", "MongoDB"],
-  },
-  {
-    role: "Developer",
-    org: "Moco Bot",
-    period: "2025",
-    desc: "Free Fire stats bot on third-party APIs — player info, stats, booster. Peaked at 5,000+ users.",
-    tags: ["Python", "API Orchestration", "Reverse Engineering"],
-  },
-  {
-    role: "Participant",
-    org: "JunctionX Kathmandu",
-    period: "2026",
-    desc: "Hospitality & Heritage track with team Runtime Terrors. Co-built the Paila prototype.",
-    tags: ["Next.js", "TypeScript", "Supabase", "OpenAI"],
+    title: "JunctionX Kathmandu",
+    organizer: "SUMS Nepal & Cogknit",
+    date: "May 29–31, 2026",
+    venue: "AITM College, Khumaltar Height, Lalitpur",
+    team: "Team Runtime Terrors",
+    project: "Paila",
+    projectDesc:
+      "A seamless travel & community platform bridging tourists and local communities in Nepal.",
+    status: "Participant",
+    link: "https://junctionxkathmandu.com/past-events/2026",
   },
 ];
 
@@ -214,7 +213,7 @@ export const education: EducationItem[] = [
   {
     degree: "Bachelor of Computer Science — Cyber Security & Network Technology (Hons)",
     school: "Lincoln International College, Kathmandu",
-    period: "2025 — Present",
+    period: "Batch of Sept 2025",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",
     logo: "/static/education/lincoln-college-logo.jpeg",
     link: "https://licnepal.edu.np/",
@@ -222,7 +221,7 @@ export const education: EducationItem[] = [
   {
     degree: "Higher Secondary Education (+2 Management)",
     school: "Janapremi World School, Bhaktapur",
-    period: "2022 — 2024",
+    period: "Passout 2024",
     desc: "",
     logo: "/static/education/janapremi-logo.png",
     link: "https://jws.edu.np/",
