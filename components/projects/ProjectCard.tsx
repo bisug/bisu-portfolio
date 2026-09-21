@@ -6,11 +6,14 @@ import { kebabCase } from "@/utils/utils";
 function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
+      {/* biome-ignore lint/a11y/useAnchorContent: pointer-only duplicate of the title link below, intentionally removed from tab order and AT to avoid a redundant stop */}
       <a
         href={project.link || project.github}
         target="_blank"
         className="relative block aspect-[16/9] overflow-hidden bg-fun-navy-darkest"
         rel="noopener"
+        tabIndex={-1}
+        aria-hidden="true"
       >
         <img
           className="h-full w-full object-cover object-top transition duration-300 hover:scale-[1.03]"
@@ -33,7 +36,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${project.title} live site`}
-                className="opacity-60 transition hover:opacity-100"
+                className="opacity-60 transition hover:opacity-100 p-1.5 -m-1.5"
               >
                 <Image
                   src="/static/icons/external-link.svg"
@@ -50,7 +53,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${project.title} source code`}
-                className="opacity-60 transition hover:opacity-100"
+                className="opacity-60 transition hover:opacity-100 p-1.5 -m-1.5"
               >
                 <Image
                   src="/static/icons/github.svg"

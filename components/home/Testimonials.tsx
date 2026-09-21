@@ -8,16 +8,16 @@ function Testimonials() {
   return (
     <div className="flex flex-col text-left max-w-md md:max-w-full w-full m-auto">
       <SectionTitle title="Why people love my work!" />
-      <div className="max-w-5xl m-auto md:max-h-[200px] grid grid-cols-1 gap-10 md:gap-10 md:grid-cols-3 items-start">
+      <div className="max-w-5xl m-auto grid grid-cols-1 gap-10 md:grid-cols-3 items-start">
         {testimonials.map((item, index) => {
           return (
             <div
               key={item.name}
-              className="relative bg-fun-navy-dark border border-fun-accent-dark p-5 rounded-lg h-full flex flex-col justify-between"
+              className="relative bg-white/[0.02] border border-white/10 p-5 rounded-lg h-full flex flex-col justify-between"
             >
               {index === 0 && (
                 <img
-                  className="sqD top-[-50px] left-0 bottom-auto right-auto md:bottom-[-50px] md:top-auto md:right-[-25px] md:left-auto w-20 z-[-100]"
+                  className="absolute -top-12 left-0 md:top-auto md:-bottom-12 md:left-auto md:-right-6 w-20 -z-10"
                   src="/static/doodles/testimonials/yay.svg"
                   alt=""
                 />
@@ -28,7 +28,7 @@ function Testimonials() {
               </p>
               {index === 2 && (
                 <img
-                  className="sqD top-[-30px] right-[-15px] w-11"
+                  className="absolute -top-8 -right-4 w-11"
                   src="/static/doodles/testimonials/squiggle2.svg"
                   alt=""
                 />

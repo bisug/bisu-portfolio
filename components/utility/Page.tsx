@@ -67,8 +67,10 @@ function Page({ currentPage, meta: { title, desc, noindex }, path = "/", childre
         Skip to content
       </a>
 
-      <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto px-5 sm:px-8">
         <Navbar currentPage={currentPage} />
+      </div>
+      <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
         {children}
       </main>
       <Footer />
