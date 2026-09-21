@@ -1,5 +1,5 @@
 # Image pipeline: deterministic derivatives are generated in-repo by
-# scripts/optimize-images.py; Calibre then squeezes sources losslessly-ish
+# scripts/optimize-images.ts; Calibre then squeezes sources losslessly-ish
 # on top. Run `bun run images` locally after adding/replacing any image.
 name: Images
 
@@ -53,7 +53,7 @@ jobs:
           # Derived thumbs are byte-exact generator output; only sources
           # get squeezed. Regenerate them after with `bun run images`.
           # Comma-separated per the action's minimatch syntax.
-          ignorePaths: "node_modules/**,public/static/projects/*-600.webp,public/static/projects/*.webp,public/static/education/*.webp"
+          ignorePaths: "node_modules/**,public/static/projects/*-600.webp,public/static/projects/*.webp,public/static/education/*.webp,public/static/icons/tech/*"
       - name: Open compression PR
         if: github.event_name != 'pull_request' && steps.calibre.outputs.markdown != ''
         uses: peter-evans/create-pull-request@v8.1.1
