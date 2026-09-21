@@ -28,11 +28,13 @@ export const getStaticProps: GetStaticProps<ProjectPageProps, { slug: string }> 
 
 function ProjectPage({ project }: ProjectPageProps) {
   const path = `/projects/${projectSlug(project)}`;
+  // Display asset is webp; the sibling png is kept for link previews.
+  const ogImage = project.img.replace(/\.webp$/, ".png");
   return (
     <Page
       currentPage="Projects"
       path={path}
-      meta={{ title: project.title, desc: project.desc, image: project.img }}
+      meta={{ title: project.title, desc: project.desc, image: ogImage }}
       schema={[
         {
           "@type": "SoftwareSourceCode",
