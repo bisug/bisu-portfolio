@@ -6,6 +6,8 @@ type Skill = {
   style?: CSSProperties;
   /** White monochrome SVG — inverts in light mode via .icon-invert-light. */
   mono?: boolean;
+  /** Black SVG — inverts in dark mode only via .icon-invert-dark. */
+  invertDark?: boolean;
   category: string;
 };
 
@@ -68,7 +70,7 @@ export const skills: Skill[] = [
   {
     title: "NextJS",
     icon: "/static/icons/tech/nextjs.svg",
-    style: { filter: "invert(1)" },
+    invertDark: true,
     category: "Frameworks & Web",
   },
   {

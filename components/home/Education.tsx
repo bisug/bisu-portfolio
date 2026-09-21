@@ -37,7 +37,7 @@ function Education() {
                       width={14}
                       height={14}
                       alt=""
-                      className="opacity-70"
+                      className="icon-accent-light opacity-70"
                     />
                   )}
                 </p>

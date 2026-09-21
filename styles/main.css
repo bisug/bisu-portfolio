@@ -55,6 +55,21 @@
   filter: invert(1);
 }
 
+/* Accent-cyan SVG icons: inverting them turns them orange, so just darken
+   toward the light-theme accent (#00c7ff * 0.6 ≈ #007b9d). */
+:root.light .icon-accent-light {
+  filter: brightness(0.6);
+}
+
+/* Black SVG icons need inverting on dark surfaces, but must stay as-is in
+   light mode (invert(1) would make them white-on-white). */
+.icon-invert-dark {
+  filter: invert(1);
+}
+:root.light .icon-invert-dark {
+  filter: none;
+}
+
 /* Scroll-reveal: hidden until Reveal adds .reveal-visible.
    The global prefers-reduced-motion rule zeroes this transition. */
 .reveal {

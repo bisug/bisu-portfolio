@@ -14,7 +14,7 @@ function More() {
         height={28}
         alt=""
         aria-hidden="true"
-        className="icon-invert-light opacity-70 transition group-hover:opacity-100"
+        className="icon-accent-light opacity-70 transition group-hover:opacity-100"
       />
       <h3 className="text-lg font-bold transition-colors group-hover:text-fun-accent">
         More on GitHub

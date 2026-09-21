@@ -47,7 +47,7 @@ function ProjectCard({ project }: { project: Project }) {
                   height={18}
                   alt=""
                   aria-hidden="true"
-                  className="icon-invert-light"
+                  className="icon-accent-light"
                 />
               </a>
             )}
@@ -65,7 +65,7 @@ function ProjectCard({ project }: { project: Project }) {
                   height={18}
                   alt=""
                   aria-hidden="true"
-                  className="icon-invert-light"
+                  className="icon-accent-light"
                 />
               </a>
             )}

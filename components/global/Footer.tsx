@@ -21,7 +21,7 @@ function Footer() {
                 height={20}
                 alt=""
                 aria-hidden="true"
-                className="icon-invert-light"
+                className={item.accentIcon ? "icon-accent-light" : "icon-invert-light"}
               />
             </a>
           ))}

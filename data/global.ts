@@ -16,6 +16,8 @@ type SocialLink = {
   name: string;
   link: string;
   icon: string;
+  /** Accent-cyan icon — darkens (not inverts) in light mode. */
+  accentIcon?: boolean;
 };
 
 export const routes: Route[] = [
@@ -61,6 +63,7 @@ export const socials: SocialLink[] = [
     name: "Website",
     link: "https://bisu.com.np",
     icon: "/static/icons/external-link.svg",
+    accentIcon: true,
   },
   {
     name: "Email",
