@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Script from "next/script";
 import type { ReactNode } from "react";
+import { SITE_URL } from "@/data/global";
 import Footer from "../global/Footer";
 import Navbar from "../global/Navbar";
 import PageNav from "./PageNav";
 import Reveal from "./Reveal";
 
-const SITE_URL = "https://bisu.com.np";
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
 function Page({ currentPage, meta: { title, desc, noindex }, path = "/", children }: PageProps) {

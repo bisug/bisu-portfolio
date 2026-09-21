@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { footer } from "@/data/global";
+import { socials } from "@/data/global";
 
 function Footer() {
   return (
     <footer className="w-full px-5 sm:px-8 py-6 mt-20 border-t border-white/10 bg-bg">
       <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-5 sm:flex-row sm:justify-between">
         <div className="flex items-center gap-5">
-          {footer.columns[0].links.map((item) => (
+          {socials.map((item) => (
             <a
               key={item.name}
               href={item.link}
@@ -15,16 +15,14 @@ function Footer() {
               aria-label={item.name}
               className="opacity-70 transition hover:-translate-y-0.5 hover:opacity-100"
             >
-              {item.icon && (
-                <Image
-                  src={item.icon}
-                  width={20}
-                  height={20}
-                  alt=""
-                  aria-hidden="true"
-                  className="icon-invert-light"
-                />
-              )}
+              <Image
+                src={item.icon}
+                width={20}
+                height={20}
+                alt=""
+                aria-hidden="true"
+                className="icon-invert-light"
+              />
             </a>
           ))}
         </div>

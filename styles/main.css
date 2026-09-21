@@ -15,7 +15,6 @@
   --color-fun-navy-dark: #000f2e;
   --color-fun-navy-darkest: #000c24;
   --color-fun-navy: #192742;
-  --color-fun-accent-dark: #009ac5;
 }
 
 /* Light theme: dark is the default; .light on <html> flips the palette.
@@ -29,7 +28,6 @@
   --color-fun-navy-dark: #ffffff;
   --color-fun-navy-darkest: #e8edf6;
   --color-fun-navy: #d5deed;
-  --color-fun-accent-dark: #005b7d;
   --color-white: #0a1224;
   --color-gray-100: #1a2338;
 }
@@ -72,6 +70,56 @@
   transform: none;
 }
 
+/* Scattered sketch doodles floating behind the content.
+   z-index -1 works because the app wrapper establishes a stacking
+   context (isolate), so these sit above the page background but
+   below everything else. Reduced-motion users get them frozen. */
+.doodle-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.doodle {
+  position: absolute;
+  display: block;
+}
+
+.doodle img {
+  width: 100%;
+  display: block;
+  opacity: 0.45;
+}
+
+:root.light .doodle img {
+  opacity: 0.3;
+}
+
+.doodle-float-a,
+.doodle-float-b,
+.doodle-float-c {
+  animation: doodle-float 9s ease-in-out infinite alternate;
+}
+
+.doodle-float-b {
+  animation-duration: 12s;
+}
+
+.doodle-float-c {
+  animation-duration: 15s;
+}
+
+@keyframes doodle-float {
+  from {
+    transform: translateY(-10px) rotate(-4deg);
+  }
+  to {
+    transform: translateY(10px) rotate(4deg);
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-fun-accent);
   outline-offset: 2px;
@@ -89,12 +137,12 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
-:root.light body::-webkit-scrollbar-thumb {
-  background-color: #0002;
-}
-
 body::-webkit-scrollbar-thumb {
   background-color: #fff2;
   backdrop-filter: blur(5px);
   border-radius: 10px;
+}
+
+:root.light body::-webkit-scrollbar-thumb {
+  background-color: #0002;
 }

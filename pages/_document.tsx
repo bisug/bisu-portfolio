@@ -17,6 +17,7 @@ class MyDocument extends Document {
             sizes="180x180"
             href="/static/favicon/apple-touch-icon.png"
           />
+          <link rel="icon" type="image/svg+xml" href="/static/logos/logo_no_text.svg" />
           <link
             rel="icon"
             type="image/png"
