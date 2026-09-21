@@ -26,7 +26,7 @@ function Skills() {
                     <Reveal key={item.title} delay={(index % 5) * 50} className="h-full">
                       <div
                         title={item.title}
-                        className="group flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-accent/60"
+                        className="group flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4"
                       >
                         <FadeImage
                           src={item.icon}

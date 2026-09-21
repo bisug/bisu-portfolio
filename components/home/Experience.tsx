@@ -30,7 +30,9 @@ function Experience() {
             {events.map((event) => (
               <div
                 key={event.title}
-                className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition hover:border-fun-accent/60"
+                className={`rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition ${
+                  event.link ? "hover:border-fun-accent/60" : ""
+                }`}
               >
                 <h3 className="text-base sm:text-lg font-bold leading-snug">
                   {event.link ? (
