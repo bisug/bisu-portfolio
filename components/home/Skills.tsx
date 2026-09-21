@@ -1,43 +1,25 @@
 import { skills } from "@/data/content/home";
+import SectionTitle from "../global/SectionTitle";
 
 function Skills() {
   return (
-    <div className="flex flex-col md:flex-row justify-between relative">
-      <h2 className="relative text-3xl w-full text-center md:text-left font-bold md:max-w-lg mb-10 md:mr-10 md:mb-0 md:w-max mr-0 ">
-        I got the experience.
-        <br />
-        Here is my toolbelt for success.
-        <img
-          className="sqD bottom-[-80px] left-[-50px] lg:bottom-[-50px] lg:left-[-35px] z-[-10]"
-          src="/static/doodles/skills/laptop.svg"
-          alt=""
-        />
-        <img
-          className="sqD hidden md:block top-[140px] right-0 lg:top-[105px]"
-          src="/static/doodles/skills/coding.svg"
-          alt=""
-        />
-        <img
-          className="sqD hidden md:block top-[200px] right-[50px] lg:top-[170px] lg:right-[50px]"
-          src="/static/doodles/skills/youtube.svg"
-          alt=""
-        />
-        <img
-          className="sqD top-[-15px] right-[-15px]"
-          src="/static/doodles/skills/fillStar.svg"
-          alt=""
-        />
-      </h2>
-      <div className="relative max-w-lg w-full mx-auto md:mx-none grid gap-x-8 gap-y-12 sm:gap-8 md:gap-12 grid-cols-3 sm:grid-cols-6 items-center place-content-center">
+    <div className="flex flex-col lg:flex-row lg:items-start gap-10">
+      <div className="lg:max-w-sm lg:shrink-0">
+        <SectionTitle title="My toolbelt for success." />
+        <p className="text-fun-gray text-sm sm:text-base -mt-4">
+          The languages, frameworks, and tools I reach for when building and securing things.
+        </p>
+      </div>
+      <div className="grid flex-1 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4">
         {skills.map((item) => {
           return (
             <div
               title={item.title}
               key={item.title}
-              className="w-10 mx-auto flex items-center flex-col justify-center"
+              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-pink/60"
             >
-              <img src={item.icon} style={item.style} alt="" />
-              <p className="text-xs text-fun-gray font-bold mt-3 opacity-80">{item.title}</p>
+              <img src={item.icon} style={item.style} alt="" className="h-9 w-9 object-contain" />
+              <p className="text-xs text-fun-gray font-semibold">{item.title}</p>
             </div>
           );
         })}

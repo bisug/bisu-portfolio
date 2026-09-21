@@ -5,45 +5,71 @@ import { kebabCase } from "@/utils/utils";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
+    <div className="flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-pink/60 hover:shadow-xl hover:shadow-fun-pink/10">
       <a
         href={project.link || project.github}
         target="_blank"
-        className={`w-full relative rounded-xl border-fun-gray border p-2 transition hover:-translate-y-2 hover:opacity-75 hover:border-fun-pink will-change-[border-color,opacity,transform]`}
+        className="relative block aspect-[16/9] overflow-hidden bg-fun-pink-darkest"
         rel="noopener"
       >
-        <img className="w-full rounded-md" src={project.img} alt={project.title} />
+        <img
+          className="h-full w-full object-cover object-top transition duration-300 hover:scale-[1.03]"
+          src={project.img}
+          alt={project.title}
+          loading="lazy"
+        />
       </a>
-      <div className="w-full mt-5">
-        <div className="flex projects-center justify-between">
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-center justify-between gap-2">
           <a href={project.link || project.github} target="_blank" rel="noopener">
-            <h3 className="text-lg font-bold">{project.title}</h3>
+            <h3 className="text-lg font-bold hover:text-fun-pink transition-colors">
+              {project.title}
+            </h3>
           </a>
-          <div className="space-x-2">
+          <div className="flex items-center gap-3">
             {project.link && (
-              <a href={project.link} target="_blank" rel="noreferrer">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${project.title} live site`}
+                className="opacity-60 transition hover:opacity-100"
+              >
                 <Image
                   src="/static/icons/external-link.svg"
-                  width={16}
-                  height={16}
-                  alt="Link Icon"
+                  width={18}
+                  height={18}
+                  alt=""
+                  aria-hidden="true"
                 />
               </a>
             )}
             {project.github && (
-              <a href={project.github} target="_blank" rel="noreferrer">
-                <Image src="/static/icons/github.svg" width={16} height={16} alt="Github Icon" />
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${project.title} source code`}
+                className="opacity-60 transition hover:opacity-100"
+              >
+                <Image
+                  src="/static/icons/github.svg"
+                  width={18}
+                  height={18}
+                  alt=""
+                  aria-hidden="true"
+                />
               </a>
             )}
           </div>
         </div>
-        <p className="text-fun-gray text-left text-sm">{project.desc}</p>
-        <ul className="flex flex-wrap items-center mt-2 -ml-2 list-none">
+        <p className="mt-2 text-left text-sm leading-relaxed text-fun-gray">{project.desc}</p>
+        <ul className="mt-3 flex flex-wrap items-center gap-1.5 list-none">
           {project.tags.map((tag) => {
             return (
               <li key={tag}>
                 <Link href={`/projects/tag/${kebabCase(tag)}`}>
-                  <div className="m-1 rounded-lg text-sm bg-fun-pink-dark py-1 px-2 cursor-pointer hover:opacity-75">
+                  <div className="rounded-md bg-fun-pink-dark px-2 py-1 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-pink hover:text-white">
                     {tag}
                   </div>
                 </Link>

@@ -4,8 +4,8 @@ import { footer } from "@/data/global";
 
 function Footer() {
   return (
-    <footer className="flex flex-col w-screen px-5 py-10 border-t border-fun-pink-darker z-5 bg-bg">
-      <div className="w-full max-w-4xl m-auto grid grid-cols-2 sm:grid-cols-3 justify-between items-start">
+    <footer className="w-full px-5 sm:px-8 py-12 mt-20 border-t border-white/10 bg-bg">
+      <div className="w-full max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-8 justify-between items-start">
         {footer.columns.map((item) => {
           return (
             <div key={item.title} className="text-left mb-5 sm:mb-0">
@@ -48,59 +48,49 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="max-w-4xl w-full m-auto mt-8 pt-8 sm:mt-4 sm:pt-4 text-center text-fun-gray border-t border-fun-pink-dark">
-        <div className="flex flex-col items-center justify-center ">
-          <div className="inline-flex items-center uppercase text-xs font-bold tracking-widest">
-            Made with{" "}
-            <div className="space-x-2 inline-flex items-center -mt-1 ml-3">
-              <span>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                  width="26"
-                  title="React"
-                  alt=""
-                />
-                <span className="sr-only">React</span>
-              </span>
-              <span>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg"
-                  width="40"
-                  className="invert"
-                  title="NextJS"
-                  alt=""
-                />
-                <span className="sr-only">NextJS</span>
-              </span>
-              <span>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                  width="26"
-                  title="TailwindCSS"
-                  alt=""
-                />
-                <span className="sr-only">TailwindCSS</span>
-              </span>
-            </div>
-          </div>
-          <div className="mt-2 text-xs ">
-            Made by{" "}
-            <a href="mailto:bisu.ghlan@gmail.com" className="text-fun-gray-light font-medium">
-              Bisu Ghalan
-            </a>
-            . All rights reserved.
-          </div>
-        </div>
-      </div>
-      <div className="mt-8 text-center sm:text-right sm:-mt-12">
+      <div className="max-w-5xl w-full mx-auto mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center border-t border-white/10">
+        <p className="text-xs text-fun-gray order-2 sm:order-1">
+          Made by{" "}
+          <a href="mailto:bisu.ghlan@gmail.com" className="text-fun-gray-light font-medium">
+            Bisu Ghalan
+          </a>
+          {" — "}All rights reserved.
+        </p>
+        <p className="flex items-center gap-2 text-xs text-fun-gray uppercase font-bold tracking-widest order-1 sm:order-2">
+          Built with
+          <span className="flex items-center gap-1.5">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+              width="20"
+              title="React"
+              alt=""
+            />
+            <span className="sr-only">React</span>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg"
+              width="32"
+              className="invert"
+              title="NextJS"
+              alt=""
+            />
+            <span className="sr-only">NextJS</span>
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+              width="20"
+              title="TailwindCSS"
+              alt=""
+            />
+            <span className="sr-only">TailwindCSS</span>
+          </span>
+        </p>
         <a
-          className="w-auto inline-flex items-center sm:w-auto font-bold flex-shrink text-xs border border-fun-pink px-4 py-2 rounded-xl text-fun-pink cursor-pointer opacity-50"
+          className="inline-flex items-center font-semibold text-xs border border-fun-pink px-4 py-2 rounded-full text-fun-pink hover:bg-fun-pink hover:text-white transition order-3"
           href="https://github.com/bisug"
           target="_blank"
           rel="noopener nooreferrer"
         >
           <Image src="/static/icons/github.svg" width={16} height={16} alt="Github Icon" />
-          <span className="ml-2">View Source Code </span>
+          <span className="ml-2">Source</span>
         </a>
       </div>
     </footer>

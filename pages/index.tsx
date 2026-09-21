@@ -16,7 +16,7 @@ export default function Home() {
       }}
     >
       <Hero />
-      <div className="mt-20 space-y-32">
+      <div className="mt-16 sm:mt-20 space-y-20 sm:space-y-24 w-full">
         <Projects />
         <Experience />
         <Education />

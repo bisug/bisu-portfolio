@@ -13,7 +13,7 @@ function Page({ currentPage, meta: { desc }, children }: PageProps) {
   }`;
   return (
     <div
-      className="w-full m-auto flex flex-col items-center justify-center min-h-screen opening-box-animate-paddin text-white overflow-hidden md:overflow-visible"
+      className="w-full m-auto flex flex-col items-center min-h-screen text-white"
       style={{ maxWidth: "1200px" }}
     >
       <Head>
@@ -75,11 +75,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
         }}
       ></noscript>
 
-      <main className="p-5 w-full flex-1 text-center">
-        <div className="hidden sm:block z-100">
+      <main className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
+        <div className="hidden sm:block">
           <Navbar currentPage={currentPage} />
         </div>
-        <div className="-m-5 block sm:hidden z-100">
+        <div className="block sm:hidden">
           <MobileNavbar />
         </div>
         {children}
