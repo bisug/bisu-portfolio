@@ -76,6 +76,7 @@ type EducationItem = {
   school: string;
   period: string;
   desc: string;
+  logo?: string;
 };
 
 export const experience: ExperienceItem[] = [
@@ -115,6 +116,7 @@ export const education: EducationItem[] = [
     school: "Lincoln International College, Kathmandu",
     period: "2025 — Present",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",
+    logo: "/static/education/lincoln-college-logo.png",
   },
   {
     degree: "Higher Secondary Education (+2 Management)",

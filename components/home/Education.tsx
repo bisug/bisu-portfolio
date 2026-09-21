@@ -16,7 +16,12 @@ function Education() {
             </p>
             <div>
               <h3 className="text-lg font-bold">{item.degree}</h3>
-              <p className="text-fun-pink text-sm mt-1">{item.school}</p>
+              <div className="flex items-center gap-3 mt-1">
+                {item.logo && (
+                  <img src={item.logo} alt={`${item.school} logo`} className="h-10 w-auto" />
+                )}
+                <p className="text-fun-pink text-sm">{item.school}</p>
+              </div>
               {item.desc && <p className="text-fun-gray text-sm mt-1">{item.desc}</p>}
             </div>
           </div>
