@@ -3,9 +3,14 @@ import SectionTitle from "../global/SectionTitle";
 
 function Experience() {
   return (
-    <div className="flex flex-col text-left justify-between relative">
-      <SectionTitle title="Where I've worked." />
-      <div className="max-w-3xl w-full space-y-4">
+    <div className="flex flex-col lg:flex-row lg:items-start gap-10">
+      <div className="lg:max-w-sm lg:shrink-0">
+        <SectionTitle title="Where I've worked." />
+        <p className="text-fun-gray text-sm sm:text-base -mt-4">
+          Roles, teams, and hackathons that shaped how I build and ship software.
+        </p>
+      </div>
+      <div className="flex-1 w-full space-y-4">
         {experience.map((item) => (
           <div
             key={item.org}

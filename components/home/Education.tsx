@@ -3,14 +3,20 @@ import SectionTitle from "../global/SectionTitle";
 
 function Education() {
   return (
-    <div className="flex flex-col text-left justify-between relative">
-      <SectionTitle title="Where I studied." />
-      <div className="max-w-3xl w-full space-y-4">
+    <div className="flex flex-col lg:flex-row lg:items-start gap-10">
+      <div className="lg:max-w-sm lg:shrink-0">
+        <SectionTitle title="Where I studied." />
+        <p className="text-fun-gray text-sm sm:text-base -mt-4">
+          My academic path — from management studies to cyber security.
+        </p>
+      </div>
+      <div className="flex-1 w-full space-y-4">
         {education.map((item) => {
           const Card = (
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition hover:-translate-y-1 hover:border-fun-accent/60">
               {item.logo && (
-                <div className="shrink-0 rounded-lg bg-white p-2">
+                // Literal #fff, not bg-white: --color-white is theme-flipped, logos need a real white backdrop.
+                <div className="shrink-0 rounded-lg bg-[#ffffff] p-2">
                   <img
                     src={item.logo}
                     alt={`${item.school} logo`}

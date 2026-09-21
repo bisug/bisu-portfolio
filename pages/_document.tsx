@@ -3,8 +3,15 @@ import Document, { Head, Html, Main, NextScript } from "next/document";
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" suppressHydrationWarning>
         <Head>
+          <script
+            // Set theme before paint to avoid a flash of the wrong mode.
+            dangerouslySetInnerHTML={{
+              __html:
+                "try{var t=localStorage.getItem('theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme: light)').matches))document.documentElement.classList.add('light')}catch(e){}",
+            }}
+          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"

@@ -1,11 +1,8 @@
 import CTA from "@/components/home/CTA";
-import Education from "@/components/home/Education";
-import Experience from "@/components/home/Experience";
 import Hero from "@/components/home/Hero";
-import Projects from "@/components/home/Projects";
-import Skills from "@/components/home/Skills";
 import Testimonials from "@/components/home/Testimonials";
 import Page from "@/components/utility/Page";
+import Reveal from "@/components/utility/Reveal";
 
 export default function Home() {
   return (
@@ -16,14 +13,12 @@ export default function Home() {
       }}
     >
       <Hero />
-      <div className="mt-16 sm:mt-20 space-y-20 sm:space-y-24 w-full">
-        <Projects />
-        <Experience />
-        <Education />
-        <Skills />
+      <Reveal>
         <Testimonials />
-      </div>
-      <CTA />
+      </Reveal>
+      <Reveal>
+        <CTA />
+      </Reveal>
     </Page>
   );
 }

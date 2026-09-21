@@ -3,7 +3,11 @@
 @theme inline {
   --font-sans: var(--font-sans-v), "Inter", system-ui, sans-serif;
   --font-mono: var(--font-mono-v), monospace;
+}
 
+/* Colors stay in a non-inline @theme so utilities emit var(--color-*),
+   letting the .light overrides in :root.light take effect at runtime. */
+@theme {
   --color-bg: #000a1f;
   --color-fun-gray-light: #b2bbcf;
   --color-fun-gray: #7b89a8;
@@ -12,6 +16,22 @@
   --color-fun-navy-darkest: #000c24;
   --color-fun-navy: #192742;
   --color-fun-accent-dark: #009ac5;
+}
+
+/* Light theme: dark is the default; .light on <html> flips the palette.
+   Overriding --color-white/--color-gray-100 also flips every white/*
+   utility (text, borders, overlays) since utilities reference the vars. */
+:root.light {
+  --color-bg: #f4f7fc;
+  --color-fun-gray-light: #3c4a63;
+  --color-fun-gray: #5a6a86;
+  --color-fun-accent: #00749c;
+  --color-fun-navy-dark: #ffffff;
+  --color-fun-navy-darkest: #e8edf6;
+  --color-fun-navy: #d5deed;
+  --color-fun-accent-dark: #005b7d;
+  --color-white: #0a1224;
+  --color-gray-100: #1a2338;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,6 +52,26 @@
   }
 }
 
+/* White SVG icons need inverting to stay visible on light surfaces. */
+:root.light .icon-invert-light {
+  filter: invert(1);
+}
+
+/* Scroll-reveal: hidden until Reveal adds .reveal-visible.
+   The global prefers-reduced-motion rule zeroes this transition. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--color-fun-accent);
   outline-offset: 2px;
@@ -47,6 +87,10 @@ body {
 body::-webkit-scrollbar {
   width: 8px;
   background: transparent;
+}
+
+:root.light body::-webkit-scrollbar-thumb {
+  background-color: #0002;
 }
 
 body::-webkit-scrollbar-thumb {

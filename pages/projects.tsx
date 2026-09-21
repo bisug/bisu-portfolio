@@ -1,5 +1,4 @@
 import Heading from "@/components/projects/Heading";
-import More from "@/components/projects/More";
 import Projects from "@/components/projects/Projects";
 import Page from "@/components/utility/Page";
 
@@ -15,7 +14,6 @@ function projects() {
     >
       <Heading />
       <Projects />
-      <More />
     </Page>
   );
 }

@@ -3,6 +3,8 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import Footer from "../global/Footer";
 import Navbar from "../global/Navbar";
+import PageNav from "./PageNav";
+import Reveal from "./Reveal";
 
 const SITE_URL = "https://bisu.com.np";
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
@@ -72,6 +74,9 @@ function Page({ currentPage, meta: { title, desc, noindex }, path = "/", childre
       </div>
       <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
         {children}
+        <Reveal>
+          <PageNav currentPage={currentPage} />
+        </Reveal>
       </main>
       <Footer />
     </div>

@@ -1,4 +1,5 @@
-import { skills } from "@/data/content/home";
+import Reveal from "@/components/utility/Reveal";
+import { CATEGORY_ORDER, skills } from "@/data/content/home";
 import SectionTitle from "../global/SectionTitle";
 
 function Skills() {
@@ -10,16 +11,34 @@ function Skills() {
           The languages, frameworks, and tools I reach for when building and securing things.
         </p>
       </div>
-      <div className="grid flex-1 grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4">
-        {skills.map((item) => {
+      <div className="flex-1 w-full space-y-10">
+        {CATEGORY_ORDER.map((category) => {
+          const items = skills.filter((skill) => skill.category === category);
           return (
-            <div
-              title={item.title}
-              key={item.title}
-              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-accent/60"
-            >
-              <img src={item.icon} style={item.style} alt="" className="h-9 w-9 object-contain" />
-              <p className="text-xs text-fun-gray font-semibold">{item.title}</p>
+            <div key={category}>
+              <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
+                {category}
+              </h3>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 sm:gap-4">
+                {items.map((item, index) => {
+                  return (
+                    <Reveal key={item.title} delay={(index % 5) * 50} className="h-full">
+                      <div
+                        title={item.title}
+                        className="group flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-accent/60"
+                      >
+                        <img
+                          src={item.icon}
+                          style={item.style}
+                          alt=""
+                          className={`${item.mono ? "icon-invert-light " : ""}h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6`}
+                        />
+                        <p className="text-xs text-fun-gray font-semibold">{item.title}</p>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
             </div>
           );
         })}
