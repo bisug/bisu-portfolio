@@ -1,4 +1,27 @@
+# Everything here is public and may be crawled and quoted.
 User-agent: *
+Allow: /
+
+# AI answer engines and assistants, listed explicitly so the policy is
+# visible rather than implied by the wildcard above.
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+# Gemini / Vertex grounding.
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://bisu.com.np/sitemap.xml

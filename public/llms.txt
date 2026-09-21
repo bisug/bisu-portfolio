@@ -1,0 +1,46 @@
+# Bisu Ghalan
+
+> Computer science student and security researcher based in Bhaktapur, Nepal. Builds Telegram bots, command-line tools, and full-stack web apps in Python, Go, Rust, and TypeScript, and studies network infrastructure and defensive security.
+
+Site: https://bisu.com.np
+Language: English
+
+## Pages
+
+- [Home](https://bisu.com.np/): who Bisu Ghalan is, what he works on, and how to get in touch.
+- [Projects](https://bisu.com.np/projects): eight selected projects — security tooling, CLIs, Telegram bots, and full-stack apps.
+- [Experience](https://bisu.com.np/experience): freelance work and hackathon participation.
+- [Education](https://bisu.com.np/education): Bachelor of Computer Science in Cyber Security & Network Technology (Hons), Lincoln International College, Kathmandu, batch of September 2025; Higher Secondary Education (+2 Management), Janapremi World School, Bhaktapur, 2024.
+- [Tech Stack](https://bisu.com.np/tech-stack): languages, frameworks, databases, AI tooling, and systems/ops tools.
+
+## Projects
+
+- **BinaryInspector** — safe, local Rust CLI for inspecting ELF binaries without executing them. https://github.com/bisug/BinaryInspector
+- **Paila** — travel and community platform bridging tourists and local communities in Nepal. https://paila-prototype.vercel.app · https://github.com/bisug/Paila
+- **TG-GithubBot** — GitHub webhook handler bot for Telegram that formats push, deployment, and other events. https://t.me/DearGitNotifyBot · https://github.com/bisug/TG-GithubBot
+- **ninfo** — Linux system information CLI in Nim that returns a whole-system snapshot as JSON in a single call. https://github.com/bisug/ninfo
+- **TG-WordGame** — Wordle-style word game bot for Telegram with solo and multiplayer rounds, daily challenge, and leaderboards. https://github.com/bisug/TG-WordGame
+- **Melody** — Telegram group-call streaming bot written in Python with Pyrogram. https://github.com/bisug/Melody
+- **heroku-buildpack-bun** — unofficial Heroku buildpack for Bun. https://github.com/bisug/heroku-buildpack-bun
+- **SnakeGame-CLI** — cross-platform Snake game that runs entirely in the terminal. https://github.com/bisug/SnakeGame-CLI
+
+Also on GitHub: https://github.com/bisug
+
+## Hackathons
+
+- **Build Nepal Hackathon** (1–2 August 2026, Mid Valley International College, Gyaneshwor, Kathmandu; organized by Mid-Valley International College): team Bugger built **NetGuard**, an explainable intrusion detection and prevention platform for small organizations. Status: participant.
+- **JunctionX Kathmandu** (29–31 May 2026, AITM College, Khumaltar Height, Lalitpur; organized by SUMS Nepal & Cogknit): team Runtime Terrors built **Paila**, a travel and community platform connecting tourists with local communities in Nepal. Status: participant. https://junctionxkathmandu.com/past-events/2026
+
+## Tech stack
+
+- Languages: Python, TypeScript, Rust, Go, Markdown
+- Frameworks & web: FastAPI, Flask, Kurigram, React, Next.js, TailwindCSS, Node.js, Bun
+- Databases: MongoDB, PostgreSQL, Redis, Valkey, SQLite
+- AI & tooling: Claude Code, Codex, Copilot, Zed
+- Systems & ops: Linux, Kali Linux, Linux Mint, Windows, Docker, GitHub Actions, VMware, Git
+
+## Contact
+
+- Email: bisu.ghlan@gmail.com
+- GitHub: https://github.com/bisug
+- LinkedIn: https://www.linkedin.com/in/bisug/

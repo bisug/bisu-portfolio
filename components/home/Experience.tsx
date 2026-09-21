@@ -5,7 +5,7 @@ function Experience() {
   return (
     <div className="flex flex-col lg:flex-row lg:items-start gap-10">
       <div className="lg:max-w-sm lg:shrink-0">
-        <SectionTitle title="Work experience." />
+        <SectionTitle title="Work experience." as="h1" />
         <p className="text-fun-gray text-sm sm:text-base -mt-4">
           What I&apos;ve been up to, professionally and competitively.
         </p>

@@ -1,13 +1,16 @@
 import Head from "next/head";
 import Script from "next/script";
 import type { ReactNode } from "react";
-import { SITE_URL } from "@/data/global";
+import { SITE_NAME, SITE_URL } from "@/data/global";
 import Footer from "../global/Footer";
 import Navbar from "../global/Navbar";
 import PageNav from "./PageNav";
 import Reveal from "./Reveal";
+import StructuredData from "./StructuredData";
 
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+const OG_IMAGE = `${SITE_URL}/static/misc/og.png`;
+const OG_IMAGE_ALT = `${SITE_NAME} — developer and security researcher`;
 
 function Page({ currentPage, meta: { title, desc, noindex }, path = "/", children }: PageProps) {
   const pageTitle =
@@ -26,16 +29,29 @@ function Page({ currentPage, meta: { title, desc, noindex }, path = "/", childre
         {noindex && <meta name="robots" content="noindex" />}
 
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="og:locale" content="en_US" />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content={`${SITE_URL}/static/misc/og.png`} />
+        <meta property="og:image" content={OG_IMAGE} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={OG_IMAGE_ALT} />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={pageUrl} />
-        <meta property="twitter:title" content={pageTitle} />
-        <meta property="twitter:description" content={desc} />
-        <meta property="twitter:image" content={`${SITE_URL}/static/misc/og.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={pageUrl} />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={desc} />
+        <meta name="twitter:image" content={OG_IMAGE} />
+        <meta name="twitter:image:alt" content={OG_IMAGE_ALT} />
+
+        <meta name="author" content={SITE_NAME} />
+        <meta name="theme-color" content="#000a1f" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#f4f7fc" media="(prefers-color-scheme: light)" />
+
+        {/* A noindex page (404) carries no entity data worth publishing. */}
+        {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} />}
 
         {GA_ID && (
           <>

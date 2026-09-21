@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Hero() {
   return (
     <div className="relative w-full m-auto flex justify-center text-center flex-col items-center pt-16 pb-24 sm:pt-20 sm:pb-28">
@@ -13,11 +15,11 @@ function Hero() {
         apps — and I break things to learn how to defend them.
       </p>
       <div className="flex flex-col sm:flex-row items-center gap-4">
-        <a href="#learnmore">
+        <Link href="/projects">
           <div className="cursor-pointer font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25">
             See featured work
           </div>
-        </a>
+        </Link>
         <a href="mailto:bisu.ghlan@gmail.com">
           <div className="cursor-pointer font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-gray-light border border-white/20 hover:border-fun-accent hover:text-white transition">
             Get in touch

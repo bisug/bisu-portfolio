@@ -5,7 +5,7 @@ function Education() {
   return (
     <div className="flex flex-col lg:flex-row lg:items-start gap-10">
       <div className="lg:max-w-sm lg:shrink-0">
-        <SectionTitle title="Where I studied." />
+        <SectionTitle title="Where I studied." as="h1" />
         <p className="text-fun-gray text-sm sm:text-base -mt-4">
           My academic path — from management studies to cyber security.
         </p>
