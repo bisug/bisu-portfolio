@@ -13,7 +13,7 @@ function Projects({ overwriteProjects }: ProjectProps) {
   return (
     <>
       <h2 className="sr-only">All projects</h2>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 items-stretch">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
         {projectsList.map((item, index) => {
           return (
             <Reveal key={item.id} delay={(index % 3) * 75} className="h-full">

@@ -19,7 +19,7 @@ function ProjectCard({ project }: { project: Project }) {
           shellClassName="block h-full w-full"
           src={project.img}
           srcSet={`${projectThumb(project.img)} 600w, ${project.img} 1200w`}
-          sizes="(min-width: 768px) 33vw, 100vw"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           alt={project.title}
           width={1200}
           height={600}
