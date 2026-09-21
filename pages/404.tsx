@@ -5,9 +5,7 @@ import { randomNumberText } from "@/utils/utils";
 function Page404() {
   const [num404, setNum404] = useState("0000");
 
-  useEffect(() => {
-    randomNumberText("404", setNum404);
-  }, []);
+  useEffect(() => randomNumberText("404", setNum404), []);
 
   return (
     <>

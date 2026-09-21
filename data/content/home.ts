@@ -1,7 +1,9 @@
+import type { CSSProperties } from "react";
+
 type Skill = {
   title: string;
   icon: string;
-  style?: object;
+  style?: CSSProperties;
 };
 type Testimonial = {
   quote: string;

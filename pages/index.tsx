@@ -18,7 +18,6 @@ export default function Home() {
         <Projects />
         <Skills />
         <Testimonials />
-        {/* <Posts allPosts={allPosts} /> */}
       </div>
       <CTA />
     </Page>

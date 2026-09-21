@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Project } from "types";
 import { kebabCase } from "@/utils/utils";
 
-function ProjectCard({ project }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <div
-      className="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center"
-      key={project.id}
-    >
+    <div className="max-w-sm mx-auto flex flex-col projects-center md:projects-start md:justify-center">
       <a
         href={project.link || project.github}
         target="_blank"
@@ -41,7 +39,7 @@ function ProjectCard({ project }) {
         </div>
         <p className="text-fun-gray text-left text-sm">{project.desc}</p>
         <ul className="flex flex-wrap items-center mt-2 -ml-2 list-none">
-          {project.tags.map((tag, _index) => {
+          {project.tags.map((tag) => {
             return (
               <li key={tag}>
                 <Link href={`/projects/tag/${kebabCase(tag)}`}>

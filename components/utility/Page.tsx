@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import Footer from "../global/Footer";
 import MobileNavbar from "../global/MobileNavbar";
@@ -10,7 +11,6 @@ function Page({ currentPage, meta: { desc }, children }: PageProps) {
       ? "Brayden Wright - Web Developer, Designer, Creator."
       : `${currentPage} - BraydenTW.io`
   }`;
-  console.log(currentPage);
   return (
     <div
       className="w-full m-auto flex flex-col items-center justify-center min-h-screen opening-box-animate-paddin text-white overflow-hidden md:overflow-visible"
@@ -19,10 +19,6 @@ function Page({ currentPage, meta: { desc }, children }: PageProps) {
       <Head>
         <title>{pageTitle}</title>
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
-        <link rel="manifest" href="/static/favicon/site.webmanifest" />
         <meta name="title" content={pageTitle} />
         <meta name="description" content={desc} />
 
@@ -37,31 +33,40 @@ function Page({ currentPage, meta: { desc }, children }: PageProps) {
         <meta property="twitter:title" content={pageTitle} />
         <meta property="twitter:description" content={desc} />
         <meta property="twitter:image" content="https://braydentw.io/static/misc/og.png"></meta>
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+              strategy="afterInteractive"
+            />
+            <Script
+              id="gtm"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-KC3CN7V');`,
-          }}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+              }}
+            />
+            <Script
+              id="gtag"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
                 page_path: window.location.pathname,
               });
-          `,
-          }}
-        />
+            `,
+              }}
+            />
+          </>
+        )}
       </Head>
       <noscript
         dangerouslySetInnerHTML={{

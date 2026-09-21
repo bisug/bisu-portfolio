@@ -71,15 +71,7 @@ const projects: Project[] = [
   },
 ];
 
-export const allTags = [];
-
-for (const project of projects) {
-  for (const tag of project.tags) {
-    if (!allTags.includes(tag)) {
-      allTags.push(tag);
-    }
-  }
-}
+export const allTags: string[] = [...new Set(projects.flatMap((project) => project.tags))];
 
 export const allKebabTags = allTags.map((tag) => kebabCase(tag));
 

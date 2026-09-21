@@ -1,44 +1,40 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import type { Project } from "types";
 import Heading from "@/components/projects/Heading";
 import Projects from "@/components/projects/Projects";
 import Page from "@/components/utility/Page";
 import projects, { allKebabTags, allTags } from "@/data/content/projects";
-import { kebabArray, kebabCase } from "@/utils/utils";
+import { kebabCase } from "@/utils/utils";
+
+type TagPageProps = {
+  filteredProjects: Project[];
+  tag: string;
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allTags: string[] = [];
-  for (const project of projects) {
-    for (const tag of project.tags) {
-      allTags.push(tag);
-    }
-  }
-  const uniqueAllTags = [...new Set(allTags)];
-  const allTagsPaths = uniqueAllTags.map((path) => ({
-    params: { tag: `${kebabCase(path)}` },
-  }));
   return {
-    paths: allTagsPaths,
+    paths: allTags.map((path) => ({
+      params: { tag: `${kebabCase(path)}` },
+    })),
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }: { params: { tag: string } }) => {
-  const tag = params.tag;
+export const getStaticProps: GetStaticProps<TagPageProps, { tag: string }> = async ({ params }) => {
+  const tag = params?.tag ?? "";
   const filteredProjects = projects.filter((project) =>
-    [...kebabArray(project.tags)].includes(tag),
+    project.tags.some((projectTag) => kebabCase(projectTag) === tag),
   );
   return {
-    props: JSON.parse(
-      JSON.stringify({
-        filteredProjects,
-        tag: tag,
-      }),
-    ),
+    props: {
+      filteredProjects,
+      tag,
+    },
   };
 };
 
-function PostPage({ filteredProjects, tag }) {
+function PostPage({ filteredProjects, tag }: TagPageProps) {
   const capsTag = allTags[allKebabTags.indexOf(tag)];
   return (
     <Page
@@ -56,7 +52,6 @@ function PostPage({ filteredProjects, tag }) {
           View All
         </div>
       </Link>
-      {/* <More /> */}
     </Page>
   );
 }
