@@ -8,8 +8,8 @@ import Navbar from "../global/Navbar";
 function Page({ currentPage, meta: { desc }, children }: PageProps) {
   const pageTitle = `${
     currentPage === "Home"
-      ? "Brayden Wright - Web Developer, Designer, Creator."
-      : `${currentPage} - BraydenTW.io`
+      ? "Bisu Ghalan - Developer, Security Researcher."
+      : `${currentPage} - Bisu Ghalan`
   }`;
   return (
     <div
@@ -23,16 +23,16 @@ function Page({ currentPage, meta: { desc }, children }: PageProps) {
         <meta name="description" content={desc} />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://braydentw.io/" />
+        <meta property="og:url" content="https://bisu.com.np/" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content="https://braydentw.io/static/misc/og.png" />
+        <meta property="og:image" content="https://bisu.com.np/static/misc/og.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://braydentw.io/" />
+        <meta property="twitter:url" content="https://bisu.com.np/" />
         <meta property="twitter:title" content={pageTitle} />
         <meta property="twitter:description" content={desc} />
-        <meta property="twitter:image" content="https://braydentw.io/static/misc/og.png"></meta>
+        <meta property="twitter:image" content="https://bisu.com.np/static/misc/og.png"></meta>
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
           <>
             <Script

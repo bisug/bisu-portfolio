@@ -13,7 +13,7 @@ function Navbar({ currentPage }) {
               width="60"
               alt=""
             />
-            {"BraydenTW".split("").map((letter) => {
+            {"Bisu".split("").map((letter) => {
               return (
                 <span
                   key={letter}

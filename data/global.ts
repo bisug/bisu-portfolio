@@ -15,11 +15,6 @@ type FooterCol = {
 
 type Footer = {
   columns: FooterCol[];
-  support: {
-    buymeacoffee: string;
-    paypal: string;
-    message: string;
-  };
 };
 
 export const routes: Route[] = [
@@ -30,10 +25,6 @@ export const routes: Route[] = [
   {
     title: "Projects",
     path: "/projects",
-  },
-  {
-    title: "Designs",
-    path: "/designs",
   },
 ];
 
@@ -52,11 +43,6 @@ export const footer: Footer = {
           link: "/projects",
           leavesWebsite: false,
         },
-        {
-          name: "Designs",
-          link: "/designs",
-          leavesWebsite: false,
-        },
       ],
     },
     {
@@ -64,40 +50,29 @@ export const footer: Footer = {
       links: [
         {
           name: "GitHub",
-          link: "https://github.com/braydentw",
+          link: "https://github.com/bisug",
           icon: "/static/icons/github-f.svg",
           leavesWebsite: true,
         },
         {
           name: "LinkedIn",
-          link: "https://www.linkedin.com/in/braydentw/",
+          link: "https://www.linkedin.com/in/bisug/",
           icon: "/static/icons/linkedin-f.svg",
           leavesWebsite: true,
         },
         {
-          name: "Dribbble",
-          link: "https://dribbble.com/braydentw",
-          icon: "/static/icons/dribbble-f.svg",
-          leavesWebsite: true,
-        },
-        {
-          name: "IndieHackers",
-          link: "https://indiehackers.com/braydentw",
-          icon: "/static/icons/indiehackers-f.svg",
+          name: "Website",
+          link: "https://bisu.com.np",
+          icon: "/static/icons/external-link.svg",
           leavesWebsite: true,
         },
         {
           name: "Email",
-          link: "mailto:contact@braydentw.io",
+          link: "mailto:bisu.ghlan@gmail.com",
           icon: "/static/icons/mail-f.svg",
           leavesWebsite: true,
         },
       ],
     },
   ],
-  support: {
-    buymeacoffee: "braydenw",
-    paypal: "",
-    message: "I appreciate your support very much! 💙",
-  },
 };

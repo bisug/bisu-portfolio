@@ -4,7 +4,7 @@ function More() {
       Hey, hey, hey... I've got even more on{" "}
       <a
         className="text-fun-pink underline"
-        href="https://github.com/braydentw"
+        href="https://github.com/bisug"
         target="_blank"
         rel="noopener"
       >

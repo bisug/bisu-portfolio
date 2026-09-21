@@ -39,39 +39,12 @@ function Footer() {
           );
         })}
         <div className="text-center col-span-2 sm:col-auto sm:text-left pt-8 sm:mt-0 sm:pt-0 text-fun-gray border-t border-fun-pink-dark sm:border-0">
-          <h4 className="uppercase text-fun-gray text-sm font-bold">Support My Work</h4>
+          <h4 className="uppercase text-fun-gray text-sm font-bold">Get In Touch</h4>
           <div className="space-y-2 mt-4 w-full flex items-center sm:items-start flex-col">
-            {footer.support.buymeacoffee !== "" && (
-              <div>
-                <a
-                  href={`https://buymeacoffee.com/${footer.support.buymeacoffee}`}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <img
-                    src="/static/misc/buy-me-a-coffee.svg"
-                    className="h-12 mr-2 hover:opacity-80 opacity-100 transition-opacity"
-                    alt="Buy Me a Coffee"
-                  />
-                </a>
-              </div>
-            )}
-            {footer.support.paypal !== "" && (
-              <div>
-                <a
-                  href={`https://paypal.me/${footer.support.paypal}`}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <img
-                    src="/static/misc/paypal.svg"
-                    className="h-12 mr-2 hover:opacity-80 opacity-100 transition-opacity"
-                    alt="PayPal"
-                  />
-                </a>
-              </div>
-            )}
-            <p className="text-fun-gray text-xs pt-1">{footer.support.message}</p>
+            <div>
+              <a href="mailto:bisu.ghlan@gmail.com">bisu.ghlan@gmail.com</a>
+            </div>
+            <p className="text-fun-gray text-xs pt-1">Based in Bhaktapur, Nepal</p>
           </div>
         </div>
       </div>
@@ -112,8 +85,8 @@ function Footer() {
           </div>
           <div className="mt-2 text-xs ">
             Made by{" "}
-            <a href="mailto:contact@braydentw.io" className="text-fun-gray-light font-medium">
-              Brayden Wright
+            <a href="mailto:bisu.ghlan@gmail.com" className="text-fun-gray-light font-medium">
+              Bisu Ghalan
             </a>
             . All rights reserved.
           </div>
@@ -122,7 +95,7 @@ function Footer() {
       <div className="mt-8 text-center sm:text-right sm:-mt-12">
         <a
           className="w-auto inline-flex items-center sm:w-auto font-bold flex-shrink text-xs border border-fun-pink px-4 py-2 rounded-xl text-fun-pink cursor-pointer opacity-50"
-          href="https://github.com/braydentw/braydentw.io"
+          href="https://github.com/bisug"
           target="_blank"
           rel="noopener nooreferrer"
         >
