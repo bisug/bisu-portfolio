@@ -77,6 +77,7 @@ type EducationItem = {
   period: string;
   desc: string;
   logo?: string;
+  link?: string;
 };
 
 export const experience: ExperienceItem[] = [
@@ -117,6 +118,7 @@ export const education: EducationItem[] = [
     period: "2025 — Present",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",
     logo: "/static/education/lincoln-college-logo.jpeg",
+    link: "https://licnepal.edu.np/",
   },
   {
     degree: "Higher Secondary Education (+2 Management)",
@@ -124,6 +126,7 @@ export const education: EducationItem[] = [
     period: "2022 — 2024",
     desc: "",
     logo: "/static/education/janapremi-logo.png",
+    link: "https://jws.edu.np/",
   },
 ];
 
