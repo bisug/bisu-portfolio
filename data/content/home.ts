@@ -116,13 +116,14 @@ export const education: EducationItem[] = [
     school: "Lincoln International College, Kathmandu",
     period: "2025 — Present",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",
-    logo: "/static/education/lincoln-college-logo.png",
+    logo: "/static/education/lincoln-college-logo.jpeg",
   },
   {
     degree: "Higher Secondary Education (+2 Management)",
     school: "Janapremi World School, Bhaktapur",
     period: "2022 — 2024",
     desc: "",
+    logo: "/static/education/janapremi-logo.png",
   },
 ];
 
