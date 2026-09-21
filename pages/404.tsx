@@ -15,7 +15,7 @@ function Page404() {
         <p className="mt-6 text-fun-gray sm:text-lg">Sorry, looks like that page is missing.</p>
         <Link
           href="/"
-          className="mt-8 rounded-full border border-fun-pink bg-fun-pink-darker px-6 py-2.5 text-base text-fun-pink transition-colors hover:bg-fun-pink hover:text-fun-pink-darkest"
+          className="mt-8 rounded-full border border-fun-accent bg-fun-navy-dark px-6 py-2.5 text-base text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest"
         >
           Return Home
         </Link>

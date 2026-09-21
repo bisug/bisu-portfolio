@@ -16,7 +16,7 @@ function Skills() {
             <div
               title={item.title}
               key={item.title}
-              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-pink/60"
+              className="group flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-accent/60"
             >
               <img src={item.icon} style={item.style} alt="" className="h-9 w-9 object-contain" />
               <p className="text-xs text-fun-gray font-semibold">{item.title}</p>

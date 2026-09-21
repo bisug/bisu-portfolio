@@ -19,7 +19,8 @@ function Page({ currentPage, meta: { title, desc, noindex }, path = "/", childre
         <title>{pageTitle}</title>
 
         <meta name="description" content={desc} />
-        <link rel="canonical" href={pageUrl} />
+        {/* A noindex page (404) has no canonical URL of its own; pointing it at the homepage would be misleading. */}
+        {!noindex && <link rel="canonical" href={pageUrl} />}
         {noindex && <meta name="robots" content="noindex" />}
 
         <meta property="og:type" content="website" />
@@ -61,7 +62,7 @@ function Page({ currentPage, meta: { title, desc, noindex }, path = "/", childre
 
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-fun-pink focus:px-4 focus:py-2 focus:font-semibold focus:text-fun-pink-darkest"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-fun-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-fun-navy-darkest"
       >
         Skip to content
       </a>

@@ -17,7 +17,7 @@ function Projects() {
       </div>
       <div className="relative w-full mt-8">
         <Link href="/projects">
-          <div className="max-w-xs border border-fun-pink mx-auto text-center w-full px-8 py-3 rounded-full text-fun-pink bg-fun-pink-darker hover:bg-fun-pink hover:text-fun-pink-darkest transition cursor-pointer font-semibold">
+          <div className="max-w-xs border border-fun-accent mx-auto text-center w-full px-8 py-3 rounded-full text-fun-accent bg-fun-navy-dark hover:bg-fun-accent hover:text-fun-navy-darkest transition cursor-pointer font-semibold">
             View all projects
           </div>
         </Link>

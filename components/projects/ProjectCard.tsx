@@ -5,11 +5,11 @@ import { kebabCase } from "@/utils/utils";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-pink/60 hover:shadow-xl hover:shadow-fun-pink/10">
+    <div className="flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
       <a
         href={project.link || project.github}
         target="_blank"
-        className="relative block aspect-[16/9] overflow-hidden bg-fun-pink-darkest"
+        className="relative block aspect-[16/9] overflow-hidden bg-fun-navy-darkest"
         rel="noopener"
       >
         <img
@@ -22,7 +22,7 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center justify-between gap-2">
           <a href={project.link || project.github} target="_blank" rel="noopener">
-            <h3 className="text-lg font-bold hover:text-fun-pink transition-colors">
+            <h3 className="text-lg font-bold hover:text-fun-accent transition-colors">
               {project.title}
             </h3>
           </a>
@@ -69,7 +69,7 @@ function ProjectCard({ project }: { project: Project }) {
             return (
               <li key={tag}>
                 <Link href={`/projects/tag/${kebabCase(tag)}`}>
-                  <div className="rounded-md bg-fun-pink-dark px-2.5 py-1.5 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-pink hover:text-fun-pink-darkest">
+                  <div className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-accent hover:text-fun-navy-darkest">
                     {tag}
                   </div>
                 </Link>

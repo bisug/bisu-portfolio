@@ -49,7 +49,7 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
       <Projects overwriteProjects={filteredProjects} />
 
       <Link href="/projects">
-        <div className="mt-8 max-w-sm md:max-w-2xl border border-fun-pink mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-pink bg-fun-pink-darker hover:bg-fun-pink hover:text-fun-pink-darkest transition-colors cursor-pointer">
+        <div className="mt-8 max-w-sm md:max-w-2xl border border-fun-accent mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-accent bg-fun-navy-dark hover:bg-fun-accent hover:text-fun-navy-darkest transition-colors cursor-pointer">
           View All
         </div>
       </Link>

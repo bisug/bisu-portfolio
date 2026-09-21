@@ -39,7 +39,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
               return (
                 <span
                   key={letter}
-                  className="hover:text-fun-pink hover:-translate-y-0.5 transition-all duration-200"
+                  className="hover:text-fun-accent hover:-translate-y-0.5 transition-all duration-200"
                 >
                   {letter}
                 </span>
@@ -62,7 +62,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
           </button>
           <div
             inert={!isMenuOpen}
-            className={`absolute right-0 top-full z-50 mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-white/10 bg-fun-pink-darker shadow-2xl shadow-black/60 transition-all duration-150 ${
+            className={`absolute right-0 top-full z-50 mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-white/10 bg-fun-navy-dark shadow-2xl shadow-black/60 transition-all duration-150 ${
               isMenuOpen
                 ? "scale-100 opacity-100"
                 : "pointer-events-none -translate-y-2 scale-95 opacity-0"
@@ -77,7 +77,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                     aria-current={currentPage === item.title ? "page" : undefined}
                     className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                       currentPage === item.title
-                        ? "bg-white/10 text-fun-pink"
+                        ? "bg-white/10 text-fun-accent"
                         : "text-white/70 hover:bg-white/5 hover:text-white"
                     }`}
                   >

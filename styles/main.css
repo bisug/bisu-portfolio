@@ -8,26 +8,11 @@
   --color-bg: #000a1f;
   --color-fun-gray-light: #b2bbcf;
   --color-fun-gray: #7b89a8;
-  --color-fun-gray-medium: #767c85;
-  --color-fun-gray-darker: #2a2a2c;
-  --color-fun-gray-dark: #1f1f20;
-  --color-fun-gray-darkest: #141414;
-  --color-fun-pink: #00c7ff;
-  --color-fun-pink-darker: #000f2e;
-  --color-fun-pink-darkest: #000c24;
-  --color-fun-pink-dark: #192742;
-  --color-fun-pink-light: #009ac5;
-
-  --animate-fadeIn: fadeIn 3s ease-out;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+  --color-fun-accent: #00c7ff;
+  --color-fun-navy-dark: #000f2e;
+  --color-fun-navy-darkest: #000c24;
+  --color-fun-navy: #192742;
+  --color-fun-accent-dark: #009ac5;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -49,7 +34,7 @@
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-fun-pink);
+  outline: 2px solid var(--color-fun-accent);
   outline-offset: 2px;
 }
 

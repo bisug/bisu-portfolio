@@ -9,11 +9,11 @@ function Experience() {
         {experience.map((item) => (
           <div
             key={item.org}
-            className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition hover:border-fun-pink/60"
+            className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition hover:border-fun-accent/60"
           >
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
               <h3 className="text-base sm:text-lg font-bold">
-                {item.role} <span className="text-fun-pink">@ {item.org}</span>
+                {item.role} <span className="text-fun-accent">@ {item.org}</span>
               </h3>
               <p className="text-fun-gray text-xs font-mono whitespace-nowrap shrink-0">
                 {item.period}
@@ -24,7 +24,7 @@ function Experience() {
               {item.tags.map((tag) => (
                 <li
                   key={tag}
-                  className="rounded-md bg-fun-pink-dark px-2 py-1 text-xs text-fun-gray-light"
+                  className="rounded-md bg-fun-navy px-2 py-1 text-xs text-fun-gray-light"
                 >
                   {tag}
                 </li>

@@ -9,7 +9,7 @@ function Footer() {
         {footer.columns.map((item) => {
           return (
             <div key={item.title} className="text-left mb-5 sm:mb-0">
-              <h4 className="uppercase text-fun-gray text-sm font-bold">{item.title}</h4>
+              <h2 className="uppercase text-fun-gray text-sm font-bold">{item.title}</h2>
               <div>
                 {item.links.map((item) => {
                   return (
@@ -38,8 +38,8 @@ function Footer() {
             </div>
           );
         })}
-        <div className="text-center col-span-2 sm:col-auto sm:text-left pt-8 sm:mt-0 sm:pt-0 text-fun-gray border-t border-fun-pink-dark sm:border-0">
-          <h4 className="uppercase text-fun-gray text-sm font-bold">Get In Touch</h4>
+        <div className="text-center col-span-2 sm:col-auto sm:text-left pt-8 sm:mt-0 sm:pt-0 text-fun-gray border-t border-fun-navy sm:border-0">
+          <h2 className="uppercase text-fun-gray text-sm font-bold">Get In Touch</h2>
           <div className="space-y-2 mt-4 w-full flex items-center sm:items-start flex-col">
             <div>
               <a href="mailto:bisu.ghlan@gmail.com">bisu.ghlan@gmail.com</a>
@@ -84,7 +84,7 @@ function Footer() {
           </span>
         </p>
         <a
-          className="inline-flex items-center font-semibold text-xs border border-fun-pink px-4 py-2 rounded-full text-fun-pink hover:bg-fun-pink hover:text-fun-pink-darkest transition order-3"
+          className="inline-flex items-center font-semibold text-xs border border-fun-accent px-4 py-2 rounded-full text-fun-accent hover:bg-fun-accent hover:text-fun-navy-darkest transition order-3"
           href="https://github.com/bisug"
           target="_blank"
           rel="noopener noreferrer"
