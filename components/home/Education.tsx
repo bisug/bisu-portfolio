@@ -8,7 +8,7 @@ function Education() {
       <div className="max-w-3xl w-full space-y-4">
         {education.map((item) => {
           const Card = (
-            <div className="flex items-center gap-4 sm:gap-5 rounded-xl border border-fun-pink-dark bg-fun-pink-darkerer p-4 sm:p-5 transition hover:-translate-y-1 hover:border-fun-pink">
+            <div className="flex items-center gap-4 sm:gap-5 rounded-xl border border-fun-pink-dark bg-fun-pink-darker p-4 sm:p-5 transition hover:-translate-y-1 hover:border-fun-pink">
               {item.logo && (
                 <div className="shrink-0 rounded-lg bg-white p-2">
                   <img

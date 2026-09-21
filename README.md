@@ -1,18 +1,45 @@
-# **[braydentw.io](https://braydentw.io)**
+# [bisu.com.np](https://bisu.com.np)
 
-Hey there! I'm Brayden and this is my lovely lovely portfolio built using **React, NextJS, and TailwindCSS**!
+Portfolio of **Bisu Ghalan** — CS student and security researcher from Nepal. Built with Next.js (pages router), React, Tailwind CSS v4, TypeScript, and Biome, running on Bun.
 
-## Guidelines
+## Stack
 
-> **Note**: **I ask of you that you do your best to follow these rules:**
+| Concern | Choice |
+| --- | --- |
+| Framework | Next.js 16 (Turbopack, pages router) |
+| UI | React 19 + Tailwind CSS v4 (CSS-first `@theme` in `styles/main.css`) |
+| Types | TypeScript 7 |
+| Lint / format | Biome |
+| Package manager | Bun |
 
-1. You can **use** this code and style **as inspiration**.
-2. **Please do not copy it directly**.
-3. **Giving credit** to (@BraydenTW) the author **is appreciated**.
+## Development
 
-Doing so makes it better for everyone here on this platform and respects what everyone has made. **Please be you and make yourself unique from the rest!** ✨
+```bash
+bun install
+bun run dev        # http://localhost:3000
+```
 
-<hr/>
-<a href="https://www.buymeacoffee.com/braydenw" target="_blank"><img src="./public/static/misc/buy-me-a-coffee.svg" alt="Buy Me A Coffee: @BraydenW" width="160"></a>&nbsp;
-<br/>
-<p>Thank you so much for your support. 💙</p>
+| Script | Purpose |
+| --- | --- |
+| `bun run dev` | Dev server |
+| `bun run build` | Production build (all routes prerendered) |
+| `bun run start` | Serve the production build |
+| `bun run typecheck` | `tsc --noEmit` |
+| `bun run check` | Biome lint + format (writes) |
+
+## Content
+
+All copy lives in data files — no CMS, no database.
+
+| File | Contents |
+| --- | --- |
+| `data/content/home.ts` | Skills, experience, education, testimonials |
+| `data/content/projects.ts` | Projects and their tags (`/projects/tag/*` pages are generated from these) |
+| `data/global.ts` | Routes and footer columns |
+
+Design tokens (colors, fonts, animations) are defined once in the `@theme` block in `styles/main.css`.
+
+## Credits
+
+Built on the open-source portfolio template by [Brayden W](https://braydentw.io) ([@BraydenTW](https://github.com/BraydenTW)). His guidelines for the original work — use it as inspiration, don't copy it verbatim, and credit the author — are respected here: the content, design system, and structure have been reworked for this site.
+

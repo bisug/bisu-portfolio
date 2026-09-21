@@ -11,7 +11,7 @@ function CTA() {
       </p>
       <a
         href="mailto:bisu.ghlan@gmail.com"
-        className="inline-block cursor-pointer font-bold whitespace-nowrap px-10 py-4 rounded-full text-white bg-fun-pink hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-pink/25"
+        className="inline-block cursor-pointer font-bold whitespace-nowrap px-10 py-4 rounded-full text-fun-pink-darkest bg-fun-pink hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-pink/25"
       >
         Say hello
       </a>

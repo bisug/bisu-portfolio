@@ -30,8 +30,27 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Honor reduced-motion for every animation and transition in the app. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-fun-pink);
+  outline-offset: 2px;
 }
 
 body {
@@ -46,25 +65,8 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
-body::-webkit-scrollbar-track {
-  background: blue;
-  display: none;
-}
-
 body::-webkit-scrollbar-thumb {
   background-color: #fff2;
   backdrop-filter: blur(5px);
   border-radius: 10px;
 }
-
-.testimonialQuote::before {
-  content: "“";
-  position: absolute;
-  top: -10px;
-  left: -46px;
-  opacity: 0.75;
-  font-size: 80px;
-  @apply text-fun-pink;
-}
-
-/* All svg squiggle decorations */

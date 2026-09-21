@@ -14,8 +14,8 @@ function Hero() {
       </p>
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <a href="#learnmore">
-          <div className="cursor-pointer font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-white bg-fun-pink hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-pink/25">
-            View my work
+          <div className="cursor-pointer font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-pink-darkest bg-fun-pink hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-pink/25">
+            See featured work
           </div>
         </a>
         <a href="mailto:bisu.ghlan@gmail.com">

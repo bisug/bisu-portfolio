@@ -84,10 +84,10 @@ function Footer() {
           </span>
         </p>
         <a
-          className="inline-flex items-center font-semibold text-xs border border-fun-pink px-4 py-2 rounded-full text-fun-pink hover:bg-fun-pink hover:text-white transition order-3"
+          className="inline-flex items-center font-semibold text-xs border border-fun-pink px-4 py-2 rounded-full text-fun-pink hover:bg-fun-pink hover:text-fun-pink-darkest transition order-3"
           href="https://github.com/bisug"
           target="_blank"
-          rel="noopener nooreferrer"
+          rel="noopener noreferrer"
         >
           <Image src="/static/icons/github.svg" width={16} height={16} alt="Github Icon" />
           <span className="ml-2">Source</span>

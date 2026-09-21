@@ -4,51 +4,42 @@ import type { ReactNode } from "react";
 import Footer from "../global/Footer";
 import Navbar from "../global/Navbar";
 
-function Page({ currentPage, meta: { desc }, children }: PageProps) {
-  const pageTitle = `${
+const SITE_URL = "https://bisu.com.np";
+const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+
+function Page({ currentPage, meta: { title, desc, noindex }, path = "/", children }: PageProps) {
+  const pageTitle =
     currentPage === "Home"
       ? "Bisu Ghalan - Developer, Security Researcher."
-      : `${currentPage} - Bisu Ghalan`
-  }`;
+      : `${title ?? currentPage} - Bisu Ghalan`;
+  const pageUrl = `${SITE_URL}${path}`;
   return (
-    <div
-      className="w-full m-auto flex flex-col items-center min-h-screen text-white"
-      style={{ maxWidth: "1200px" }}
-    >
+    <div className="w-full m-auto flex flex-col items-center min-h-screen text-white">
       <Head>
         <title>{pageTitle}</title>
 
-        <meta name="title" content={pageTitle} />
         <meta name="description" content={desc} />
+        <link rel="canonical" href={pageUrl} />
+        {noindex && <meta name="robots" content="noindex" />}
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://bisu.com.np/" />
+        <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content="https://bisu.com.np/static/misc/og.png" />
+        <meta property="og:image" content={`${SITE_URL}/static/misc/og.png`} />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://bisu.com.np/" />
+        <meta property="twitter:url" content={pageUrl} />
         <meta property="twitter:title" content={pageTitle} />
         <meta property="twitter:description" content={desc} />
-        <meta property="twitter:image" content="https://bisu.com.np/static/misc/og.png"></meta>
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
+        <meta property="twitter:image" content={`${SITE_URL}/static/misc/og.png`} />
+
+        {GA_ID && (
           <>
             <Script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               strategy="afterInteractive"
-            />
-            <Script
-              id="gtm"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KC3CN7V');`,
-              }}
             />
             <Script
               id="gtag"
@@ -58,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              gtag('config', '${GA_ID}', {
                 page_path: window.location.pathname,
               });
             `,
@@ -67,14 +58,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </>
         )}
       </Head>
-      <noscript
-        dangerouslySetInnerHTML={{
-          __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC3CN7V"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-        }}
-      ></noscript>
 
-      <main className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-fun-pink focus:px-4 focus:py-2 focus:font-semibold focus:text-fun-pink-darkest"
+      >
+        Skip to content
+      </a>
+
+      <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
         <Navbar currentPage={currentPage} />
         {children}
       </main>
@@ -90,6 +82,8 @@ type PageProps = {
   meta: {
     title?: string;
     desc: string;
+    noindex?: boolean;
   };
+  path?: string;
   children?: ReactNode;
 };

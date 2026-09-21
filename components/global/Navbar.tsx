@@ -61,6 +61,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
             <MenuIcon />
           </button>
           <div
+            inert={!isMenuOpen}
             className={`absolute right-0 top-full z-50 mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-white/10 bg-fun-pink-darker shadow-2xl shadow-black/60 transition-all duration-150 ${
               isMenuOpen
                 ? "scale-100 opacity-100"

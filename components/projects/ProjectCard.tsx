@@ -69,7 +69,7 @@ function ProjectCard({ project }: { project: Project }) {
             return (
               <li key={tag}>
                 <Link href={`/projects/tag/${kebabCase(tag)}`}>
-                  <div className="rounded-md bg-fun-pink-dark px-2 py-1 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-pink hover:text-white">
+                  <div className="rounded-md bg-fun-pink-dark px-2.5 py-1.5 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-pink hover:text-fun-pink-darkest">
                     {tag}
                   </div>
                 </Link>

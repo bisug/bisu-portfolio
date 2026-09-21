@@ -39,6 +39,7 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
   return (
     <Page
       currentPage="Projects"
+      path={`/projects/tag/${tag}`}
       meta={{
         title: `${capsTag} Projects`,
         desc: `A showcase for all of my ${capsTag} projects.`,
@@ -48,7 +49,7 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
       <Projects overwriteProjects={filteredProjects} />
 
       <Link href="/projects">
-        <div className="mt-8 max-w-sm md:max-w-2xl border border-fun-pink mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-pink bg-fun-pink-darkerer hover:bg-fun-pink hover:text-white transition-colors cursor-pointer">
+        <div className="mt-8 max-w-sm md:max-w-2xl border border-fun-pink mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-pink bg-fun-pink-darker hover:bg-fun-pink hover:text-fun-pink-darkest transition-colors cursor-pointer">
           View All
         </div>
       </Link>
