@@ -24,12 +24,21 @@
   --color-bg: #f4f7fc;
   --color-fun-gray-light: #3c4a63;
   --color-fun-gray: #5a6a86;
-  --color-fun-accent: #00749c;
+  /* Darker than dark-mode cyan: keeps accent text/buttons above 4.5:1 on light surfaces. */
+  --color-fun-accent: #006b8f;
   --color-fun-navy-dark: #ffffff;
   --color-fun-navy-darkest: #e8edf6;
   --color-fun-navy: #d5deed;
   --color-white: #0a1224;
   --color-gray-100: #1a2338;
+}
+
+/* Match UA widgets (scrollbars, form controls) to the active theme. */
+html {
+  color-scheme: dark;
+}
+:root.light {
+  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -56,9 +65,9 @@
 }
 
 /* Accent-cyan SVG icons: inverting them turns them orange, so just darken
-   toward the light-theme accent (#00c7ff * 0.6 ≈ #007b9d). */
+   toward the light-theme accent (#00c7ff * 0.55 ≈ #006e8c ≈ #006b8f). */
 :root.light .icon-accent-light {
-  filter: brightness(0.6);
+  filter: brightness(0.55);
 }
 
 /* Black SVG icons need inverting on dark surfaces, but must stay as-is in
