@@ -34,11 +34,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-python@v7.0.0
-        with:
-          python-version: "3.13"
-      - run: pip install pillow
-      - run: python3 scripts/optimize-images.py --check
+      - uses: oven-sh/setup-bun@v2
+      - run: bun run images:check
 
   compress:
     name: Calibre compression
