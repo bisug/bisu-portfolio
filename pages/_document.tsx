@@ -31,6 +31,10 @@ class MyDocument extends Document {
             href="/static/favicon/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/favicon/site.webmanifest" />
+          {/* Without JS, Reveal/FadeImage never fire — force content visible. */}
+          <noscript>
+            <style>{".reveal{opacity:1;transform:none}img.img-loading{opacity:1}"}</style>
+          </noscript>
         </Head>
         <body>
           <Main />

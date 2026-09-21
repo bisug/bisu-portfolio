@@ -12,7 +12,8 @@ const DOODLES: Doodle[] = [
   {
     id: "burst-top-left",
     src: "/static/doodles/testimonials/yay.svg",
-    className: "top-[6%] left-[3%] w-20 sm:w-28",
+    // Below the navbar on mobile so it doesn't clutter the logo.
+    className: "top-[15%] sm:top-[6%] left-[3%] w-20 sm:w-28",
     rotate: "-10deg",
     float: "doodle-float-a",
   },
