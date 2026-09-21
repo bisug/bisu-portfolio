@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import Testimonials from "@/components/home/Testimonials";
 import Page from "@/components/utility/Page";
 import Reveal from "@/components/utility/Reveal";
+import { testimonials } from "@/data/content/home";
 
 export default function Home() {
   return (
@@ -13,9 +14,11 @@ export default function Home() {
       }}
     >
       <Hero />
-      <Reveal>
-        <Testimonials />
-      </Reveal>
+      {testimonials.length > 0 && (
+        <Reveal>
+          <Testimonials />
+        </Reveal>
+      )}
       <Reveal>
         <CTA />
       </Reveal>

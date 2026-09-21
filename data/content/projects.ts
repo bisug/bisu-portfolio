@@ -57,7 +57,7 @@ const projects: Project[] = [
     title: "heroku-buildpack-bun",
     desc: "Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, runs bun install.",
     img: "/static/projects/heroku-buildpack-bun.webp",
-    link: "https://bun.sh",
+    // No "Live site" — bun.sh is Bun's homepage, not this project.
     github: "https://github.com/bisug/heroku-buildpack-bun",
     tags: ["Shell", "Bun", "DevOps"],
   },
