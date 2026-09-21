@@ -123,6 +123,65 @@
   }
 }
 
+/* Route progress bar: fixed top, fills left-to-right while navigating. */
+.route-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  height: 2px;
+  width: 30%;
+  background: var(--color-fun-accent);
+  border-radius: 0 2px 2px 0;
+  animation: route-progress-fill 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes route-progress-fill {
+  from {
+    width: 5%;
+  }
+  to {
+    width: 90%;
+  }
+}
+
+/* Image fade-in: each img sits in an .img-shell wrapper that shows a
+   shimmer while the image loads; the img fades in over it on load. */
+img.img-loading {
+  opacity: 0;
+}
+
+img.img-loaded {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.img-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-shell:has(> img.img-loading) {
+  background: linear-gradient(
+    100deg,
+    var(--color-fun-navy-darkest) 40%,
+    var(--color-fun-navy) 50%,
+    var(--color-fun-navy-darkest) 60%
+  );
+  background-size: 200% 100%;
+  animation: img-shimmer 1.6s linear infinite;
+}
+
+@keyframes img-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-fun-accent);
   outline-offset: 2px;

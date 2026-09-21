@@ -1,5 +1,6 @@
 import Reveal from "@/components/utility/Reveal";
 import { CATEGORY_ORDER, skills } from "@/data/content/home";
+import FadeImage from "../utility/FadeImage";
 import SectionTitle from "../global/SectionTitle";
 
 function Skills() {
@@ -27,14 +28,12 @@ function Skills() {
                         title={item.title}
                         className="group flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-2 py-4 transition hover:-translate-y-1 hover:border-fun-accent/60"
                       >
-                        <img
+                        <FadeImage
                           src={item.icon}
                           style={item.style}
-                          alt=""
+                          alt={`${item.title} icon`}
                           width={36}
                           height={36}
-                          loading="lazy"
-                          decoding="async"
                           className={`${item.mono ? "icon-invert-light " : ""}h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6`}
                         />
                         <p className="text-xs text-fun-gray font-semibold">{item.title}</p>

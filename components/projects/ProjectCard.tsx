@@ -1,8 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import type { Project } from "types";
 import { projectSlug, projectThumb } from "@/data/content/projects";
 import { kebabCase } from "@/utils/utils";
+import FadeImage from "../utility/FadeImage";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
@@ -13,16 +14,15 @@ function ProjectCard({ project }: { project: Project }) {
         tabIndex={-1}
         aria-hidden="true"
       >
-        <img
+        <FadeImage
           className="h-full w-full object-cover object-top transition duration-300 hover:scale-[1.03]"
+          shellClassName="block h-full w-full"
           src={project.img}
           srcSet={`${projectThumb(project.img)} 600w, ${project.img} 1200w`}
           sizes="(min-width: 768px) 33vw, 100vw"
           alt={project.title}
           width={1200}
           height={600}
-          loading="lazy"
-          decoding="async"
         />
       </Link>
       <div className="flex flex-1 flex-col p-5">

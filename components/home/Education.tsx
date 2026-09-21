@@ -1,4 +1,5 @@
 import { education } from "@/data/content/home";
+import FadeImage from "../utility/FadeImage";
 import SectionTitle from "../global/SectionTitle";
 
 function Education() {
@@ -17,13 +18,11 @@ function Education() {
               {item.logo && (
                 // Literal #fff, not bg-white: --color-white is theme-flipped, logos need a real white backdrop.
                 <div className="shrink-0 rounded-lg bg-[#ffffff] p-2">
-                  <img
+                  <FadeImage
                     src={item.logo}
                     alt={`${item.school} logo`}
                     width={320}
                     height={120}
-                    loading="lazy"
-                    decoding="async"
                     className="h-12 sm:h-14 w-auto max-w-[120px] object-contain"
                   />
                 </div>
