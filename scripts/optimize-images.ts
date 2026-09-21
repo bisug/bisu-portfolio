@@ -124,9 +124,15 @@ const args = new Set(process.argv.slice(2));
 const checkOnly = args.has("--check");
 const force = args.has("--force");
 const maxKbFlag = process.argv.find((a) => a.startsWith("--max-kb"));
+// "--max-kb" with no/invalid value must not become NaN — that would disable
+// the budget check silently (every "size > NaN" comparison is false).
 const maxKb = maxKbFlag
   ? Number(maxKbFlag.split("=")[1] ?? process.argv[process.argv.indexOf(maxKbFlag) + 1])
   : 150;
+if (!Number.isFinite(maxKb) || maxKb <= 0) {
+  console.error(`invalid --max-kb value (got "${maxKbFlag}")`);
+  process.exit(1);
+}
 
 const rel = (p: string) => p.slice(ROOT.length + 1);
 const items = derivatives();
