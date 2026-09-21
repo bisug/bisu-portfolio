@@ -5,6 +5,8 @@
     "build": "next build",
     "start": "bunx serve out",
     "sitemap": "bun scripts/generate-sitemap.ts",
+    "images": "python3 scripts/optimize-images.py",
+    "images:check": "python3 scripts/optimize-images.py --check",
     "typecheck": "tsc --noEmit",
     "lint": "biome lint .",
     "format": "biome format --write .",

@@ -1,0 +1,70 @@
+# Image pipeline: deterministic derivatives are generated in-repo by
+# scripts/optimize-images.py; Calibre then squeezes sources losslessly-ish
+# on top. Run `bun run images` locally after adding/replacing any image.
+name: Images
+
+on:
+  pull_request:
+    paths:
+      - "**.jpg"
+      - "**.jpeg"
+      - "**.png"
+      - "**.webp"
+      - "**.avif"
+  push:
+    branches:
+      - main
+    paths:
+      - "**.jpg"
+      - "**.jpeg"
+      - "**.png"
+      - "**.webp"
+      - "**.avif"
+  schedule:
+    - cron: "00 23 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  derivatives:
+    name: Derived assets current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.13"
+      - run: pip install pillow
+      - run: python3 scripts/optimize-images.py --check
+
+  compress:
+    name: Calibre compression
+    runs-on: ubuntu-latest
+    if: github.repository == 'bisug/Bisu-Portfolio-01' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Compress images
+        id: calibre
+        uses: calibreapp/image-actions@main
+        with:
+          # PRs: commit straight into the PR branch. Push/schedule/manual
+          # runs: compress only, then open a fresh PR below.
+          compressOnly: ${{ github.event_name != 'pull_request' }}
+          # Derived thumbs are byte-exact generator output; only sources
+          # get squeezed. Regenerate them after with `bun run images`.
+          ignorePaths: |-
+            node_modules/**
+            public/static/projects/*-600.webp
+            public/static/projects/*.webp
+            public/static/education/*.webp
+      - name: Open compression PR
+        if: github.event_name != 'pull_request' && steps.calibre.outputs.markdown != ''
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          title: "Auto Compress Images"
+          branch-suffix: timestamp
+          commit-message: "Compressed Images"
+          body: ${{ steps.calibre.outputs.markdown }}
