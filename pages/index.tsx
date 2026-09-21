@@ -1,4 +1,6 @@
 import CTA from "@/components/home/CTA";
+import Education from "@/components/home/Education";
+import Experience from "@/components/home/Experience";
 import Hero from "@/components/home/Hero";
 import Projects from "@/components/home/Projects";
 import Skills from "@/components/home/Skills";
@@ -16,6 +18,8 @@ export default function Home() {
       <Hero />
       <div className="mt-20 space-y-32">
         <Projects />
+        <Experience />
+        <Education />
         <Skills />
         <Testimonials />
       </div>

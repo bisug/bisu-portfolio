@@ -63,4 +63,65 @@ export const skills: Skill[] = [
   },
 ];
 
+type ExperienceItem = {
+  role: string;
+  org: string;
+  period: string;
+  desc: string;
+  tags: string[];
+};
+
+type EducationItem = {
+  degree: string;
+  school: string;
+  period: string;
+  desc: string;
+};
+
+export const experience: ExperienceItem[] = [
+  {
+    role: "Lead Developer",
+    org: "Seal Your Waifu",
+    period: "2026 — Present",
+    desc: "Large-scale Telegram game bot + mini-app. High-concurrency state for thousands of players.",
+    tags: ["FastAPI", "React", "Redis", "MongoDB"],
+  },
+  {
+    role: "Creator",
+    org: "Sumi Vibes AI",
+    period: "2025",
+    desc: "Gemini-powered Telegram chatbot. Reached 3,000+ users with games and group-management tools.",
+    tags: ["Python", "Pyrogram", "Gemini AI", "MongoDB"],
+  },
+  {
+    role: "Developer",
+    org: "Moco Bot",
+    period: "2025",
+    desc: "Free Fire stats bot on third-party APIs — player info, stats, booster. Peaked at 5,000+ users.",
+    tags: ["Python", "API Orchestration", "Reverse Engineering"],
+  },
+  {
+    role: "Participant",
+    org: "JunctionX Kathmandu",
+    period: "2026",
+    desc: "Hospitality & Heritage track with team Runtime Terrors. Co-built the Paila prototype.",
+    tags: ["Next.js", "TypeScript", "Supabase", "OpenAI"],
+  },
+];
+
+export const education: EducationItem[] = [
+  {
+    degree: "Bachelor of Computer Science — Cyber Security & Network Technology (Hons)",
+    school: "Lincoln International College, Kathmandu",
+    period: "2025 — Present",
+    desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",
+  },
+  {
+    degree: "Higher Secondary Education (+2 Management)",
+    school: "Janapremi World School, Bhaktapur",
+    period: "2022 — 2024",
+    desc: "",
+  },
+];
+
 export const testimonials: Testimonial[] = [];
