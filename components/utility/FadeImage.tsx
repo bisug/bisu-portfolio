@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type FadeImageProps = {
   src: string;
@@ -34,10 +34,19 @@ function FadeImage({
   style,
 }: FadeImageProps) {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Cached/eager images can finish before hydration attaches onLoad; without
+  // this check they would stay at opacity 0 forever.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth > 0) setLoaded(true);
+  }, []);
 
   return (
     <div className={`img-shell ${shellClassName}`}>
       <img
+        ref={imgRef}
         src={src}
         srcSet={srcSet}
         sizes={sizes}
