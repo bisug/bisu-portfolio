@@ -55,11 +55,8 @@ jobs:
           compressOnly: ${{ github.event_name != 'pull_request' }}
           # Derived thumbs are byte-exact generator output; only sources
           # get squeezed. Regenerate them after with `bun run images`.
-          ignorePaths: |-
-            node_modules/**
-            public/static/projects/*-600.webp
-            public/static/projects/*.webp
-            public/static/education/*.webp
+          # Comma-separated per the action's minimatch syntax.
+          ignorePaths: "node_modules/**,public/static/projects/*-600.webp,public/static/projects/*.webp,public/static/education/*.webp"
       - name: Open compression PR
         if: github.event_name != 'pull_request' && steps.calibre.outputs.markdown != ''
         uses: peter-evans/create-pull-request@v8.1.1
