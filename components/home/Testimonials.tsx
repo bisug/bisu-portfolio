@@ -24,7 +24,7 @@ function Testimonials() {
               )}
               <p className="text-base italic relative">"{item.quote}"</p>
               <p className="mt-4 text-xs text-fun-gray">
-                <b className="text-fun-accent font-mono">{item.name}</b> - {item.job}
+                <b className="text-fun-accent font-mono font-medium">{item.name}</b> - {item.job}
               </p>
               {index === 2 && (
                 <img

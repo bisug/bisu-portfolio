@@ -11,7 +11,7 @@ function Page404() {
       }}
     >
       <div className="flex min-h-[60vh] w-full flex-col items-center justify-center py-20 text-center">
-        <h1 className="text-6xl font-mono font-bold text-white sm:text-7xl">{`{ error: 404 }`}</h1>
+        <h1 className="text-6xl font-mono font-medium text-white sm:text-7xl">{`{ error: 404 }`}</h1>
         <p className="mt-6 text-fun-gray sm:text-lg">Sorry, looks like that page is missing.</p>
         <Link
           href="/"
