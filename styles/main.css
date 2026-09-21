@@ -1,4 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Be Vietnam Pro", "Inter", system-ui, sans;
+  --font-mono: "DM Mono", monospace;
+
+  --color-bg: #000a1f;
+  --color-fun-gray-light: #b2bbcf;
+  --color-fun-gray: #7b89a8;
+  --color-fun-gray-medium: #767c85;
+  --color-fun-gray-darker: #2a2a2c;
+  --color-fun-gray-dark: #1f1f20;
+  --color-fun-gray-darkest: #141414;
+  --color-fun-pink: #00c7ff;
+  --color-fun-pink-darker: #000f2e;
+  --color-fun-pink-darkest: #000c24;
+  --color-fun-pink-dark: #192742;
+  --color-fun-pink-light: #009ac5;
+
+  --animate-fadeIn: fadeIn 3s ease-out;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   width: 100%;

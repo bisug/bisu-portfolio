@@ -1,5 +1,4 @@
 import React from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 function Hero() {
   return (
@@ -58,18 +57,13 @@ function Hero() {
             src="/static/doodles/hero/code.svg"
           />
         </h1>
-        <ScrollLink
-          activeClass="active"
-          to="learnmore"
-          spy={true}
-          offset={-30}
-          smooth={true}
-          duration={500}
+        <a
+          href="#learnmore"
         >
           <div className="cursor-pointer font-bold whitespace-nowrap px-10 py-4 text-fun-white border-2 text-xl rounded-full border-fun-white bg-bg hover:bg-fun-pink hover:text-white hover:border-fun-pink transition-colors">
             Tell me more
           </div>
-        </ScrollLink>
+        </a>
       </div>
     </>
   );
