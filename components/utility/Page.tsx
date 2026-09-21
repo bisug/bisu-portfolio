@@ -2,7 +2,6 @@ import Head from "next/head";
 import Script from "next/script";
 import type { ReactNode } from "react";
 import Footer from "../global/Footer";
-import MobileNavbar from "../global/MobileNavbar";
 import Navbar from "../global/Navbar";
 
 function Page({ currentPage, meta: { desc }, children }: PageProps) {
@@ -76,12 +75,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
       ></noscript>
 
       <main className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
-        <div className="hidden sm:block">
-          <Navbar currentPage={currentPage} />
-        </div>
-        <div className="block sm:hidden">
-          <MobileNavbar />
-        </div>
+        <Navbar currentPage={currentPage} />
         {children}
       </main>
       <Footer />
