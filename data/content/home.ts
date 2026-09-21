@@ -21,91 +21,91 @@ export const skills: Skill[] = [
   // Languages
   {
     title: "Python",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    icon: "/static/icons/tech/python.svg",
     category: "Languages",
   },
   {
     title: "TypeScript",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    icon: "/static/icons/tech/typescript.svg",
     category: "Languages",
   },
   {
     title: "Rust",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg",
+    icon: "/static/icons/tech/rust.svg",
     category: "Languages",
   },
   {
     title: "Go",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+    icon: "/static/icons/tech/go.svg",
     category: "Languages",
   },
   {
     title: "Markdown",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg",
+    icon: "/static/icons/tech/markdown.svg",
     category: "Languages",
   },
   // Frameworks & Web
   {
     title: "FastAPI",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+    icon: "/static/icons/tech/fastapi.svg",
     category: "Frameworks & Web",
   },
   {
     title: "Flask",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+    icon: "/static/icons/tech/flask.svg",
     category: "Frameworks & Web",
   },
   {
     title: "Kurigram",
-    icon: "https://cdn.simpleicons.org/telegram/26a5e4",
+    icon: "/static/icons/tech/kurigram.svg",
     category: "Frameworks & Web",
   },
   {
     title: "React",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    icon: "/static/icons/tech/react.svg",
     category: "Frameworks & Web",
   },
   {
     title: "NextJS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg",
+    icon: "/static/icons/tech/nextjs.svg",
     style: { filter: "invert(1)" },
     category: "Frameworks & Web",
   },
   {
     title: "TailwindCSS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    icon: "/static/icons/tech/tailwindcss.svg",
     category: "Frameworks & Web",
   },
   {
     title: "NodeJS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    icon: "/static/icons/tech/nodejs.svg",
     category: "Frameworks & Web",
   },
   {
     title: "Bun",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bun/bun-original.svg",
+    icon: "/static/icons/tech/bun.svg",
     category: "Frameworks & Web",
   },
   // Databases
   {
     title: "MongoDB",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    icon: "/static/icons/tech/mongodb.svg",
     category: "Databases",
   },
   {
     title: "PostgreSQL",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    icon: "/static/icons/tech/postgresql.svg",
     category: "Databases",
   },
   {
     title: "Redis",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+    icon: "/static/icons/tech/redis.svg",
     category: "Databases",
   },
   { title: "Valkey", icon: "/static/icons/valkey.svg", category: "Databases" },
   {
     title: "SQLite",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg",
+    icon: "/static/icons/tech/sqlite.svg",
     category: "Databases",
   },
   // AI & Tools
@@ -121,38 +121,39 @@ export const skills: Skill[] = [
   // Systems & Ops
   {
     title: "Linux",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+    // 194KB of Tux paths as SVG; a 128px WebP is 4KB at the 36px it renders.
+    icon: "/static/icons/tech/linux.webp",
     category: "Systems & Ops",
   },
   {
     title: "Kali Linux",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kalilinux/kalilinux-original.svg",
+    icon: "/static/icons/tech/kali-linux.svg",
     category: "Systems & Ops",
   },
   {
     title: "Linux Mint",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linuxmint/linuxmint-original.svg",
+    icon: "/static/icons/tech/linux-mint.svg",
     category: "Systems & Ops",
   },
   {
     title: "Windows",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg",
+    icon: "/static/icons/tech/windows.svg",
     category: "Systems & Ops",
   },
   {
     title: "Docker",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    icon: "/static/icons/tech/docker.svg",
     category: "Systems & Ops",
   },
   {
     title: "GitHub Actions",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg",
+    icon: "/static/icons/tech/github-actions.svg",
     category: "Systems & Ops",
   },
-  { title: "VMware", icon: "https://cdn.simpleicons.org/vmware/607078", category: "Systems & Ops" },
+  { title: "VMware", icon: "/static/icons/tech/vmware.svg", category: "Systems & Ops" },
   {
     title: "Git",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    icon: "/static/icons/tech/git.svg",
     category: "Systems & Ops",
   },
 ];
@@ -215,7 +216,7 @@ export const education: EducationItem[] = [
     school: "Lincoln International College, Kathmandu",
     period: "Batch of Sept 2025",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",
-    logo: "/static/education/lincoln-college-logo.jpeg",
+    logo: "/static/education/lincoln-college-logo.webp",
     link: "https://licnepal.edu.np/",
   },
   {
@@ -223,7 +224,7 @@ export const education: EducationItem[] = [
     school: "Janapremi World School, Bhaktapur",
     period: "Passout 2024",
     desc: "",
-    logo: "/static/education/janapremi-logo.png",
+    logo: "/static/education/janapremi-logo.webp",
     link: "https://jws.edu.np/",
   },
 ];

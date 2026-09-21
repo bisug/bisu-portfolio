@@ -20,6 +20,10 @@ function Education() {
                   <img
                     src={item.logo}
                     alt={`${item.school} logo`}
+                    width={320}
+                    height={120}
+                    loading="lazy"
+                    decoding="async"
                     className="h-12 sm:h-14 w-auto max-w-[120px] object-contain"
                   />
                 </div>

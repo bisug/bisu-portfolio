@@ -1,9 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "types";
 import Page from "@/components/utility/Page";
-import projects, { projectSlug } from "@/data/content/projects";
+import projects, { projectSlug, projectThumb } from "@/data/content/projects";
 import { SITE_URL } from "@/data/global";
 import { kebabCase } from "@/utils/utils";
 
@@ -58,18 +57,22 @@ function ProjectPage({ project }: ProjectPageProps) {
         <h1 className="mt-5 text-4xl sm:text-5xl font-bold tracking-tight">{project.title}</h1>
         <p className="mt-4 max-w-2xl text-fun-gray text-base sm:text-lg">{project.desc}</p>
 
-        <Image
+        <img
           src={project.img}
+          srcSet={`${projectThumb(project.img)} 600w, ${project.img} 1200w`}
+          sizes="(min-width: 1024px) 1024px, 100vw"
           alt={`${project.title} — repository preview`}
           width={1200}
           height={600}
+          decoding="async"
+          fetchPriority="high"
           className="mt-8 w-full rounded-xl border border-white/10"
         />
 
         <ul className="mt-6 flex flex-wrap items-center gap-1.5 list-none">
           {project.tags.map((tag) => (
             <li key={tag}>
-              <Link href={`/projects/tag/${kebabCase(tag)}`}>
+              <Link href={`/projects/tag/${kebabCase(tag)}`} prefetch={false}>
                 <div className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-accent hover:text-fun-navy-darkest">
                   {tag}
                 </div>

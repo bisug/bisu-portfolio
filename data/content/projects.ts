@@ -78,4 +78,11 @@ export const allKebabTags = allTags.map((tag) => kebabCase(tag));
 /** URL segment for a project's detail page — derived so titles stay the source of truth. */
 export const projectSlug = (project: Project) => kebabCase(project.title);
 
+/** Half-width variant of a project screenshot, for grid cards. */
+export const projectThumb = (img: string) => img.replace(/\.webp$/, "-600.webp");
+
+/* Note for future readers: React 19 serialises `srcSet`/`fetchPriority` in
+   camelCase (verified against react-dom 19.3). The HTML parser lowercases
+   attribute names, so browsers still receive `srcset`/`fetchpriority`. */
+
 export default projects;

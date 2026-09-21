@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "types";
-import { projectSlug } from "@/data/content/projects";
+import { projectSlug, projectThumb } from "@/data/content/projects";
 import { kebabCase } from "@/utils/utils";
 
 function ProjectCard({ project }: { project: Project }) {
@@ -16,10 +16,13 @@ function ProjectCard({ project }: { project: Project }) {
         <img
           className="h-full w-full object-cover object-top transition duration-300 hover:scale-[1.03]"
           src={project.img}
+          srcSet={`${projectThumb(project.img)} 600w, ${project.img} 1200w`}
+          sizes="(min-width: 768px) 33vw, 100vw"
           alt={project.title}
           width={1200}
           height={600}
           loading="lazy"
+          decoding="async"
         />
       </Link>
       <div className="flex flex-1 flex-col p-5">
@@ -73,7 +76,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.tags.map((tag) => {
             return (
               <li key={tag}>
-                <Link href={`/projects/tag/${kebabCase(tag)}`}>
+                <Link href={`/projects/tag/${kebabCase(tag)}`} prefetch={false}>
                   <div className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light cursor-pointer transition hover:bg-fun-accent hover:text-fun-navy-darkest">
                     {tag}
                   </div>

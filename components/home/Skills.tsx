@@ -31,6 +31,10 @@ function Skills() {
                           src={item.icon}
                           style={item.style}
                           alt=""
+                          width={36}
+                          height={36}
+                          loading="lazy"
+                          decoding="async"
                           className={`${item.mono ? "icon-invert-light " : ""}h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6`}
                         />
                         <p className="text-xs text-fun-gray font-semibold">{item.title}</p>

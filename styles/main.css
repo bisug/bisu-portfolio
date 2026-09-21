@@ -80,6 +80,9 @@
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+  /* Keeps the six drifting doodles from invalidating layout/paint anywhere
+     outside this layer. */
+  contain: paint;
 }
 
 .doodle {
@@ -139,7 +142,6 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   background-color: #fff2;
-  backdrop-filter: blur(5px);
   border-radius: 10px;
 }
 

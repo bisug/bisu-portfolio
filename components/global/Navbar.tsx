@@ -33,6 +33,8 @@ function Navbar({ currentPage }: { currentPage: string }) {
             className="transition-transform duration-500 hover:rotate-[360deg] hover:scale-90"
             src="/static/logos/logo_no_text.svg"
             width="48"
+            height="48"
+            decoding="async"
             alt=""
           />
           <span className="flex" aria-hidden="true">

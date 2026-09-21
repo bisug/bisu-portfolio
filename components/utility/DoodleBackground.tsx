@@ -68,6 +68,9 @@ function DoodleBackground() {
           <img
             src={doodle.src}
             alt=""
+            decoding="async"
+            // Decorative background: never let it compete with text or fonts.
+            fetchPriority="low"
             className={doodle.float}
             style={doodle.delay ? { animationDelay: doodle.delay } : undefined}
           />

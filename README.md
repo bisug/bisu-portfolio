@@ -76,6 +76,22 @@ All copy lives in data files — no CMS, no database.
 
 Design tokens (colors, fonts, animations) are defined once in the `@theme` block in `styles/main.css`.
 
+## Performance
+
+Static export, no third-party runtime dependencies, and every animation is CSS `transform`/`opacity` only (GPU-composited, and frozen for `prefers-reduced-motion`).
+
+| Decision | Why |
+| --- | --- |
+| Fonts loaded at 400/500/700 sans + 400 mono | Only the weights the design uses; each extra weight is another preloaded file. 300/600/900 in markup resolve to the loaded neighbours. |
+| Icons self-hosted in `public/static/icons/tech` | Was 25 requests to `cdn.jsdelivr.net`/`cdn.simpleicons.org` per `/tech-stack` load; now same-origin, cached, and lazy. |
+| Screenshots as WebP, two widths | Grid cards request the 600px variant via `srcset`/`sizes` (~87KB for the whole grid instead of ~195KB); detail pages get the 1200px one, `fetchpriority="high"`. |
+| Education logos resized to 320px WebP | 152KB of source images became 18KB at the ~120px they render. |
+| One shared `IntersectionObserver` | `/tech-stack` alone mounts 30 `Reveal` wrappers; one observer serves them all. |
+| Analytics loads `lazyOnload` | gtag no longer competes with hydration. |
+| `contain: paint` on the doodle layer | The six drifting doodles can never invalidate layout or paint outside their layer. |
+
+Known floor: ~134KB gzipped JS per page is the React + Next runtime; the site's own code is a few KB of it. Going below that means dropping React (e.g. static HTML + tiny islands), not micro-optimising.
+
 ## Credits
 
 Built on the open-source portfolio template by [Brayden W](https://braydentw.io) ([@BraydenTW](https://github.com/BraydenTW)). His guidelines for the original work — use it as inspiration, don't copy it verbatim, and credit the author — are respected here: the content, design system, and structure have been reworked for this site.

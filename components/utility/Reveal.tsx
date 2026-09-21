@@ -7,6 +7,35 @@ type RevealProps = {
   className?: string;
 };
 
+/* One IntersectionObserver for every Reveal on the page — a page can hold 30+
+   of them, and a single shared observer is cheaper than one each. */
+const callbacks = new WeakMap<Element, () => void>();
+let observer: IntersectionObserver | null = null;
+
+function observe(el: Element, reveal: () => void) {
+  if (typeof IntersectionObserver === "undefined") {
+    reveal();
+    return () => {};
+  }
+  observer ??= new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        callbacks.get(entry.target)?.();
+        callbacks.delete(entry.target);
+        observer?.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "0px 0px -10% 0px" },
+  );
+  callbacks.set(el, reveal);
+  observer.observe(el);
+  return () => {
+    callbacks.delete(el);
+    observer?.unobserve(el);
+  };
+}
+
 function Reveal({ children, delay = 0, className }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -14,17 +43,7 @@ function Reveal({ children, delay = 0, className }: RevealProps) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "0px 0px -10% 0px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    return observe(el, () => setIsVisible(true));
   }, []);
 
   return (
