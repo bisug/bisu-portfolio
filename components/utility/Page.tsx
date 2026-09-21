@@ -1,10 +1,10 @@
-import Footer from "../global/Footer";
 import Head from "next/head";
+import type { ReactNode } from "react";
+import Footer from "../global/Footer";
 import MobileNavbar from "../global/MobileNavbar";
 import Navbar from "../global/Navbar";
-import React, { ReactNode } from "react";
 
-function Page({ currentPage, meta: { title, desc }, children }: PageProps) {
+function Page({ currentPage, meta: { desc }, children }: PageProps) {
   const pageTitle = `${
     currentPage === "Home"
       ? "Brayden Wright - Web Developer, Designer, Creator."
@@ -19,23 +19,9 @@ function Page({ currentPage, meta: { title, desc }, children }: PageProps) {
       <Head>
         <title>{pageTitle}</title>
 
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/static/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/static/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/static/favicon/favicon-16x16.png"
-        />
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/static/favicon/site.webmanifest" />
         <meta name="title" content={pageTitle} />
         <meta name="description" content={desc} />
@@ -44,19 +30,13 @@ function Page({ currentPage, meta: { title, desc }, children }: PageProps) {
         <meta property="og:url" content="https://braydentw.io/" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={desc} />
-        <meta
-          property="og:image"
-          content="https://braydentw.io/static/misc/og.png"
-        />
+        <meta property="og:image" content="https://braydentw.io/static/misc/og.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://braydentw.io/" />
         <meta property="twitter:title" content={pageTitle} />
         <meta property="twitter:description" content={desc} />
-        <meta
-          property="twitter:image"
-          content="https://braydentw.io/static/misc/og.png"
-        ></meta>
+        <meta property="twitter:image" content="https://braydentw.io/static/misc/og.png"></meta>
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

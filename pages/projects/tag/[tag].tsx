@@ -1,23 +1,18 @@
-import Page from "@/components/utility/Page";
-
-import { GetStaticProps, GetStaticPaths } from "next";
-import { allKebabTags, allTags } from "@/data/content/projects";
-
-import projects from "@/data/content/projects";
-
-import { kebabCase, kebabArray } from "@/utils/utils";
-import Projects from "@/components/projects/Projects";
-import Heading from "@/components/projects/Heading";
-import More from "@/components/projects/More";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import Heading from "@/components/projects/Heading";
+import Projects from "@/components/projects/Projects";
+import Page from "@/components/utility/Page";
+import projects, { allKebabTags, allTags } from "@/data/content/projects";
+import { kebabArray, kebabCase } from "@/utils/utils";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allTags = [];
-  projects.forEach((project) =>
-    project.tags.forEach((tag) => {
+  const allTags: string[] = [];
+  for (const project of projects) {
+    for (const tag of project.tags) {
       allTags.push(tag);
-    })
-  );
+    }
+  }
   const uniqueAllTags = [...new Set(allTags)];
   const allTagsPaths = uniqueAllTags.map((path) => ({
     params: { tag: `${kebabCase(path)}` },
@@ -28,17 +23,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({params}: {params: {tag: string}}) => {
+export const getStaticProps: GetStaticProps = async ({ params }: { params: { tag: string } }) => {
   const tag = params.tag;
   const filteredProjects = projects.filter((project) =>
-    [...kebabArray(project.tags)].includes(tag)
+    [...kebabArray(project.tags)].includes(tag),
   );
   return {
     props: JSON.parse(
       JSON.stringify({
         filteredProjects,
         tag: tag,
-      })
+      }),
     ),
   };
 };

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { routes } from "@/data/global";
 
 function Navbar({ currentPage }) {
@@ -12,10 +11,14 @@ function Navbar({ currentPage }) {
               className="mr-2 transform hover:rotate-360 hover:scale-75 transition-transform duration-500"
               src="/static/logos/logo_no_text.svg"
               width="60"
+              alt=""
             />
-            {"BraydenTW".split("").map((letter, index) => {
+            {"BraydenTW".split("").map((letter) => {
               return (
-                <span key={index} className="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100 click:goodbyeLetterAnim">
+                <span
+                  key={letter}
+                  className="hover:text-fun-pink hover:-mt-2 transition-all duration-500 hover:duration-100 click:goodbyeLetterAnim"
+                >
                   {letter}
                 </span>
               );
@@ -24,10 +27,10 @@ function Navbar({ currentPage }) {
         </Link>
       </li>
       <ul className="flex items-center space-x-10">
-        {routes.map((item, index) => {
+        {routes.map((item) => {
           return (
             <li
-              key={index}
+              key={item.path}
               className={`list-none text-white ${
                 currentPage === item.title
                   ? "opacity-100"

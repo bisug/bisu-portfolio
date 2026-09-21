@@ -1,14 +1,13 @@
 type Skill = {
-  title: string,
-  icon: string,
-  style?: object
+  title: string;
+  icon: string;
+  style?: object;
 };
 type Testimonial = {
-  quote: string,
-  name: string,
-  job: string
+  quote: string;
+  name: string;
+  job: string;
 };
-
 
 export const skills: Skill[] = [
   {
@@ -70,14 +69,12 @@ export const testimonials: Testimonial[] = [
     job: "Co-Founder of BlockSurvey",
   },
   {
-    quote:
-      "The code was clean, easy to understand, and exactly what I was looking for.",
+    quote: "The code was clean, easy to understand, and exactly what I was looking for.",
     name: "Philip Imperato",
     job: "CEO of VisualBonus",
   },
   {
-    quote:
-      "My vision was executed perfectly. The quality and speed of the work was excellent.",
+    quote: "My vision was executed perfectly. The quality and speed of the work was excellent.",
     name: "Zach Green",
     job: "Founder of Hangxiety Shrink",
   },

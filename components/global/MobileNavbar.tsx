@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-
 import Link from "next/link";
-import {routes} from "@/data/global";
+import { useEffect, useState } from "react";
 import useDelayedRender from "use-delayed-render";
+import { routes } from "@/data/global";
 
 export default function MobileNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(
-    isMenuOpen,
-    {
-      enterDelay: 20,
-      exitDelay: 300,
-    }
-  );
+  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(isMenuOpen, {
+    enterDelay: 20,
+    exitDelay: 300,
+  });
 
   function toggleMenu() {
     if (isMenuOpen) {
@@ -33,16 +29,12 @@ export default function MobileNavbar() {
   return (
     <nav>
       <div
-        className={`w-full justify-between flex items-center ${isMenuRendered && 'bg-bg'} p-5`}
+        className={`w-full justify-between flex items-center ${isMenuRendered && "bg-bg"} p-5`}
         style={{ zIndex: 101 }}
       >
         <li className="list-none font-bold text-lg">
           <Link href="/">
-            <img
-              className="mr-3"
-              src="/static/logos/logo_full.svg"
-              width="160"
-            />
+            <img className="mr-3" src="/static/logos/logo_full.svg" width="160" alt="" />
           </Link>
         </li>
         <button
@@ -63,6 +55,7 @@ export default function MobileNavbar() {
           {routes.map((item, index) => {
             return (
               <li
+                key={item.path}
                 className="border-b border-gray-900 text-gray-100 text-sm font-semibold"
                 style={{ transitionDelay: `${150 + index * 25}ms` }}
               >
@@ -88,6 +81,7 @@ function MenuIcon(props) {
       fill="none"
       {...props}
     >
+      <title>Menu</title>
       <path
         d="M2.5 7.5H17.5"
         stroke="currentColor"
@@ -121,6 +115,7 @@ function CrossIcon(props) {
       shapeRendering="geometricPrecision"
       {...props}
     >
+      <title>Close</title>
       <path d="M18 6L6 18" />
       <path d="M6 6l12 12" />
     </svg>
