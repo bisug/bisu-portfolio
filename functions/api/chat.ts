@@ -3,13 +3,13 @@
    Requires an "AI" Workers AI binding on the Pages project (dashboard:
    Pages project > Settings > Functions > Add binding > Workers AI > name "AI"),
    plus "ai": { "binding": "AI" } in wrangler.jsonc.
-   Model: @cf/meta/llama-3.1-8b-instruct (Workers AI free tier). */
+   Model: @cf/meta/llama-4-scout-17b-16e-instruct (Workers AI free tier). */
 
 type ChatMessage = { role: "system" | "user" | "assistant"; content: string };
 
 type Env = { AI: { run: (model: string, input: unknown) => Promise<unknown> } };
 
-const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+const MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct";
 
 const SYSTEM_PROMPT = `You are Bisu's friendly portfolio assistant on bisu.com.np. Talk like a helpful human, not a robot: warm, natural, concise. Match the visitor's language.
 
