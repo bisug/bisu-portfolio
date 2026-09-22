@@ -1,11 +1,11 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import type { Project } from "types";
+import TagChips from "@/components/projects/TagChips";
 import Page from "@/components/utility/Page";
 import FadeImage from "@/components/utility/FadeImage";
 import projects, { projectSlug, projectThumb } from "@/data/content/projects";
 import { SITE_URL } from "@/data/global";
-import { kebabCase } from "@/utils/utils";
 
 type ProjectPageProps = {
   project: Project;
@@ -71,19 +71,7 @@ function ProjectPage({ project }: ProjectPageProps) {
           className="w-full rounded-xl border border-white/10"
         />
 
-        <ul className="mt-6 flex flex-wrap items-center gap-1.5 list-none">
-          {project.tags.map((tag) => (
-            <li key={tag}>
-              <Link
-                href={`/projects/tag/${kebabCase(tag)}`}
-                prefetch={false}
-                className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light transition hover:bg-fun-accent hover:text-fun-navy-darkest"
-              >
-                {tag}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <TagChips tags={project.tags} className="mt-6" />
 
         <div className="mt-8 flex flex-wrap items-center gap-3">
           {project.link && (

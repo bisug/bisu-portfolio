@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Project } from "types";
 import { projectSlug, projectThumb } from "@/data/content/projects";
-import { kebabCase } from "@/utils/utils";
 import FadeImage from "../utility/FadeImage";
+import TagChips from "./TagChips";
 
 function ProjectCard({ project }: { project: Project }) {
   return (
@@ -72,21 +72,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
         <p className="mt-2 text-left text-sm leading-relaxed text-fun-gray">{project.desc}</p>
-        <ul className="mt-3 flex flex-wrap items-center gap-1.5 list-none">
-          {project.tags.map((tag) => {
-            return (
-              <li key={tag}>
-                <Link
-                  href={`/projects/tag/${kebabCase(tag)}`}
-                  prefetch={false}
-                  className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light transition hover:bg-fun-accent hover:text-fun-navy-darkest"
-                >
-                  {tag}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <TagChips tags={project.tags} className="mt-3" />
       </div>
     </div>
   );
