@@ -49,11 +49,12 @@ function ChatAssistant() {
     {
       id: 0,
       role: "assistant",
-      content: "Hey! Ask me about Bisu's projects, skills, or contact info.",
+      content: "Hey! I'm Bisu's assistant — ask me about his projects, skills, or contact info.",
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [failed, setFailed] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const msgCount = msgs.length;
 
@@ -73,14 +74,16 @@ function ChatAssistant() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: next.map((m) => ({ role: m.role, content: m.content })) }),
+        body: JSON.stringify({ messages: next.slice(-10).map((m) => ({ role: m.role, content: m.content })) }),
       });
       if (!res.ok || !res.body) throw new Error(`http ${res.status}`);
       const data = (await res.json()) as { response?: string; error?: string };
-      if (!data.response?.trim()) throw new Error(`http ${res.status}`);
+      if (!data.response?.trim()) throw new Error(data.error ?? `http ${res.status}`);
       const cleaned = clean(data.response);
+      setFailed(false);
       setMsgs([...next, { id: nextId++, role: "assistant", content: cleaned }]);
     } catch {
+      setFailed(true);
       setMsgs([...next, { id: nextId++, role: "assistant", content: localReply(q) }]);
     } finally {
       setLoading(false);
@@ -165,6 +168,11 @@ function ChatAssistant() {
               Send
             </button>
           </form>
+          <p className="border-t border-white/10 px-4 py-2 text-center text-[11px] leading-tight text-fun-gray">
+            {failed
+              ? "Offline answers · live AI by Cloudflare Workers AI (Llama 4 Scout) unavailable"
+              : "Powered by Cloudflare Workers AI · Llama 4 Scout · answers about Bisu only"}
+          </p>
         </div>
       )}
       <button
