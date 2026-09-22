@@ -3,21 +3,33 @@ import Link from "next/link";
 function Hero() {
   return (
     <div className="relative w-full m-auto flex justify-center text-center flex-col items-center pt-16 pb-24 sm:pt-20 sm:pb-28">
-      <p className="text-sm sm:text-base font-mono text-fun-accent mb-4 tracking-wide">
+      <p
+        className="rise-in text-sm sm:text-base font-mono text-fun-accent mb-4 tracking-wide"
+        style={{ animationDelay: "0ms" }}
+      >
         Hey, I&apos;m Bisu Ghalan —
       </p>
-      <h1 className="max-w-2xl lg:max-w-4xl w-auto text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-6 font-bold text-balance">
+      <h1
+        className="rise-in max-w-2xl lg:max-w-4xl w-auto text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-6 font-bold text-balance"
+        style={{ animationDelay: "90ms" }}
+      >
         I enjoy <span className="text-fun-accent">building</span> and{" "}
         <span className="text-fun-accent">securing</span> for the web.
       </h1>
-      <p className="max-w-xl text-fun-gray text-base sm:text-lg mb-10">
+      <p
+        className="rise-in max-w-xl text-fun-gray text-base sm:text-lg mb-10"
+        style={{ animationDelay: "180ms" }}
+      >
         CS student &amp; security researcher from Nepal. I build{" "}
         <strong className="text-white font-medium">Telegram bots</strong>,{" "}
         <strong className="text-white font-medium">CLIs</strong>, and{" "}
         <strong className="text-white font-medium">full-stack apps</strong> — and I break things to
         learn how to defend them.
       </p>
-      <div className="flex flex-col sm:flex-row items-center gap-4">
+      <div
+        className="rise-in flex flex-col sm:flex-row items-center gap-4"
+        style={{ animationDelay: "270ms" }}
+      >
         <Link
           href="/projects"
           className="font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25"

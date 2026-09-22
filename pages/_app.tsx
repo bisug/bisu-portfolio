@@ -2,7 +2,7 @@ import "@/styles/main.css";
 
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import ChatAssistant from "@/components/global/ChatAssistant";
 import DoodleBackground from "@/components/utility/DoodleBackground";
 import { fontMono, fontSans } from "@/styles/fonts";
@@ -37,12 +37,25 @@ function RouteProgress() {
   return <div className="route-progress" aria-hidden="true" />;
 }
 
+/* Keyed by route: a navigation remounts this div, replaying the entrance
+   animation. route (not asPath) so slug→slug swaps don't re-animate. */
+function PageTransition({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  return (
+    <div key={router.route} className="page-enter">
+      {children}
+    </div>
+  );
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={`${fontSans.variable} ${fontMono.variable} relative isolate`}>
       <RouteProgress />
       <DoodleBackground />
-      <Component {...pageProps} />
+      <PageTransition>
+        <Component {...pageProps} />
+      </PageTransition>
       <ChatAssistant />
     </div>
   );
