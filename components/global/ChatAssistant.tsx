@@ -170,8 +170,8 @@ function ChatAssistant() {
           </form>
           <p className="border-t border-white/10 px-4 py-2 text-center text-[11px] leading-tight text-fun-gray">
             {failed
-              ? "Offline answers · live AI by Cloudflare Workers AI (Llama 4 Scout) unavailable"
-              : "Powered by Cloudflare Workers AI · Llama 4 Scout · answers about Bisu only"}
+              ? "Offline answers · live AI by Cloudflare Workers AI (Llama 3.3 70B) unavailable"
+              : "Powered by Cloudflare Workers AI · Llama 3.3 70B · answers about Bisu only"}
           </p>
         </div>
       )}
