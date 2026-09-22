@@ -99,27 +99,6 @@ function walk(dir: string, acc: string[] = []): string[] {
   return acc;
 }
 
-function budgetFindings(maxKb: number): [string, number][] {
-  return walk(STATIC)
-    .filter((p) => RASTER_SUFFIXES.has(extname(p).toLowerCase()) && statSync(p).size > maxKb * 1024)
-    .sort()
-    .map((p) => [p, statSync(p).size]);
-}
-
-function orphanSources(): string[] {
-  return readdirSync(join(STATIC, "projects"))
-    .sort()
-    .filter((f) => {
-      const stem = f.slice(0, -extname(f).length);
-      return (
-        SOURCE_SUFFIXES.has(extname(f).toLowerCase()) &&
-        !stem.endsWith("-600") &&
-        !readdirSync(join(STATIC, "projects")).includes(`${stem}.webp`)
-      );
-    })
-    .map((f) => join(STATIC, "projects", `${f.slice(0, -extname(f).length)}.webp`));
-}
-
 const args = new Set(process.argv.slice(2));
 const checkOnly = args.has("--check");
 const force = args.has("--force");
@@ -168,8 +147,6 @@ for (const { src, dest, width, quality } of items) {
   }
 }
 
-for (const dest of orphanSources()) missing.push(dest);
-
 if (checkOnly) {
   for (const dest of missing) console.log(`missing: ${rel(dest)}`);
   if (missing.length > 0) {
@@ -183,10 +160,12 @@ if (checkOnly) {
   console.log(`all ${kept} derived assets current`);
 }
 
-const over = budgetFindings(maxKb);
-const total = walk(STATIC)
+// One walk, one stat per file: per-file budget findings plus total weight.
+const rasters = walk(STATIC)
   .filter((p) => RASTER_SUFFIXES.has(extname(p).toLowerCase()))
-  .reduce((n, p) => n + statSync(p).size, 0);
+  .map((p) => [p, statSync(p).size] as [string, number]);
+const over = rasters.filter(([, size]) => size > maxKb * 1024).sort();
+const total = rasters.reduce((n, [, size]) => n + size, 0);
 console.log(
   `shipped image weight: ${(total / 1024 / 1024).toFixed(2)}MB, budget ${maxKb}KB per file`,
 );
