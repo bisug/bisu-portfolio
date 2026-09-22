@@ -10,14 +10,14 @@ function PageNav({ currentPage }: { currentPage: string }) {
   const nextRoute = routes[currentIndex + 1];
 
   return (
-    <nav aria-label="Page navigation" className="mt-20 grid gap-4 sm:grid-cols-2">
+    <nav aria-label="Page navigation" className="mt-12 grid grid-cols-2 gap-3">
       {prevRoute && <NavCard label="Previous" route={prevRoute} direction="prev" />}
       {nextRoute && (
         <NavCard
           label="Next"
           route={nextRoute}
           direction="next"
-          className={prevRoute ? undefined : "sm:col-start-2"}
+          className={prevRoute ? undefined : "col-start-2"}
         />
       )}
     </nav>
@@ -36,7 +36,7 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
   return (
     <Link
       href={route.path}
-      className={`group flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-5 transition-colors hover:border-fun-accent/60 hover:bg-white/10 ${
+      className={`group flex items-center gap-2.5 rounded-lg border border-white/10 bg-white/5 px-3.5 py-3 transition-colors hover:border-fun-accent/60 hover:bg-white/10 ${
         isNext ? "flex-row-reverse text-right" : ""
       } ${className ?? ""}`}
     >
@@ -48,9 +48,11 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
         <ArrowIcon direction={direction} />
       </span>
       <span className="min-w-0">
-        <span className="font-mono text-xs uppercase tracking-widest text-fun-gray">{label}</span>
-        <span className="mt-1 block truncate text-base font-bold text-white">{route.title}</span>
-        <span className="mt-0.5 block truncate text-sm text-fun-gray">{route.desc}</span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-fun-gray">
+          {label}
+        </span>
+        <span className="mt-0.5 block truncate text-sm font-bold text-white">{route.title}</span>
+        <span className="mt-0.5 hidden truncate text-xs text-fun-gray sm:block">{route.desc}</span>
       </span>
     </Link>
   );
@@ -58,7 +60,7 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
 
 function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
   return (
-    <svg className="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg className="h-4 w-4" width="16" height="16" viewBox="0 0 24 24" fill="none">
       <title>{direction === "next" ? "Next page" : "Previous page"}</title>
       <path
         d={direction === "next" ? "M5 12h14M13 6l6 6-6 6" : "M19 12H5M11 6l-6 6 6 6"}
