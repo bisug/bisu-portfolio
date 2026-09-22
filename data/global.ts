@@ -46,6 +46,11 @@ export const routes: Route[] = [
     path: "/tech-stack",
     desc: "Languages & tools I use",
   },
+  {
+    title: "Contact",
+    path: "/contact",
+    desc: "Email & socials — say hello",
+  },
 ];
 
 export const socials: SocialLink[] = [

@@ -12,6 +12,7 @@ Language: English
 - [Experience](https://bisu.com.np/experience): freelance work and hackathon participation.
 - [Education](https://bisu.com.np/education): Bachelor of Computer Science in Cyber Security & Network Technology (Hons), Lincoln International College, Kathmandu, batch of September 2025; Higher Secondary Education (+2 Management), Janapremi World School, Bhaktapur, 2024.
 - [Tech Stack](https://bisu.com.np/tech-stack): languages, frameworks, databases, AI tooling, and systems/ops tools.
+- [Contact](https://bisu.com.np/contact): email and social links.
 
 ## Projects
 
