@@ -65,12 +65,6 @@ export const socials: SocialLink[] = [
     icon: "/static/icons/linkedin-f.svg",
   },
   {
-    name: "Website",
-    link: "https://bisu.com.np",
-    icon: "/static/icons/external-link.svg",
-    accentIcon: true,
-  },
-  {
     name: "Email",
     link: "mailto:bisu.ghlan@gmail.com",
     icon: "/static/icons/mail-f.svg",
