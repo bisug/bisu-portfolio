@@ -11,7 +11,6 @@ type FadeImageProps = {
   loading?: "lazy" | "eager";
   decoding?: "async" | "sync" | "auto";
   fetchPriority?: "high" | "low" | "auto";
-  style?: React.CSSProperties;
   /** Classes for the shimmer wrapper. Defaults to shrink-to-fit; callers
       that need it to fill a frame (card thumbs, hero) pass their own. */
   shellClassName?: string;
@@ -31,7 +30,6 @@ function FadeImage({
   loading = "lazy",
   decoding = "async",
   fetchPriority = "auto",
-  style,
 }: FadeImageProps) {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -56,7 +54,6 @@ function FadeImage({
         loading={loading}
         decoding={decoding}
         fetchPriority={fetchPriority}
-        style={style}
         onLoad={() => setLoaded(true)}
         className={`${className} ${loaded ? "img-loaded" : "img-loading"}`}
       />

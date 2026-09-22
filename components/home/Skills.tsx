@@ -30,7 +30,6 @@ function Skills() {
                       >
                         <FadeImage
                           src={item.icon}
-                          style={item.style}
                           alt={`${item.title} icon`}
                           width={36}
                           height={36}

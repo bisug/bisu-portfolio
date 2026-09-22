@@ -1,9 +1,6 @@
-import type { CSSProperties } from "react";
-
 type Skill = {
   title: string;
   icon: string;
-  style?: CSSProperties;
   /** White monochrome SVG — inverts in light mode via .icon-invert-light. */
   mono?: boolean;
   /** Black SVG — inverts in dark mode only via .icon-invert-dark. */
