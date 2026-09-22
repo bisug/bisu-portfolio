@@ -20,7 +20,7 @@ function localReply(q: string): string {
     return "Bisu Ghalan is a computer science student (Cyber Security and Network Technology) from Bhaktapur, Nepal. He builds Telegram bots, CLI tools, and full-stack apps — and loves breaking things to learn how to defend them.";
   if (/experience|hackathon|job|work/.test(s))
     return "Bisu's competed at JunctionX Kathmandu and the Build Nepal Hackathon, among others. The Experience page has the full rundown.";
-  return "I mostly cover Bisu's projects, skills, and contact info — what would you like to know about those?";
+  return "I can also help with general tech questions tied to Bisu's world — languages, tools, security ideas. What would you like to know?";
 }
 
 // Mirror of the server safeUrl(): never render javascript:/data: targets as
@@ -215,7 +215,7 @@ function ChatAssistant() {
           <p className="border-t border-white/10 px-4 py-2 text-center text-[11px] leading-tight text-fun-gray">
             {failed
               ? "Offline answers · live AI by Cloudflare Workers AI (Llama 3.3 70B) unavailable"
-              : "Powered by Cloudflare Workers AI · Llama 3.3 70B · answers about Bisu only"}
+              : "Powered by Cloudflare Workers AI · Llama 3.3 70B"}
           </p>
         </div>
       )}
