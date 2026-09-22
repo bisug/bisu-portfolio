@@ -1,6 +1,6 @@
 import { education } from "@/data/content/home";
-import FadeImage from "../utility/FadeImage";
 import SectionTitle from "../global/SectionTitle";
+import FadeImage from "../utility/FadeImage";
 
 function Education() {
   return (

@@ -54,7 +54,8 @@ function clean(text: string): string {
 // become safe anchors (target _blank, no opener); everything else stays text.
 function Reply({ text }: { text: string }) {
   const parts: React.ReactNode[] = [];
-  const re = /\[([^\]]+)\]\(([^)]+)\)|(https?:\/\/[^\s)]+)|mailto:[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}|(?<![\w@:/])([\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?)/gi;
+  const re =
+    /\[([^\]]+)\]\(([^)]+)\)|(https?:\/\/[^\s)]+)|mailto:[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}|(?<![\w@:/])([\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?)/gi;
   let last = 0;
   let key = 0;
   const pushLink = (label: string, href: string | null) => {
@@ -118,7 +119,9 @@ function ChatAssistant() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: next.slice(-10).map((m) => ({ role: m.role, content: m.content })) }),
+        body: JSON.stringify({
+          messages: next.slice(-10).map((m) => ({ role: m.role, content: m.content })),
+        }),
       });
       if (!res.ok || !res.body) throw new Error(`http ${res.status}`);
       const data = (await res.json()) as { response?: string; error?: string };

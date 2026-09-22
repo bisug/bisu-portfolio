@@ -2,8 +2,8 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import type { Project } from "types";
 import TagChips from "@/components/projects/TagChips";
-import Page from "@/components/utility/Page";
 import FadeImage from "@/components/utility/FadeImage";
+import Page from "@/components/utility/Page";
 import projects, { projectSlug, projectThumb } from "@/data/content/projects";
 import { SITE_URL } from "@/data/global";
 

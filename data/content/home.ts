@@ -156,12 +156,6 @@ export const skills: Skill[] = [
     category: "Systems & Ops",
   },
 ];
-type Testimonial = {
-  quote: string;
-  name: string;
-  job: string;
-};
-
 type EventItem = {
   title: string;
   organizer: string;
@@ -227,8 +221,6 @@ export const education: EducationItem[] = [
     link: "https://jws.edu.np/",
   },
 ];
-
-export const testimonials: Testimonial[] = [];
 
 export const hobbies: string[] = [
   "Music",

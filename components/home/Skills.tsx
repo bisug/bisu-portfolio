@@ -1,7 +1,7 @@
 import Reveal from "@/components/utility/Reveal";
 import { CATEGORY_ORDER, skills } from "@/data/content/home";
-import FadeImage from "../utility/FadeImage";
 import SectionTitle from "../global/SectionTitle";
+import FadeImage from "../utility/FadeImage";
 
 function Skills() {
   return (

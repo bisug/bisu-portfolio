@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import type { Project } from "types";
 import { projectSlug, projectThumb } from "@/data/content/projects";
 import FadeImage from "../utility/FadeImage";
