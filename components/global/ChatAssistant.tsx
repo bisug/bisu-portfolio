@@ -23,11 +23,24 @@ function localReply(q: string): string {
   return "I mostly cover Bisu's projects, skills, and contact info — what would you like to know about those?";
 }
 
-// Mirror of the server sanitize(): plain-text chat bubbles, no markdown.
+// Mirror of the server safeUrl(): never render javascript:/data: targets as
+// links, even in the offline fallback path.
+function safeUrl(raw: string): string | null {
+  const url = raw.trim().replace(/[<>"'\s]/g, "");
+  if (/^mailto:[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(url)) return url;
+  if (/^https?:\/\/[^/\s]+\.\S*$/i.test(url)) return url;
+  if (/^[\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?$/.test(url)) return `https://${url}`;
+  return null;
+}
+
+// Mirror of the server sanitize(): strip markdown, keep validated links.
 function clean(text: string): string {
   return text
     .replace(/```[\s\S]*?```/g, " ")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label: string, url: string) => {
+      const safe = safeUrl(url);
+      return safe ? `[${String(label).slice(0, 80)}](${safe})` : String(label);
+    })
     .replace(/[*_`#>|]/g, "")
     .replace(/^\s*[-+*]\s+/gm, "")
     .replace(/^\s*\d+[.)]\s+/gm, "")
@@ -37,10 +50,41 @@ function clean(text: string): string {
     .slice(0, 900);
 }
 
-// Render plain-text replies with paragraph/line breaks preserved (no
-// array-index keys: one <p> with pre-wrap keeps whitespace natively).
+// Render assistant replies: validated [label](url) links and bare URLs
+// become safe anchors (target _blank, no opener); everything else stays text.
 function Reply({ text }: { text: string }) {
-  return <span className="whitespace-pre-wrap">{text}</span>;
+  const parts: React.ReactNode[] = [];
+  const re = /\[([^\]]+)\]\(([^)]+)\)|(https?:\/\/[^\s)]+)|mailto:[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}|(?<![\w@:/])([\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?)/gi;
+  let last = 0;
+  let key = 0;
+  const pushLink = (label: string, href: string | null) => {
+    if (!href) return false;
+    parts.push(
+      <a
+        key={key++}
+        href={href}
+        target={href.startsWith("mailto:") ? undefined : "_blank"}
+        rel="noopener noreferrer"
+        className="text-fun-accent underline underline-offset-2 hover:brightness-125"
+      >
+        {label}
+      </a>,
+    );
+    return true;
+  };
+  let m: RegExpExecArray | null = re.exec(text);
+  while (m !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    last = m.index + m[0].length;
+    if (m[1] !== undefined) {
+      if (!pushLink(m[1], safeUrl(m[2]))) parts.push(m[1]);
+    } else if (!pushLink(m[0], safeUrl(m[0]))) {
+      parts.push(m[0]);
+    }
+    m = re.exec(text);
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return <span className="whitespace-pre-wrap break-words">{parts}</span>;
 }
 
 function ChatAssistant() {

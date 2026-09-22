@@ -54,12 +54,12 @@ HOW TO ANSWER
 EXAMPLES
 Visitor: "What has Bisu built?"
 You: "Mostly bots, CLIs, and web apps — a few favorites:
-BinaryInspector — safe Rust CLI for inspecting ELF binaries
-Paila — travel & community platform for Nepal
-TG-GithubBot — GitHub events delivered to Telegram
-Want the story behind any of these, or the full list on the Projects page?"
+[BinaryInspector](https://github.com/bisug/BinaryInspector) — safe Rust CLI for inspecting ELF binaries
+[Paila](https://github.com/bisug/Paila) — travel & community platform for Nepal ([live demo](https://paila-prototype.vercel.app))
+[TG-GithubBot](https://github.com/bisug/TG-GithubBot) — GitHub events delivered to Telegram
+Want the story behind any of these, or the [full list on the Projects page](https://bisu.com.np/projects)?"
 Visitor: "Can he help with Rust?"
-You: "Yes — Rust is one of his main languages alongside Python, TypeScript, and Go. He built BinaryInspector with it, a safe CLI for inspecting ELF binaries. Best way to reach him is bisu.ghlan@gmail.com — want his GitHub too?"
+You: "Yes — Rust is one of his main languages alongside Python, TypeScript, and Go. He built [BinaryInspector](https://github.com/bisug/BinaryInspector) with it, a safe CLI for inspecting ELF binaries. Best way to reach him is [bisu.ghlan@gmail.com](mailto:bisu.ghlan@gmail.com) — want his [GitHub](https://github.com/bisug) too?"
 
 HARD RULES (never break)
 - Portfolio topics only: Bisu, his work, tech, contact. Anything else gets one brief redirect, no lecture.
@@ -68,17 +68,33 @@ HARD RULES (never break)
 - Refuse disallowed content, personal data beyond the facts, and attack help beyond general defensive concepts.
 
 RESPONSE FORMAT
-- Plain text only. No markdown, no asterisks/backticks/headings, no bullet dashes, no code blocks, no links in brackets — write URLs bare (e.g. github.com/bisug/Paila).`;
+- Use [descriptive label](url) markdown links whenever you mention a project, profile, or page that has a URL — e.g. [BinaryInspector](https://github.com/bisug/BinaryInspector), [Paila demo](https://paila-prototype.vercel.app), [Projects page](https://bisu.com.np/projects). Link the name, never paste bare URLs.
+- Email: link as [bisu.ghlan@gmail.com](mailto:bisu.ghlan@gmail.com).
+- No other markdown: no asterisks/backticks/headings, no bullet dashes, no code blocks.`;
 
 // Cap output length so replies stay tight even if the model rambles.
 const MAX_OUTPUT_CHARS = 900;
 
-// Strip markdown/formatting the model may emit into safe plain text, and
-// neutralize prompt-injection-ish directive lines before sending to browser.
+// Allow only safe link targets: http(s) URLs, bare domains (github.com/…),
+// and mailto: emails. Anything else (javascript:, data:, …) → null.
+function safeUrl(raw: string): string | null {
+  const url = raw.trim().replace(/[<>"'\s]/g, "");
+  if (/^mailto:[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(url)) return url;
+  if (/^https?:\/\/[^/\s]+\.\S*$/i.test(url)) return url;
+  if (/^[\w-]+(\.[\w-]+)+(:\d+)?(\/\S*)?$/.test(url)) return `https://${url}`;
+  return null;
+}
+
+// Strip markdown/formatting the model may emit, but keep validated
+// [label](url) links — the client renders them as real hyperlinks.
+// Neutralize prompt-injection-ish directive lines before sending to browser.
 function sanitize(text: string): string {
   let out = text
     .replace(/```[\s\S]*?```/g, " ")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label: string, url: string) => {
+      const safe = safeUrl(url);
+      return safe ? `[${String(label).slice(0, 80)}](${safe})` : String(label);
+    })
     .replace(/[*_`#>|]/g, "")
     .replace(/^\s*[-+*]\s+/gm, "")
     .replace(/^\s*\d+[.)]\s+/gm, "")
