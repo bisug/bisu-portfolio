@@ -5,6 +5,21 @@ function ThemeToggle() {
 
   useEffect(() => {
     setIsLight(document.documentElement.classList.contains("light"));
+
+    // Follow live OS theme changes until the user has picked explicitly —
+    // a stored choice always wins over the system.
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    function onChange(event: MediaQueryListEvent) {
+      let stored: string | null = null;
+      try {
+        stored = localStorage.getItem("theme");
+      } catch {}
+      if (stored) return;
+      document.documentElement.classList.toggle("light", event.matches);
+      setIsLight(event.matches);
+    }
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   function toggle() {
