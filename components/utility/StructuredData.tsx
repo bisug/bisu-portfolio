@@ -26,6 +26,8 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       jobTitle: "Developer & Security Researcher",
       description: SITE_DESC,
       email: socials.find((social) => social.link.startsWith("mailto:"))?.link.slice(7),
+      image: `${SITE_URL}/static/misc/og.png`,
+      knowsLanguage: ["en", "ne"],
       address: { "@type": "PostalAddress", addressLocality: "Bhaktapur", addressCountry: "NP" },
       sameAs: socials
         // Own site URL is already `url` above — sameAs is for profiles elsewhere.
@@ -48,7 +50,8 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       author: { "@id": personId },
     },
     {
-      "@type": "WebPage",
+      // The homepage represents the person's profile, not a generic page.
+      "@type": path === "/" ? "ProfilePage" : "WebPage",
       "@id": `${SITE_URL}${path}#webpage`,
       url: `${SITE_URL}${path}`,
       name: title,
@@ -56,6 +59,7 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       inLanguage: "en",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
+      mainEntity: path === "/" ? { "@id": personId } : undefined,
     },
   ];
 
