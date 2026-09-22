@@ -170,6 +170,83 @@ html {
   }
 }
 
+/* 404: glitch flicker on the big code — accent shadows split and snap back.
+   Static when reduced-motion is on (global rule zeroes the animation). */
+.error-glitch {
+  position: relative;
+  animation: error-glitch 3.2s infinite;
+}
+
+.error-glitch::before,
+.error-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0.75;
+}
+
+.error-glitch::before {
+  color: var(--color-fun-accent);
+  animation: error-glitch-shift 3.2s infinite;
+}
+
+.error-glitch::after {
+  color: var(--color-fun-gray);
+  animation: error-glitch-shift 3.2s infinite reverse;
+}
+
+@keyframes error-glitch {
+  0%,
+  92%,
+  100% {
+    transform: none;
+  }
+  93% {
+    transform: translate(-2px, 1px);
+  }
+  95% {
+    transform: translate(2px, -1px);
+  }
+  97% {
+    transform: translate(-1px, 0);
+  }
+}
+
+@keyframes error-glitch-shift {
+  0%,
+  92%,
+  100% {
+    transform: none;
+    opacity: 0;
+  }
+  93%,
+  97% {
+    transform: translate(3px, 0);
+    opacity: 0.75;
+  }
+  95% {
+    transform: translate(-3px, 0);
+    opacity: 0.75;
+  }
+}
+
+/* 404 terminal: block caret blinking after the active line. */
+.terminal-caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--color-fun-accent);
+  animation: terminal-blink 1s steps(1) infinite;
+}
+
+@keyframes terminal-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 /* Image fade-in: each img sits in an .img-shell wrapper that shows a
    shimmer while the image loads; the img fades in over it on load. */
 img.img-loading {
