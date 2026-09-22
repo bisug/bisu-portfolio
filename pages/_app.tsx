@@ -1,8 +1,9 @@
 import "@/styles/main.css";
 
-import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import ChatAssistant from "@/components/global/ChatAssistant";
 import DoodleBackground from "@/components/utility/DoodleBackground";
 import { fontMono, fontSans } from "@/styles/fonts";
 
@@ -42,6 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <RouteProgress />
       <DoodleBackground />
       <Component {...pageProps} />
+      <ChatAssistant />
     </div>
   );
 }
