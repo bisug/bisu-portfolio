@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "bun run sitemap && next build",
     "start": "bun scripts/serve.ts",
     "sitemap": "bun scripts/generate-sitemap.ts",
     "images": "bun scripts/optimize-images.ts",
