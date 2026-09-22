@@ -127,21 +127,12 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   ];
 
   try {
-    if (body.stream === false) {
-      const out = (await env.AI.run(MODEL, { messages })) as { response?: string };
-      return Response.json({ response: sanitize(out.response ?? "") });
-    }
-    const stream = (await env.AI.run(MODEL, { messages, stream: true })) as ReadableStream;
-    // Stream raw SSE; the client sanitizes the final assembled text, since
-    // per-token sanitizing mid-stream would garble split tokens.
-    return new Response(stream, {
-      headers: {
-        "content-type": "text/event-stream; charset=utf-8",
-        "cache-control": "no-cache",
-        connection: "keep-alive",
-      },
-    });
-  } catch {
+    const out = (await env.AI.run(MODEL, { messages })) as { response?: string };
+    const text = sanitize(out?.response ?? "");
+    if (!text) throw new Error("empty AI response");
+    return Response.json({ response: text });
+  } catch (e) {
+    console.error("chat AI.run failed:", e instanceof Error ? e.message : e);
     return Response.json({ error: "AI request failed, try again." }, { status: 502 });
   }
 };

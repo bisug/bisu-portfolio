@@ -43,41 +43,6 @@ function Reply({ text }: { text: string }) {
   return <span className="whitespace-pre-wrap">{text}</span>;
 }
 
-/* Reads a Workers AI SSE stream (data: {...} lines with .response tokens). */
-async function readStream(res: Response, onToken: (t: string) => void): Promise<string> {
-  const reader = res.body?.getReader();
-  if (!reader) throw new Error("no stream");
-  const decoder = new TextDecoder();
-  let buf = "";
-  let full = "";
-  let lastFlush = 0;
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buf += decoder.decode(value, { stream: true });
-    const lines = buf.split("\n");
-    buf = lines.pop() ?? "";
-    for (const line of lines) {
-      const data = line.replace(/^data:\s*/, "").trim();
-      if (!data || data === "[DONE]") continue;
-      try {
-        const token = (JSON.parse(data) as { response?: string }).response ?? "";
-        full += token;
-      } catch {
-        /* partial JSON chunk — wait for more */
-      }
-    }
-    // Throttle re-renders: flush at most every 90ms so long streams don't
-    // re-render the bubble per token.
-    const now = Date.now();
-    if (full && now - lastFlush > 90) {
-      lastFlush = now;
-      onToken(full);
-    }
-  }
-  if (full) onToken(full);
-  return full;
-}
 function ChatAssistant() {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
@@ -111,16 +76,10 @@ function ChatAssistant() {
         body: JSON.stringify({ messages: next.map((m) => ({ role: m.role, content: m.content })) }),
       });
       if (!res.ok || !res.body) throw new Error(`http ${res.status}`);
-      let full = "";
-      const replyId = nextId++;
-      setMsgs([...next, { id: replyId, role: "assistant", content: "" }]);
-      full = await readStream(res, (snap) => {
-        const cleaned = clean(snap);
-        setMsgs((prev) => prev.map((m) => (m.id === replyId ? { ...m, content: cleaned } : m)));
-      });
-      if (!full.trim()) throw new Error("empty stream");
-      const cleaned = clean(full);
-      setMsgs((prev) => prev.map((m) => (m.id === replyId ? { ...m, content: cleaned } : m)));
+      const data = (await res.json()) as { response?: string; error?: string };
+      if (!data.response?.trim()) throw new Error(`http ${res.status}`);
+      const cleaned = clean(data.response);
+      setMsgs([...next, { id: nextId++, role: "assistant", content: cleaned }]);
     } catch {
       setMsgs([...next, { id: nextId++, role: "assistant", content: localReply(q) }]);
     } finally {
