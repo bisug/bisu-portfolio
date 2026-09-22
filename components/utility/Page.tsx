@@ -99,14 +99,14 @@ function Page({
       </div>
       <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
         {children}
-        {currentPage !== "Home" && currentPage !== "Contact" && currentPage !== "404" && (
+        <Reveal>
+          <PageNav currentPage={currentPage} />
+        </Reveal>
+        {currentPage !== "Contact" && currentPage !== "404" && (
           <Reveal>
             <Contact compact />
           </Reveal>
         )}
-        <Reveal>
-          <PageNav currentPage={currentPage} />
-        </Reveal>
       </main>
       <Footer />
     </div>

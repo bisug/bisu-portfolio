@@ -3,7 +3,7 @@ import SocialIcons from "../global/SocialIcons";
 
 const EMAIL = "bisu.ghlan@gmail.com";
 
-function ContactActions() {
+function ContactActions({ small = false }: { small?: boolean }) {
   const [copied, setCopied] = useState(false);
 
   async function copyEmail() {
@@ -14,6 +14,28 @@ function ContactActions() {
     } catch {
       setCopied(false);
     }
+  }
+
+  if (small) {
+    return (
+      <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+        <a
+          href={`mailto:${EMAIL}`}
+          className="font-bold text-sm text-fun-accent underline decoration-fun-accent/40 underline-offset-4 transition hover:decoration-fun-accent"
+        >
+          Say hello
+        </a>
+        <button
+          type="button"
+          onClick={copyEmail}
+          className="font-mono text-xs text-fun-gray transition-colors hover:text-white"
+          aria-live="polite"
+        >
+          {copied ? "Copied!" : "Copy email"}
+        </button>
+        <SocialIcons />
+      </div>
+    );
   }
 
   return (
@@ -44,12 +66,11 @@ function ContactActions() {
 function Contact({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
-      <section aria-labelledby="contact-heading" className="w-full pt-20 pb-4 text-center">
-        <p className="font-mono text-sm text-fun-accent mb-3">Get in touch</p>
-        <h2 id="contact-heading" className="text-2xl sm:text-3xl font-bold tracking-tight mb-8">
+      <section aria-labelledby="contact-heading" className="w-full pt-16 pb-2 text-center">
+        <h2 id="contact-heading" className="text-lg font-bold tracking-tight mb-4">
           Let&apos;s connect
         </h2>
-        <ContactActions />
+        <ContactActions small />
       </section>
     );
   }

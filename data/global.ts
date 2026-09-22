@@ -32,6 +32,11 @@ export const routes: Route[] = [
     desc: "CLI tools, bots & games I've built",
   },
   {
+    title: "Tech Stack",
+    path: "/tech-stack",
+    desc: "Languages & tools I use",
+  },
+  {
     title: "Experience",
     path: "/experience",
     desc: "Roles, teams & hackathons",
@@ -40,11 +45,6 @@ export const routes: Route[] = [
     title: "Education",
     path: "/education",
     desc: "Degrees & schools",
-  },
-  {
-    title: "Tech Stack",
-    path: "/tech-stack",
-    desc: "Languages & tools I use",
   },
   {
     title: "Contact",
