@@ -11,8 +11,11 @@ function Hero() {
         <span className="text-fun-accent">securing</span> for the web.
       </h1>
       <p className="max-w-xl text-fun-gray text-base sm:text-lg mb-10">
-        CS student &amp; security researcher from Nepal. I build Telegram bots, CLIs, and full-stack
-        apps — and I break things to learn how to defend them.
+        CS student &amp; security researcher from Nepal. I build{" "}
+        <strong className="text-white font-medium">Telegram bots</strong>,{" "}
+        <strong className="text-white font-medium">CLIs</strong>, and{" "}
+        <strong className="text-white font-medium">full-stack apps</strong> — and I break things to
+        learn how to defend them.
       </p>
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <Link

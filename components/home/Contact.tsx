@@ -86,10 +86,14 @@ function Contact({ compact = false }: { compact?: boolean }) {
         Let&apos;s connect
       </h1>
       <p className="text-fun-gray max-w-md mx-auto mb-2 text-sm sm:text-base">
-        I&apos;m always open to discussing new projects, creative ideas, or new opportunities.
+        I&apos;m always open to discussing{" "}
+        <strong className="text-white font-medium">new projects</strong>,{" "}
+        <strong className="text-white font-medium">creative ideas</strong>, or{" "}
+        <strong className="text-white font-medium">new opportunities</strong>.
       </p>
       <p className="font-mono text-xs text-fun-gray mb-10">
-        Bhaktapur, Nepal · usually replies within a few days
+        <strong className="text-white font-medium">Bhaktapur, Nepal</strong> · usually replies
+        within a few days
       </p>
       <ContactActions />
     </section>

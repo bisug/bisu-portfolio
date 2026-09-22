@@ -7,18 +7,25 @@ function About() {
       <SectionTitle title="A bit about me." />
       <div className="space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed -mt-4">
         <p>
-          I&apos;m a computer science student at Lincoln International College, Kathmandu, studying
-          Cyber Security &amp; Network Technology — and a security researcher who learns by breaking
-          things before defending them.
+          I&apos;m a computer science student at Lincoln International College, Kathmandu, studying{" "}
+          <strong className="text-white font-medium">
+            Cyber Security &amp; Network Technology
+          </strong>{" "}
+          — and a security researcher who learns by breaking things before defending them.
         </p>
         <p>
-          Most of my time goes into building: Telegram bots, CLI tools, and full-stack apps,
-          usually in Python, Go, Rust, or TypeScript. I&apos;ve freelanced for clients and
-          communities, and I show up to hackathons for the deadline pressure.
+          Most of my time goes into building:{" "}
+          <strong className="text-white font-medium">Telegram bots</strong>,{" "}
+          <strong className="text-white font-medium">CLI tools</strong>, and{" "}
+          <strong className="text-white font-medium">full-stack apps</strong>, usually in{" "}
+          <strong className="text-white font-medium">Python, Go, Rust, or TypeScript</strong>.
+          I&apos;ve freelanced for clients and communities, and I show up to hackathons for the
+          deadline pressure.
         </p>
         <p>
-          Based in Bhaktapur, Nepal. Currently looking for internships where I can build and secure
-          real systems.
+          Based in <strong className="text-white font-medium">Bhaktapur, Nepal</strong>. Currently{" "}
+          <strong className="text-fun-accent font-medium">looking for internships</strong> where I
+          can build and secure real systems.
         </p>
       </div>
       <div className="mt-8">

@@ -34,8 +34,12 @@ function Heading({ tag, subtitle }: HeadingProps) {
         )
       ) : (
         <p className="text-fun-gray text-xl sm:text-2xl max-w-3xl m-auto">
-          A selection of things I&apos;ve built — security tooling and CLIs, Telegram bots, and
-          full-stack apps. Most of them started as an excuse to learn something new.
+          A selection of things I&apos;ve built —{" "}
+          <strong className="text-white font-medium">security tooling</strong> and{" "}
+          <strong className="text-white font-medium">CLIs</strong>,{" "}
+          <strong className="text-white font-medium">Telegram bots</strong>, and{" "}
+          <strong className="text-white font-medium">full-stack apps</strong>. Most of them started
+          as an excuse to learn something new.
         </p>
       )}
     </div>
