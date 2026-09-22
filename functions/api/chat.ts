@@ -81,6 +81,10 @@ type PagesFunction<Env = unknown> = (context: {
   params: Record<string, string>;
 }) => Response | Promise<Response>;
 
+export const onRequestGet: PagesFunction = async () => {
+  return Response.json({ ok: true, route: "/api/chat" }, { status: 200 });
+};
+
 export const onRequestPost: PagesFunction<Env> = async (context) => {
   const { request, env } = context;
 
