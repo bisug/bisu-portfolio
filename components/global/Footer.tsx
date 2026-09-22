@@ -1,31 +1,10 @@
-import Image from "next/image";
-import { socials } from "@/data/global";
+import SocialIcons from "./SocialIcons";
 
 function Footer() {
   return (
     <footer className="w-full px-5 sm:px-8 py-6 mt-20 border-t border-white/10 bg-bg">
       <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-5 sm:flex-row sm:justify-between">
-        <div className="flex items-center gap-2">
-          {socials.map((item) => (
-            <a
-              key={item.name}
-              href={item.link}
-              target="_blank"
-              rel="noopener"
-              aria-label={item.name}
-              className="p-2.5 opacity-70 transition hover:-translate-y-0.5 hover:opacity-100"
-            >
-              <Image
-                src={item.icon}
-                width={20}
-                height={20}
-                alt=""
-                aria-hidden="true"
-                className={item.accentIcon ? "icon-accent-light" : "icon-invert-light"}
-              />
-            </a>
-          ))}
-        </div>
+        <SocialIcons />
         <div className="text-center sm:text-right text-sm text-fun-gray">
           <a
             href="mailto:bisu.ghlan@gmail.com"
