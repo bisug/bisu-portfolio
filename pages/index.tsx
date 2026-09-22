@@ -1,3 +1,4 @@
+import About from "@/components/home/About";
 import CTA from "@/components/home/CTA";
 import Hero from "@/components/home/Hero";
 import Testimonials from "@/components/home/Testimonials";
@@ -14,6 +15,9 @@ export default function Home() {
       }}
     >
       <Hero />
+      <Reveal>
+        <About />
+      </Reveal>
       {testimonials.length > 0 && (
         <Reveal>
           <Testimonials />
