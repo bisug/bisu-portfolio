@@ -1,3 +1,4 @@
+import { hobbies } from "@/data/content/home";
 import SectionTitle from "../global/SectionTitle";
 
 function About() {
@@ -19,6 +20,21 @@ function About() {
           Based in Bhaktapur, Nepal. Currently looking for internships where I can build and secure
           real systems.
         </p>
+      </div>
+      <div className="mt-8">
+        <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
+          Off the keyboard
+        </h3>
+        <ul className="flex flex-wrap gap-1.5 list-none">
+          {hobbies.map((hobby) => (
+            <li
+              key={hobby}
+              className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light"
+            >
+              {hobby}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

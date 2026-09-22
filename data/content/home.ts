@@ -229,3 +229,16 @@ export const education: EducationItem[] = [
 ];
 
 export const testimonials: Testimonial[] = [];
+
+export const hobbies: string[] = [
+  "Music",
+  "Movies",
+  "Web series",
+  "Anime",
+  "Mobile gaming",
+  "Volunteering",
+  "DIY & crafting",
+  "Learning new technologies",
+  "CTF challenges",
+  "Open source",
+];
