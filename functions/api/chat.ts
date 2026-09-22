@@ -86,7 +86,16 @@ export const onRequestGet: PagesFunction = async () => {
 };
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { request, env } = context;
+  try {
+    return await handlePost(context);
+  } catch (e) {
+    const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+    console.error("chat outer crash:", msg);
+    return Response.json({ error: `Server crash: ${msg}` }, { status: 500 });
+  }
+};
+
+const handlePost: PagesFunction<Env> = async ({ request, env }) => {
 
   if (!env.AI) {
     return Response.json(
