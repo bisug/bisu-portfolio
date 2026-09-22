@@ -66,7 +66,7 @@ function ContactActions({ small = false }: { small?: boolean }) {
 function Contact({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
-      <section aria-labelledby="contact-heading" className="w-full pt-16 pb-2 text-center">
+      <section aria-labelledby="contact-heading" className="w-full pt-8 pb-2 text-center">
         <h2 id="contact-heading" className="text-lg font-bold tracking-tight mb-4">
           Let&apos;s connect
         </h2>
