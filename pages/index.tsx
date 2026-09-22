@@ -8,7 +8,7 @@ export default function Home() {
     <Page
       currentPage="Home"
       meta={{
-        desc: "I'm Bisu Ghalan, a CS student and security researcher from Nepal building bots, CLIs, and full-stack apps.",
+        desc: "I'm Bisu Ghalan, a CS student and security researcher from Nepal. I build Telegram bots, CLIs, and full-stack web apps — and break things to learn to defend them.",
       }}
     >
       <Hero />
