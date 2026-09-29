@@ -99,7 +99,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
               </ul>
               <a
                 href="mailto:bisu.ghlan@gmail.com"
-                className="block border-t border-white/10 px-6 py-3 font-mono text-xs text-fun-gray transition-colors hover:text-white"
+                className="block border-t border-white/10 px-6 py-3 font-mono text-xs text-fun-gray-light transition-colors hover:text-white"
               >
                 bisu.ghlan@gmail.com
               </a>

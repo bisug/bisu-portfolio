@@ -19,7 +19,11 @@ function Experience() {
             <p className="text-sm sm:text-base leading-relaxed">
               Freelancing — building Telegram bots and full-stack apps for clients and communities.
             </p>
-            <p className="mt-2.5 inline-block rounded-md bg-fun-accent/10 px-2.5 py-1 text-xs font-semibold text-fun-accent">
+            <p className="mt-2.5 inline-flex items-center gap-2 rounded-md border border-fun-accent/20 bg-fun-accent/10 px-2.5 py-1 text-xs font-semibold text-fun-accent">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fun-accent opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-fun-accent" />
+              </span>
               Currently searching for internship opportunities
             </p>
           </div>
@@ -74,7 +78,7 @@ function Experience() {
                       <dd className="text-fun-gray-light py-0.5">
                         {value}
                         {label === "Project name" && event.projectDesc && (
-                          <span className="mt-0.5 block text-xs text-fun-gray">
+                          <span className="mt-0.5 block text-xs text-fun-gray-light">
                             {event.projectDesc}
                           </span>
                         )}

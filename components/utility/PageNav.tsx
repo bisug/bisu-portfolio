@@ -48,11 +48,11 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
         <ArrowIcon direction={direction} />
       </span>
       <span className="min-w-0">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-fun-gray">
+        <span className="font-mono text-xs uppercase tracking-widest text-fun-gray-light">
           {label}
         </span>
         <span className="mt-0.5 block truncate text-sm font-bold text-white">{route.title}</span>
-        <span className="mt-0.5 hidden truncate text-xs text-fun-gray sm:block">{route.desc}</span>
+        <span className="mt-0.5 hidden truncate text-xs text-fun-gray-light sm:block">{route.desc}</span>
       </span>
     </Link>
   );

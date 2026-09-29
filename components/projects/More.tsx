@@ -19,7 +19,7 @@ function More() {
       <h3 className="text-lg font-bold transition-colors group-hover:text-fun-accent">
         More on GitHub
       </h3>
-      <p className="text-sm text-fun-gray">Experiments, forks & works-in-progress</p>
+      <p className="text-sm text-fun-gray-light">Experiments, forks & works-in-progress</p>
     </a>
   );
 }
