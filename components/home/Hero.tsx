@@ -10,14 +10,14 @@ function Hero() {
         Hey, I&apos;m Bisu Ghalan —
       </p>
       <h1
-        className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl w-auto text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-6 font-bold text-balance"
+        className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[1400px] w-auto text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-6 font-bold text-balance"
         style={{ animationDelay: "90ms" }}
       >
         I enjoy <span className="text-fun-accent">building</span> and{" "}
         <span className="text-fun-accent">securing</span> for the web.
       </h1>
       <p
-        className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl text-fun-gray text-base sm:text-lg mb-10"
+        className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-3xl text-fun-gray text-base sm:text-lg mb-10"
         style={{ animationDelay: "180ms" }}
       >
         CS student &amp; security researcher from Nepal. I build{" "}

@@ -11,7 +11,7 @@ function About() {
         </p>
       </div>
       <div className="flex-1 w-full space-y-6">
-        <div className="space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed">
+        <div className="space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed 2xl:max-w-4xl">
           <p>
             I&apos;m a computer science student at Lincoln International College, Kathmandu, studying{" "}
             <strong className="text-white font-medium">
