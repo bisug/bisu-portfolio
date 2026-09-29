@@ -45,8 +45,3 @@ Also on GitHub: https://github.com/bisug
 - Email: bisu.ghlan@gmail.com
 - GitHub: https://github.com/bisug
 - LinkedIn: https://www.linkedin.com/in/bisug/
-
-## Full Content
-
-- [Full Markdown Knowledge Base](https://bisu.com.np/llms-full.txt): Complete site profile, projects, education, hackathons, and FAQs in a single file for single-pass LLM ingestion.
-

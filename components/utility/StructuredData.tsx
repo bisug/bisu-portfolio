@@ -28,8 +28,6 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       email: socials.find((social) => social.link.startsWith("mailto:"))?.link.slice(7),
       image: `${SITE_URL}/static/misc/og.png`,
       knowsLanguage: ["en", "ne"],
-      gender: "Male",
-      nationality: { "@type": "Country", name: "Nepal" },
       address: { "@type": "PostalAddress", addressLocality: "Bhaktapur", addressCountry: "NP" },
       sameAs: socials
         // Own site URL is already `url` above — sameAs is for profiles elsewhere.
@@ -61,53 +59,9 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       inLanguage: "en",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
-      mainEntity:
-        path === "/"
-          ? { "@id": personId }
-          : extra[0]?.["@id"]
-            ? { "@id": extra[0]["@id"] }
-            : undefined,
+      mainEntity: path === "/" ? { "@id": personId } : undefined,
     },
   ];
-
-  if (path !== "/") {
-    const breadcrumbs: { "@type": "ListItem"; position: number; name: string; item: string }[] = [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: `${SITE_URL}/`,
-      },
-    ];
-
-    if (path.startsWith("/projects/")) {
-      breadcrumbs.push({
-        "@type": "ListItem",
-        position: 2,
-        name: "Projects",
-        item: `${SITE_URL}/projects`,
-      });
-      breadcrumbs.push({
-        "@type": "ListItem",
-        position: 3,
-        name: title.replace(/ - Bisu Ghalan$/, ""),
-        item: `${SITE_URL}${path}`,
-      });
-    } else {
-      breadcrumbs.push({
-        "@type": "ListItem",
-        position: 2,
-        name: title.replace(/ - Bisu Ghalan$/, ""),
-        item: `${SITE_URL}${path}`,
-      });
-    }
-
-    graph.push({
-      "@type": "BreadcrumbList",
-      "@id": `${SITE_URL}${path}#breadcrumbs`,
-      itemListElement: breadcrumbs,
-    });
-  }
 
   if (path === "/projects") {
     graph.push({

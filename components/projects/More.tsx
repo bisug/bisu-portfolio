@@ -5,7 +5,7 @@ function More() {
     <a
       href="https://github.com/bisug"
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       className="group flex h-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-5 text-center transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10"
     >
       <Image

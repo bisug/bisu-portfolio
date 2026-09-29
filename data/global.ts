@@ -2,8 +2,6 @@ export const SITE_URL = "https://bisu.com.np";
 
 export const SITE_NAME = "Bisu Ghalan";
 
-export const COPYRIGHT_YEAR = 2026;
-
 /** Single-sentence entity description, reused by structured data and llms.txt. */
 export const SITE_DESC =
   "Bisu Ghalan is a computer science student and security researcher from Bhaktapur, Nepal who builds Telegram bots, command-line tools, and full-stack web apps.";

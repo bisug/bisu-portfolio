@@ -108,49 +108,16 @@ function sanitize(text: string): string {
 const hits = new Map<string, { count: number; reset: number }>();
 const daily = new Map<string, { count: number; reset: number }>();
 
+const SITE_ORIGIN = "https://bisu.com.np";
+
 function forbidden(request: Request): boolean {
   const origin = request.headers.get("origin");
   const referer = request.headers.get("referer");
-  const host = request.headers.get("host") ?? "";
-  const secFetchSite = request.headers.get("sec-fetch-site");
-
-  // Block cross-site requests signaled by modern browser security metadata.
-  if (secFetchSite && secFetchSite !== "same-origin" && secFetchSite !== "same-site") {
-    return true;
-  }
-
-  const isAllowedHost = (h: string) =>
-    h === "bisu.com.np" ||
-    h.endsWith(".bisu-com-np.pages.dev") ||
-    h === "bisu-com-np.pages.dev" ||
-    h.startsWith("localhost:") ||
-    h === "localhost" ||
-    h.startsWith("127.0.0.1:") ||
-    h === "127.0.0.1";
-
-  if (origin) {
-    try {
-      const originHost = new URL(origin).host;
-      if (!isAllowedHost(originHost)) return true;
-    } catch {
-      return true;
-    }
-  }
-
-  if (referer) {
-    try {
-      const refererHost = new URL(referer).host;
-      if (!isAllowedHost(refererHost)) return true;
-    } catch {
-      return true;
-    }
-  }
-
-  // Reject third-party or automated requests lacking both origin and referer.
-  if (!origin && !referer && !isAllowedHost(host)) {
-    return true;
-  }
-
+  // Browser calls always send Origin/Referer; curl/API reuse sends neither.
+  // Allow only same-site browser calls — no API keys to steal, but this stops
+  // other sites hotlinking your Workers AI quota from their pages.
+  if (origin) return origin !== SITE_ORIGIN;
+  if (referer) return !referer.startsWith(`${SITE_ORIGIN}/`);
   return false;
 }
 

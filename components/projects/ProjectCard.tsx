@@ -37,7 +37,7 @@ function ProjectCard({ project }: { project: Project }) {
               <a
                 href={project.link}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
                 aria-label={`${project.title} live site`}
                 className="opacity-60 transition hover:opacity-100 p-1.5 -m-1.5"
               >
@@ -55,7 +55,7 @@ function ProjectCard({ project }: { project: Project }) {
               <a
                 href={project.github}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
                 aria-label={`${project.title} source code`}
                 className="opacity-60 transition hover:opacity-100 p-1.5 -m-1.5"
               >

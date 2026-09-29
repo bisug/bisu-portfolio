@@ -64,11 +64,6 @@ html {
   filter: invert(1);
 }
 
-/* Gray/slate SVG icons darken to deep navy in light mode without hue distortion. */
-:root.light .icon-social-light {
-  filter: brightness(0.4) contrast(1.2);
-}
-
 /* Accent-cyan SVG icons: inverting them turns them orange, so just darken
    toward the light-theme accent (#00c7ff * 0.55 ≈ #006e8c ≈ #006b8f). */
 :root.light .icon-accent-light {
@@ -82,16 +77,6 @@ html {
 }
 :root.light .icon-invert-dark {
   filter: none;
-}
-
-/* Typographic orphan prevention on paragraphs across all viewports */
-p {
-  text-wrap: pretty;
-}
-
-/* Tabular figures for monospace numbers, dates, and metric alignment */
-.font-mono {
-  font-feature-settings: "tnum" 1;
 }
 
 /* Scroll-reveal: hidden until Reveal adds .reveal-visible.

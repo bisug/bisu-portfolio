@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bun run sitemap && bun run llms && next build",
+    "build": "bun run sitemap && next build",
     "start": "bun scripts/serve.ts",
     "sitemap": "bun scripts/generate-sitemap.ts",
-    "llms": "bun scripts/generate-llms-full.ts",
     "images": "bun scripts/optimize-images.ts",
     "images:check": "bun scripts/optimize-images.ts --check",
     "typecheck": "tsc --noEmit",

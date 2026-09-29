@@ -50,7 +50,7 @@ function PageTransition({ children }: { children: ReactNode }) {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${fontSans.variable} ${fontMono.variable} font-sans relative isolate`}>
+    <div className={`${fontSans.variable} ${fontMono.variable} relative isolate`}>
       <RouteProgress />
       <DoodleBackground />
       <PageTransition>

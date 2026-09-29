@@ -55,29 +55,9 @@ function Navbar({ currentPage }: { currentPage: string }) {
             })}
           </span>
         </Link>
-        <div className="flex items-center gap-2">
-          {/* Desktop navigation */}
-          <div className="hidden md:flex items-center gap-1 mr-1">
-            {routes.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                aria-current={currentPage === item.title ? "page" : undefined}
-                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-                  currentPage === item.title
-                    ? "bg-white/10 text-fun-accent"
-                    : "text-white/70 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                {item.title}
-              </Link>
-            ))}
-          </div>
-
+        <div className="flex items-center gap-1">
           <ThemeToggle />
-
-          {/* Mobile navigation toggle */}
-          <div className="relative md:hidden" ref={menuRef}>
+          <div className="relative" ref={menuRef}>
             <button
               ref={buttonRef}
               className={`flex h-11 w-11 items-center justify-center rounded-lg transition ${

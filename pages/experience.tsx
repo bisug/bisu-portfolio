@@ -9,7 +9,7 @@ export default function ExperiencePage() {
       path="/experience"
       meta={{
         title: "Experience",
-        desc: "Roles, projects, and hackathons — freelance Telegram bots, web apps, and cybersecurity hackathons.",
+        desc: "Where I've worked — lead developer roles, bot creators, and hackathons.",
       }}
     >
       <Reveal className="mt-16 sm:mt-20 w-full">
