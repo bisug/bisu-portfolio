@@ -39,7 +39,7 @@ function Experience() {
                     <a
                       href={event.link}
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-fun-accent underline decoration-fun-accent/40 underline-offset-2 transition hover:decoration-fun-accent"
                     >
                       {event.title}

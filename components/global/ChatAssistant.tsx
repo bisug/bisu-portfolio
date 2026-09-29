@@ -101,7 +101,19 @@ function ChatAssistant() {
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const msgCount = msgs.length;
+
+  useEffect(() => {
+    if (!open) return;
+    inputRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on any new message/open/loading tick.
   useEffect(() => {
@@ -142,6 +154,7 @@ function ChatAssistant() {
       {open && (
         <div
           role="dialog"
+          aria-modal="true"
           aria-label="Chat with Bisu's AI assistant"
           className="flex h-[min(480px,70vh)] w-[min(360px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/60"
         >
@@ -199,6 +212,7 @@ function ChatAssistant() {
               Message the assistant
             </label>
             <input
+              ref={inputRef}
               id="chat-input"
               value={input}
               onChange={(e) => setInput(e.target.value.slice(0, 1000))}

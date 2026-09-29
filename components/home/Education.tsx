@@ -49,7 +49,7 @@ function Education() {
           return (
             <div key={item.school}>
               {item.link ? (
-                <a href={item.link} target="_blank" rel="noopener" className="block">
+                <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
                   {Card}
                 </a>
               ) : (
