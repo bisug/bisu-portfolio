@@ -26,6 +26,7 @@ function Page({
       : `${title ?? currentPage} - Bisu Ghalan`;
   const pageUrl = `${SITE_URL}${path}`;
   const ogImage = image ? `${SITE_URL}${image}` : OG_IMAGE;
+  const ogImageHeight = image ? "600" : "630";
   const ogImageAlt = image ? `${title ?? currentPage} — preview` : OG_IMAGE_ALT;
   return (
     <div className="w-full m-auto flex flex-col items-center min-h-screen text-white">
@@ -45,7 +46,7 @@ function Page({
         <meta property="og:description" content={desc} />
         <meta property="og:image" content={ogImage} />
         <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:height" content={ogImageHeight} />
         <meta property="og:image:alt" content={ogImageAlt} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -56,36 +57,53 @@ function Page({
         <meta name="twitter:image:alt" content={ogImageAlt} />
 
         <meta name="author" content={SITE_NAME} />
-        <meta name="theme-color" content="#000a1f" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#f4f7fc" media="(prefers-color-scheme: light)" />
+        <meta
+          key="theme-dark"
+          name="theme-color"
+          content="#000a1f"
+          media="(prefers-color-scheme: dark)"
+        />
+        <meta
+          key="theme-light"
+          name="theme-color"
+          content="#f4f7fc"
+          media="(prefers-color-scheme: light)"
+        />
+
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href={`${SITE_URL}/llms.txt`}
+          title="LLM-friendly summary"
+        />
 
         {/* A noindex page (404) carries no entity data worth publishing. */}
         {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} extra={schema} />}
-
-        {GA_ID && (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="lazyOnload"
-            />
-            <Script
-              id="gtag"
-              strategy="lazyOnload"
-              dangerouslySetInnerHTML={{
-                __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
-              }}
-            />
-          </>
-        )}
       </Head>
+
+      {GA_ID && (
+        <>
+          <Script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="lazyOnload"
+          />
+          <Script
+            id="gtag"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+        </>
+      )}
 
       <a
         href="#main-content"

@@ -1,0 +1,166 @@
+# Bisu Ghalan — Complete Profile & Knowledge Base
+
+> Bisu Ghalan is a computer science student and security researcher from Bhaktapur, Nepal who builds Telegram bots, command-line tools, and full-stack web apps.
+
+- Website: https://bisu.com.np
+- Canonical Entity: Bisu Ghalan
+- Location: Bhaktapur, Nepal (UTC+5:45)
+- Year: 2026
+
+---
+
+## About & Background
+
+Bisu Ghalan is a computer science student at Lincoln International College in Kathmandu (affiliated with Lincoln University College, Malaysia), studying Cyber Security & Network Technology (Hons).
+He is a security researcher and software developer who focuses on defensive security, network infrastructure, Telegram bots, command-line utilities, and full-stack web applications.
+
+---
+
+## Projects
+
+### BinaryInspector
+
+Safe, local Rust CLI for inspecting ELF binaries without executing them.
+
+- Page: https://bisu.com.np/projects/binary-inspector
+- Source Code: https://github.com/bisug/BinaryInspector
+- Technologies: Rust, CLI, Security
+
+### Paila
+
+A seamless travel & community platform bridging tourists and local communities in Nepal.
+
+- Page: https://bisu.com.np/projects/paila
+- Source Code: https://github.com/bisug/Paila
+- Live Deployment: https://paila-prototype.vercel.app
+- Technologies: NextJS, TypeScript, TailwindCSS
+
+### TG-GithubBot
+
+GitHub webhook handler bot for Telegram, formatting push, deployment, and all events.
+
+- Page: https://bisu.com.np/projects/tg-github-bot
+- Source Code: https://github.com/bisug/TG-GithubBot
+- Live Deployment: https://t.me/DearGitNotifyBot
+- Technologies: Go, Telegram, MongoDB
+
+### ninfo
+
+A Linux system information CLI written in Nim that does a whole-system snapshot as JSON in a single call.
+
+- Page: https://bisu.com.np/projects/ninfo
+- Source Code: https://github.com/bisug/ninfo
+- Technologies: Nim, CLI, Linux
+
+### TG-WordGame
+
+Wordle-style word game bot for Telegram — solo & multiplayer rounds, daily challenge, leaderboards.
+
+- Page: https://bisu.com.np/projects/tg-word-game
+- Source Code: https://github.com/bisug/TG-WordGame
+- Technologies: TypeScript, Telegram, Game
+
+### Melody
+
+Telegram group calls streaming bot with useful features, written in Python with Pyrogram.
+
+- Page: https://bisu.com.np/projects/melody
+- Source Code: https://github.com/bisug/Melody
+- Technologies: Python, Telegram, API
+
+### heroku-buildpack-bun
+
+Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, runs bun install.
+
+- Page: https://bisu.com.np/projects/heroku-buildpack-bun
+- Source Code: https://github.com/bisug/heroku-buildpack-bun
+- Technologies: Shell, Bun, DevOps
+
+### SnakeGame-CLI
+
+A cross-platform Snake game that runs entirely in the terminal.
+
+- Page: https://bisu.com.np/projects/snake-game-cli
+- Source Code: https://github.com/bisug/SnakeGame-CLI
+- Technologies: C++, CLI, Game
+
+---
+
+## Hackathons & Competitive Experience
+
+### Build Nepal Hackathon
+
+- Organizer: Mid-Valley International College (MVIC)
+- Date: 1–2 August 2026
+- Venue: Mid Valley International College, Gyaneshwor, Kathmandu
+- Team: Team Bugger
+- Project: NetGuard
+- Project Summary: An explainable intrusion detection and prevention platform designed for small organizations.
+- Status: Participant
+
+### JunctionX Kathmandu
+
+- Organizer: SUMS Nepal & Cogknit
+- Date: May 29–31, 2026
+- Venue: AITM College, Khumaltar Height, Lalitpur
+- Team: Team Runtime Terrors
+- Project: Paila
+- Project Summary: A seamless travel & community platform bridging tourists and local communities in Nepal.
+- Status: Participant
+- Event Link: https://junctionxkathmandu.com/past-events/2026
+
+---
+
+## Education
+
+### Bachelor of Computer Science — Cyber Security & Network Technology (Hons)
+
+- Institution: Lincoln International College, Kathmandu
+- Period: Batch of Sept 2025
+- Focus: Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.
+- Website: https://licnepal.edu.np/
+
+### Higher Secondary Education (+2 Management)
+
+- Institution: Janapremi World School, Bhaktapur
+- Period: Passout 2024
+- Website: https://jws.edu.np/
+
+---
+
+## Technical Skills & Toolbelt
+
+- **Languages**: Python, TypeScript, Rust, Go, Markdown
+- **Frameworks & Web**: FastAPI, Flask, Kurigram, React, NextJS, TailwindCSS, NodeJS, Bun
+- **Databases**: MongoDB, PostgreSQL, Redis, Valkey, SQLite
+- **AI & Tools**: Claude Code, Codex, Copilot, Zed
+- **Systems & Ops**: Linux, Kali Linux, Linux Mint, Windows, Docker, GitHub Actions, VMware, Git
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+### Q: How can I contact Bisu Ghalan?
+
+A: Email bisu.ghlan@gmail.com or reach out on GitHub (@bisug), LinkedIn (in/bisug), or Instagram (@oyeee.bisu).
+
+### Q: Where is Bisu Ghalan based?
+
+A: Bhaktapur, Nepal (UTC+5:45), studying at Lincoln International College in Kathmandu.
+
+### Q: Is Bisu Ghalan available for internships or freelance work?
+
+A: Yes. He is open to internships, freelance projects, and security-related work, especially Telegram bots, command-line tools, and full-stack web apps.
+
+### Q: What technologies does Bisu Ghalan use?
+
+A: Primarily Python, TypeScript, Rust, and Go, with FastAPI, React, Next.js, MongoDB, PostgreSQL, and Redis.
+
+---
+
+## Contact & Social Profiles
+
+- GitHub: https://github.com/bisug
+- LinkedIn: https://www.linkedin.com/in/bisug/
+- Instagram: https://www.instagram.com/oyeee.bisu
+- Email: mailto:bisu.ghlan@gmail.com

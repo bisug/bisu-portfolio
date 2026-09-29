@@ -34,8 +34,9 @@ export const getStaticProps: GetStaticProps<TagPageProps, { tag: string }> = asy
   };
 };
 
-function PostPage({ filteredProjects, tag }: TagPageProps) {
-  const capsTag = allTags[allKebabTags.indexOf(tag)];
+function TagPage({ filteredProjects, tag }: TagPageProps) {
+  const tagIndex = allKebabTags.indexOf(tag);
+  const capsTag = tagIndex !== -1 ? allTags[tagIndex] : tag;
   const names = filteredProjects.map((project) => project.title).join(", ");
   const count = filteredProjects.length;
   return (
@@ -63,4 +64,4 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
   );
 }
 
-export default PostPage;
+export default TagPage;

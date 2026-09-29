@@ -38,13 +38,15 @@ function ProjectPage({ project }: ProjectPageProps) {
       schema={[
         {
           "@type": "SoftwareSourceCode",
+          "@id": `${SITE_URL}${path}#software`,
           name: project.title,
           description: project.desc,
           url: `${SITE_URL}${path}`,
           codeRepository: project.github,
           sameAs: project.link,
-          keywords: project.tags.join(", "),
-          author: { "@type": "Person", name: "Bisu Ghalan", url: SITE_URL },
+          programmingLanguage: project.tags,
+          license: "https://spdx.org/licenses/MIT",
+          author: { "@id": `${SITE_URL}/#person` },
         },
       ]}
     >
@@ -78,7 +80,7 @@ function ProjectPage({ project }: ProjectPageProps) {
             <a
               href={project.link}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="font-bold whitespace-nowrap rounded-full border border-fun-accent bg-fun-navy-dark px-8 py-3 text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest"
             >
               Live site
@@ -88,7 +90,7 @@ function ProjectPage({ project }: ProjectPageProps) {
             <a
               href={project.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="font-bold whitespace-nowrap rounded-full border border-white/20 px-8 py-3 text-fun-gray-light transition hover:border-fun-accent hover:text-white"
             >
               Source code
