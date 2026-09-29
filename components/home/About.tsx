@@ -4,7 +4,7 @@ import SectionTitle from "../global/SectionTitle";
 function About() {
   return (
     <div className="flex flex-col md:flex-row md:items-start gap-8 lg:gap-12 w-full">
-      <div className="md:max-w-xs lg:max-w-sm md:shrink-0">
+      <div className="md:max-w-xs lg:max-w-sm xl:max-w-md md:shrink-0">
         <SectionTitle title="A bit about me." />
         <p className="text-fun-gray text-sm sm:text-base -mt-4">
           Who I am, what I build, and what keeps me curious.

@@ -55,9 +55,29 @@ function Navbar({ currentPage }: { currentPage: string }) {
             })}
           </span>
         </Link>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
+          {/* Desktop navigation */}
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1 mr-1">
+            {routes.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                aria-current={currentPage === item.title ? "page" : undefined}
+                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                  currentPage === item.title
+                    ? "bg-white/10 text-fun-accent font-semibold"
+                    : "text-white/75 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                {item.title}
+              </Link>
+            ))}
+          </nav>
+
           <ThemeToggle />
-          <div className="relative" ref={menuRef}>
+
+          {/* Mobile navigation toggle */}
+          <div className="relative md:hidden" ref={menuRef}>
             <button
               ref={buttonRef}
               className={`flex h-11 w-11 items-center justify-center rounded-lg transition ${

@@ -95,10 +95,12 @@ function Page({
         Skip to content
       </a>
 
-      <div className="w-full max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 md:px-10">
-        <Navbar currentPage={currentPage} />
-      </div>
-      <main id="main-content" className="px-5 sm:px-8 md:px-10 w-full flex-1 max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto">
+      <header className="w-full border-b border-white/5 bg-bg/80 backdrop-blur-md sticky top-0 z-40 transition-colors">
+        <div className="w-full max-w-7xl 2xl:max-w-[1600px] mx-auto px-5 sm:px-8 md:px-12">
+          <Navbar currentPage={currentPage} />
+        </div>
+      </header>
+      <main id="main-content" className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl 2xl:max-w-[1600px] mx-auto">
         {children}
         <Reveal>
           <PageNav currentPage={currentPage} />

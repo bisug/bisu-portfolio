@@ -10,14 +10,28 @@ function PageNav({ currentPage }: { currentPage: string }) {
   const nextRoute = routes[currentIndex + 1];
 
   return (
-    <nav aria-label="Page navigation" className="mt-12 grid grid-cols-2 gap-3">
-      {prevRoute && <NavCard label="Previous" route={prevRoute} direction="prev" />}
+    <nav
+      aria-label="Page navigation"
+      className={`mt-12 ${
+        prevRoute && nextRoute
+          ? "grid grid-cols-1 sm:grid-cols-2 gap-4"
+          : "flex justify-end w-full"
+      }`}
+    >
+      {prevRoute && (
+        <NavCard
+          label="Previous"
+          route={prevRoute}
+          direction="prev"
+          className={nextRoute ? undefined : "w-full sm:max-w-md mr-auto"}
+        />
+      )}
       {nextRoute && (
         <NavCard
           label="Next"
           route={nextRoute}
           direction="next"
-          className={prevRoute ? undefined : "col-start-2"}
+          className={prevRoute ? undefined : "w-full sm:max-w-md ml-auto"}
         />
       )}
     </nav>

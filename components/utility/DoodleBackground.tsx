@@ -13,28 +13,28 @@ const DOODLES: Doodle[] = [
     id: "burst-top-left",
     src: "/static/doodles/testimonials/yay.svg",
     // Positioned below the navbar so it never overlaps the logo
-    className: "top-24 sm:top-20 left-2 sm:left-4 xl:-left-12 w-16 sm:w-24",
+    className: "top-24 sm:top-28 left-3 sm:left-8 xl:left-14 w-14 sm:w-20 xl:w-24",
     rotate: "-10deg",
     float: "doodle-float-a",
   },
   {
     id: "squiggle-top-right",
     src: "/static/doodles/testimonials/squiggle2.svg",
-    className: "top-24 sm:top-20 right-2 sm:right-4 xl:-right-10 w-10 sm:w-14",
+    className: "top-24 sm:top-28 right-3 sm:right-8 xl:right-14 w-9 sm:w-12 xl:w-14",
     rotate: "18deg",
     float: "doodle-float-b",
   },
   {
     id: "line-mid-left",
     src: "/static/doodles/lineBreak.svg",
-    className: "hidden md:block top-[45%] -left-6 xl:-left-16 w-32 sm:w-40",
+    className: "hidden md:block top-[45%] left-2 sm:left-6 xl:left-10 w-28 sm:w-36 xl:w-44",
     rotate: "82deg",
     float: "doodle-float-c",
   },
   {
     id: "code-bottom-right",
     src: "/static/doodles/hero/code.svg",
-    className: "bottom-10 right-2 sm:right-6 xl:-right-10 w-16 sm:w-20",
+    className: "bottom-10 right-3 sm:right-8 xl:right-14 w-14 sm:w-18 xl:w-20",
     rotate: "6deg",
     float: "doodle-float-b",
     delay: "-4s",
@@ -42,7 +42,7 @@ const DOODLES: Doodle[] = [
   {
     id: "burst-bottom-left",
     src: "/static/doodles/testimonials/yay.svg",
-    className: "hidden sm:block bottom-16 left-2 sm:left-6 xl:-left-8 w-12 sm:w-14",
+    className: "hidden sm:block bottom-16 left-3 sm:left-8 xl:left-14 w-10 sm:w-12 xl:w-14",
     rotate: "150deg",
     float: "doodle-float-c",
     delay: "-7s",
@@ -50,7 +50,7 @@ const DOODLES: Doodle[] = [
   {
     id: "squiggle-mid-right",
     src: "/static/doodles/testimonials/squiggle2.svg",
-    className: "hidden sm:block top-[58%] right-2 sm:right-4 xl:-right-12 w-10 sm:w-12",
+    className: "hidden sm:block top-[58%] right-3 sm:right-8 xl:right-14 w-9 sm:w-11 xl:w-12",
     rotate: "-25deg",
     float: "doodle-float-a",
     delay: "-2s",
@@ -60,7 +60,7 @@ const DOODLES: Doodle[] = [
 function DoodleBackground() {
   return (
     <div aria-hidden="true" className="doodle-bg">
-      <div className="relative w-full max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto h-full px-4 sm:px-6 pointer-events-none">
+      <div className="relative w-full h-full pointer-events-none">
         {DOODLES.map((doodle) => (
           <div
             key={doodle.id}
