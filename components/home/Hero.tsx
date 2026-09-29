@@ -17,7 +17,7 @@ function Hero() {
         <span className="text-fun-accent">securing</span> for the web.
       </h1>
       <p
-        className="rise-in max-w-xl text-fun-gray text-base sm:text-lg mb-10"
+        className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl text-fun-gray text-base sm:text-lg mb-10"
         style={{ animationDelay: "180ms" }}
       >
         CS student &amp; security researcher from Nepal. I build{" "}

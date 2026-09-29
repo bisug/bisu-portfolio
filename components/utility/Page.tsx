@@ -32,6 +32,7 @@ function Page({
       <Head>
         <title>{pageTitle}</title>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="description" content={desc} />
         {/* A noindex page (404) has no canonical URL of its own; pointing it at the homepage would be misleading. */}
         {!noindex && <link rel="canonical" href={pageUrl} />}
@@ -94,10 +95,10 @@ function Page({
         Skip to content
       </a>
 
-      <div className="w-full max-w-5xl mx-auto px-5 sm:px-8">
+      <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-5 sm:px-8">
         <Navbar currentPage={currentPage} />
       </div>
-      <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl mx-auto">
+      <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         {children}
         <Reveal>
           <PageNav currentPage={currentPage} />
