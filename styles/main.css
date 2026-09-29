@@ -145,6 +145,13 @@ html {
   contain: paint;
 }
 
+/* On short landscape viewports (phones rotated horizontally), hide floating doodles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .doodle-bg {
+    display: none;
+  }
+}
+
 .doodle {
   position: absolute;
   display: block;
@@ -322,6 +329,14 @@ img.img-loaded {
 :focus-visible {
   outline: 2px solid var(--color-fun-accent);
   outline-offset: 2px;
+}
+
+/* Short-height landscape viewports (e.g. mobile phones rotated horizontally) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    padding-top: 1.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
 }
 
 body {

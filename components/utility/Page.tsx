@@ -95,10 +95,10 @@ function Page({
         Skip to content
       </a>
 
-      <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-5 sm:px-8">
+      <div className="w-full max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto px-5 sm:px-8 md:px-10">
         <Navbar currentPage={currentPage} />
       </div>
-      <main id="main-content" className="px-5 sm:px-8 w-full flex-1 max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+      <main id="main-content" className="px-5 sm:px-8 md:px-10 w-full flex-1 max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] mx-auto">
         {children}
         <Reveal>
           <PageNav currentPage={currentPage} />

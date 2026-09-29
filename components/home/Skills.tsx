@@ -5,8 +5,8 @@ import FadeImage from "../utility/FadeImage";
 
 function Skills() {
   return (
-    <div className="flex flex-col lg:flex-row lg:items-start gap-10">
-      <div className="lg:max-w-sm lg:shrink-0">
+    <div className="flex flex-col md:flex-row md:items-start gap-8 lg:gap-12 w-full">
+      <div className="md:max-w-xs lg:max-w-sm md:shrink-0">
         <SectionTitle title="My toolbelt for success." as="h1" />
         <p className="text-fun-gray text-sm sm:text-base -mt-4">
           The languages, frameworks, and tools I reach for when building and securing things.

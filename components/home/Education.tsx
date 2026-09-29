@@ -4,8 +4,8 @@ import FadeImage from "../utility/FadeImage";
 
 function Education() {
   return (
-    <div className="flex flex-col lg:flex-row lg:items-start gap-10">
-      <div className="lg:max-w-sm lg:shrink-0">
+    <div className="flex flex-col md:flex-row md:items-start gap-8 lg:gap-12 w-full">
+      <div className="md:max-w-xs lg:max-w-sm md:shrink-0">
         <SectionTitle title="Where I studied." as="h1" />
         <p className="text-fun-gray text-sm sm:text-base -mt-4">
           My academic path — from management studies to cyber security.
