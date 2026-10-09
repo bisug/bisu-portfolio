@@ -5,7 +5,7 @@ const projects: Project[] = [
   {
     id: 0,
     title: "BinaryInspector",
-    desc: "Safe, local Rust CLI for inspecting ELF binaries without executing them.",
+    desc: "Safe, local Rust CLI for inspecting ELF binaries, headers, and security mitigations without executing them.",
     img: "/static/projects/BinaryInspector.webp",
     github: "https://github.com/bisug/BinaryInspector",
     tags: ["Rust", "CLI", "Security"],
@@ -13,7 +13,7 @@ const projects: Project[] = [
   {
     id: 1,
     title: "Paila",
-    desc: "A seamless travel & community platform bridging tourists and local communities in Nepal.",
+    desc: "Travel & community platform bridging tourists and local communities in Nepal, built with Next.js and Supabase.",
     img: "/static/projects/Paila.webp",
     link: "https://paila-prototype.vercel.app",
     github: "https://github.com/bisug/Paila",
@@ -22,7 +22,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: "TG-GithubBot",
-    desc: "GitHub webhook handler bot for Telegram, formatting push, deployment, and all events.",
+    desc: "GitHub webhook handler bot for Telegram, streaming and formatting push, release, and deployment alerts.",
     img: "/static/projects/TG-GithubBot.webp",
     link: "https://t.me/DearGitNotifyBot",
     github: "https://github.com/bisug/TG-GithubBot",
@@ -31,7 +31,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: "ninfo",
-    desc: "A Linux system information CLI written in Nim that does a whole-system snapshot as JSON in a single call.",
+    desc: "Fast Linux system information CLI in Nim capturing a whole-system kernel and hardware snapshot as JSON.",
     img: "/static/projects/ninfo.webp",
     github: "https://github.com/bisug/ninfo",
     tags: ["Nim", "CLI", "Linux"],
@@ -39,7 +39,7 @@ const projects: Project[] = [
   {
     id: 4,
     title: "TG-WordGame",
-    desc: "Wordle-style word game bot for Telegram — solo & multiplayer rounds, daily challenge, leaderboards.",
+    desc: "Wordle-style word game bot for Telegram with solo/multiplayer rounds, daily challenges, and leaderboards.",
     img: "/static/projects/TG-WordGame.webp",
     github: "https://github.com/bisug/TG-WordGame",
     tags: ["TypeScript", "Telegram", "Game"],
@@ -47,7 +47,7 @@ const projects: Project[] = [
   {
     id: 5,
     title: "Melody",
-    desc: "Telegram group calls streaming bot with useful features, written in Python with Pyrogram.",
+    desc: "Telegram group calls streaming bot for YouTube, Spotify, and Apple Music built with Python and Pyrogram.",
     img: "/static/projects/Melody.webp",
     github: "https://github.com/bisug/Melody",
     tags: ["Python", "Telegram", "API"],
@@ -55,7 +55,7 @@ const projects: Project[] = [
   {
     id: 6,
     title: "heroku-buildpack-bun",
-    desc: "Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, runs bun install.",
+    desc: "Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, and runs bun install.",
     img: "/static/projects/heroku-buildpack-bun.webp",
     // No "Live site" — bun.sh is Bun's homepage, not this project.
     github: "https://github.com/bisug/heroku-buildpack-bun",
@@ -64,7 +64,7 @@ const projects: Project[] = [
   {
     id: 7,
     title: "SnakeGame-CLI",
-    desc: "A cross-platform Snake game that runs entirely in the terminal.",
+    desc: "Cross-platform classic Snake game running entirely in the terminal with zero external GUI dependencies.",
     img: "/static/projects/SnakeGame-CLI.webp",
     github: "https://github.com/bisug/SnakeGame-CLI",
     tags: ["C++", "CLI", "Game"],
