@@ -89,16 +89,11 @@ function Page404() {
           <strong className="text-white font-medium">Here&apos;s where to go:</strong>
         </p>
 
-        <div
-          className={`mt-6 flex flex-wrap items-center justify-center gap-3 transition-opacity duration-500 ${
-            line3Done ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           {suggestions.map((route) => (
             <Link
               key={route.path}
               href={route.path}
-              tabIndex={line3Done ? undefined : -1}
               className="rounded-full border border-white/20 px-5 py-2 text-sm text-fun-gray-light transition hover:border-fun-accent hover:text-white"
             >
               {route.title}
@@ -106,8 +101,7 @@ function Page404() {
           ))}
           <Link
             href="/"
-            tabIndex={line3Done ? undefined : -1}
-            className="rounded-full border border-fun-accent bg-fun-navy-dark px-6 py-2 text-sm font-bold text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest"
+            className="rounded-full border border-fun-accent bg-fun-navy-dark px-6 py-2 text-sm font-bold text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest shadow-lg shadow-fun-accent/10"
           >
             Return Home
           </Link>

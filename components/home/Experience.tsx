@@ -20,10 +20,10 @@ function Experience() {
               Freelancing — building Telegram bots and full-stack apps for clients and communities.
             </p>
             <p className="mt-2.5 inline-flex items-center gap-2 rounded-md border border-fun-accent/20 bg-fun-accent/10 px-2.5 py-1 text-xs font-semibold text-fun-accent">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fun-accent opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-fun-accent" />
-              </span>
+              <span
+                className="h-2 w-2 rounded-full bg-fun-accent shadow-[0_0_6px_var(--color-fun-accent)]"
+                aria-hidden="true"
+              />
               Currently searching for internship opportunities
             </p>
           </div>
