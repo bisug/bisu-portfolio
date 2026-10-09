@@ -30,7 +30,9 @@ function Heading({ tag, subtitle }: HeadingProps) {
       )}
       {tag ? (
         subtitle && (
-          <p className="text-fun-gray text-base sm:text-lg max-w-3xl md:max-w-4xl lg:max-w-5xl m-auto">{subtitle}</p>
+          <p className="text-fun-gray text-base sm:text-lg max-w-3xl md:max-w-4xl lg:max-w-5xl m-auto">
+            {subtitle}
+          </p>
         )
       ) : (
         <p className="text-fun-gray text-xl sm:text-2xl max-w-3xl md:max-w-4xl lg:max-w-5xl m-auto">

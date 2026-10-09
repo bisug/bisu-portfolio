@@ -3,7 +3,7 @@
   publish = "out"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
 # Same rules as public/_headers, kept here so they hold even if that file
 # stops being copied into the output directory.

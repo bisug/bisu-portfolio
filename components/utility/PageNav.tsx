@@ -13,9 +13,7 @@ function PageNav({ currentPage }: { currentPage: string }) {
     <nav
       aria-label="Page navigation"
       className={`mt-12 ${
-        prevRoute && nextRoute
-          ? "grid grid-cols-1 sm:grid-cols-2 gap-4"
-          : "flex justify-end w-full"
+        prevRoute && nextRoute ? "grid grid-cols-1 sm:grid-cols-2 gap-4" : "flex justify-end w-full"
       }`}
     >
       {prevRoute && (
@@ -66,7 +64,9 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
           {label}
         </span>
         <span className="mt-0.5 block truncate text-sm font-bold text-white">{route.title}</span>
-        <span className="mt-0.5 hidden truncate text-xs text-fun-gray-light sm:block">{route.desc}</span>
+        <span className="mt-0.5 hidden truncate text-xs text-fun-gray-light sm:block">
+          {route.desc}
+        </span>
       </span>
     </Link>
   );

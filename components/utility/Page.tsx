@@ -62,31 +62,30 @@ function Page({
 
         {/* A noindex page (404) carries no entity data worth publishing. */}
         {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} extra={schema} />}
-
-        {GA_ID && (
-          <>
-            <Script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="lazyOnload"
-            />
-            <Script
-              id="gtag"
-              strategy="lazyOnload"
-              dangerouslySetInnerHTML={{
-                __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
-              }}
-            />
-          </>
-        )}
       </Head>
+
+      {GA_ID && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="lazyOnload"
+          />
+          <Script
+            id="gtag"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+        </>
+      )}
 
       <a
         href="#main-content"
@@ -100,7 +99,10 @@ function Page({
           <Navbar currentPage={currentPage} />
         </div>
       </header>
-      <main id="main-content" className="px-5 sm:px-8 md:px-12 2xl:px-16 w-full flex-1 max-w-7xl 2xl:max-w-none mx-auto">
+      <main
+        id="main-content"
+        className="px-5 sm:px-8 md:px-12 2xl:px-16 w-full flex-1 max-w-7xl 2xl:max-w-none mx-auto"
+      >
         {children}
         <Reveal>
           <PageNav currentPage={currentPage} />
