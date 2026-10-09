@@ -19,4 +19,3 @@ describe("kebabCase", () => {
     expect(kebabCase("api")).toBe("api");
   });
 });
-
