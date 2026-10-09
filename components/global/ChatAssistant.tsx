@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Role = "user" | "assistant";
 type Msg = { id: number; role: Role; content: string };
-let nextId = 1;
 
 const SUGGESTIONS = ["What has Bisu built?", "What is Bisu skilled in?", "How do I contact Bisu?"];
 
@@ -100,20 +99,48 @@ function ChatAssistant() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
+  const idRef = useRef(1);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const msgCount = msgs.length;
+
+  const closeChat = useCallback(() => {
+    setOpen(false);
+    toggleBtnRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
     inputRef.current?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        closeChat();
+        return;
+      }
+      if (event.key === "Tab") {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        const focusables = dialog.querySelectorAll<HTMLElement>(
+          "button:not([disabled]), input:not([disabled]), a[href]",
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     }
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
+  }, [open, closeChat]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on any new message/open/loading tick.
   useEffect(() => {
@@ -124,7 +151,7 @@ function ChatAssistant() {
     const q = text.trim();
     if (!q || loading) return;
     setInput("");
-    const next: Msg[] = [...msgs, { id: nextId++, role: "user", content: q }];
+    const next: Msg[] = [...msgs, { id: idRef.current++, role: "user", content: q }];
     setMsgs(next);
     setLoading(true);
     try {
@@ -140,10 +167,10 @@ function ChatAssistant() {
       if (!data.response?.trim()) throw new Error(data.error ?? `http ${res.status}`);
       const cleaned = clean(data.response);
       setFailed(false);
-      setMsgs([...next, { id: nextId++, role: "assistant", content: cleaned }]);
+      setMsgs([...next, { id: idRef.current++, role: "assistant", content: cleaned }]);
     } catch {
       setFailed(true);
-      setMsgs([...next, { id: nextId++, role: "assistant", content: localReply(q) }]);
+      setMsgs([...next, { id: idRef.current++, role: "assistant", content: localReply(q) }]);
     } finally {
       setLoading(false);
     }
@@ -153,6 +180,7 @@ function ChatAssistant() {
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
       {open && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label="Chat with Bisu's AI assistant"
@@ -163,7 +191,7 @@ function ChatAssistant() {
             <p className="text-sm font-bold">Ask about Bisu</p>
             <button
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={closeChat}
               aria-label="Close chat"
               className="ml-auto rounded-lg px-2 py-1 text-fun-gray hover:text-white transition-colors"
             >
@@ -237,8 +265,9 @@ function ChatAssistant() {
         </div>
       )}
       <button
+        ref={toggleBtnRef}
         type="button"
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => (open ? closeChat() : setOpen(true))}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
         aria-expanded={open}
         className="flex h-12 w-12 items-center justify-center rounded-full bg-fun-accent text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 transition"
