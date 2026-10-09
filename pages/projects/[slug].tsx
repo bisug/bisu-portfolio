@@ -78,20 +78,36 @@ function ProjectPage({ project }: ProjectPageProps) {
             <a
               href={project.link}
               target="_blank"
-              rel="noreferrer"
-              className="font-bold whitespace-nowrap rounded-full border border-fun-accent bg-fun-navy-dark px-8 py-3 text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold whitespace-nowrap rounded-full border border-fun-accent bg-fun-navy-dark px-8 py-3 text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest"
             >
               Live site
+              <img
+                src="/static/icons/external-link.svg"
+                width={14}
+                height={14}
+                alt=""
+                aria-hidden="true"
+                className="icon-accent-light"
+              />
             </a>
           )}
           {project.github && (
             <a
               href={project.github}
               target="_blank"
-              rel="noreferrer"
-              className="font-bold whitespace-nowrap rounded-full border border-white/20 px-8 py-3 text-fun-gray-light transition hover:border-fun-accent hover:text-white"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold whitespace-nowrap rounded-full border border-white/20 px-8 py-3 text-fun-gray-light transition hover:border-fun-accent hover:text-white"
             >
               Source code
+              <img
+                src="/static/icons/external-link.svg"
+                width={14}
+                height={14}
+                alt=""
+                aria-hidden="true"
+                className="icon-invert-light opacity-70"
+              />
             </a>
           )}
         </div>

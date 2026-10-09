@@ -6,16 +6,17 @@ import FadeImage from "../utility/FadeImage";
 import TagChips from "./TagChips";
 
 function ProjectCard({ project }: { project: Project }) {
+  const slug = projectSlug(project);
   return (
-    <div className="flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
+    <div className="group relative flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
       <Link
-        href={`/projects/${projectSlug(project)}`}
+        href={`/projects/${slug}`}
         className="relative block aspect-[16/9] overflow-hidden bg-fun-navy-darkest"
         tabIndex={-1}
         aria-hidden="true"
       >
         <FadeImage
-          className="h-full w-full object-cover object-top transition duration-300 hover:scale-[1.03]"
+          className="h-full w-full object-cover object-top transition duration-300 group-hover:scale-[1.03]"
           shellClassName="block h-full w-full"
           src={project.img}
           srcSet={`${projectThumb(project.img)} 600w, ${project.img} 1200w`}
@@ -27,17 +28,17 @@ function ProjectCard({ project }: { project: Project }) {
       </Link>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center justify-between gap-2">
-          <Link href={`/projects/${projectSlug(project)}`}>
+          <Link href={`/projects/${slug}`} className="after:absolute after:inset-0">
             <h3 className="text-lg font-bold hover:text-fun-accent transition-colors">
               {project.title}
             </h3>
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="relative z-10 flex items-center gap-3">
             {project.link && (
               <a
                 href={project.link}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={`${project.title} live site`}
                 className="opacity-60 transition hover:opacity-100 p-1.5 -m-1.5"
               >
@@ -55,7 +56,7 @@ function ProjectCard({ project }: { project: Project }) {
               <a
                 href={project.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={`${project.title} source code`}
                 className="opacity-60 transition hover:opacity-100 p-1.5 -m-1.5"
               >
@@ -72,7 +73,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
         <p className="mt-2 text-left text-sm leading-relaxed text-fun-gray">{project.desc}</p>
-        <TagChips tags={project.tags} className="mt-3" />
+        <TagChips tags={project.tags} className="relative z-10 mt-3" />
       </div>
     </div>
   );
