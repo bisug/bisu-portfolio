@@ -76,6 +76,7 @@ bun run dev        # http://localhost:3000
 | `bun run start` | Serve the exported `out/` locally |
 | `bun run sitemap` | Regenerate `public/sitemap.xml` (run after changing routes or projects) |
 | `bun run typecheck` | `tsc --noEmit` |
+| `bun test` | Run test suite with Bun's native test runner |
 | `bun run check` | Biome lint + format (writes) |
 
 ## <img src="https://img.shields.io/badge/Deploy-EA580C?style=flat-square&logo=cloudflarepages&logoColor=white" height="20" valign="middle" alt="Deploy" />
@@ -84,7 +85,7 @@ The build is a **static export** (`output: "export"` in `next.config.ts`): `bun 
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) (any recent version; dependency versions are pinned in `bun.lock`) and Node ≥ 22 (Netlify pin in `netlify.toml`).
+- [Bun](https://bun.sh) (any recent version; dependency versions are pinned in `bun.lock`) and Node ≥ 24 (Netlify pin in `netlify.toml`).
 - Optional: `NEXT_PUBLIC_GOOGLE_ANALYTICS=<G-XXXXXXX>` as a build-time env var to enable GA. Without it the site builds fine and just skips analytics.
 - The AI chat assistant (see below) only works on **Cloudflare Pages** — on any other host the site is fully functional but the assistant widget reports an error instead of answering.
 
