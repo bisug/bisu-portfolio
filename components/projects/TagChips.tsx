@@ -9,7 +9,7 @@ function TagChips({ tags, className }: { tags: string[]; className?: string }) {
           <Link
             href={`/projects/tag/${kebabCase(tag)}`}
             prefetch={false}
-            className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light transition hover:bg-fun-accent hover:text-fun-navy-darkest"
+            className="rounded-md bg-fun-navy px-2 py-0.5 text-[11px] font-medium text-fun-gray-light transition hover:bg-fun-accent hover:text-fun-navy-darkest"
           >
             {tag}
           </Link>

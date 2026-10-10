@@ -11,7 +11,7 @@ function ProjectCard({ project }: { project: Project }) {
     <div className="group relative flex flex-col h-full rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] transition hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
       <Link
         href={`/projects/${slug}`}
-        className="relative block aspect-[16/9] overflow-hidden bg-fun-navy-darkest"
+        className="relative block aspect-[2/1] overflow-hidden bg-fun-navy-darkest"
         tabIndex={-1}
         aria-hidden="true"
       >
@@ -26,14 +26,14 @@ function ProjectCard({ project }: { project: Project }) {
           height={600}
         />
       </Link>
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-4">
         <div className="flex items-center justify-between gap-2">
           <Link href={`/projects/${slug}`} className="after:absolute after:inset-0">
-            <h3 className="text-lg font-bold hover:text-fun-accent transition-colors">
+            <h3 className="text-base font-bold hover:text-fun-accent transition-colors">
               {project.title}
             </h3>
           </Link>
-          <div className="relative z-10 flex items-center gap-3">
+          <div className="relative z-10 flex items-center gap-2.5">
             {project.link && (
               <a
                 href={project.link}
@@ -44,8 +44,8 @@ function ProjectCard({ project }: { project: Project }) {
               >
                 <Image
                   src="/static/icons/external-link.svg"
-                  width={18}
-                  height={18}
+                  width={15}
+                  height={15}
                   alt=""
                   aria-hidden="true"
                   className="icon-accent-light"
@@ -62,8 +62,8 @@ function ProjectCard({ project }: { project: Project }) {
               >
                 <Image
                   src="/static/icons/github.svg"
-                  width={18}
-                  height={18}
+                  width={15}
+                  height={15}
                   alt=""
                   aria-hidden="true"
                   className="icon-accent-light"
@@ -72,8 +72,10 @@ function ProjectCard({ project }: { project: Project }) {
             )}
           </div>
         </div>
-        <p className="mt-2 text-left text-sm leading-relaxed text-fun-gray">{project.desc}</p>
-        <TagChips tags={project.tags} className="relative z-10 mt-3" />
+        <p className="mt-1.5 text-left text-xs sm:text-sm leading-relaxed text-fun-gray">
+          {project.desc}
+        </p>
+        <TagChips tags={project.tags} className="relative z-10 mt-2.5" />
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export default function Home() {
       <Reveal className="w-full my-12">
         <div className="flex flex-col items-center">
           <SectionTitle title="Featured work." />
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch w-full">
+          <div className="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch w-full max-w-5xl">
             {featured.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
