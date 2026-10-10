@@ -7,6 +7,7 @@ import { routes } from "@/data/global";
 function Navbar({ currentPage }: { currentPage: string }) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -23,7 +24,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
     };
   }, [router]);
 
-  // Hide header on scroll down, show on scroll up
+  // Hide header on scroll down, show on scroll up with smooth hysteresis
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
@@ -31,8 +32,11 @@ function Navbar({ currentPage }: { currentPage: string }) {
     const updateScrollDir = () => {
       const currentScrollY = window.scrollY;
 
+      // Track if scrolled past hero header baseline
+      setIsScrolled(currentScrollY > 15);
+
       // Always show near the top of the page
-      if (currentScrollY <= 60) {
+      if (currentScrollY <= 80) {
         setIsVisible(true);
         lastScrollY = currentScrollY;
         ticking = false;
@@ -47,15 +51,14 @@ function Navbar({ currentPage }: { currentPage: string }) {
       }
 
       const diff = currentScrollY - lastScrollY;
-      // Minimum delta to filter out minor touch twitches or scroll bounce
-      if (Math.abs(diff) > 8) {
-        if (diff > 0) {
-          // Scrolling down: hide header
-          setIsVisible(false);
-        } else {
-          // Scrolling up: show header
-          setIsVisible(true);
-        }
+      // Thresholds to filter out accidental finger wiggles or inertial rebound
+      if (diff > 12) {
+        // Intentional scroll down: slide header away
+        setIsVisible(false);
+        lastScrollY = currentScrollY;
+      } else if (diff < -15) {
+        // Intentional scroll up: reveal header
+        setIsVisible(true);
         lastScrollY = currentScrollY;
       }
 
@@ -99,8 +102,12 @@ function Navbar({ currentPage }: { currentPage: string }) {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full border-b border-white/5 bg-bg/80 backdrop-blur-md transition-transform duration-300 ease-in-out focus-within:translate-y-0 motion-reduce:transition-none ${
-        shouldShow ? "translate-y-0" : "-translate-y-full"
+      className={`sticky top-0 z-40 w-full transition-[transform,opacity,background-color,border-color,box-shadow] duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] focus-within:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto motion-reduce:transition-none ${
+        shouldShow ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+      } ${
+        isScrolled
+          ? "border-b border-white/10 bg-bg/85 backdrop-blur-md shadow-lg shadow-black/20"
+          : "border-b border-white/5 bg-bg/40 backdrop-blur-sm"
       }`}
     >
       <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
@@ -153,7 +160,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
               <div className="relative md:hidden" ref={menuRef}>
                 <button
                   ref={buttonRef}
-                  className={`flex h-11 w-11 items-center justify-center rounded-lg transition ${
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl transition-colors duration-200 ${
                     isMenuOpen ? "bg-white/10 text-white" : "text-gray-100 hover:bg-white/10"
                   }`}
                   aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -162,13 +169,13 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   type="button"
                   onClick={() => setIsMenuOpen((open) => !open)}
                 >
-                  <MenuIcon />
+                  <MenuIcon isOpen={isMenuOpen} />
                 </button>
                 <div
                   inert={!isMenuOpen}
-                  className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right overflow-hidden rounded-2xl border border-white/15 bg-fun-navy-dark/95 backdrop-blur-xl shadow-2xl shadow-black/70 transition-all duration-150 ${
+                  className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right overflow-hidden rounded-2xl border border-white/15 bg-fun-navy-dark/95 backdrop-blur-xl shadow-2xl shadow-black/70 transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isMenuOpen
-                      ? "scale-100 opacity-100"
+                      ? "scale-100 opacity-100 translate-y-0"
                       : "pointer-events-none -translate-y-2 scale-95 opacity-0"
                   }`}
                 >
@@ -206,14 +213,25 @@ function Navbar({ currentPage }: { currentPage: string }) {
   );
 }
 
-function MenuIcon() {
+function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
-    <svg className="h-6 w-6 text-gray-100" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <title>Menu</title>
-      <path d="M3 7H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M3 12H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M3 17H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
+    <div className="relative h-6 w-6 flex items-center justify-center" aria-hidden="true">
+      <span
+        className={`absolute block h-0.5 w-5 bg-current rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isOpen ? "rotate-45 translate-y-0" : "-translate-y-1.5"
+        }`}
+      />
+      <span
+        className={`absolute block h-0.5 w-5 bg-current rounded-full transition-all duration-200 ease-out ${
+          isOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
+        }`}
+      />
+      <span
+        className={`absolute block h-0.5 w-5 bg-current rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isOpen ? "-rotate-45 translate-y-0" : "translate-y-1.5"
+        }`}
+      />
+    </div>
   );
 }
 
