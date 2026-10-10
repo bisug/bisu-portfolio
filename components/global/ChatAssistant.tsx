@@ -3,23 +3,112 @@ import { useCallback, useEffect, useRef, useState } from "react";
 type Role = "user" | "assistant";
 type Msg = { id: number; role: Role; content: string };
 
-const SUGGESTIONS = ["What has Bisu built?", "What is Bisu skilled in?", "How do I contact Bisu?"];
+const SUGGESTIONS = [
+  "What has Bisu built?",
+  "What is his tech stack?",
+  "Can Bisu build my bot?",
+  "Tell me a fun fact!",
+];
 
 // Offline/local fallback so the widget still answers when /api/chat is
-// unreachable (AI binding missing, adblocker, offline). Keyword-matched.
+// unreachable (AI binding missing, adblocker, offline).
 function localReply(q: string): string {
   const s = q.toLowerCase();
-  if (/contact|email|hire|reach|hello|hi\b/.test(s))
-    return "You can reach Bisu at bisu.ghlan@gmail.com — he's also on GitHub (github.com/bisug) and LinkedIn (linkedin.com/in/bisug).";
-  if (/skill|stack|tech|language|know|good at/.test(s))
-    return "Bisu's main stack is Python, TypeScript, and Go, plus React/NextJS, FastAPI, NodeJS, and Bun. For data and ops he uses MongoDB, PostgreSQL, Redis, Docker, Git, and Linux.";
-  if (/project|built|build|work|portfolio|bot|cli/.test(s))
-    return "A few favorites:\nBinaryInspector — safe Rust CLI for inspecting ELF binaries\nPaila — travel and community platform for Nepal\nTG-GithubBot — GitHub events delivered to Telegram\nninfo — whole-system Linux snapshot as JSON\nThere's more on the Projects page — want details on any of these?";
-  if (/who|about|bisu|study|school|education/.test(s))
-    return "Bisu Ghalan is a computer science student (Cyber Security and Network Technology) from Bhaktapur, Nepal. He builds Telegram bots, CLI tools, and full-stack apps — and loves breaking things to learn how to defend them.";
-  if (/experience|hackathon|job|work/.test(s))
-    return "Bisu's competed at JunctionX Kathmandu and the Build Nepal Hackathon, among others. The Experience page has the full rundown.";
-  return "I can also help with general tech questions tied to Bisu's world — languages, tools, security ideas. What would you like to know?";
+
+  // 1. Greetings
+  if (
+    /^(hi|hello|hey|yo|sup|namaste|morning|afternoon|evening|hola|howdy)(\b|\s)/.test(s) ||
+    s === "hi" ||
+    s === "hello" ||
+    s === "hey"
+  ) {
+    const greetings = [
+      "Namaste and hey! Great to meet you. I'm Bisu's AI assistant. Want to check out his latest Telegram bots, explore his tech stack, or hear about his hackathon builds?",
+      "Hey there! Welcome to Bisu's portfolio. I can give you the inside scoop on his projects, tell you what languages he codes in, or help you connect with him. What's on your mind?",
+      "Hello! Always happy to introduce Bisu. Whether you're curious about his cyber security work, CLI tools, or his background in Nepal, fire away!",
+    ];
+    return greetings[Math.floor(Math.random() * greetings.length)];
+  }
+
+  // 2. Specific project queries
+  if (/paila\b/.test(s)) {
+    return "Paila is one of Bisu's favorite hackathon creations! Built with team Runtime Terrors at JunctionX Kathmandu, it is a tourism and community platform connecting travelers directly with local hosts in Nepal. Take a look at the [live demo](https://paila-prototype.vercel.app) or inspect the [Paila code repository](https://github.com/bisug/Paila)!";
+  }
+
+  if (/binary|inspector|elf\b/.test(s)) {
+    return "BinaryInspector is a security CLI Bisu built in Rust. It safely analyzes ELF binary headers, sections, and compiler mitigation flags without executing untrusted code. Check out the [BinaryInspector repository](https://github.com/bisug/BinaryInspector) to see how it parses binaries!";
+  }
+
+  if (/telegram|githubbot|deargit|melody|wordgame|bot\b/.test(s)) {
+    return "Telegram bots are Bisu's playground! Some favorites include [TG-GithubBot](https://github.com/bisug/TG-GithubBot) (live on Telegram as [DearGitNotifyBot](https://t.me/DearGitNotifyBot)) which streams GitHub push and deployment alerts, [Melody](https://github.com/bisug/Melody) for group call audio streaming, and [TG-WordGame](https://github.com/bisug/TG-WordGame) for multiplayer word challenges. Looking for custom bot development?";
+  }
+
+  if (/ninfo\b/.test(s)) {
+    return "ninfo is a lightning-fast Linux telemetry CLI written in Nim. It queries kernel, memory, and hardware stats and dumps complete system telemetry as JSON in under a few milliseconds. You can check the [ninfo repository](https://github.com/bisug/ninfo)!";
+  }
+
+  // 3. General projects
+  if (/project|built|build|work|portfolio|app|tool|cli\b/.test(s)) {
+    return "Bisu loves creating practical tools that live in the terminal or on Telegram! Top highlights:\n[Paila](https://paila-prototype.vercel.app) (community travel platform for Nepal)\n[TG-GithubBot](https://t.me/DearGitNotifyBot) (real-time GitHub alerts in Telegram)\n[BinaryInspector](https://github.com/bisug/BinaryInspector) (safe ELF binary inspector)\n[ninfo](https://github.com/bisug/ninfo) (Linux system metrics in JSON)\nExplore the full interactive showcase on the [Projects page](https://bisu.com.np/projects)! Which one catches your eye?";
+  }
+
+  // 4. Skills and tech stack
+  if (
+    /skill|stack|tech|language|tool|code|framework|database|python|go|typescript|kurigram|fastapi/.test(
+      s,
+    )
+  ) {
+    return "Bisu's active core languages are Python, TypeScript, and Go. On the web and backend, he builds with FastAPI, Next.js, and Kurigram, backed by PostgreSQL, MongoDB, and Redis. He does almost everything inside Linux (Kali Linux and Linux Mint) with Docker. Take a tour of the full toolbelt on the [Tech Stack page](https://bisu.com.np/tech-stack)!";
+  }
+
+  // 5. Cyber security & education
+  if (
+    /security|cyber|hack|vulnerability|binary|lincoln|college|student|study|school|degree|education/.test(
+      s,
+    )
+  ) {
+    return "Bisu is studying Cyber Security and Network Technology at Lincoln International College in Kathmandu. His philosophy is that you learn how to protect systems by understanding how they break. He focuses on defensive architecture, secure automation, and binary analysis. Check out his academic background on the [Education page](https://bisu.com.np/education)!";
+  }
+
+  // 6. Hiring & internships
+  if (/hire|intern|internship|job|opportunity|freelance|available|contract|work with/.test(s)) {
+    return "Yes! Bisu is actively open to internships, freelance projects, and security-focused software work, especially around Telegram bots, automated CLI utilities, and full-stack web applications. Feel free to shoot him an [email](mailto:bisu.ghlan@gmail.com) or reach out on [LinkedIn](https://www.linkedin.com/in/bisug/) to talk details!";
+  }
+
+  // 7. Contact information
+  if (/contact|email|reach|linkedin|github|instagram|social|talk|message/.test(s)) {
+    return "You can get in touch with Bisu via [email](mailto:bisu.ghlan@gmail.com), explore his public code on [GitHub](https://github.com/bisug), or connect professionally on [LinkedIn](https://www.linkedin.com/in/bisug/). Head over to the [Contact page](https://bisu.com.np/contact) for direct links!";
+  }
+
+  // 8. Hackathons & experience
+  if (/experience|hackathon|junction|build nepal|runtime terrors|team|competition/.test(s)) {
+    return "Bisu loves the fast-paced intensity of hackathons! He teamed up with Runtime Terrors to build Paila at JunctionX Kathmandu (May 2026), and collaborated with Team Bugger on NetGuard at the Build Nepal Hackathon (August 2026). Check out the [Experience page](https://bisu.com.np/experience) for the full breakdown!";
+  }
+
+  // 9. Personal & hobbies
+  if (
+    /who (is|are)|about (bisu|him)|where|nepal|bhaktapur|hobby|hobbies|football|travel|anime/.test(
+      s,
+    )
+  ) {
+    return "Bisu Ghalan is a developer and security researcher from historic Bhaktapur, Nepal. When he is away from the keyboard, he is passionate about football, exploring hiking trails across Nepal, and watching anime.";
+  }
+
+  // 10. Jokes, fun facts, and Easter eggs
+  if (/joke|funny|laugh/.test(s)) {
+    return "Why do programmers prefer dark mode? Because light attracts bugs! (Though Bisu made sure the light mode toggle on this portfolio looks ultra-smooth too!)";
+  }
+
+  if (/fun fact|easter egg|secret/.test(s)) {
+    return "Fun fact: Bisu once wrote a complete Linux telemetry CLI in Nim (ninfo) just because standard shell scripts were taking more than 50 milliseconds to report system specs!";
+  }
+
+  if (/who are you|what are you|your name|bot\b/.test(s)) {
+    return "I'm Bisu's virtual portfolio co-pilot! Think of me as your interactive guide: here to answer questions about his software, break down his tech stack, or help you connect with him.";
+  }
+
+  // 11. Natural fallback
+  return "That is a great question! I know all about Bisu's Telegram bots, security tools, web projects, and technical skills. What specific part of his work would you like to explore?";
 }
 
 // Mirror of the server safeUrl(): never render javascript:/data: targets as
@@ -65,7 +154,7 @@ function Reply({ text }: { text: string }) {
         href={href}
         target={href.startsWith("mailto:") ? undefined : "_blank"}
         rel="noopener noreferrer"
-        className="text-fun-accent underline underline-offset-2 hover:brightness-125"
+        className="text-fun-accent underline underline-offset-2 hover:brightness-125 transition-colors font-medium"
       >
         {label}
       </a>,
@@ -93,7 +182,8 @@ function ChatAssistant() {
     {
       id: 0,
       role: "assistant",
-      content: "Hey! I'm Bisu's assistant — ask me about his projects, skills, or contact info.",
+      content:
+        "Hey! I'm Bisu's virtual companion. Ask me anything about his projects, cybersecurity experiments, tech stack, or what he's building next!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -109,6 +199,19 @@ function ChatAssistant() {
   const closeChat = useCallback(() => {
     setOpen(false);
     toggleBtnRef.current?.focus();
+  }, []);
+
+  const resetChat = useCallback(() => {
+    idRef.current = 1;
+    setMsgs([
+      {
+        id: 0,
+        role: "assistant",
+        content:
+          "Hey! I'm Bisu's virtual companion. Ask me anything about his projects, cybersecurity experiments, tech stack, or what he's building next!",
+      },
+    ]);
+    setInput("");
   }, []);
 
   useEffect(() => {
@@ -184,53 +287,100 @@ function ChatAssistant() {
           role="dialog"
           aria-modal="true"
           aria-label="Chat with Bisu's AI assistant"
-          className="flex h-[min(480px,70vh)] w-[min(360px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/60"
+          className="flex h-[min(510px,75vh)] w-[min(375px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200"
         >
-          <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-            <span className="h-2 w-2 rounded-full bg-fun-accent" aria-hidden="true" />
-            <p className="text-sm font-bold">Ask about Bisu</p>
-            <button
-              type="button"
-              onClick={closeChat}
-              aria-label="Close chat"
-              className="ml-auto rounded-lg px-2 py-1 text-fun-gray hover:text-white transition-colors"
-            >
-              ✕
-            </button>
+          {/* Header Bar */}
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-white/[0.02]">
+            <div className="flex items-center gap-2.5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fun-accent opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-fun-accent" />
+              </span>
+              <div>
+                <p className="text-xs font-bold text-white leading-none">Bisu AI Assistant</p>
+                <p className="text-[10px] text-fun-gray-light leading-none mt-1">
+                  Online &amp; ready
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={resetChat}
+                title="Restart conversation"
+                aria-label="Restart conversation"
+                className="rounded-lg p-1.5 text-fun-gray hover:text-white hover:bg-white/10 transition-colors text-xs"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+                  <path d="M21 3v5h-5" />
+                  <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+                  <path d="M3 21v-5h5" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={closeChat}
+                aria-label="Close chat"
+                className="rounded-lg p-1.5 text-fun-gray hover:text-white hover:bg-white/10 transition-colors text-xs font-bold"
+              >
+                ✕
+              </button>
+            </div>
           </div>
+
+          {/* Messages Container */}
           <div className="flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm" aria-live="polite">
             {msgs.map((m) => (
-              <p
+              <div
                 key={m.id}
-                className={`max-w-[85%] rounded-xl px-3 py-2 leading-relaxed ${
+                className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed transition-all ${
                   m.role === "user"
-                    ? "ml-auto bg-fun-accent text-fun-navy-darkest font-medium"
-                    : "bg-white/5 text-fun-gray-light"
+                    ? "ml-auto bg-fun-accent text-fun-navy-darkest font-semibold rounded-br-sm shadow-md shadow-fun-accent/15"
+                    : "bg-white/[0.06] text-fun-gray-light rounded-bl-sm border border-white/5"
                 }`}
               >
-                {m.role === "assistant" ? <Reply text={m.content || "…"} /> : m.content || "…"}
-              </p>
+                {m.role === "assistant" ? <Reply text={m.content || "..."} /> : m.content || "..."}
+              </div>
             ))}
             {loading && msgs[msgs.length - 1]?.role === "user" && (
-              <p className="max-w-[85%] rounded-xl bg-white/5 px-3 py-2 text-fun-gray">…</p>
+              <div className="flex items-center gap-1.5 max-w-[85%] rounded-2xl rounded-bl-sm bg-white/[0.06] border border-white/5 px-3.5 py-2.5 text-fun-gray">
+                <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse [animation-delay:-0.3s]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse [animation-delay:-0.15s]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse" />
+              </div>
             )}
             <div ref={bottomRef} />
           </div>
-          <div className="flex flex-wrap gap-1.5 px-4 pb-2">
+
+          {/* Contextual Suggestions Chips */}
+          <div className="flex flex-wrap gap-1.5 px-4 pb-2 pt-1 border-t border-white/5 bg-white/[0.01]">
             {SUGGESTIONS.map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => send(s)}
                 disabled={loading}
-                className="rounded-full border border-white/15 px-3 py-1 text-xs text-fun-gray-light hover:border-fun-accent hover:text-white transition disabled:opacity-50"
+                className="rounded-full border border-white/15 bg-white/[0.02] px-2.5 py-1 text-[11px] text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
               >
                 {s}
               </button>
             ))}
           </div>
+
+          {/* Input Form */}
           <form
-            className="flex gap-2 border-t border-white/10 p-3"
+            className="flex gap-2 border-t border-white/10 p-3 bg-fun-navy-darkest"
             onSubmit={(e) => {
               e.preventDefault();
               send(input);
@@ -244,33 +394,37 @@ function ChatAssistant() {
               id="chat-input"
               value={input}
               onChange={(e) => setInput(e.target.value.slice(0, 1000))}
-              placeholder="Ask about projects, skills…"
+              placeholder="Ask about projects, bots, security..."
               autoComplete="off"
               maxLength={1000}
-              className="min-w-0 flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
+              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="rounded-lg bg-fun-accent px-4 py-2 text-sm font-bold text-fun-navy-darkest hover:brightness-110 transition disabled:opacity-50"
+              className="rounded-xl bg-fun-accent px-3.5 py-2 text-xs sm:text-sm font-bold text-fun-navy-darkest hover:brightness-110 active:scale-95 transition disabled:opacity-50"
             >
               Send
             </button>
           </form>
-          <p className="border-t border-white/10 px-4 py-2 text-center text-[11px] leading-tight text-fun-gray">
+
+          {/* Footer Note */}
+          <p className="border-t border-white/10 px-4 py-1.5 text-center text-[10px] leading-tight text-fun-gray">
             {failed
-              ? "Offline answers · live AI by Cloudflare Workers AI (Llama 3.3 70B) unavailable"
+              ? "Interactive answers · Live AI via Cloudflare Workers AI"
               : "Powered by Cloudflare Workers AI · Llama 3.3 70B"}
           </p>
         </div>
       )}
+
+      {/* Floating Launcher Button */}
       <button
         ref={toggleBtnRef}
         type="button"
         onClick={() => (open ? closeChat() : setOpen(true))}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
         aria-expanded={open}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-fun-accent text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 transition"
+        className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-fun-accent text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           {open ? (
