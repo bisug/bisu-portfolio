@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 function ThemeToggle() {
   const [isLight, setIsLight] = useState<boolean | null>(null);
+  const isTransitioningRef = useRef(false);
 
   useEffect(() => {
     setIsLight(document.documentElement.classList.contains("light"));
@@ -31,11 +33,14 @@ function ThemeToggle() {
   }
 
   function toggle(event: React.MouseEvent<HTMLButtonElement>) {
+    if (isTransitioningRef.current) return;
+
     const next = !isLight;
 
     const doc = document as Document & {
       startViewTransition?: (callback: () => void) => {
         ready: Promise<void>;
+        finished: Promise<void>;
       };
     };
 
@@ -43,13 +48,11 @@ function ThemeToggle() {
 
     // Fallback if View Transitions API is not supported or reduced motion is requested
     if (!doc.startViewTransition || isReducedMotion) {
-      document.documentElement.classList.add("theme-transitioning");
       applyTheme(next);
-      window.setTimeout(() => {
-        document.documentElement.classList.remove("theme-transitioning");
-      }, 400);
       return;
     }
+
+    isTransitioningRef.current = true;
 
     const rect = event.currentTarget.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
@@ -60,23 +63,47 @@ function ThemeToggle() {
       Math.max(y, window.innerHeight - y),
     );
 
-    const transition = doc.startViewTransition(() => {
-      applyTheme(next);
-    });
+    try {
+      const transition = doc.startViewTransition(() => {
+        flushSync(() => {
+          applyTheme(next);
+        });
+      });
 
-    transition.ready.then(() => {
-      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
-      document.documentElement.animate(
-        {
-          clipPath,
-        },
-        {
-          duration: 480,
-          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-          pseudoElement: "::view-transition-new(root)",
-        },
-      );
-    });
+      transition.ready
+        .then(() => {
+          const clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ];
+          const anim = document.documentElement.animate(
+            {
+              clipPath,
+            },
+            {
+              duration: 350,
+              easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+              pseudoElement: "::view-transition-new(root)",
+            },
+          );
+          anim.onfinish = () => {
+            isTransitioningRef.current = false;
+          };
+          anim.oncancel = () => {
+            isTransitioningRef.current = false;
+          };
+        })
+        .catch(() => {
+          isTransitioningRef.current = false;
+        });
+
+      transition.finished.finally(() => {
+        isTransitioningRef.current = false;
+      });
+    } catch {
+      applyTheme(next);
+      isTransitioningRef.current = false;
+    }
   }
 
   return (
@@ -84,12 +111,12 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      className="group relative flex h-11 w-11 items-center justify-center rounded-xl text-gray-100 transition-all duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
+      className="group relative flex h-11 w-11 items-center justify-center rounded-xl text-gray-100 transition-colors duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
     >
       <div className="relative h-5 w-5 flex items-center justify-center" aria-hidden="true">
         {/* Sun Icon (displayed in dark mode to prompt switching to light) */}
         <span
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-300 ease-out will-change-transform ${
             isLight
               ? "opacity-0 rotate-90 scale-0 pointer-events-none"
               : "opacity-100 rotate-0 scale-100 text-fun-accent group-hover:rotate-45"
@@ -100,7 +127,7 @@ function ThemeToggle() {
 
         {/* Moon Icon (displayed in light mode to prompt switching to dark) */}
         <span
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-300 ease-out will-change-transform ${
             isLight
               ? "opacity-100 rotate-0 scale-100 text-fun-accent group-hover:-rotate-12"
               : "opacity-0 -rotate-90 scale-0 pointer-events-none"
