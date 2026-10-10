@@ -105,11 +105,7 @@ function Page({
         Skip to content
       </a>
 
-      <header className="w-full border-b border-white/5 bg-bg/80 backdrop-blur-md sticky top-0 z-40 transition-colors">
-        <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
-          <Navbar currentPage={currentPage} />
-        </div>
-      </header>
+      <Navbar currentPage={currentPage} />
       <main id="main-content" className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl mx-auto">
         {children}
         <Reveal>
