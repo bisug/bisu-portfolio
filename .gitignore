@@ -30,12 +30,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
-
-
-# Contentlayer
-.contentlayer
+# cloudflare
+.wrangler
 
 # typescript
 *.tsbuildinfo

@@ -1,4 +1,4 @@
-# Read by Cloudflare Pages and Netlify from the build output root.
+# Read by Cloudflare Pages from the build output root.
 # HTML is revalidated often; hashed build assets never change.
 /*
   X-Content-Type-Options: nosniff

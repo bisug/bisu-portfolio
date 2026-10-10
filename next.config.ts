@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Static export has no image optimizer; assets are pre-sized (webp) instead.
   images: { unoptimized: true },
-  // Response headers live in public/_headers (Cloudflare Pages, Netlify) and
-  // vercel.json: `headers()` in this file is ignored in export mode.
+  // Response headers live in public/_headers for Cloudflare Pages;
+  // `headers()` in this config is ignored in static export mode.
 };
 
 export default nextConfig;
