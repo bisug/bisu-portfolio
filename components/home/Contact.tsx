@@ -99,18 +99,43 @@ function Contact({ compact = false }: { compact?: boolean }) {
       <ContactActions />
 
       <div className="mt-20 max-w-3xl mx-auto text-left">
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-6 text-center">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2 text-center">
           Frequently asked questions
         </h2>
-        <div className="space-y-4">
+        <p className="text-center text-xs sm:text-sm text-fun-gray mb-8">
+          Click any question to view details.
+        </p>
+        <div className="space-y-3">
           {faqs.map((faq) => (
-            <div
+            <details
               key={faq.question}
-              className="rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6"
+              className="group rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition-all duration-200 hover:border-fun-accent/50 open:border-fun-accent/60 open:bg-white/[0.04]"
             >
-              <h3 className="text-base font-bold text-white mb-2">{faq.question}</h3>
-              <p className="text-sm leading-relaxed text-fun-gray-light">{faq.answer}</p>
-            </div>
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-sm sm:text-base text-white select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent rounded-lg">
+                <span>{faq.question}</span>
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 text-fun-accent transition-transform duration-200 group-open:rotate-180"
+                >
+                  <svg
+                    aria-hidden="true"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </span>
+              </summary>
+              <div className="mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm leading-relaxed text-fun-gray-light">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
           ))}
         </div>
       </div>
