@@ -8,6 +8,7 @@ function About() {
         as="h2"
         title="About Me"
         doodle="/static/doodles/testimonials/squiggle2.svg"
+        doodleClassName="w-8 sm:w-10 -top-6 -right-4 sm:-top-8 sm:-right-8 absolute select-none pointer-events-none"
         subtitle="Who I am, what I build, and what keeps me curious."
         className="py-8 sm:py-12"
       />
@@ -37,14 +38,14 @@ function About() {
           </p>
         </div>
         <div className="text-center">
-          <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-4">
+          <h3 className="font-mono text-xs uppercase tracking-widest text-fun-accent font-semibold mb-4">
             Off the keyboard
           </h3>
           <ul className="flex flex-wrap justify-center gap-2 list-none">
             {hobbies.map((hobby) => (
               <li
                 key={hobby}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-fun-gray-light hover:border-fun-accent/40 hover:text-white transition"
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-fun-gray-light hover:border-fun-accent/40 hover:text-white transition-colors duration-150"
               >
                 {hobby}
               </li>

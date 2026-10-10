@@ -63,7 +63,7 @@ function Page404() {
 
         <div
           aria-hidden="true"
-          className="mt-10 w-full max-w-md rounded-xl border border-white/10 bg-white/[0.02] p-5 text-left font-mono text-xs sm:text-sm"
+          className="mt-10 w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 text-left font-mono text-xs sm:text-sm shadow-xl"
         >
           <p className="text-fun-gray-light">
             {line1}

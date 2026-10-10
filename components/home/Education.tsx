@@ -5,12 +5,12 @@ import FadeImage from "../utility/FadeImage";
 function Education() {
   return (
     <div className="max-w-4xl mx-auto w-full pb-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
         {education.map((item, index) => {
           const Card = (
-            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 transition hover:-translate-y-1 hover:border-fun-accent/60">
+            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
               {item.logo && (
-                <div className="shrink-0 rounded-lg bg-[#ffffff] p-2 self-start">
+                <div className="shrink-0 rounded-xl bg-[#ffffff] p-2.5 self-start shadow-sm">
                   <FadeImage
                     src={item.logo}
                     alt={`${item.school} logo`}
@@ -21,7 +21,9 @@ function Education() {
                 </div>
               )}
               <div className="min-w-0 flex-1">
-                <h2 className="text-base sm:text-lg font-bold leading-snug">{item.degree}</h2>
+                <h2 className="text-base sm:text-lg font-bold tracking-tight leading-snug text-white">
+                  {item.degree}
+                </h2>
                 <p className="text-fun-accent text-sm mt-1 flex items-center gap-1.5 font-medium">
                   {item.school}
                   {item.link && (
@@ -31,13 +33,15 @@ function Education() {
                       height={14}
                       alt=""
                       aria-hidden="true"
-                      className="icon-accent-light opacity-70"
+                      className="icon-accent-light opacity-70 shrink-0"
                     />
                   )}
                 </p>
-                <p className="text-fun-gray text-xs font-mono mt-1">{item.period}</p>
+                <p className="text-fun-gray text-xs font-mono mt-1 tracking-wide">{item.period}</p>
                 {item.desc && (
-                  <p className="text-fun-gray text-sm mt-2 leading-relaxed">{item.desc}</p>
+                  <p className="text-fun-gray text-xs sm:text-sm mt-2.5 leading-relaxed">
+                    {item.desc}
+                  </p>
                 )}
               </div>
             </div>
@@ -49,7 +53,7 @@ function Education() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block h-full"
+                  className="block h-full focus-visible:outline-none"
                 >
                   {Card}
                 </a>

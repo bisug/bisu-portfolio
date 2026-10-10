@@ -348,12 +348,20 @@ img.img-loaded {
   }
 }
 
+::selection {
+  background-color: var(--color-fun-accent);
+  color: var(--color-fun-navy-darkest);
+}
+
 body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   @apply bg-bg;
 }
 

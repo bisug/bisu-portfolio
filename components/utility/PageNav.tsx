@@ -48,7 +48,7 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
   return (
     <Link
       href={route.path}
-      className={`group flex items-center gap-2.5 rounded-lg border border-white/10 bg-white/5 px-3.5 py-3 transition-colors hover:border-fun-accent/60 hover:bg-white/10 ${
+      className={`group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3.5 transition-all duration-200 hover:border-fun-accent/60 hover:bg-white/[0.04] hover:shadow-lg hover:shadow-fun-accent/5 ${
         isNext ? "flex-row-reverse text-right" : ""
       } ${className ?? ""}`}
     >

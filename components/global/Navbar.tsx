@@ -57,13 +57,13 @@ function Navbar({ currentPage }: { currentPage: string }) {
         </Link>
         <div className="flex items-center gap-2">
           {/* Desktop navigation */}
-          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1 mr-1">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1.5 mr-1">
             {routes.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
                 aria-current={currentPage === item.title ? "page" : undefined}
-                className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
                   currentPage === item.title
                     ? "bg-white/10 text-fun-accent font-semibold"
                     : "text-white/75 hover:bg-white/5 hover:text-white"
@@ -93,23 +93,23 @@ function Navbar({ currentPage }: { currentPage: string }) {
             </button>
             <div
               inert={!isMenuOpen}
-              className={`absolute right-0 top-full z-50 mt-2 w-52 origin-top-right overflow-hidden rounded-xl border border-white/10 bg-fun-navy-dark shadow-2xl shadow-black/60 transition-all duration-150 ${
+              className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right overflow-hidden rounded-2xl border border-white/15 bg-fun-navy-dark/95 backdrop-blur-xl shadow-2xl shadow-black/70 transition-all duration-150 ${
                 isMenuOpen
                   ? "scale-100 opacity-100"
                   : "pointer-events-none -translate-y-2 scale-95 opacity-0"
               }`}
             >
-              <ul className="p-2">
+              <ul className="p-2 space-y-0.5">
                 {routes.map((item) => (
                   <li key={item.path}>
                     <Link
                       href={item.path}
                       onClick={() => setIsMenuOpen(false)}
                       aria-current={currentPage === item.title ? "page" : undefined}
-                      className={`block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                      className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                         currentPage === item.title
-                          ? "bg-white/10 text-fun-accent"
-                          : "text-white/70 hover:bg-white/5 hover:text-white"
+                          ? "bg-white/10 text-fun-accent font-semibold"
+                          : "text-white/75 hover:bg-white/5 hover:text-white"
                       }`}
                     >
                       {item.title}
@@ -119,7 +119,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
               </ul>
               <a
                 href="mailto:bisu.ghlan@gmail.com"
-                className="block border-t border-white/10 px-6 py-3 font-mono text-xs text-fun-gray-light transition-colors hover:text-white"
+                className="block border-t border-white/10 px-5 py-3 font-mono text-xs text-fun-gray-light transition-colors hover:text-white"
               >
                 bisu.ghlan@gmail.com
               </a>

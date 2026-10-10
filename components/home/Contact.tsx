@@ -41,17 +41,17 @@ function ContactActions({ small = false }: { small?: boolean }) {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-sm sm:max-w-none mx-auto w-full">
         <a
           href={`mailto:${EMAIL}`}
-          className="inline-block cursor-pointer font-bold whitespace-nowrap px-10 py-4 rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25"
+          className="w-full sm:w-auto text-center inline-block cursor-pointer font-bold whitespace-nowrap px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25 text-base"
         >
           Say hello
         </a>
         <button
           type="button"
           onClick={copyEmail}
-          className="font-mono text-xs px-5 py-2.5 rounded-full border border-white/20 text-fun-gray-light hover:border-fun-accent hover:text-white transition"
+          className="w-full sm:w-auto text-center font-mono text-xs sm:text-sm px-6 py-3 rounded-full border border-white/20 text-fun-gray-light hover:border-fun-accent hover:text-white transition"
           aria-live="polite"
         >
           {copied ? "Copied!" : "Copy email"}
@@ -67,7 +67,7 @@ function ContactActions({ small = false }: { small?: boolean }) {
 function Contact({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
-      <section aria-labelledby="contact-heading" className="w-full pt-8 pb-2 text-center">
+      <section aria-labelledby="contact-heading" className="w-full pt-8 pb-4 text-center">
         <h2 id="contact-heading" className="text-lg font-bold tracking-tight mb-4">
           Let&apos;s connect
         </h2>
@@ -77,16 +77,16 @@ function Contact({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <section aria-labelledby="contact-heading" className="relative w-full pt-24 pb-28 text-center">
+    <section aria-labelledby="contact-heading" className="relative w-full pt-20 pb-28 text-center">
       <img className="w-30 m-auto mb-6 opacity-80" src="/static/doodles/lineBreak.svg" alt="" />
-      <p className="font-mono text-sm text-fun-accent mb-3">Get in touch</p>
+      <p className="font-mono text-sm text-fun-accent mb-3 font-medium">Get in touch</p>
       <h1
         id="contact-heading"
-        className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4"
+        className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance"
       >
         Let&apos;s connect
       </h1>
-      <p className="text-fun-gray max-w-md mx-auto mb-2 text-sm sm:text-base">
+      <p className="text-fun-gray max-w-md mx-auto mb-2 text-sm sm:text-base leading-relaxed text-balance">
         I&apos;m always open to discussing{" "}
         <strong className="text-white font-medium">new projects</strong>,{" "}
         <strong className="text-white font-medium">creative ideas</strong>, or{" "}
@@ -109,9 +109,9 @@ function Contact({ compact = false }: { compact?: boolean }) {
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition-all duration-200 hover:border-fun-accent/50 open:border-fun-accent/60 open:bg-white/[0.04]"
+              className="group rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 hover:border-fun-accent/50 open:border-fun-accent/60 open:bg-white/[0.04] open:shadow-xl open:shadow-fun-accent/5"
             >
-              <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-sm sm:text-base text-white select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent rounded-lg">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-sm sm:text-base text-white select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent rounded-xl">
                 <span>{faq.question}</span>
                 <span
                   aria-hidden="true"
