@@ -57,15 +57,10 @@ html {
 }
 
 /* Fallback smooth transition when View Transitions is not active */
-html.theme-transitioning,
-html.theme-transitioning *,
-html.theme-transitioning *::before,
-html.theme-transitioning *::after {
+html.theme-transitioning body {
   transition:
-    background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transition-delay: 0s !important;
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -240,7 +235,7 @@ html.theme-transitioning *::after {
   }
 }
 
-/* 404: glitch flicker on the big code — accent shadows split and snap back.
+/* 404: glitch flicker on the big code: accent shadows split and snap back.
    Static when reduced-motion is on (global rule zeroes the animation). */
 .error-glitch {
   position: relative;
@@ -388,7 +383,6 @@ body {
   padding-right: env(safe-area-inset-right, 0px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
   @apply bg-bg;
 }
 

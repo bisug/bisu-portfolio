@@ -7,7 +7,6 @@ import { routes } from "@/data/global";
 function Navbar({ currentPage }: { currentPage: string }) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -26,37 +25,33 @@ function Navbar({ currentPage }: { currentPage: string }) {
 
   // Hide header on scroll down, show on scroll up with smooth hysteresis
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let lastScrollY = Math.max(
+      0,
+      window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0,
+    );
     let ticking = false;
 
     const updateScrollDir = () => {
-      const currentScrollY = window.scrollY;
-
-      // Track if scrolled past hero header baseline
-      setIsScrolled(currentScrollY > 15);
+      const currentScrollY = Math.max(
+        0,
+        window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0,
+      );
 
       // Always show near the top of the page
-      if (currentScrollY <= 80) {
+      if (currentScrollY <= 40) {
         setIsVisible(true);
         lastScrollY = currentScrollY;
         ticking = false;
         return;
       }
 
-      // Check bounds to avoid bounce effects at the bottom of the page
-      const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
-      if (currentScrollY >= maxScrollY - 20) {
-        ticking = false;
-        return;
-      }
-
       const diff = currentScrollY - lastScrollY;
-      // Thresholds to filter out accidental finger wiggles or inertial rebound
-      if (diff > 12) {
+      // Sensitive yet stable thresholds for mobile portrait and desktop scrolling
+      if (diff > 8) {
         // Intentional scroll down: slide header away
         setIsVisible(false);
         lastScrollY = currentScrollY;
-      } else if (diff < -15) {
+      } else if (diff < -8) {
         // Intentional scroll up: reveal header
         setIsVisible(true);
         lastScrollY = currentScrollY;
@@ -102,12 +97,9 @@ function Navbar({ currentPage }: { currentPage: string }) {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-[transform,opacity,background-color,border-color,box-shadow] duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] focus-within:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto motion-reduce:transition-none ${
-        shouldShow ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-      } ${
-        isScrolled
-          ? "border-b border-white/10 bg-bg/85 backdrop-blur-md shadow-lg shadow-black/20"
-          : "border-b border-white/5 bg-bg/40 backdrop-blur-sm"
+      onFocusCapture={() => setIsVisible(true)}
+      className={`sticky top-0 z-40 w-full border-b border-white/10 bg-bg/85 backdrop-blur-md transition-transform duration-300 ease-out will-change-transform motion-reduce:transition-none ${
+        shouldShow ? "translate-y-0" : "-translate-y-full pointer-events-none"
       }`}
     >
       <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
