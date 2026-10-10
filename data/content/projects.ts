@@ -57,7 +57,7 @@ const projects: Project[] = [
     title: "heroku-buildpack-bun",
     desc: "Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, and runs bun install.",
     img: "/static/projects/heroku-buildpack-bun.webp",
-    // No "Live site" — bun.sh is Bun's homepage, not this project.
+    // No "Live site": bun.sh is Bun's homepage, not this project.
     github: "https://github.com/bisug/heroku-buildpack-bun",
     tags: ["Shell", "Bun", "DevOps"],
   },
@@ -75,7 +75,7 @@ export const allTags: string[] = [...new Set(projects.flatMap((project) => proje
 
 export const allKebabTags = allTags.map((tag) => kebabCase(tag));
 
-/** URL segment for a project's detail page — derived so titles stay the source of truth. */
+/** URL segment for a project's detail page: derived so titles stay the source of truth. */
 export const projectSlug = (project: Project) => kebabCase(project.title);
 
 /** Half-width variant of a project screenshot, for grid cards. */

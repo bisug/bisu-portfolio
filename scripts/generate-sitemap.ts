@@ -4,7 +4,7 @@ import { routes, SITE_URL } from "@/data/global";
 
 /**
  * Writes public/sitemap.xml at build time. The site is a static export, so
- * there is no server to render the file per request — run this (bun run
+ * there is no server to render the file per request: run this (bun run
  * sitemap) after changing routes or projects.
  */
 const paths = [

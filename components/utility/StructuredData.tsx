@@ -11,7 +11,7 @@ type StructuredDataProps = {
 
 /**
  * JSON-LD for the site entity: who the site is about (Person), what the site
- * is (WebSite/WebPage), and — on the projects page — the works themselves.
+ * is (WebSite/WebPage), and, on the projects page, the works themselves.
  * Answer engines and search engines both read this instead of guessing from prose.
  */
 function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) {
@@ -30,7 +30,7 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       knowsLanguage: ["en", "ne"],
       address: { "@type": "PostalAddress", addressLocality: "Bhaktapur", addressCountry: "NP" },
       sameAs: socials
-        // Own site URL is already `url` above — sameAs is for profiles elsewhere.
+        // Own site URL is already `url` above: sameAs is for profiles elsewhere.
         .filter((social) => social.link.startsWith("http") && social.link !== SITE_URL)
         .map((s) => s.link),
       knowsAbout: skills.map((skill) => skill.title),

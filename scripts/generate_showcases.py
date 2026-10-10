@@ -466,7 +466,7 @@ def generate_melody():
     <rect x="70" y="45" width="1060" height="60" rx="24" fill="#1f1b3d" fill-opacity="0.5"/>
     <circle cx="110" cy="75" r="7" fill="#10b981"/>
     <circle cx="110" cy="75" r="14" fill="#10b981" fill-opacity="0.25"/>
-    <text x="135" y="80" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Melody — Telegram Group Calls Audio Stream</text>
+    <text x="135" y="80" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="bold" fill="#ffffff">Melody: Telegram Group Calls Audio Stream</text>
     
     <!-- Right stats in header -->
     <rect x="910" y="60" width="190" height="30" rx="15" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
@@ -601,7 +601,7 @@ def generate_heroku_bun():
     <circle cx="85" cy="66" r="6" fill="#ef4444"/>
     <circle cx="105" cy="66" r="6" fill="#f59e0b"/>
     <circle cx="125" cy="66" r="6" fill="#10b981"/>
-    <text x="380" y="71" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#c084fc" text-anchor="middle">heroku-buildpack-bun (v1.4.2) — build log</text>
+    <text x="380" y="71" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#c084fc" text-anchor="middle">heroku-buildpack-bun (v1.4.2): build log</text>
 
     <!-- Terminal Lines -->
     <g transform="translate(85, 115)" font-family="DejaVu Sans Mono, monospace" font-size="13">

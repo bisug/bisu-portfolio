@@ -7,7 +7,7 @@ type RevealProps = {
   className?: string;
 };
 
-/* One IntersectionObserver for every Reveal on the page — a page can hold 30+
+/* One IntersectionObserver for every Reveal on the page: a page can hold 30+
    of them, and a single shared observer is cheaper than one each. */
 const callbacks = new WeakMap<Element, () => void>();
 let observer: IntersectionObserver | null = null;

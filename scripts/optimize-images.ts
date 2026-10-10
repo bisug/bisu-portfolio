@@ -47,7 +47,7 @@ interface Derivative {
 }
 
 async function encode(src: string, width: number, quality: number): Promise<Buffer> {
-  // failOn error: strict decode — a corrupt source aborts instead of shipping
+  // failOn error: strict decode: a corrupt source aborts instead of shipping
   // a silently damaged derivative. Resize inside bounds without enlarging;
   // encode lossy WebP at quality.
   return sharp(src, { failOn: "error" })
@@ -103,7 +103,7 @@ const args = new Set(process.argv.slice(2));
 const checkOnly = args.has("--check");
 const force = args.has("--force");
 const maxKbFlag = process.argv.find((a) => a.startsWith("--max-kb"));
-// "--max-kb" with no/invalid value must not become NaN — that would disable
+// "--max-kb" with no/invalid value must not become NaN: that would disable
 // the budget check silently (every "size > NaN" comparison is false).
 const maxKb = maxKbFlag
   ? Number(maxKbFlag.split("=")[1] ?? process.argv[process.argv.indexOf(maxKbFlag) + 1])
