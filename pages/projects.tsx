@@ -1,20 +1,21 @@
+import Heading from "@/components/projects/Heading";
 import Projects from "@/components/projects/Projects";
 import Page from "@/components/utility/Page";
-import Reveal from "@/components/utility/Reveal";
 
-export default function ProjectsPage() {
+function projects() {
   return (
     <Page
       currentPage="Projects"
       path="/projects"
       meta={{
         title: "Projects",
-        desc: "A selection of things I've built: security tooling, CLIs, Telegram bots, and full-stack apps.",
+        desc: "I love building with Rust, Go, Python, TypeScript, and more! Here are some of my favorite projects.",
       }}
     >
-      <Reveal className="mt-16 sm:mt-20 w-full">
-        <Projects />
-      </Reveal>
+      <Heading />
+      <Projects />
     </Page>
   );
 }
+
+export default projects;
