@@ -6,7 +6,7 @@ function ThemeToggle() {
   useEffect(() => {
     setIsLight(document.documentElement.classList.contains("light"));
 
-    // Follow live OS theme changes until the user has picked explicitly —
+    // Follow live OS theme changes until the user has picked explicitly:
     // a stored choice always wins over the system.
     const mq = window.matchMedia("(prefers-color-scheme: light)");
     function onChange(event: MediaQueryListEvent) {
@@ -22,8 +22,7 @@ function ThemeToggle() {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  function toggle() {
-    const next = !isLight;
+  function applyTheme(next: boolean) {
     setIsLight(next);
     document.documentElement.classList.toggle("light", next);
     try {
@@ -31,14 +30,85 @@ function ThemeToggle() {
     } catch {}
   }
 
+  function toggle(event: React.MouseEvent<HTMLButtonElement>) {
+    const next = !isLight;
+
+    const doc = document as Document & {
+      startViewTransition?: (callback: () => void) => {
+        ready: Promise<void>;
+      };
+    };
+
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Fallback if View Transitions API is not supported or reduced motion is requested
+    if (!doc.startViewTransition || isReducedMotion) {
+      document.documentElement.classList.add("theme-transitioning");
+      applyTheme(next);
+      window.setTimeout(() => {
+        document.documentElement.classList.remove("theme-transitioning");
+      }, 400);
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
+    const transition = doc.startViewTransition(() => {
+      applyTheme(next);
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
+      document.documentElement.animate(
+        {
+          clipPath,
+        },
+        {
+          duration: 480,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
+    });
+  }
+
   return (
     <button
       type="button"
       onClick={toggle}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      className="flex h-11 w-11 items-center justify-center rounded-lg text-gray-100 transition hover:bg-white/10"
+      className="group relative flex h-11 w-11 items-center justify-center rounded-xl text-gray-100 transition-all duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
     >
-      {isLight === null ? null : isLight ? <MoonIcon /> : <SunIcon />}
+      <div className="relative h-5 w-5 flex items-center justify-center" aria-hidden="true">
+        {/* Sun Icon (displayed in dark mode to prompt switching to light) */}
+        <span
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isLight
+              ? "opacity-0 rotate-90 scale-0 pointer-events-none"
+              : "opacity-100 rotate-0 scale-100 text-fun-accent group-hover:rotate-45"
+          }`}
+        >
+          <SunIcon />
+        </span>
+
+        {/* Moon Icon (displayed in light mode to prompt switching to dark) */}
+        <span
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isLight
+              ? "opacity-100 rotate-0 scale-100 text-fun-accent group-hover:-rotate-12"
+              : "opacity-0 -rotate-90 scale-0 pointer-events-none"
+          }`}
+        >
+          <MoonIcon />
+        </span>
+      </div>
     </button>
   );
 }
