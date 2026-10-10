@@ -13,18 +13,17 @@ function Hero() {
         className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl w-auto text-4xl sm:text-6xl md:text-7xl tracking-tight mb-6 font-bold text-balance leading-[1.08]"
         style={{ animationDelay: "90ms" }}
       >
-        I enjoy <span className="text-fun-accent">building</span> and{" "}
-        <span className="text-fun-accent">securing</span> for the web.
+        I enjoy <span className="text-fun-accent">building</span> products and{" "}
+        <span className="text-fun-accent">securing</span> the web.
       </h1>
       <p
         className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl text-fun-gray text-base sm:text-lg mb-10 leading-relaxed text-balance"
         style={{ animationDelay: "180ms" }}
       >
-        CS student &amp; security researcher from Nepal. I build{" "}
+        CS student &amp; security researcher from Nepal. Building{" "}
         <strong className="text-white font-medium">Telegram bots</strong>,{" "}
-        <strong className="text-white font-medium">CLIs</strong>, and{" "}
-        <strong className="text-white font-medium">full-stack apps</strong>, and I break things to
-        learn how to defend them.
+        <strong className="text-white font-medium">command-line tools</strong>, and{" "}
+        <strong className="text-white font-medium">full-stack web apps</strong>.
       </p>
       <div
         className="rise-in flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto px-4 sm:px-0"

@@ -15,26 +15,27 @@ function About() {
       <div className="max-w-3xl mx-auto w-full space-y-8">
         <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed">
           <p>
-            I&apos;m a computer science student at Lincoln International College, Kathmandu,
-            studying{" "}
+            I&apos;m a computer science student at Lincoln International College in Kathmandu,
+            specializing in{" "}
             <strong className="text-white font-medium">
               Cyber Security &amp; Network Technology
             </strong>
-            , and a security researcher who learns by breaking things before defending them.
+            . For me, security isn&apos;t just theory; the best way to protect an application is to
+            understand exactly how it fails under real-world pressure.
           </p>
           <p>
-            Most of my time goes into building:{" "}
-            <strong className="text-white font-medium">Telegram bots</strong>,{" "}
-            <strong className="text-white font-medium">CLI tools</strong>, and{" "}
-            <strong className="text-white font-medium">full-stack apps</strong>, usually in{" "}
-            <strong className="text-white font-medium">Python, Go, or TypeScript</strong>. I&apos;ve
-            freelanced for clients and communities, and I show up to hackathons for the deadline
-            pressure.
+            Most of my time goes into writing{" "}
+            <strong className="text-white font-medium">Python, Go, or TypeScript</strong>. I build
+            software people rely on daily, ranging from high-throughput{" "}
+            <strong className="text-white font-medium">Telegram bots</strong> and lightning-fast{" "}
+            <strong className="text-white font-medium">CLI tools</strong> to hackathon-winning{" "}
+            <strong className="text-white font-medium">web platforms</strong> built under tight
+            sprint deadlines.
           </p>
           <p>
-            Based in <strong className="text-white font-medium">Bhaktapur, Nepal</strong>. Currently{" "}
-            <strong className="text-fun-accent font-medium">looking for internships</strong> where I
-            can build and secure real systems.
+            Based in <strong className="text-white font-medium">Bhaktapur, Nepal</strong>. I&apos;m
+            actively <strong className="text-fun-accent font-medium">seeking internships</strong>{" "}
+            where I can ship resilient production code.
           </p>
         </div>
         <div className="text-center">
