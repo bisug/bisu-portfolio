@@ -21,6 +21,6 @@ export const faqs: FAQItem[] = [
   {
     question: "What technologies does Bisu Ghalan use?",
     answer:
-      "Primarily Python, TypeScript, Rust, and Go, with FastAPI, React, Next.js, MongoDB, PostgreSQL, and Redis.",
+      "Primarily Python, TypeScript, and Go, with FastAPI, React, Next.js, MongoDB, PostgreSQL, and Redis.",
   },
 ];

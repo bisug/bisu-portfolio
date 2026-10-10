@@ -27,9 +27,9 @@ function About() {
             <strong className="text-white font-medium">Telegram bots</strong>,{" "}
             <strong className="text-white font-medium">CLI tools</strong>, and{" "}
             <strong className="text-white font-medium">full-stack apps</strong>, usually in{" "}
-            <strong className="text-white font-medium">Python, Go, Rust, or TypeScript</strong>.
-            I&apos;ve freelanced for clients and communities, and I show up to hackathons for the
-            deadline pressure.
+            <strong className="text-white font-medium">Python, Go, or TypeScript</strong>. I&apos;ve
+            freelanced for clients and communities, and I show up to hackathons for the deadline
+            pressure.
           </p>
           <p>
             Based in <strong className="text-white font-medium">Bhaktapur, Nepal</strong>. Currently{" "}

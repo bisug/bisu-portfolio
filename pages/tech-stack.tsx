@@ -9,7 +9,7 @@ export default function TechStackPage() {
       path="/tech-stack"
       meta={{
         title: "Tech Stack",
-        desc: "Languages and tools I use: Python, Go, Rust, TypeScript, Next.js, Docker, and more.",
+        desc: "Languages and tools I use: Python, Go, TypeScript, Next.js, Docker, and more.",
       }}
     >
       <PageHeading

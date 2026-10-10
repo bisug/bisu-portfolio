@@ -12,7 +12,7 @@ function localReply(q: string): string {
   if (/contact|email|hire|reach|hello|hi\b/.test(s))
     return "You can reach Bisu at bisu.ghlan@gmail.com — he's also on GitHub (github.com/bisug) and LinkedIn (linkedin.com/in/bisug).";
   if (/skill|stack|tech|language|know|good at/.test(s))
-    return "Bisu's main stack is Python, TypeScript, Rust, and Go — plus React/NextJS, FastAPI, NodeJS, and Bun. For data and ops he uses MongoDB, PostgreSQL, Redis, Docker, Git, and Linux.";
+    return "Bisu's main stack is Python, TypeScript, and Go, plus React/NextJS, FastAPI, NodeJS, and Bun. For data and ops he uses MongoDB, PostgreSQL, Redis, Docker, Git, and Linux.";
   if (/project|built|build|work|portfolio|bot|cli/.test(s))
     return "A few favorites:\nBinaryInspector — safe Rust CLI for inspecting ELF binaries\nPaila — travel and community platform for Nepal\nTG-GithubBot — GitHub events delivered to Telegram\nninfo — whole-system Linux snapshot as JSON\nThere's more on the Projects page — want details on any of these?";
   if (/who|about|bisu|study|school|education/.test(s))

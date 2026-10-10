@@ -110,7 +110,7 @@ Cross-platform classic Snake game running entirely in the terminal with zero ext
 
 ## Technical Skills & Toolbelt
 
-- **Languages**: Python, TypeScript, Rust, Go, Markdown
+- **Languages**: Python, TypeScript, Go, Markdown
 - **Frameworks & Web**: FastAPI, Flask, Kurigram, React, NextJS, TailwindCSS, NodeJS, Bun
 - **Databases**: MongoDB, PostgreSQL, Redis, Valkey, SQLite
 - **AI & Tools**: Claude Code, Codex, Copilot, Zed
@@ -134,7 +134,7 @@ A: Yes. He is open to internships, freelance projects, and security-related work
 
 ### Q: What technologies does Bisu Ghalan use?
 
-A: Primarily Python, TypeScript, Rust, and Go, with FastAPI, React, Next.js, MongoDB, PostgreSQL, and Redis.
+A: Primarily Python, TypeScript, and Go, with FastAPI, React, Next.js, MongoDB, PostgreSQL, and Redis.
 
 ---
 

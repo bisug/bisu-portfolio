@@ -29,11 +29,6 @@ export const skills: Skill[] = [
     category: "Languages",
   },
   {
-    title: "Rust",
-    icon: "/static/icons/tech/rust.svg",
-    category: "Languages",
-  },
-  {
     title: "Go",
     icon: "/static/icons/tech/go.svg",
     category: "Languages",
