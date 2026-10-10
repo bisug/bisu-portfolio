@@ -1,9 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
-import Link from "next/link";
 import type { Project } from "types";
-import Heading from "@/components/projects/Heading";
 import Projects from "@/components/projects/Projects";
 import Page from "@/components/utility/Page";
+import Reveal from "@/components/utility/Reveal";
 import projects, { allKebabTags, allTags } from "@/data/content/projects";
 import { kebabCase } from "@/utils/utils";
 
@@ -47,18 +46,13 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
         desc: `${count} open source ${capsTag} project${count === 1 ? "" : "s"} by Bisu Ghalan: ${names}.`,
       }}
     >
-      <Heading
-        tag={capsTag}
-        subtitle={`${count} of my ${projects.length} featured projects ${count === 1 ? "uses" : "use"} ${capsTag}: ${names}. Each one is open source.`}
-      />
-      <Projects overwriteProjects={filteredProjects} />
-
-      <Link
-        href="/projects"
-        className="mt-8 block max-w-sm md:max-w-2xl border border-fun-accent mx-auto text-center w-full whitespace-nowrap px-8 py-3 rounded-full text-fun-accent bg-fun-navy-dark hover:bg-fun-accent hover:text-fun-navy-darkest transition-colors"
-      >
-        View All
-      </Link>
+      <Reveal className="mt-16 sm:mt-20 w-full">
+        <Projects
+          overwriteProjects={filteredProjects}
+          tag={capsTag}
+          subtitle={`${count} of my ${projects.length} featured projects ${count === 1 ? "uses" : "use"} ${capsTag}: ${names}. Each one is open source.`}
+        />
+      </Reveal>
     </Page>
   );
 }
