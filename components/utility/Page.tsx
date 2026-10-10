@@ -11,7 +11,7 @@ import StructuredData from "./StructuredData";
 
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 const OG_IMAGE = `${SITE_URL}/static/misc/og.png`;
-const OG_IMAGE_ALT = `${SITE_NAME} — developer and security researcher`;
+const OG_IMAGE_ALT = `${SITE_NAME}: developer and security researcher`;
 
 function Page({
   currentPage,
@@ -26,7 +26,7 @@ function Page({
       : `${title ?? currentPage} - Bisu Ghalan`;
   const pageUrl = `${SITE_URL}${path}`;
   const ogImage = image ? `${SITE_URL}${image}` : OG_IMAGE;
-  const ogImageAlt = image ? `${title ?? currentPage} — preview` : OG_IMAGE_ALT;
+  const ogImageAlt = image ? `${title ?? currentPage}: preview` : OG_IMAGE_ALT;
   return (
     <div className="w-full m-auto flex flex-col items-center min-h-screen text-white">
       <Head>

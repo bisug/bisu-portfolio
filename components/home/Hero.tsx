@@ -7,7 +7,7 @@ function Hero() {
         className="rise-in text-sm sm:text-base font-mono text-fun-accent mb-4 tracking-wide"
         style={{ animationDelay: "0ms" }}
       >
-        Hey, I&apos;m Bisu Ghalan —
+        Hey, I&apos;m Bisu Ghalan
       </p>
       <h1
         className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-[1400px] w-auto text-5xl md:text-6xl lg:text-7xl tracking-tighter mb-6 font-bold text-balance"
@@ -23,7 +23,7 @@ function Hero() {
         CS student &amp; security researcher from Nepal. I build{" "}
         <strong className="text-white font-medium">Telegram bots</strong>,{" "}
         <strong className="text-white font-medium">CLIs</strong>, and{" "}
-        <strong className="text-white font-medium">full-stack apps</strong> — and I break things to
+        <strong className="text-white font-medium">full-stack apps</strong>, and I break things to
         learn how to defend them.
       </p>
       <div

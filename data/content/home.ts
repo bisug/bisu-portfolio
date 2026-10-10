@@ -1,9 +1,9 @@
 type Skill = {
   title: string;
   icon: string;
-  /** White monochrome SVG — inverts in light mode via .icon-invert-light. */
+  /** White monochrome SVG: inverts in light mode via .icon-invert-light. */
   mono?: boolean;
-  /** Black SVG — inverts in dark mode only via .icon-invert-dark. */
+  /** Black SVG: inverts in dark mode only via .icon-invert-dark. */
   invertDark?: boolean;
   category: string;
 };
@@ -205,7 +205,7 @@ export const events: EventItem[] = [
 
 export const education: EducationItem[] = [
   {
-    degree: "Bachelor of Computer Science — Cyber Security & Network Technology (Hons)",
+    degree: "Bachelor of Computer Science (Hons): Cyber Security & Network Technology",
     school: "Lincoln International College, Kathmandu",
     period: "Batch of Sept 2025",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",

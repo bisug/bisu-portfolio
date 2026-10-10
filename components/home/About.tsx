@@ -1,24 +1,25 @@
+import PageHeading from "@/components/global/PageHeading";
 import { hobbies } from "@/data/content/home";
-import SectionTitle from "../global/SectionTitle";
 
 function About() {
   return (
-    <div className="flex flex-col md:flex-row md:items-start gap-8 lg:gap-12 w-full">
-      <div className="md:max-w-xs lg:max-w-sm xl:max-w-md md:shrink-0">
-        <SectionTitle title="A bit about me." />
-        <p className="text-fun-gray text-sm sm:text-base -mt-4">
-          Who I am, what I build, and what keeps me curious.
-        </p>
-      </div>
-      <div className="flex-1 w-full space-y-6">
-        <div className="space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed 2xl:max-w-4xl">
+    <div className="w-full">
+      <PageHeading
+        as="h2"
+        title="About Me"
+        doodle="/static/doodles/testimonials/squiggle2.svg"
+        subtitle="Who I am, what I build, and what keeps me curious."
+        className="py-8 sm:py-12"
+      />
+      <div className="max-w-3xl mx-auto w-full space-y-8">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed">
           <p>
             I&apos;m a computer science student at Lincoln International College, Kathmandu,
             studying{" "}
             <strong className="text-white font-medium">
               Cyber Security &amp; Network Technology
-            </strong>{" "}
-            — and a security researcher who learns by breaking things before defending them.
+            </strong>
+            , and a security researcher who learns by breaking things before defending them.
           </p>
           <p>
             Most of my time goes into building:{" "}
@@ -35,15 +36,15 @@ function About() {
             can build and secure real systems.
           </p>
         </div>
-        <div className="pt-4 border-t border-white/10">
-          <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
+        <div className="text-center">
+          <h3 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-4">
             Off the keyboard
           </h3>
-          <ul className="flex flex-wrap gap-1.5 list-none">
+          <ul className="flex flex-wrap justify-center gap-2 list-none">
             {hobbies.map((hobby) => (
               <li
                 key={hobby}
-                className="rounded-md bg-fun-navy px-2.5 py-1.5 text-xs text-fun-gray-light"
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-fun-gray-light hover:border-fun-accent/40 hover:text-white transition"
               >
                 {hobby}
               </li>

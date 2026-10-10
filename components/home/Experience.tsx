@@ -1,96 +1,114 @@
+import Reveal from "@/components/utility/Reveal";
 import { events } from "@/data/content/home";
-import SectionTitle from "../global/SectionTitle";
 
 function Experience() {
   return (
-    <div className="flex flex-col md:flex-row md:items-start gap-8 lg:gap-12 w-full">
-      <div className="md:max-w-xs lg:max-w-sm xl:max-w-md md:shrink-0">
-        <SectionTitle title="Work experience." as="h1" />
-        <p className="text-fun-gray text-sm sm:text-base -mt-4">
-          What I&apos;ve been up to, professionally and competitively.
-        </p>
-      </div>
-      <div className="flex-1 w-full space-y-10">
-        <div>
-          <h2 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">
-            Freelancing
+    <div className="max-w-4xl mx-auto space-y-12 sm:space-y-16 w-full pb-16">
+      <section aria-labelledby="freelance-heading" className="space-y-4">
+        <div className="flex items-center gap-3">
+          <h2
+            id="freelance-heading"
+            className="font-mono text-xs sm:text-sm uppercase tracking-widest text-fun-accent"
+          >
+            Freelance &amp; Work
           </h2>
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5">
-            <p className="text-sm sm:text-base leading-relaxed">
-              Freelancing — building Telegram bots and full-stack apps for clients and communities.
-            </p>
-            <p className="mt-2.5 inline-flex items-center gap-2 rounded-md border border-fun-accent/20 bg-fun-accent/10 px-2.5 py-1 text-xs font-semibold text-fun-accent">
-              <span
-                className="h-2 w-2 rounded-full bg-fun-accent shadow-[0_0_6px_var(--color-fun-accent)]"
-                aria-hidden="true"
-              />
-              Currently searching for internship opportunities
-            </p>
-          </div>
+          <div className="h-px flex-1 bg-white/10" aria-hidden="true" />
         </div>
-        <div>
-          <h2 className="font-mono text-xs uppercase tracking-widest text-fun-gray mb-3">Events</h2>
-          <div className="space-y-4">
-            {events.map((event) => (
+        <Reveal>
+          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 transition hover:border-fun-accent/40">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Freelance Developer</h3>
+                <p className="text-sm sm:text-base text-fun-gray mt-1 leading-relaxed">
+                  Building Telegram bots, automation tools, and full-stack web applications for
+                  clients and communities.
+                </p>
+              </div>
+              <span className="shrink-0 self-start sm:self-center inline-flex items-center gap-2 rounded-full border border-fun-accent/30 bg-fun-accent/10 px-3.5 py-1.5 text-xs font-semibold text-fun-accent">
+                <span
+                  className="h-2 w-2 rounded-full bg-fun-accent shadow-[0_0_6px_var(--color-fun-accent)]"
+                  aria-hidden="true"
+                />
+                Open to internships
+              </span>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section aria-labelledby="events-heading" className="space-y-4">
+        <div className="flex items-center gap-3">
+          <h2
+            id="events-heading"
+            className="font-mono text-xs sm:text-sm uppercase tracking-widest text-fun-accent"
+          >
+            Hackathons &amp; Events
+          </h2>
+          <div className="h-px flex-1 bg-white/10" aria-hidden="true" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 items-stretch">
+          {events.map((event, index) => (
+            <Reveal key={event.title} delay={index * 100} className="h-full">
               <div
-                key={event.title}
-                className={`rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition ${
-                  event.link ? "hover:border-fun-accent/60" : ""
+                className={`h-full flex flex-col justify-between rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 transition ${
+                  event.link ? "hover:border-fun-accent/60 hover:-translate-y-1" : ""
                 }`}
               >
-                <h3 className="text-base sm:text-lg font-bold leading-snug">
-                  {event.link ? (
-                    <a
-                      href={event.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-fun-accent underline decoration-fun-accent/40 underline-offset-2 transition hover:decoration-fun-accent"
-                    >
-                      {event.title}
-                      <img
-                        src="/static/icons/external-link.svg"
-                        width={14}
-                        height={14}
-                        alt=""
-                        aria-hidden="true"
-                        className="icon-accent-light"
-                      />
-                    </a>
-                  ) : (
-                    event.title
-                  )}
-                </h3>
-                <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
-                  {(
-                    [
-                      ["Organizer", event.organizer],
-                      ["Event date", event.date],
-                      ["Venue", event.venue],
-                      ["Team name", event.team],
-                      ["Project name", event.project],
-                      ["Status", event.status],
-                    ] as const
-                  ).map(([label, value]) => (
-                    <div key={label} className="col-span-2 grid grid-cols-subgrid">
-                      <dt className="font-mono text-xs uppercase tracking-wider text-fun-gray py-0.5">
-                        {label}
-                      </dt>
-                      <dd className="text-fun-gray-light py-0.5">
-                        {value}
-                        {label === "Project name" && event.projectDesc && (
-                          <span className="mt-0.5 block text-xs text-fun-gray-light">
-                            {event.projectDesc}
-                          </span>
-                        )}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold leading-snug">
+                    {event.link ? (
+                      <a
+                        href={event.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-fun-accent underline decoration-fun-accent/40 underline-offset-2 transition hover:decoration-fun-accent"
+                      >
+                        {event.title}
+                        <img
+                          src="/static/icons/external-link.svg"
+                          width={14}
+                          height={14}
+                          alt=""
+                          aria-hidden="true"
+                          className="icon-accent-light"
+                        />
+                      </a>
+                    ) : (
+                      event.title
+                    )}
+                  </h3>
+                  <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
+                    {(
+                      [
+                        ["Organizer", event.organizer],
+                        ["Event date", event.date],
+                        ["Venue", event.venue],
+                        ["Team name", event.team],
+                        ["Project name", event.project],
+                        ["Status", event.status],
+                      ] as const
+                    ).map(([label, value]) => (
+                      <div key={label} className="col-span-2 grid grid-cols-subgrid">
+                        <dt className="font-mono text-xs uppercase tracking-wider text-fun-gray py-0.5">
+                          {label}
+                        </dt>
+                        <dd className="text-fun-gray-light py-0.5">
+                          {value}
+                          {label === "Project name" && event.projectDesc && (
+                            <span className="mt-1 block text-xs text-fun-gray-light">
+                              {event.projectDesc}
+                            </span>
+                          )}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

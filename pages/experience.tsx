@@ -1,6 +1,6 @@
+import PageHeading from "@/components/global/PageHeading";
 import Experience from "@/components/home/Experience";
 import Page from "@/components/utility/Page";
-import Reveal from "@/components/utility/Reveal";
 
 export default function ExperiencePage() {
   return (
@@ -9,12 +9,15 @@ export default function ExperiencePage() {
       path="/experience"
       meta={{
         title: "Experience",
-        desc: "Where I've worked — lead developer roles, bot creators, and hackathons.",
+        desc: "Where I've worked: freelance developer roles, bot creators, and hackathons.",
       }}
     >
-      <Reveal className="mt-16 sm:mt-20 w-full">
-        <Experience />
-      </Reveal>
+      <PageHeading
+        title="Experience"
+        doodle="/static/doodles/testimonials/squiggle2.svg"
+        subtitle="What I've been up to: freelancing, building Telegram bots and web apps, and competing at hackathons."
+      />
+      <Experience />
     </Page>
   );
 }

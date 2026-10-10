@@ -1,23 +1,16 @@
+import Reveal from "@/components/utility/Reveal";
 import { education } from "@/data/content/home";
-import SectionTitle from "../global/SectionTitle";
 import FadeImage from "../utility/FadeImage";
 
 function Education() {
   return (
-    <div className="flex flex-col md:flex-row md:items-start gap-8 lg:gap-12 w-full">
-      <div className="md:max-w-xs lg:max-w-sm xl:max-w-md md:shrink-0">
-        <SectionTitle title="Where I studied." as="h1" />
-        <p className="text-fun-gray text-sm sm:text-base -mt-4">
-          My academic path — from management studies to cyber security.
-        </p>
-      </div>
-      <div className="flex-1 w-full space-y-4">
-        {education.map((item) => {
+    <div className="max-w-4xl mx-auto w-full pb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+        {education.map((item, index) => {
           const Card = (
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition hover:-translate-y-1 hover:border-fun-accent/60">
+            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 transition hover:-translate-y-1 hover:border-fun-accent/60">
               {item.logo && (
-                // Literal #fff, not bg-white: --color-white is theme-flipped, logos need a real white backdrop.
-                <div className="shrink-0 rounded-lg bg-[#ffffff] p-2">
+                <div className="shrink-0 rounded-lg bg-[#ffffff] p-2 self-start">
                   <FadeImage
                     src={item.logo}
                     alt={`${item.school} logo`}
@@ -27,9 +20,9 @@ function Education() {
                   />
                 </div>
               )}
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <h2 className="text-base sm:text-lg font-bold leading-snug">{item.degree}</h2>
-                <p className="text-fun-accent text-sm mt-0.5 flex items-center gap-1.5">
+                <p className="text-fun-accent text-sm mt-1 flex items-center gap-1.5 font-medium">
                   {item.school}
                   {item.link && (
                     <img
@@ -37,25 +30,33 @@ function Education() {
                       width={14}
                       height={14}
                       alt=""
+                      aria-hidden="true"
                       className="icon-accent-light opacity-70"
                     />
                   )}
                 </p>
                 <p className="text-fun-gray text-xs font-mono mt-1">{item.period}</p>
-                {item.desc && <p className="text-fun-gray text-sm mt-1.5">{item.desc}</p>}
+                {item.desc && (
+                  <p className="text-fun-gray text-sm mt-2 leading-relaxed">{item.desc}</p>
+                )}
               </div>
             </div>
           );
           return (
-            <div key={item.school}>
+            <Reveal key={item.school} delay={index * 100} className="h-full">
               {item.link ? (
-                <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
                   {Card}
                 </a>
               ) : (
                 Card
               )}
-            </div>
+            </Reveal>
           );
         })}
       </div>

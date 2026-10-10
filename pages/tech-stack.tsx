@@ -1,6 +1,6 @@
+import PageHeading from "@/components/global/PageHeading";
 import Skills from "@/components/home/Skills";
 import Page from "@/components/utility/Page";
-import Reveal from "@/components/utility/Reveal";
 
 export default function TechStackPage() {
   return (
@@ -9,12 +9,15 @@ export default function TechStackPage() {
       path="/tech-stack"
       meta={{
         title: "Tech Stack",
-        desc: "Languages and tools I use — Python, Go, Rust, TypeScript, Next.js, Docker, and more.",
+        desc: "Languages and tools I use: Python, Go, Rust, TypeScript, Next.js, Docker, and more.",
       }}
     >
-      <Reveal className="mt-16 sm:mt-20 w-full">
-        <Skills />
-      </Reveal>
+      <PageHeading
+        title="Tech Stack"
+        doodle="/static/doodles/hero/code.svg"
+        subtitle="Languages, frameworks, databases, and systems I reach for when building and securing applications."
+      />
+      <Skills />
     </Page>
   );
 }

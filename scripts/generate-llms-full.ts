@@ -75,7 +75,7 @@ const faqsMarkdown = faqs.map((f) => `### Q: ${f.question}\n\nA: ${f.answer}`).j
 
 const socialsMarkdown = socials.map((s) => `- ${s.name}: ${s.link}`).join("\n");
 
-const content = `# ${SITE_NAME} — Complete Profile & Knowledge Base
+const content = `# ${SITE_NAME}: Complete Profile & Knowledge Base
 
 > ${SITE_DESC}
 

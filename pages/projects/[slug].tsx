@@ -64,7 +64,7 @@ function ProjectPage({ project }: ProjectPageProps) {
           src={project.img}
           srcSet={`${projectThumb(project.img)} 600w, ${project.img} 1200w`}
           sizes="(min-width: 1024px) 1024px, 100vw"
-          alt={`${project.title} — repository preview`}
+          alt={`${project.title}: repository preview`}
           width={1200}
           height={600}
           loading="eager"

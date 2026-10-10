@@ -28,7 +28,7 @@ export default function ContactPage() {
       path="/contact"
       meta={{
         title: "Contact",
-        desc: "Get in touch — I'm always open to discussing new projects, creative ideas, or new opportunities.",
+        desc: "Get in touch: I'm always open to discussing new projects, creative ideas, or new opportunities.",
       }}
       schema={faqSchema}
     >

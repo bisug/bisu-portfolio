@@ -16,7 +16,7 @@ type SocialLink = {
   name: string;
   link: string;
   icon: string;
-  /** Accent-cyan icon — darkens (not inverts) in light mode. */
+  /** Accent-cyan icon: darkens (not inverts) in light mode. */
   accentIcon?: boolean;
 };
 
@@ -24,7 +24,7 @@ export const routes: Route[] = [
   {
     title: "Home",
     path: "/",
-    desc: "Start here — intro & contact",
+    desc: "Start here: intro & contact",
   },
   {
     title: "Projects",
@@ -49,7 +49,7 @@ export const routes: Route[] = [
   {
     title: "Contact",
     path: "/contact",
-    desc: "Email & socials — say hello",
+    desc: "Email & socials: say hello",
   },
 ];
 

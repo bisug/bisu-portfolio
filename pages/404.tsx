@@ -5,7 +5,7 @@ import { routes } from "@/data/global";
 
 const TERMINAL_LINES = [
   { text: "$ bisu --locate requested-page", accent: false },
-  { text: "error: 404 — path not found in this universe.", accent: true },
+  { text: "error: 404: path not found in this universe.", accent: true },
   { text: "$ bisu --suggest --limit 3", accent: false },
 ];
 
