@@ -38,13 +38,15 @@ function ProjectPage({ project }: ProjectPageProps) {
       schema={[
         {
           "@type": "SoftwareSourceCode",
+          "@id": `${SITE_URL}${path}#software`,
           name: project.title,
           description: project.desc,
           url: `${SITE_URL}${path}`,
           codeRepository: project.github,
           sameAs: project.link,
+          programmingLanguage: project.tags[0],
           keywords: project.tags.join(", "),
-          author: { "@type": "Person", name: "Bisu Ghalan", url: SITE_URL },
+          author: { "@id": `${SITE_URL}/#person` },
         },
       ]}
     >

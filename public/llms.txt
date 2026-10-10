@@ -3,6 +3,7 @@
 > Computer science student and security researcher based in Bhaktapur, Nepal. Builds Telegram bots, command-line tools, and full-stack web apps in Python, Go, Rust, and TypeScript, and studies network infrastructure and defensive security.
 
 Site: https://bisu.com.np
+Full context: https://bisu.com.np/llms-full.txt
 Language: English
 
 ## Pages

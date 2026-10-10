@@ -44,7 +44,7 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
       path={`/projects/tag/${tag}`}
       meta={{
         title: `${capsTag} Projects`,
-        desc: `A showcase for all of my ${capsTag} projects.`,
+        desc: `${count} open source ${capsTag} project${count === 1 ? "" : "s"} by Bisu Ghalan: ${names}.`,
       }}
     >
       <Heading

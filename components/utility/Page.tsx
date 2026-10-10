@@ -57,8 +57,19 @@ function Page({
         <meta name="twitter:image:alt" content={ogImageAlt} />
 
         <meta name="author" content={SITE_NAME} />
-        <meta name="theme-color" content="#000a1f" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#f4f7fc" media="(prefers-color-scheme: light)" />
+        <meta
+          key="theme-color-dark"
+          name="theme-color"
+          content="#000a1f"
+          media="(prefers-color-scheme: dark)"
+        />
+        <meta
+          key="theme-color-light"
+          name="theme-color"
+          content="#f4f7fc"
+          media="(prefers-color-scheme: light)"
+        />
+        <link rel="alternate" type="text/plain" href={`${SITE_URL}/llms.txt`} title="LLM context" />
 
         {/* A noindex page (404) carries no entity data worth publishing. */}
         {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} extra={schema} />}

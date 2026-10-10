@@ -19,67 +19,51 @@ He is a security researcher and software developer who focuses on defensive secu
 ## Projects
 
 ### BinaryInspector
-
-Safe, local Rust CLI for inspecting ELF binaries without executing them.
-
+Safe, local Rust CLI for inspecting ELF binaries, headers, and security mitigations without executing them.
 - Page: https://bisu.com.np/projects/binary-inspector
 - Source Code: https://github.com/bisug/BinaryInspector
 - Technologies: Rust, CLI, Security
 
 ### Paila
-
-A seamless travel & community platform bridging tourists and local communities in Nepal.
-
+Travel & community platform bridging tourists and local communities in Nepal, built with Next.js and Supabase.
 - Page: https://bisu.com.np/projects/paila
 - Source Code: https://github.com/bisug/Paila
 - Live Deployment: https://paila-prototype.vercel.app
 - Technologies: NextJS, TypeScript, TailwindCSS
 
 ### TG-GithubBot
-
-GitHub webhook handler bot for Telegram, formatting push, deployment, and all events.
-
+GitHub webhook handler bot for Telegram, streaming and formatting push, release, and deployment alerts.
 - Page: https://bisu.com.np/projects/tg-github-bot
 - Source Code: https://github.com/bisug/TG-GithubBot
 - Live Deployment: https://t.me/DearGitNotifyBot
 - Technologies: Go, Telegram, MongoDB
 
 ### ninfo
-
-A Linux system information CLI written in Nim that does a whole-system snapshot as JSON in a single call.
-
+Fast Linux system information CLI in Nim capturing a whole-system kernel and hardware snapshot as JSON.
 - Page: https://bisu.com.np/projects/ninfo
 - Source Code: https://github.com/bisug/ninfo
 - Technologies: Nim, CLI, Linux
 
 ### TG-WordGame
-
-Wordle-style word game bot for Telegram — solo & multiplayer rounds, daily challenge, leaderboards.
-
+Wordle-style word game bot for Telegram with solo/multiplayer rounds, daily challenges, and leaderboards.
 - Page: https://bisu.com.np/projects/tg-word-game
 - Source Code: https://github.com/bisug/TG-WordGame
 - Technologies: TypeScript, Telegram, Game
 
 ### Melody
-
-Telegram group calls streaming bot with useful features, written in Python with Pyrogram.
-
+Telegram group calls streaming bot for YouTube, Spotify, and Apple Music built with Python and Pyrogram.
 - Page: https://bisu.com.np/projects/melody
 - Source Code: https://github.com/bisug/Melody
 - Technologies: Python, Telegram, API
 
 ### heroku-buildpack-bun
-
-Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, runs bun install.
-
+Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, and runs bun install.
 - Page: https://bisu.com.np/projects/heroku-buildpack-bun
 - Source Code: https://github.com/bisug/heroku-buildpack-bun
 - Technologies: Shell, Bun, DevOps
 
 ### SnakeGame-CLI
-
-A cross-platform Snake game that runs entirely in the terminal.
-
+Cross-platform classic Snake game running entirely in the terminal with zero external GUI dependencies.
 - Page: https://bisu.com.np/projects/snake-game-cli
 - Source Code: https://github.com/bisug/SnakeGame-CLI
 - Technologies: C++, CLI, Game
@@ -89,7 +73,6 @@ A cross-platform Snake game that runs entirely in the terminal.
 ## Hackathons & Competitive Experience
 
 ### Build Nepal Hackathon
-
 - Organizer: Mid-Valley International College (MVIC)
 - Date: 1–2 August 2026
 - Venue: Mid Valley International College, Gyaneshwor, Kathmandu
@@ -99,7 +82,6 @@ A cross-platform Snake game that runs entirely in the terminal.
 - Status: Participant
 
 ### JunctionX Kathmandu
-
 - Organizer: SUMS Nepal & Cogknit
 - Date: May 29–31, 2026
 - Venue: AITM College, Khumaltar Height, Lalitpur
@@ -114,14 +96,12 @@ A cross-platform Snake game that runs entirely in the terminal.
 ## Education
 
 ### Bachelor of Computer Science — Cyber Security & Network Technology (Hons)
-
 - Institution: Lincoln International College, Kathmandu
 - Period: Batch of Sept 2025
 - Focus: Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.
 - Website: https://licnepal.edu.np/
 
 ### Higher Secondary Education (+2 Management)
-
 - Institution: Janapremi World School, Bhaktapur
 - Period: Passout 2024
 - Website: https://jws.edu.np/

@@ -51,13 +51,12 @@ function Page404() {
       }}
     >
       <div className="flex min-h-[60vh] w-full flex-col items-center justify-center py-20 text-center">
-        <p
-          aria-hidden="true"
+        <h1
           className="error-glitch font-mono font-bold text-white text-7xl sm:text-8xl"
           data-text="404"
         >
           404
-        </p>
+        </h1>
         <p className="mt-2 font-mono text-xs uppercase tracking-widest text-fun-gray">
           lost packet · route not found
         </p>

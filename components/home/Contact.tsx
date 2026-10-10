@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { faqs } from "@/data/content/faq";
 import SocialIcons from "../global/SocialIcons";
 
 const EMAIL = "bisu.ghlan@gmail.com";
@@ -96,6 +97,23 @@ function Contact({ compact = false }: { compact?: boolean }) {
         within a few days
       </p>
       <ContactActions />
+
+      <div className="mt-20 max-w-3xl mx-auto text-left">
+        <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-6 text-center">
+          Frequently asked questions
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq) => (
+            <div
+              key={faq.question}
+              className="rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6"
+            >
+              <h3 className="text-base font-bold text-white mb-2">{faq.question}</h3>
+              <p className="text-sm leading-relaxed text-fun-gray-light">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

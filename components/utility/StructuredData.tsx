@@ -59,9 +59,64 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       inLanguage: "en",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": personId },
-      mainEntity: path === "/" ? { "@id": personId } : undefined,
+      mainEntity:
+        path === "/"
+          ? { "@id": personId }
+          : path.startsWith("/projects/") && !path.startsWith("/projects/tag/")
+            ? { "@id": `${SITE_URL}${path}#software` }
+            : undefined,
     },
   ];
+
+  if (path !== "/") {
+    const parts = path.split("/").filter(Boolean);
+    const cleanTitle = title.replace(/ - Bisu Ghalan$/, "");
+    const breadcrumbs = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${SITE_URL}/`,
+      },
+    ];
+
+    if (parts[0] === "projects") {
+      if (parts.length === 1) {
+        breadcrumbs.push({
+          "@type": "ListItem",
+          position: 2,
+          name: "Projects",
+          item: `${SITE_URL}/projects`,
+        });
+      } else {
+        breadcrumbs.push({
+          "@type": "ListItem",
+          position: 2,
+          name: "Projects",
+          item: `${SITE_URL}/projects`,
+        });
+        breadcrumbs.push({
+          "@type": "ListItem",
+          position: 3,
+          name: cleanTitle,
+          item: `${SITE_URL}${path}`,
+        });
+      }
+    } else {
+      breadcrumbs.push({
+        "@type": "ListItem",
+        position: 2,
+        name: cleanTitle,
+        item: `${SITE_URL}${path}`,
+      });
+    }
+
+    graph.push({
+      "@type": "BreadcrumbList",
+      "@id": `${SITE_URL}${path}#breadcrumbs`,
+      itemListElement: breadcrumbs,
+    });
+  }
 
   if (path === "/projects") {
     graph.push({
@@ -73,11 +128,13 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
         position: index + 1,
         item: {
           "@type": "SoftwareSourceCode",
+          "@id": `${SITE_URL}/projects/${projectSlug(project)}#software`,
           name: project.title,
           description: project.desc,
           url: `${SITE_URL}/projects/${projectSlug(project)}`,
           codeRepository: project.github,
           sameAs: project.link,
+          programmingLanguage: project.tags[0],
           keywords: project.tags.join(", "),
           author: { "@id": personId },
         },

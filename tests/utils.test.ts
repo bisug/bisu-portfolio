@@ -17,5 +17,6 @@ describe("kebabCase", () => {
   it("handles uppercase strings and single words", () => {
     expect(kebabCase("RUST")).toBe("rust");
     expect(kebabCase("api")).toBe("api");
+    expect(kebabCase("C++")).toBe("cpp");
   });
 });
