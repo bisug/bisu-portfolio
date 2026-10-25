@@ -1,7 +1,7 @@
 {
   "name": "bisu.com.np",
-  "license": "MIT",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "bun run sitemap && bun run llms && next build",
@@ -14,7 +14,8 @@
     "test": "bun test",
     "lint": "biome lint .",
     "format": "biome format --write .",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "prepare": "vp config"
   },
   "dependencies": {
     "next": "^16.4.0",
@@ -30,6 +31,11 @@
     "@types/react-dom": "^19.3.0",
     "bun-types": "^1.4.2",
     "tailwindcss": "^4.3.3",
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0",
+    "vite-plus": "1.4.0"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0"
   }
 }
