@@ -3,7 +3,7 @@
 # bisu.com.np
 
 **Portfolio of Bisu Ghalan** - CS student & security researcher from Nepal
-*Telegram bots · CLI tools · full-stack web apps · defensive security*
+_Telegram bots · CLI tools · full-stack web apps · defensive security_
 
 [![Live site](https://img.shields.io/badge/bisu.com.np-0ea5e9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://bisu.com.np)
 [![GitHub](https://img.shields.io/badge/@bisug-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/bisug)
@@ -24,18 +24,17 @@
 
 ## <img src="https://img.shields.io/badge/Stack-2563EB?style=flat-square" height="20" valign="middle" alt="Stack" />
 
-| Concern | Choice |
-| --- | --- |
-| Framework | Next.js 16 (Turbopack, pages router) |
-| UI | React 19 + Tailwind CSS v4 (CSS-first `@theme` in `styles/main.css`) |
-| Types | TypeScript 7 |
-| Lint / format | Biome |
-| Package manager | Bun |
+| Concern         | Choice                                                               |
+| --------------- | -------------------------------------------------------------------- |
+| Framework       | Next.js 16 (Turbopack, pages router)                                 |
+| UI              | React 19 + Tailwind CSS v4 (CSS-first `@theme` in `styles/main.css`) |
+| Types           | TypeScript 7                                                         |
+| Lint / format   | Biome                                                                |
+| Package manager | Bun                                                                  |
 
 ## <img src="https://img.shields.io/badge/Architecture-7C3AED?style=flat-square" height="20" valign="middle" alt="Architecture" />
 
 Everything is prerendered to plain files at build time; the only runtime component is the chat API on Cloudflare.
-
 
 ```mermaid
 flowchart LR
@@ -53,14 +52,14 @@ flowchart LR
     end
 ```
 
-| Layer | Where | Notes |
-| --- | --- | --- |
-| Content | `data/content/home.ts`, `data/content/projects.ts` | Single source of truth: pages, JSON-LD, sitemap, and llms.txt all derive from it |
-| Layout / chrome | `components/global/`, `components/utility/Page.tsx` | `Page` owns `<Head>` (meta, OG, canonical), nav, PageNav, compact CTA, footer |
-| Sections | `components/home/`, `components/projects/` | One file per section |
-| SEO/AEO | `components/utility/StructuredData.tsx` | JSON-LD graph: Person, ProfilePage, WebSite, ItemList, FAQPage |
-| Deploy headers | `public/_headers` | Security and caching headers for Cloudflare Pages (export mode ignores `headers()` in `next.config.ts`) |
-| Chat backend | `functions/api/chat.ts` | Cloudflare Pages Function only; keys never reach the browser |
+| Layer           | Where                                               | Notes                                                                                                   |
+| --------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Content         | `data/content/home.ts`, `data/content/projects.ts`  | Single source of truth: pages, JSON-LD, sitemap, and llms.txt all derive from it                        |
+| Layout / chrome | `components/global/`, `components/utility/Page.tsx` | `Page` owns `<Head>` (meta, OG, canonical), nav, PageNav, compact CTA, footer                           |
+| Sections        | `components/home/`, `components/projects/`          | One file per section                                                                                    |
+| SEO/AEO         | `components/utility/StructuredData.tsx`             | JSON-LD graph: Person, ProfilePage, WebSite, ItemList, FAQPage                                          |
+| Deploy headers  | `public/_headers`                                   | Security and caching headers for Cloudflare Pages (export mode ignores `headers()` in `next.config.ts`) |
+| Chat backend    | `functions/api/chat.ts`                             | Cloudflare Pages Function only; keys never reach the browser                                            |
 
 ## <img src="https://img.shields.io/badge/Development-0891B2?style=flat-square&logo=bun&logoColor=white" height="20" valign="middle" alt="Development" />
 
@@ -69,15 +68,15 @@ bun install
 bun run dev        # http://localhost:3000
 ```
 
-| Script | Purpose |
-| --- | --- |
-| `bun run dev` | Dev server |
-| `bun run build` | Static export to `out/` (every route prerendered) |
-| `bun run start` | Serve the exported `out/` locally |
-| `bun run sitemap` | Regenerate `public/sitemap.xml` (run after changing routes or projects) |
-| `bun run typecheck` | `tsc --noEmit` |
-| `bun test` | Run test suite with Bun's native test runner |
-| `bun run check` | Biome lint + format (writes) |
+| Script              | Purpose                                                                 |
+| ------------------- | ----------------------------------------------------------------------- |
+| `bun run dev`       | Dev server                                                              |
+| `bun run build`     | Static export to `out/` (every route prerendered)                       |
+| `bun run start`     | Serve the exported `out/` locally                                       |
+| `bun run sitemap`   | Regenerate `public/sitemap.xml` (run after changing routes or projects) |
+| `bun run typecheck` | `tsc --noEmit`                                                          |
+| `bun test`          | Run test suite with Bun's native test runner                            |
+| `bun run check`     | Biome lint + format (writes)                                            |
 
 ## <img src="https://img.shields.io/badge/Deploy-EA580C?style=flat-square&logo=cloudflarepages&logoColor=white" height="20" valign="middle" alt="Deploy" />
 
@@ -100,7 +99,7 @@ bunx wrangler pages deploy out
 Then enable the AI binding: two things must match:
 
 1. **`wrangler.jsonc`** already has `"ai": { "binding": "AI" }` (nothing to edit).
-2. **Dashboard binding:** Cloudflare dashboard → *Workers & Pages* → this Pages project → *Settings* → *Bindings* (older UI: *Functions* → *AI bindings*) → add a **Workers AI** binding named exactly `AI`. Git-connected deploys pick this up from `wrangler.jsonc`; direct `wrangler pages deploy` requires the dashboard binding.
+2. **Dashboard binding:** Cloudflare dashboard → _Workers & Pages_ → this Pages project → _Settings_ → _Bindings_ (older UI: _Functions_ → _AI bindings_) → add a **Workers AI** binding named exactly `AI`. Git-connected deploys pick this up from `wrangler.jsonc`; direct `wrangler pages deploy` requires the dashboard binding.
 
 The binding uses Workers AI on the free tier, model `@cf/meta/llama-3.3-70b-instruct-fp8-fast` (see `functions/api/chat.ts`). No API keys involved: the binding is authenticated by the deployment itself, so no secrets are stored anywhere.
 
@@ -125,17 +124,15 @@ curl -X POST localhost:8788/api/chat \
 - `POST /api/chat` returns JSON: try the site widget.
 - Submit `https://<domain>/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
-
-
 ## <img src="https://img.shields.io/badge/Content-16A34A?style=flat-square" height="20" valign="middle" alt="Content" />
 
 All copy lives in data files: no CMS, no database.
 
-| File | Contents |
-| --- | --- |
-| `data/content/home.ts` | Skills, experience, education, hobbies |
-| `data/content/projects.ts` | Projects and their tags (`/projects/tag/*` pages are generated from these) |
-| `data/global.ts` | `SITE_URL` / `SITE_NAME` / `SITE_DESC`, nav routes (also drives PageNav prev/next), social links |
+| File                       | Contents                                                                                         |
+| -------------------------- | ------------------------------------------------------------------------------------------------ |
+| `data/content/home.ts`     | Skills, experience, education, hobbies                                                           |
+| `data/content/projects.ts` | Projects and their tags (`/projects/tag/*` pages are generated from these)                       |
+| `data/global.ts`           | `SITE_URL` / `SITE_NAME` / `SITE_DESC`, nav routes (also drives PageNav prev/next), social links |
 
 Design tokens (colors, fonts, animations) are defined once in the `@theme` block in `styles/main.css`.
 
@@ -165,20 +162,19 @@ Edit `public/_headers`. After deploy, verify with `curl -I https://bisu.com.np`.
 
 `components/global/ChatAssistant.tsx` (client) calls `POST /api/chat`, handled by the Cloudflare Pages Function in `functions/api/chat.ts`, which proxies to Workers AI (Llama 3.3 70B). The persona/project facts live in the `SYSTEM_PROMPT` there: update it whenever projects or skills change. Powered by Cloudflare Workers AI via the `AI` binding in `wrangler.jsonc`.
 
-
 ## <img src="https://img.shields.io/badge/Performance-DC2626?style=flat-square" height="20" valign="middle" alt="Performance" />
 
 Static export, no third-party runtime dependencies, and every animation is CSS `transform`/`opacity` only (GPU-composited, and frozen for `prefers-reduced-motion`).
 
-| Decision | Why |
-| --- | --- |
-| Fonts loaded at 400/500/700 sans + 400 mono | Only the weights the design uses; each extra weight is another preloaded file. 300/600/900 in markup resolve to the loaded neighbours. |
-| Icons self-hosted in `public/static/icons/tech` | Was 25 requests to `cdn.jsdelivr.net`/`cdn.simpleicons.org` per `/tech-stack` load; now same-origin, cached, and lazy. |
-| Screenshots as WebP, two widths | Grid cards request the 600px variant via `srcset`/`sizes` (~87KB for the whole grid instead of ~195KB); detail pages get the 1200px one, `fetchpriority="high"`. |
-| Education logos resized to 320px WebP | 152KB of source images became 18KB at the ~120px they render. |
-| One shared `IntersectionObserver` | `/tech-stack` alone mounts 30 `Reveal` wrappers; one observer serves them all. |
-| Analytics loads `lazyOnload` | gtag no longer competes with hydration. |
-| `contain: paint` on the doodle layer | The six drifting doodles can never invalidate layout or paint outside their layer. |
+| Decision                                        | Why                                                                                                                                                              |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fonts loaded at 400/500/700 sans + 400 mono     | Only the weights the design uses; each extra weight is another preloaded file. 300/600/900 in markup resolve to the loaded neighbours.                           |
+| Icons self-hosted in `public/static/icons/tech` | Was 25 requests to `cdn.jsdelivr.net`/`cdn.simpleicons.org` per `/tech-stack` load; now same-origin, cached, and lazy.                                           |
+| Screenshots as WebP, two widths                 | Grid cards request the 600px variant via `srcset`/`sizes` (~87KB for the whole grid instead of ~195KB); detail pages get the 1200px one, `fetchpriority="high"`. |
+| Education logos resized to 320px WebP           | 152KB of source images became 18KB at the ~120px they render.                                                                                                    |
+| One shared `IntersectionObserver`               | `/tech-stack` alone mounts 30 `Reveal` wrappers; one observer serves them all.                                                                                   |
+| Analytics loads `lazyOnload`                    | gtag no longer competes with hydration.                                                                                                                          |
+| `contain: paint` on the doodle layer            | The six drifting doodles can never invalidate layout or paint outside their layer.                                                                               |
 
 Known floor: ~134KB gzipped JS per page is the React + Next runtime; the site's own code is a few KB of it. Going below that means dropping React (e.g. static HTML + tiny islands), not micro-optimising.
 
@@ -190,5 +186,3 @@ Built on the open-source portfolio template by [Brayden W](https://braydentw.io)
 - [Simple Icons](https://simpleicons.org): tech-stack icons in `public/static/icons/tech/`.
 - [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/) + [Llama 3.3 70B](https://www.llama.com): the chat assistant backend.
 - [shields.io](https://shields.io): badges in this README.
-
-
