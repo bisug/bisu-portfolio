@@ -32,7 +32,10 @@ function Page({
       <Head>
         <title>{pageTitle}</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
         <meta name="description" content={desc} />
         {/* A noindex page (404) has no canonical URL of its own; pointing it at the homepage would be misleading. */}
         {!noindex && <link rel="canonical" href={pageUrl} />}
@@ -69,10 +72,22 @@ function Page({
           content="#f4f7fc"
           media="(prefers-color-scheme: light)"
         />
-        <link rel="alternate" type="text/plain" href={`${SITE_URL}/llms.txt`} title="LLM context" />
+        <link
+          rel="alternate"
+          type="text/plain"
+          href={`${SITE_URL}/llms.txt`}
+          title="LLM context"
+        />
 
         {/* A noindex page (404) carries no entity data worth publishing. */}
-        {!noindex && <StructuredData path={path} title={pageTitle} desc={desc} extra={schema} />}
+        {!noindex && (
+          <StructuredData
+            path={path}
+            title={pageTitle}
+            desc={desc}
+            extra={schema}
+          />
+        )}
       </Head>
 
       {GA_ID && (
@@ -106,7 +121,10 @@ function Page({
       </a>
 
       <Navbar currentPage={currentPage} />
-      <main id="main-content" className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl mx-auto">
+      <main
+        id="main-content"
+        className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl mx-auto"
+      >
         {children}
         <Reveal>
           <PageNav currentPage={currentPage} />

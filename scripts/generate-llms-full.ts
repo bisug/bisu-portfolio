@@ -71,7 +71,9 @@ const skillsMarkdown = [
   `- **Systems & Ops**: ${categorySkills("Systems & Ops")}`,
 ].join("\n");
 
-const faqsMarkdown = faqs.map((f) => `### Q: ${f.question}\n\nA: ${f.answer}`).join("\n\n");
+const faqsMarkdown = faqs
+  .map((f) => `### Q: ${f.question}\n\nA: ${f.answer}`)
+  .join("\n\n");
 
 const socialsMarkdown = socials.map((s) => `- ${s.name}: ${s.link}`).join("\n");
 

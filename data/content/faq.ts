@@ -11,7 +11,8 @@ export const faqs: FAQItem[] = [
   },
   {
     question: "Where is Bisu Ghalan based?",
-    answer: "Bhaktapur, Nepal (UTC+5:45), studying at Lincoln International College in Kathmandu.",
+    answer:
+      "Bhaktapur, Nepal (UTC+5:45), studying at Lincoln International College in Kathmandu.",
   },
   {
     question: "Is Bisu Ghalan available for internships or freelance work?",

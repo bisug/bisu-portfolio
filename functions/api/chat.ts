@@ -130,10 +130,12 @@ function forbidden(request: Request): boolean {
 function rateLimited(ip: string): boolean {
   const now = Date.now();
   const minute = hits.get(ip);
-  if (!minute || now > minute.reset) hits.set(ip, { count: 1, reset: now + 60_000 });
+  if (!minute || now > minute.reset)
+    hits.set(ip, { count: 1, reset: now + 60_000 });
   else if (++minute.count > 12) return true;
   const day = daily.get(ip);
-  if (!day || now > day.reset) daily.set(ip, { count: 1, reset: now + 86_400_000 });
+  if (!day || now > day.reset)
+    daily.set(ip, { count: 1, reset: now + 86_400_000 });
   else if (++day.count > 80) return true;
   return false;
 }
@@ -160,18 +162,27 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
 const handlePost: PagesFunction<Env> = async ({ request, env }) => {
   if (forbidden(request)) {
-    return Response.json({ error: "This assistant answers on bisu.com.np." }, { status: 403 });
+    return Response.json(
+      { error: "This assistant answers on bisu.com.np." },
+      { status: 403 },
+    );
   }
   if (!env.AI) {
     return Response.json(
-      { error: "AI binding missing: add a Workers AI binding named 'AI' to the Pages project." },
+      {
+        error:
+          "AI binding missing: add a Workers AI binding named 'AI' to the Pages project.",
+      },
       { status: 503 },
     );
   }
 
   const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
   if (rateLimited(ip)) {
-    return Response.json({ error: "Too many requests, slow down." }, { status: 429 });
+    return Response.json(
+      { error: "Too many requests, slow down." },
+      { status: 429 },
+    );
   }
 
   let body: { messages?: ChatMessage[]; stream?: boolean };
@@ -182,14 +193,19 @@ const handlePost: PagesFunction<Env> = async ({ request, env }) => {
   }
 
   const history = (body.messages ?? []).filter(
-    (m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string",
+    (m) =>
+      (m.role === "user" || m.role === "assistant") &&
+      typeof m.content === "string",
   );
   const userTurns = history.filter((m) => m.role === "user");
   if (userTurns.length === 0) {
     return Response.json({ error: "No messages provided." }, { status: 400 });
   }
   if (userTurns.length > 12 || JSON.stringify(body.messages).length > 24_000) {
-    return Response.json({ error: "Conversation too long: start a fresh chat." }, { status: 413 });
+    return Response.json(
+      { error: "Conversation too long: start a fresh chat." },
+      { status: 413 },
+    );
   }
 
   const cleanUser = (s: string) =>
@@ -204,7 +220,10 @@ const handlePost: PagesFunction<Env> = async ({ request, env }) => {
     { role: "system", content: SYSTEM_PROMPT },
     ...history.slice(-10).map((m) => ({
       ...m,
-      content: (m.role === "user" ? cleanUser(m.content) : m.content).slice(0, 2000),
+      content: (m.role === "user" ? cleanUser(m.content) : m.content).slice(
+        0,
+        2000,
+      ),
     })),
   ];
 
@@ -217,9 +236,16 @@ const handlePost: PagesFunction<Env> = async ({ request, env }) => {
     })) as { response?: string };
     const text = sanitize(out?.response ?? "");
     if (!text) throw new Error("empty AI response");
-    return Response.json({ response: text, model: MODEL_LABEL, poweredBy: POWERED_BY });
+    return Response.json({
+      response: text,
+      model: MODEL_LABEL,
+      poweredBy: POWERED_BY,
+    });
   } catch (e) {
     console.error("chat AI.run failed:", e instanceof Error ? e.message : e);
-    return Response.json({ error: "AI request failed, try again." }, { status: 502 });
+    return Response.json(
+      { error: "AI request failed, try again." },
+      { status: 502 },
+    );
   }
 };

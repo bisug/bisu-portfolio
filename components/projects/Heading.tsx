@@ -33,11 +33,11 @@ function Heading({ tag, subtitle }: HeadingProps) {
       subtitle={
         <>
           A selection of things I&apos;ve built:{" "}
-          <strong className="text-white font-medium">security tooling</strong> and{" "}
-          <strong className="text-white font-medium">CLIs</strong>,{" "}
+          <strong className="text-white font-medium">security tooling</strong>{" "}
+          and <strong className="text-white font-medium">CLIs</strong>,{" "}
           <strong className="text-white font-medium">Telegram bots</strong>, and{" "}
-          <strong className="text-white font-medium">full-stack apps</strong>. Most of them started
-          as an excuse to learn something new.
+          <strong className="text-white font-medium">full-stack apps</strong>.
+          Most of them started as an excuse to learn something new.
         </>
       }
       subtitleClassName="text-fun-gray text-base sm:text-lg md:text-xl max-w-2xl md:max-w-3xl m-auto leading-relaxed text-balance"

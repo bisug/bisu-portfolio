@@ -22,7 +22,9 @@ function SocialIcons() {
               height={20}
               alt=""
               aria-hidden="true"
-              className={item.accentIcon ? "icon-accent-light" : "icon-invert-light"}
+              className={
+                item.accentIcon ? "icon-accent-light" : "icon-invert-light"
+              }
             />
           </a>
         );

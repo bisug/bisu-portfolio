@@ -14,7 +14,12 @@ type StructuredDataProps = {
  * is (WebSite/WebPage), and, on the projects page, the works themselves.
  * Answer engines and search engines both read this instead of guessing from prose.
  */
-function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) {
+function StructuredData({
+  path,
+  title,
+  desc,
+  extra = [],
+}: StructuredDataProps) {
   const personId = `${SITE_URL}/#person`;
 
   const graph: Record<string, unknown>[] = [
@@ -25,13 +30,22 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       url: SITE_URL,
       jobTitle: "Developer & Security Researcher",
       description: SITE_DESC,
-      email: socials.find((social) => social.link.startsWith("mailto:"))?.link.slice(7),
+      email: socials
+        .find((social) => social.link.startsWith("mailto:"))
+        ?.link.slice(7),
       image: `${SITE_URL}/static/misc/og.png`,
       knowsLanguage: ["en", "ne"],
-      address: { "@type": "PostalAddress", addressLocality: "Bhaktapur", addressCountry: "NP" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Bhaktapur",
+        addressCountry: "NP",
+      },
       sameAs: socials
         // Own site URL is already `url` above: sameAs is for profiles elsewhere.
-        .filter((social) => social.link.startsWith("http") && social.link !== SITE_URL)
+        .filter(
+          (social) =>
+            social.link.startsWith("http") && social.link !== SITE_URL,
+        )
         .map((s) => s.link),
       knowsAbout: skills.map((skill) => skill.title),
       alumniOf: education.map((item) => ({
@@ -150,10 +164,10 @@ function StructuredData({ path, title, desc, extra = [] }: StructuredDataProps) 
       // Escaping "<" keeps a "</script>" inside any future description from
       // closing this tag early.
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(
-          /</g,
-          "\\u003c",
-        ),
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": graph,
+        }).replace(/</g, "\\u003c"),
       }}
     />
   );

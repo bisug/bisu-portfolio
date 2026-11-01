@@ -85,7 +85,9 @@ function Page404() {
 
         <p className="mt-8 text-fun-gray sm:text-lg">
           Sorry, that page wandered off.{" "}
-          <strong className="text-white font-medium">Here&apos;s where to go:</strong>
+          <strong className="text-white font-medium">
+            Here&apos;s where to go:
+          </strong>
         </p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

@@ -21,7 +21,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<TagPageProps, { tag: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<
+  TagPageProps,
+  { tag: string }
+> = async ({ params }) => {
   const tag = params?.tag ?? "";
   const filteredProjects = projects.filter((project) =>
     project.tags.some((projectTag) => kebabCase(projectTag) === tag),

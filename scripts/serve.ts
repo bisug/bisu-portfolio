@@ -37,11 +37,16 @@ Bun.serve({
     if (resolved !== ROOT && !resolved.startsWith(ROOT + sep)) {
       return new Response("Not found", { status: 404 });
     }
-    const candidates = [resolved, `${resolved}.html`, `${resolved}${sep}index.html`];
+    const candidates = [
+      resolved,
+      `${resolved}.html`,
+      `${resolved}${sep}index.html`,
+    ];
     for (const c of candidates) {
       const file = Bun.file(c);
       if (await file.exists()) {
-        const type = TYPES[extname(c).toLowerCase()] ?? "application/octet-stream";
+        const type =
+          TYPES[extname(c).toLowerCase()] ?? "application/octet-stream";
         return new Response(file, { headers: { "Content-Type": type } });
       }
     }

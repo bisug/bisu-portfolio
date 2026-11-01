@@ -25,7 +25,11 @@ function Skills() {
             <div className="grid grid-cols-2 min-[440px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4">
               {items.map((item, index) => {
                 return (
-                  <Reveal key={item.title} delay={(index % 6) * 40} className="h-full">
+                  <Reveal
+                    key={item.title}
+                    delay={(index % 6) * 40}
+                    className="h-full"
+                  >
                     <div
                       title={item.title}
                       className="group flex h-full flex-col items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.02] p-3 sm:py-4 sm:px-3 transition-all duration-200 hover:-translate-y-1 hover:border-fun-accent/50 hover:bg-white/[0.04] hover:shadow-lg hover:shadow-fun-accent/10"

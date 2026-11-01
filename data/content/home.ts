@@ -109,9 +109,24 @@ export const skills: Skill[] = [
     mono: true,
     category: "AI & Tools",
   },
-  { title: "Codex", icon: "/static/icons/codex.svg", mono: true, category: "AI & Tools" },
-  { title: "Copilot", icon: "/static/icons/copilot.svg", mono: true, category: "AI & Tools" },
-  { title: "Zed", icon: "/static/icons/zed.svg", mono: true, category: "AI & Tools" },
+  {
+    title: "Codex",
+    icon: "/static/icons/codex.svg",
+    mono: true,
+    category: "AI & Tools",
+  },
+  {
+    title: "Copilot",
+    icon: "/static/icons/copilot.svg",
+    mono: true,
+    category: "AI & Tools",
+  },
+  {
+    title: "Zed",
+    icon: "/static/icons/zed.svg",
+    mono: true,
+    category: "AI & Tools",
+  },
   // Systems & Ops
   {
     title: "Linux",
@@ -144,7 +159,11 @@ export const skills: Skill[] = [
     icon: "/static/icons/tech/github-actions.svg",
     category: "Systems & Ops",
   },
-  { title: "VMware", icon: "/static/icons/tech/vmware.svg", category: "Systems & Ops" },
+  {
+    title: "VMware",
+    icon: "/static/icons/tech/vmware.svg",
+    category: "Systems & Ops",
+  },
   {
     title: "Git",
     icon: "/static/icons/tech/git.svg",
@@ -200,7 +219,8 @@ export const events: EventItem[] = [
 
 export const education: EducationItem[] = [
   {
-    degree: "Bachelor of Computer Science (Hons): Cyber Security & Network Technology",
+    degree:
+      "Bachelor of Computer Science (Hons): Cyber Security & Network Technology",
     school: "Lincoln International College, Kathmandu",
     period: "Batch of Sept 2025",
     desc: "Affiliated with Lincoln University College, Malaysia. Focus: network infrastructure and defensive security.",

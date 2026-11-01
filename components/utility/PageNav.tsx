@@ -13,7 +13,9 @@ function PageNav({ currentPage }: { currentPage: string }) {
     <nav
       aria-label="Page navigation"
       className={`mt-12 ${
-        prevRoute && nextRoute ? "grid grid-cols-1 sm:grid-cols-2 gap-4" : "flex justify-end w-full"
+        prevRoute && nextRoute
+          ? "grid grid-cols-1 sm:grid-cols-2 gap-4"
+          : "flex justify-end w-full"
       }`}
     >
       {prevRoute && (
@@ -63,7 +65,9 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
         <span className="font-mono text-xs uppercase tracking-widest text-fun-gray-light">
           {label}
         </span>
-        <span className="mt-0.5 block truncate text-sm font-bold text-white">{route.title}</span>
+        <span className="mt-0.5 block truncate text-sm font-bold text-white">
+          {route.title}
+        </span>
         <span className="mt-0.5 hidden truncate text-xs text-fun-gray-light sm:block">
           {route.desc}
         </span>
@@ -74,10 +78,20 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
 
 function ArrowIcon({ direction }: { direction: "prev" | "next" }) {
   return (
-    <svg className="h-4 w-4" width="16" height="16" viewBox="0 0 24 24" fill="none">
+    <svg
+      className="h-4 w-4"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
       <title>{direction === "next" ? "Next page" : "Previous page"}</title>
       <path
-        d={direction === "next" ? "M5 12h14M13 6l6 6-6 6" : "M19 12H5M11 6l-6 6 6 6"}
+        d={
+          direction === "next"
+            ? "M5 12h14M13 6l6 6-6 6"
+            : "M19 12H5M11 6l-6 6 6 6"
+        }
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"

@@ -44,7 +44,9 @@ function ThemeToggle() {
       };
     };
 
-    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     // Fallback if View Transitions API is not supported or reduced motion is requested
     if (!doc.startViewTransition || isReducedMotion) {
@@ -113,7 +115,10 @@ function ThemeToggle() {
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
       className="group relative flex h-11 w-11 items-center justify-center rounded-xl text-gray-100 transition-colors duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
     >
-      <div className="relative h-5 w-5 flex items-center justify-center" aria-hidden="true">
+      <div
+        className="relative h-5 w-5 flex items-center justify-center"
+        aria-hidden="true"
+      >
         {/* Sun Icon (displayed in dark mode to prompt switching to light) */}
         <span
           className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-300 ease-out will-change-transform ${
@@ -142,7 +147,13 @@ function ThemeToggle() {
 
 function SunIcon() {
   return (
-    <svg className="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg
+      className="h-5 w-5"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
       <title>Sun</title>
       <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
       <path
@@ -157,7 +168,13 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg className="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg
+      className="h-5 w-5"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
       <title>Moon</title>
       <path
         d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"

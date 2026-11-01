@@ -17,7 +17,9 @@ function localReply(q: string): string {
 
   // 1. Greetings
   if (
-    /^(hi|hello|hey|yo|sup|namaste|morning|afternoon|evening|hola|howdy)(\b|\s)/.test(s) ||
+    /^(hi|hello|hey|yo|sup|namaste|morning|afternoon|evening|hola|howdy)(\b|\s)/.test(
+      s,
+    ) ||
     s === "hi" ||
     s === "hello" ||
     s === "hey"
@@ -71,17 +73,27 @@ function localReply(q: string): string {
   }
 
   // 6. Hiring & internships
-  if (/hire|intern|internship|job|opportunity|freelance|available|contract|work with/.test(s)) {
+  if (
+    /hire|intern|internship|job|opportunity|freelance|available|contract|work with/.test(
+      s,
+    )
+  ) {
     return "Yes! Bisu is actively open to internships, freelance projects, and security-focused software work, especially around Telegram bots, automated CLI utilities, and full-stack web applications. Feel free to shoot him an [email](mailto:bisu.ghlan@gmail.com) or reach out on [LinkedIn](https://www.linkedin.com/in/bisug/) to talk details!";
   }
 
   // 7. Contact information
-  if (/contact|email|reach|linkedin|github|instagram|social|talk|message/.test(s)) {
+  if (
+    /contact|email|reach|linkedin|github|instagram|social|talk|message/.test(s)
+  ) {
     return "You can get in touch with Bisu via [email](mailto:bisu.ghlan@gmail.com), explore his public code on [GitHub](https://github.com/bisug), or connect professionally on [LinkedIn](https://www.linkedin.com/in/bisug/). Head over to the [Contact page](https://bisu.com.np/contact) for direct links!";
   }
 
   // 8. Hackathons & experience
-  if (/experience|hackathon|junction|build nepal|runtime terrors|team|competition/.test(s)) {
+  if (
+    /experience|hackathon|junction|build nepal|runtime terrors|team|competition/.test(
+      s,
+    )
+  ) {
     return "Bisu loves the fast-paced intensity of hackathons! He teamed up with Runtime Terrors to build Paila at JunctionX Kathmandu (May 2026), and collaborated with Team Bugger on NetGuard at the Build Nepal Hackathon (August 2026). Check out the [Experience page](https://bisu.com.np/experience) for the full breakdown!";
   }
 
@@ -254,7 +266,10 @@ function ChatAssistant() {
     const q = text.trim();
     if (!q || loading) return;
     setInput("");
-    const next: Msg[] = [...msgs, { id: idRef.current++, role: "user", content: q }];
+    const next: Msg[] = [
+      ...msgs,
+      { id: idRef.current++, role: "user", content: q },
+    ];
     setMsgs(next);
     setLoading(true);
     try {
@@ -262,18 +277,27 @@ function ChatAssistant() {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          messages: next.slice(-10).map((m) => ({ role: m.role, content: m.content })),
+          messages: next
+            .slice(-10)
+            .map((m) => ({ role: m.role, content: m.content })),
         }),
       });
       if (!res.ok || !res.body) throw new Error(`http ${res.status}`);
       const data = (await res.json()) as { response?: string; error?: string };
-      if (!data.response?.trim()) throw new Error(data.error ?? `http ${res.status}`);
+      if (!data.response?.trim())
+        throw new Error(data.error ?? `http ${res.status}`);
       const cleaned = clean(data.response);
       setFailed(false);
-      setMsgs([...next, { id: idRef.current++, role: "assistant", content: cleaned }]);
+      setMsgs([
+        ...next,
+        { id: idRef.current++, role: "assistant", content: cleaned },
+      ]);
     } catch {
       setFailed(true);
-      setMsgs([...next, { id: idRef.current++, role: "assistant", content: localReply(q) }]);
+      setMsgs([
+        ...next,
+        { id: idRef.current++, role: "assistant", content: localReply(q) },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -297,7 +321,9 @@ function ChatAssistant() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-fun-accent" />
               </span>
               <div>
-                <p className="text-xs font-bold text-white leading-none">Bisu AI Assistant</p>
+                <p className="text-xs font-bold text-white leading-none">
+                  Bisu AI Assistant
+                </p>
                 <p className="text-[10px] text-fun-gray-light leading-none mt-1">
                   Online &amp; ready
                 </p>
@@ -340,7 +366,10 @@ function ChatAssistant() {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm" aria-live="polite">
+          <div
+            className="flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm"
+            aria-live="polite"
+          >
             {msgs.map((m) => (
               <div
                 key={m.id}
@@ -350,7 +379,11 @@ function ChatAssistant() {
                     : "bg-white/[0.06] text-fun-gray-light rounded-bl-sm border border-white/5"
                 }`}
               >
-                {m.role === "assistant" ? <Reply text={m.content || "..."} /> : m.content || "..."}
+                {m.role === "assistant" ? (
+                  <Reply text={m.content || "..."} />
+                ) : (
+                  m.content || "..."
+                )}
               </div>
             ))}
             {loading && msgs[msgs.length - 1]?.role === "user" && (
@@ -426,7 +459,13 @@ function ChatAssistant() {
         aria-expanded={open}
         className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-fun-accent text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
           {open ? (
             <path
               d="M6 6l12 12M18 6L6 18"

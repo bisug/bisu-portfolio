@@ -71,7 +71,9 @@ const projects: Project[] = [
   },
 ];
 
-export const allTags: string[] = [...new Set(projects.flatMap((project) => project.tags))];
+export const allTags: string[] = [
+  ...new Set(projects.flatMap((project) => project.tags)),
+];
 
 export const allKebabTags = allTags.map((tag) => kebabCase(tag));
 
@@ -79,7 +81,8 @@ export const allKebabTags = allTags.map((tag) => kebabCase(tag));
 export const projectSlug = (project: Project) => kebabCase(project.title);
 
 /** Half-width variant of a project screenshot, for grid cards. */
-export const projectThumb = (img: string) => img.replace(/\.webp$/, "-600.webp");
+export const projectThumb = (img: string) =>
+  img.replace(/\.webp$/, "-600.webp");
 
 /* Note for future readers: React 19 serialises `srcSet`/`fetchPriority` in
    camelCase (verified against react-dom 19.3). The HTML parser lowercases

@@ -28,7 +28,12 @@ function PageHeading({
       <Component className={titleClassName}>
         {title}
         {doodle && (
-          <img className={doodleClassName} src={doodle} alt={doodleAlt} aria-hidden="true" />
+          <img
+            className={doodleClassName}
+            src={doodle}
+            alt={doodleAlt}
+            aria-hidden="true"
+          />
         )}
       </Component>
       {subtitle && <p className={subtitleClassName}>{subtitle}</p>}

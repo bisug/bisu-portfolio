@@ -27,14 +27,20 @@ function Navbar({ currentPage }: { currentPage: string }) {
   useEffect(() => {
     let lastScrollY = Math.max(
       0,
-      window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0,
+      window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        window.scrollY ||
+        0,
     );
     let ticking = false;
 
     const updateScrollDir = () => {
       const currentScrollY = Math.max(
         0,
-        window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0,
+        window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          window.scrollY ||
+          0,
       );
 
       // Always show near the top of the page
@@ -75,7 +81,8 @@ function Navbar({ currentPage }: { currentPage: string }) {
     if (!isMenuOpen) return;
 
     function handlePointerDown(event: PointerEvent) {
-      if (!menuRef.current?.contains(event.target as Node)) setIsMenuOpen(false);
+      if (!menuRef.current?.contains(event.target as Node))
+        setIsMenuOpen(false);
     }
     function handleKeyDown(event: KeyboardEvent) {
       // Return focus to the toggle so keyboard users aren't dropped to body
@@ -105,7 +112,11 @@ function Navbar({ currentPage }: { currentPage: string }) {
       <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <nav className="relative" aria-label="Main navigation">
           <div className="flex w-full items-center justify-between py-4">
-            <Link href="/" aria-label="Home" className="flex items-center gap-2 font-black text-xl">
+            <Link
+              href="/"
+              aria-label="Home"
+              className="flex items-center gap-2 font-black text-xl"
+            >
               <img
                 className="transition-transform duration-500 hover:rotate-[360deg] hover:scale-90"
                 src="/static/logos/logo_no_text.svg"
@@ -134,7 +145,9 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   <Link
                     key={item.path}
                     href={item.path}
-                    aria-current={currentPage === item.title ? "page" : undefined}
+                    aria-current={
+                      currentPage === item.title ? "page" : undefined
+                    }
                     className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
                       currentPage === item.title
                         ? "bg-white/10 text-fun-accent font-semibold"
@@ -153,7 +166,9 @@ function Navbar({ currentPage }: { currentPage: string }) {
                 <button
                   ref={buttonRef}
                   className={`flex h-11 w-11 items-center justify-center rounded-xl transition-colors duration-200 ${
-                    isMenuOpen ? "bg-white/10 text-white" : "text-gray-100 hover:bg-white/10"
+                    isMenuOpen
+                      ? "bg-white/10 text-white"
+                      : "text-gray-100 hover:bg-white/10"
                   }`}
                   aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                   aria-expanded={isMenuOpen}
@@ -177,7 +192,9 @@ function Navbar({ currentPage }: { currentPage: string }) {
                         <Link
                           href={item.path}
                           onClick={() => setIsMenuOpen(false)}
-                          aria-current={currentPage === item.title ? "page" : undefined}
+                          aria-current={
+                            currentPage === item.title ? "page" : undefined
+                          }
                           className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                             currentPage === item.title
                               ? "bg-white/10 text-fun-accent font-semibold"
@@ -207,7 +224,10 @@ function Navbar({ currentPage }: { currentPage: string }) {
 
 function MenuIcon({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="relative h-6 w-6 flex items-center justify-center" aria-hidden="true">
+    <div
+      className="relative h-6 w-6 flex items-center justify-center"
+      aria-hidden="true"
+    >
       <span
         className={`absolute block h-0.5 w-5 bg-current rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? "rotate-45 translate-y-0" : "-translate-y-1.5"

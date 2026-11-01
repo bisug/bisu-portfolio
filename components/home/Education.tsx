@@ -37,7 +37,9 @@ function Education() {
                     />
                   )}
                 </p>
-                <p className="text-fun-gray text-xs font-mono mt-1 tracking-wide">{item.period}</p>
+                <p className="text-fun-gray text-xs font-mono mt-1 tracking-wide">
+                  {item.period}
+                </p>
                 {item.desc && (
                   <p className="text-fun-gray text-xs sm:text-sm mt-2.5 leading-relaxed">
                     {item.desc}

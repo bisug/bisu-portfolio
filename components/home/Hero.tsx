@@ -22,7 +22,8 @@ function Hero() {
       >
         CS student &amp; security researcher from Nepal. Building{" "}
         <strong className="text-white font-medium">Telegram bots</strong>,{" "}
-        <strong className="text-white font-medium">command-line tools</strong>, and{" "}
+        <strong className="text-white font-medium">command-line tools</strong>,
+        and{" "}
         <strong className="text-white font-medium">full-stack web apps</strong>.
       </p>
       <div

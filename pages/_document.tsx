@@ -17,7 +17,11 @@ class MyDocument extends Document {
             sizes="180x180"
             href="/static/favicon/apple-touch-icon.png"
           />
-          <link rel="icon" type="image/svg+xml" href="/static/logos/logo_no_text.svg" />
+          <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/static/logos/logo_no_text.svg"
+          />
           <link
             rel="icon"
             type="image/png"
@@ -33,7 +37,9 @@ class MyDocument extends Document {
           <link rel="manifest" href="/static/favicon/site.webmanifest" />
           {/* Without JS, Reveal/FadeImage never fire: force content visible. */}
           <noscript>
-            <style>{".reveal{opacity:1;transform:none}img.img-loading{opacity:1}"}</style>
+            <style>
+              {".reveal{opacity:1;transform:none}img.img-loading{opacity:1}"}
+            </style>
           </noscript>
         </Head>
         <body>

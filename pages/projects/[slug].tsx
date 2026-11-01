@@ -13,14 +13,17 @@ type ProjectPageProps = {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: projects.map((project) => ({ params: { slug: projectSlug(project) } })),
+    paths: projects.map((project) => ({
+      params: { slug: projectSlug(project) },
+    })),
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps<ProjectPageProps, { slug: string }> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<
+  ProjectPageProps,
+  { slug: string }
+> = async ({ params }) => {
   const project = projects.find((item) => projectSlug(item) === params?.slug);
   if (!project) return { notFound: true };
   return { props: { project } };

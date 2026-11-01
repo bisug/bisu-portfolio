@@ -46,7 +46,11 @@ interface Derivative {
   quality: number;
 }
 
-async function encode(src: string, width: number, quality: number): Promise<Buffer> {
+async function encode(
+  src: string,
+  width: number,
+  quality: number,
+): Promise<Buffer> {
   // failOn error: strict decode: a corrupt source aborts instead of shipping
   // a silently damaged derivative. Resize inside bounds without enlarging;
   // encode lossy WebP at quality.
@@ -61,7 +65,11 @@ function derivatives(): Derivative[] {
   const stemOf = (f: string) => f.slice(0, -extname(f).length);
 
   for (const f of readdirSync(join(STATIC, "projects")).sort()) {
-    if (!SOURCE_SUFFIXES.has(extname(f).toLowerCase()) || stemOf(f).endsWith("-600")) continue;
+    if (
+      !SOURCE_SUFFIXES.has(extname(f).toLowerCase()) ||
+      stemOf(f).endsWith("-600")
+    )
+      continue;
     const base = join(STATIC, "projects", stemOf(f));
     out.push({
       src: join(STATIC, "projects", f),
@@ -106,7 +114,10 @@ const maxKbFlag = process.argv.find((a) => a.startsWith("--max-kb"));
 // "--max-kb" with no/invalid value must not become NaN: that would disable
 // the budget check silently (every "size > NaN" comparison is false).
 const maxKb = maxKbFlag
-  ? Number(maxKbFlag.split("=")[1] ?? process.argv[process.argv.indexOf(maxKbFlag) + 1])
+  ? Number(
+      maxKbFlag.split("=")[1] ??
+        process.argv[process.argv.indexOf(maxKbFlag) + 1],
+    )
   : 150;
 if (!Number.isFinite(maxKb) || maxKb <= 0) {
   console.error(`invalid --max-kb value (got "${maxKbFlag}")`);
@@ -140,7 +151,9 @@ for (const { src, dest, width, quality } of items) {
   if (force || !current || !current.equals(data)) {
     const prev = current ? `${(current.length / 1024).toFixed(1)}KB -> ` : "";
     writeFileSync(dest, data);
-    console.log(`wrote  ${rel(dest)}  ${prev}${(data.length / 1024).toFixed(1)}KB`);
+    console.log(
+      `wrote  ${rel(dest)}  ${prev}${(data.length / 1024).toFixed(1)}KB`,
+    );
     written++;
   } else {
     kept++;
@@ -150,7 +163,9 @@ for (const { src, dest, width, quality } of items) {
 if (checkOnly) {
   for (const dest of missing) console.log(`missing: ${rel(dest)}`);
   if (missing.length > 0) {
-    console.log(`\n${missing.length} derived asset(s) missing; run \`bun run images\``);
+    console.log(
+      `\n${missing.length} derived asset(s) missing; run \`bun run images\``,
+    );
     process.exit(1);
   }
   console.log(`checked ${items.length} derived assets, all present`);

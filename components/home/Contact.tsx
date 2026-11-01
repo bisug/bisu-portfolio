@@ -67,8 +67,14 @@ function ContactActions({ small = false }: { small?: boolean }) {
 function Contact({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
-      <section aria-labelledby="contact-heading" className="w-full pt-8 pb-4 text-center">
-        <h2 id="contact-heading" className="text-lg font-bold tracking-tight mb-4">
+      <section
+        aria-labelledby="contact-heading"
+        className="w-full pt-8 pb-4 text-center"
+      >
+        <h2
+          id="contact-heading"
+          className="text-lg font-bold tracking-tight mb-4"
+        >
           Let&apos;s connect
         </h2>
         <ContactActions small />
@@ -77,9 +83,18 @@ function Contact({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <section aria-labelledby="contact-heading" className="relative w-full pt-20 pb-28 text-center">
-      <img className="w-30 m-auto mb-6 opacity-80" src="/static/doodles/lineBreak.svg" alt="" />
-      <p className="font-mono text-sm text-fun-accent mb-3 font-medium">Get in touch</p>
+    <section
+      aria-labelledby="contact-heading"
+      className="relative w-full pt-20 pb-28 text-center"
+    >
+      <img
+        className="w-30 m-auto mb-6 opacity-80"
+        src="/static/doodles/lineBreak.svg"
+        alt=""
+      />
+      <p className="font-mono text-sm text-fun-accent mb-3 font-medium">
+        Get in touch
+      </p>
       <h1
         id="contact-heading"
         className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance"
@@ -93,8 +108,8 @@ function Contact({ compact = false }: { compact?: boolean }) {
         <strong className="text-white font-medium">new opportunities</strong>.
       </p>
       <p className="font-mono text-xs text-fun-gray mb-10">
-        <strong className="text-white font-medium">Bhaktapur, Nepal</strong> · usually replies
-        within a few days
+        <strong className="text-white font-medium">Bhaktapur, Nepal</strong> ·
+        usually replies within a few days
       </p>
       <ContactActions />
 

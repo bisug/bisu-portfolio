@@ -22,8 +22,8 @@ function Experience() {
                   Freelance Developer
                 </h3>
                 <p className="text-sm sm:text-base text-fun-gray mt-1.5 leading-relaxed max-w-2xl">
-                  Building Telegram bots, automation tools, and full-stack web applications for
-                  clients and communities.
+                  Building Telegram bots, automation tools, and full-stack web
+                  applications for clients and communities.
                 </p>
               </div>
               <span className="shrink-0 self-start sm:self-center inline-flex items-center gap-2 rounded-full border border-fun-accent/30 bg-fun-accent/10 px-3.5 py-1.5 text-xs font-semibold text-fun-accent shadow-sm">
@@ -92,7 +92,10 @@ function Experience() {
                         ["Status", event.status],
                       ] as const
                     ).map(([label, value]) => (
-                      <div key={label} className="col-span-2 grid grid-cols-subgrid items-baseline">
+                      <div
+                        key={label}
+                        className="col-span-2 grid grid-cols-subgrid items-baseline"
+                      >
                         <dt className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-fun-gray py-0.5">
                           {label}
                         </dt>

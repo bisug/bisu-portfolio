@@ -15,26 +15,36 @@ function About() {
       <div className="max-w-3xl mx-auto w-full space-y-8">
         <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed">
           <p>
-            I&apos;m a computer science student at Lincoln International College in Kathmandu,
-            specializing in{" "}
+            I&apos;m a computer science student at Lincoln International College
+            in Kathmandu, specializing in{" "}
             <strong className="text-white font-medium">
               Cyber Security &amp; Network Technology
             </strong>
-            . For me, security isn&apos;t just theory; the best way to protect an application is to
-            understand exactly how it fails under real-world pressure.
+            . For me, security isn&apos;t just theory; the best way to protect
+            an application is to understand exactly how it fails under
+            real-world pressure.
           </p>
           <p>
             Most of my time goes into writing{" "}
-            <strong className="text-white font-medium">Python, Go, or TypeScript</strong>. I build
-            software people rely on daily, ranging from high-throughput{" "}
-            <strong className="text-white font-medium">Telegram bots</strong> and lightning-fast{" "}
-            <strong className="text-white font-medium">CLI tools</strong> to hackathon-winning{" "}
-            <strong className="text-white font-medium">web platforms</strong> built under tight
-            sprint deadlines.
+            <strong className="text-white font-medium">
+              Python, Go, or TypeScript
+            </strong>
+            . I build software people rely on daily, ranging from
+            high-throughput{" "}
+            <strong className="text-white font-medium">Telegram bots</strong>{" "}
+            and lightning-fast{" "}
+            <strong className="text-white font-medium">CLI tools</strong> to
+            hackathon-winning{" "}
+            <strong className="text-white font-medium">web platforms</strong>{" "}
+            built under tight sprint deadlines.
           </p>
           <p>
-            Based in <strong className="text-white font-medium">Bhaktapur, Nepal</strong>. I&apos;m
-            actively <strong className="text-fun-accent font-medium">seeking internships</strong>{" "}
+            Based in{" "}
+            <strong className="text-white font-medium">Bhaktapur, Nepal</strong>
+            . I&apos;m actively{" "}
+            <strong className="text-fun-accent font-medium">
+              seeking internships
+            </strong>{" "}
             where I can ship resilient production code.
           </p>
         </div>
