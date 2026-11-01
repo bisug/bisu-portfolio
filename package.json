@@ -14,8 +14,7 @@
     "test": "bun test",
     "lint": "biome lint .",
     "format": "bun fmt",
-    "check": "bun fmt --check",
-    "prepare": "vp config"
+    "check": "bun fmt --check"
   },
   "dependencies": {
     "next": "^16.4.3",
