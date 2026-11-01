@@ -10,7 +10,7 @@
     "llms": "bun scripts/generate-llms-full.ts",
     "images": "bun scripts/optimize-images.ts",
     "images:check": "bun scripts/optimize-images.ts --check",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "bun check",
     "test": "bun test",
     "lint": "biome lint .",
     "format": "bun fmt",
