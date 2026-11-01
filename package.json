@@ -13,8 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "bun test",
     "lint": "biome lint .",
-    "format": "biome format --write .",
-    "check": "biome check --write .",
+    "format": "bun fmt",
+    "check": "bun fmt --check",
     "prepare": "vp config"
   },
   "dependencies": {
