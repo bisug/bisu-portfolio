@@ -5,7 +5,7 @@ const projects: Project[] = [
   {
     id: 0,
     title: "BinaryInspector",
-    desc: "Safe, local Rust CLI for inspecting ELF binaries, headers, and security mitigations without executing them.",
+    desc: "Rust CLI for inspecting ELF binaries, headers, and security mitigations without executing them.",
     img: "/static/projects/BinaryInspector.webp",
     github: "https://github.com/bisug/BinaryInspector",
     tags: ["Rust", "CLI", "Security"],
@@ -13,7 +13,7 @@ const projects: Project[] = [
   {
     id: 1,
     title: "Paila",
-    desc: "Travel & community platform bridging tourists and local communities in Nepal, built with Next.js and Supabase.",
+    desc: "Travel platform connecting tourists with local hosts in Nepal. Built with Next.js and Supabase.",
     img: "/static/projects/Paila.webp",
     link: "https://paila-prototype.vercel.app",
     github: "https://github.com/bisug/Paila",
@@ -22,7 +22,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: "tgcrypto-c",
-    desc: "Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for tgcrypto, works with Pyrogram and Kurigram.",
+    desc: "Maintained fork of pyrogram/tgcrypto with AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, and wheels for Linux/macOS/Windows. Drop-in replacement for tgcrypto.",
     img: "/static/projects/tgcrypto-c.webp",
     link: "https://pypi.org/project/tgcrypto-c/",
     github: "https://github.com/bisug/tgcrypto-c",
@@ -31,7 +31,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: "ninfo",
-    desc: "Built to explore Nim. A Linux system information CLI that captures a whole-system snapshot as JSON in a single call — system, CPU, memory, storage, network, processes, sensors, and battery. No root, no dependencies, single static binary.",
+    desc: "Linux system info CLI in Nim that captures a whole-system snapshot as JSON in one call. No root, no dependencies, single static binary.",
     img: "/static/projects/ninfo.webp",
     github: "https://github.com/bisug/ninfo",
     tags: ["Nim", "CLI", "Linux"],
@@ -39,7 +39,7 @@ const projects: Project[] = [
   {
     id: 4,
     title: "heroku-buildpack-bun",
-    desc: "Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, and runs bun install.",
+    desc: "Heroku buildpack for Bun: installs official binaries, caches builds, and runs bun install.",
     img: "/static/projects/heroku-buildpack-bun.webp",
     // No "Live site": bun.sh is Bun's homepage, not this project.
     github: "https://github.com/bisug/heroku-buildpack-bun",
@@ -48,7 +48,7 @@ const projects: Project[] = [
   {
     id: 5,
     title: "SnakeGame-CLI",
-    desc: "Cross-platform classic Snake game running entirely in the terminal with zero external GUI dependencies.",
+    desc: "Classic Snake game in the terminal. Cross-platform, no GUI dependencies.",
     img: "/static/projects/SnakeGame-CLI.webp",
     github: "https://github.com/bisug/SnakeGame-CLI",
     tags: ["C++", "CLI", "Game"],
