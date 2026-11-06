@@ -13,16 +13,14 @@ const DOODLES: Doodle[] = [
     id: "burst-top-left",
     src: "/static/doodles/testimonials/yay.svg",
     // Positioned below the navbar so it never overlaps the logo
-    className:
-      "top-24 sm:top-28 left-3 sm:left-8 xl:left-14 w-14 sm:w-20 xl:w-24",
+    className: "hidden sm:block top-28 left-8 xl:left-14 w-20 xl:w-24",
     rotate: "-10deg",
     float: "doodle-float-a",
   },
   {
     id: "squiggle-top-right",
     src: "/static/doodles/testimonials/squiggle2.svg",
-    className:
-      "top-24 sm:top-28 right-3 sm:right-8 xl:right-14 w-9 sm:w-12 xl:w-14",
+    className: "hidden sm:block top-28 right-8 xl:right-14 w-12 xl:w-14",
     rotate: "18deg",
     float: "doodle-float-b",
   },
@@ -37,7 +35,7 @@ const DOODLES: Doodle[] = [
   {
     id: "code-bottom-right",
     src: "/static/doodles/hero/code.svg",
-    className: "bottom-10 right-3 sm:right-8 xl:right-14 w-14 sm:w-18 xl:w-20",
+    className: "hidden sm:block bottom-10 right-8 xl:right-14 w-18 xl:w-20",
     rotate: "6deg",
     float: "doodle-float-b",
     delay: "-4s",

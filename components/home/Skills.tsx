@@ -39,9 +39,9 @@ function Skills() {
                         alt={`${item.title} icon`}
                         width={36}
                         height={36}
-                        className={`${item.mono ? "icon-invert-light " : ""}${item.invertDark ? "icon-invert-dark " : ""}h-8 w-8 sm:h-9 sm:w-9 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6`}
+                        className={`${item.mono ? "icon-invert-light " : ""}${item.invertDark ? "icon-invert-dark " : ""}h-8 w-8 sm:h-9 sm:w-9 object-contain transition-transform duration-300 group-hover:scale-110`}
                       />
-                      <p className="text-xs text-fun-gray-light font-semibold group-hover:text-white transition-colors text-center truncate max-w-full">
+                      <p className="text-xs text-fun-gray-light font-semibold group-hover:text-white transition-colors text-center leading-tight">
                         {item.title}
                       </p>
                     </div>

@@ -43,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live site`}
-                className="opacity-60 transition hover:opacity-100 p-2 -m-2 text-fun-accent"
+                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-accent"
               >
                 <Image
                   src="/static/icons/external-link.svg"
@@ -61,7 +61,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} source code`}
-                className="opacity-60 transition hover:opacity-100 p-2 -m-2 text-fun-gray-light"
+                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-gray-light"
               >
                 <Image
                   src="/static/icons/github.svg"
@@ -75,7 +75,7 @@ function ProjectCard({ project }: { project: Project }) {
             )}
           </div>
         </div>
-        <p className="mt-2 text-left text-xs sm:text-sm leading-relaxed text-fun-gray flex-1">
+        <p className="mt-2 text-left text-sm leading-relaxed text-fun-gray flex-1">
           {project.desc}
         </p>
         <TagChips tags={project.tags} className="relative z-10 mt-3.5 pt-1" />

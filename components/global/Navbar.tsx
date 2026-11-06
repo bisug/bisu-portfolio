@@ -118,7 +118,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
               className="flex items-center gap-2 font-black text-xl"
             >
               <img
-                className="transition-transform duration-500 hover:rotate-[360deg] hover:scale-90"
+                className="transition-transform duration-300 hover:scale-95"
                 src="/static/logos/logo_no_text.svg"
                 width="48"
                 height="48"
@@ -148,7 +148,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                     aria-current={
                       currentPage === item.title ? "page" : undefined
                     }
-                    className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
+                    className={`rounded-lg px-3.5 py-2.5 min-h-[44px] inline-flex items-center text-sm font-medium transition-colors ${
                       currentPage === item.title
                         ? "bg-white/10 text-fun-accent font-semibold"
                         : "text-white/75 hover:bg-white/5 hover:text-white"
@@ -165,7 +165,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
               <div className="relative md:hidden" ref={menuRef}>
                 <button
                   ref={buttonRef}
-                  className={`flex h-11 w-11 items-center justify-center rounded-xl transition-colors duration-200 ${
+                  className={`flex h-11 items-center gap-2 rounded-xl px-3 transition-colors duration-200 ${
                     isMenuOpen
                       ? "bg-white/10 text-white"
                       : "text-gray-100 hover:bg-white/10"
@@ -177,6 +177,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   onClick={() => setIsMenuOpen((open) => !open)}
                 >
                   <MenuIcon isOpen={isMenuOpen} />
+                  <span className="text-sm font-medium">Menu</span>
                 </button>
                 <div
                   inert={!isMenuOpen}
@@ -195,7 +196,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                           aria-current={
                             currentPage === item.title ? "page" : undefined
                           }
-                          className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
+                          className={`block rounded-xl px-4 py-3 min-h-[44px] text-sm font-medium transition-colors ${
                             currentPage === item.title
                               ? "bg-white/10 text-fun-accent font-semibold"
                               : "text-white/75 hover:bg-white/5 hover:text-white"

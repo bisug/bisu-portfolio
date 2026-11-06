@@ -14,7 +14,7 @@ function SocialIcons() {
             rel={isEmail ? undefined : "noopener noreferrer"}
             aria-label={item.name}
             title={item.name}
-            className="p-2.5 opacity-70 transition hover:-translate-y-0.5 hover:opacity-100"
+            className="flex h-11 w-11 items-center justify-center opacity-70 transition hover:-translate-y-0.5 hover:opacity-100"
           >
             <Image
               src={item.icon}

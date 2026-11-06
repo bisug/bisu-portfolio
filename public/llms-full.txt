@@ -31,30 +31,18 @@ Travel & community platform bridging tourists and local communities in Nepal, bu
 - Live Deployment: https://paila-prototype.vercel.app
 - Technologies: NextJS, TypeScript, TailwindCSS
 
-### TG-GithubBot
-GitHub webhook handler bot for Telegram, streaming and formatting push, release, and deployment alerts.
-- Page: https://bisu.com.np/projects/tg-github-bot
-- Source Code: https://github.com/bisug/TG-GithubBot
-- Live Deployment: https://t.me/DearGitNotifyBot
-- Technologies: Go, Telegram, MongoDB
+### tgcrypto-c
+Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.
+- Page: https://bisu.com.np/projects/tgcrypto-c
+- Source Code: https://github.com/bisug/tgcrypto-c
+- Live Deployment: https://pypi.org/project/tgcrypto-c/
+- Technologies: C, Python, Cryptography
 
 ### ninfo
-Fast Linux system information CLI in Nim capturing a whole-system kernel and hardware snapshot as JSON.
+Built to explore Nim. A Linux system information CLI that captures a whole-system snapshot as JSON in a single call — system, CPU, memory, storage, network, processes, sensors, and battery. No root, no dependencies, single static binary.
 - Page: https://bisu.com.np/projects/ninfo
 - Source Code: https://github.com/bisug/ninfo
 - Technologies: Nim, CLI, Linux
-
-### TG-WordGame
-Wordle-style word game bot for Telegram with solo/multiplayer rounds, daily challenges, and leaderboards.
-- Page: https://bisu.com.np/projects/tg-word-game
-- Source Code: https://github.com/bisug/TG-WordGame
-- Technologies: TypeScript, Telegram, Game
-
-### Melody
-Telegram group calls streaming bot for YouTube, Spotify, and Apple Music built with Python and Pyrogram.
-- Page: https://bisu.com.np/projects/melody
-- Source Code: https://github.com/bisug/Melody
-- Technologies: Python, Telegram, API
 
 ### heroku-buildpack-bun
 Unofficial Heroku buildpack for Bun: installs official binaries, caches builds, and runs bun install.

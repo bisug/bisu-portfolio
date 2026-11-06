@@ -43,7 +43,17 @@ function Reveal({ children, delay = 0, className }: RevealProps) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    return observe(el, () => setIsVisible(true));
+    // Fallback: if IntersectionObserver never fires (JS error, hidden tab),
+    // force visible after 2s so content is never stuck invisible.
+    const fallback = setTimeout(() => setIsVisible(true), 2000);
+    const cleanup = observe(el, () => {
+      clearTimeout(fallback);
+      setIsVisible(true);
+    });
+    return () => {
+      clearTimeout(fallback);
+      cleanup();
+    };
   }, []);
 
   return (

@@ -8,7 +8,7 @@ function Education() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
         {education.map((item, index) => {
           const Card = (
-            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-fun-accent/60 hover:shadow-xl hover:shadow-fun-accent/10">
+            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 border-t border-white/10 pt-5 transition-colors duration-300 hover:border-fun-accent/60">
               {item.logo && (
                 <div className="shrink-0 rounded-xl bg-[#ffffff] p-2.5 self-start shadow-sm">
                   <FadeImage
@@ -41,7 +41,7 @@ function Education() {
                   {item.period}
                 </p>
                 {item.desc && (
-                  <p className="text-fun-gray text-xs sm:text-sm mt-2.5 leading-relaxed">
+                  <p className="text-fun-gray text-sm mt-2.5 leading-relaxed">
                     {item.desc}
                   </p>
                 )}

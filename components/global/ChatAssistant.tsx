@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type Role = "user" | "assistant";
-type Msg = { id: number; role: Role; content: string };
+type Msg = { id: number; role: Role; content: string; ts?: number };
 
 const SUGGESTIONS = [
   "What has Bisu built?",
-  "What is his tech stack?",
-  "Can Bisu build my bot?",
+  "What is tgcrypto-c?",
+  "Is he open to work?",
   "Tell me a fun fact!",
 ];
 
@@ -25,102 +25,108 @@ function localReply(q: string): string {
     s === "hey"
   ) {
     const greetings = [
-      "Namaste and hey! Great to meet you. I'm Bisu's AI assistant. Want to check out his latest Telegram bots, explore his tech stack, or hear about his hackathon builds?",
-      "Hey there! Welcome to Bisu's portfolio. I can give you the inside scoop on his projects, tell you what languages he codes in, or help you connect with him. What's on your mind?",
-      "Hello! Always happy to introduce Bisu. Whether you're curious about his cyber security work, CLI tools, or his background in Nepal, fire away!",
+      "Namaste! I'm Bisu's assistant. Ask me about his projects, his crypto work, or how to reach him.",
+      "Hey! Welcome to Bisu's portfolio. I can walk you through what he's built, his stack, or his hackathon work.",
+      "Hello! Happy to introduce Bisu. Curious about his security tools, CLI work, or background in Nepal? Fire away.",
     ];
     return greetings[Math.floor(Math.random() * greetings.length)];
   }
 
   // 2. Specific project queries
   if (/paila\b/.test(s)) {
-    return "Paila is one of Bisu's favorite hackathon creations! Built with team Runtime Terrors at JunctionX Kathmandu, it is a tourism and community platform connecting travelers directly with local hosts in Nepal. Take a look at the [live demo](https://paila-prototype.vercel.app) or inspect the [Paila code repository](https://github.com/bisug/Paila)!";
+    return "Paila came out of JunctionX Kathmandu — Bisu's team (Runtime Terrors) built a platform that connects travelers with local hosts in Nepal. It's live at [paila-prototype.vercel.app](https://paila-prototype.vercel.app) if you want to poke around.";
   }
 
   if (/binary|inspector|elf\b/.test(s)) {
-    return "BinaryInspector is a security CLI Bisu built in Rust. It safely analyzes ELF binary headers, sections, and compiler mitigation flags without executing untrusted code. Check out the [BinaryInspector repository](https://github.com/bisug/BinaryInspector) to see how it parses binaries!";
+    return "BinaryInspector is a Rust CLI that reads ELF binaries — headers, sections, mitigation flags — without ever running them. Handy for security work where you don't trust the binary. Code's on [GitHub](https://github.com/bisug/BinaryInspector).";
   }
 
-  if (/telegram|githubbot|deargit|melody|wordgame|bot\b/.test(s)) {
-    return "Telegram bots are Bisu's playground! Some favorites include [TG-GithubBot](https://github.com/bisug/TG-GithubBot) (live on Telegram as [DearGitNotifyBot](https://t.me/DearGitNotifyBot)) which streams GitHub push and deployment alerts, [Melody](https://github.com/bisug/Melody) for group call audio streaming, and [TG-WordGame](https://github.com/bisug/TG-WordGame) for multiplayer word challenges. Looking for custom bot development?";
+  if (/\btgcrypto\b|\btelegram\b|\bcrypto\b/.test(s)) {
+    return "His main project right now is [tgcrypto-c](https://github.com/bisug/tgcrypto-c) — a fork of pyrogram/tgcrypto. The original is unmaintained and doesn't support newer Python versions, so Bisu forked it and added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux, macOS, and Windows. Drop-in replacement for Pyrogram and Kurigram.";
   }
 
   if (/ninfo\b/.test(s)) {
-    return "ninfo is a lightning-fast Linux telemetry CLI written in Nim. It queries kernel, memory, and hardware stats and dumps complete system telemetry as JSON in under a few milliseconds. You can check the [ninfo repository](https://github.com/bisug/ninfo)!";
+    return "ninfo is a Linux system info CLI Bisu wrote to explore Nim. It grabs system, CPU, memory, storage, network, processes, sensors, and battery in one call and dumps it as JSON. No root needed, no dependencies, single static binary. [Repo here](https://github.com/bisug/ninfo).";
   }
 
   // 3. General projects
-  if (/project|built|build|work|portfolio|app|tool|cli\b/.test(s)) {
-    return "Bisu loves creating practical tools that live in the terminal or on Telegram! Top highlights:\n[Paila](https://paila-prototype.vercel.app) (community travel platform for Nepal)\n[TG-GithubBot](https://t.me/DearGitNotifyBot) (real-time GitHub alerts in Telegram)\n[BinaryInspector](https://github.com/bisug/BinaryInspector) (safe ELF binary inspector)\n[ninfo](https://github.com/bisug/ninfo) (Linux system metrics in JSON)\nExplore the full interactive showcase on the [Projects page](https://bisu.com.np/projects)! Which one catches your eye?";
+  if (
+    /\bproject\b|\bbuilt\b|\bbuild\b|\bwork\b|\bportfolio\b|\bapp\b|\btool\b|\bcli\b/.test(
+      s,
+    )
+  ) {
+    return "A few highlights:\n[Paila](https://paila-prototype.vercel.app) — travel platform connecting tourists with local hosts in Nepal\n[tgcrypto-c](https://github.com/bisug/tgcrypto-c) — fast AES-256 crypto for Telegram, AES-NI accelerated\n[BinaryInspector](https://github.com/bisug/BinaryInspector) — safe ELF binary inspector in Rust\n[ninfo](https://github.com/bisug/ninfo) — Linux system metrics as JSON, written in Nim\nFull list on the [Projects page](https://bisu.com.np/projects). Want details on any of these?";
   }
 
   // 4. Skills and tech stack
   if (
-    /skill|stack|tech|language|tool|code|framework|database|python|go|typescript|kurigram|fastapi/.test(
+    /\bskill\b|\bstack\b|\btech\b|\blanguage\b|\btool\b|\bcode\b|\bframework\b|\bdatabase\b|\bpython\b|\bgo\b|\btypescript\b|\bkurigram\b|\bfastapi\b/.test(
       s,
     )
   ) {
-    return "Bisu's active core languages are Python, TypeScript, and Go. On the web and backend, he builds with FastAPI, Next.js, and Kurigram, backed by PostgreSQL, MongoDB, and Redis. He does almost everything inside Linux (Kali Linux and Linux Mint) with Docker. Take a tour of the full toolbelt on the [Tech Stack page](https://bisu.com.np/tech-stack)!";
+    return "Day to day it's Python, TypeScript, and Go. For web and backend: FastAPI, Next.js, Kurigram. Data: PostgreSQL, MongoDB, Redis. Everything runs on Linux (Kali and Mint) with Docker. Full breakdown on the [Tech Stack page](https://bisu.com.np/tech-stack).";
   }
 
   // 5. Cyber security & education
   if (
-    /security|cyber|hack|vulnerability|binary|lincoln|college|student|study|school|degree|education/.test(
+    /\bsecurity\b|\bcyber\b|\bhack\b|\bvulnerability\b|\bbinary\b|\blincoln\b|\bcollege\b|\bstudent\b|\bstudy\b|\bschool\b|\bdegree\b|\beducation\b/.test(
       s,
     )
   ) {
-    return "Bisu is studying Cyber Security and Network Technology at Lincoln International College in Kathmandu. His philosophy is that you learn how to protect systems by understanding how they break. He focuses on defensive architecture, secure automation, and binary analysis. Check out his academic background on the [Education page](https://bisu.com.np/education)!";
+    return "He's studying Cyber Security & Network Technology at Lincoln International College in Kathmandu. His take: you learn to defend systems by understanding how they break. Focus is defensive architecture, secure automation, and binary analysis. More on the [Education page](https://bisu.com.np/education).";
   }
 
   // 6. Hiring & internships
   if (
-    /hire|intern|internship|job|opportunity|freelance|available|contract|work with/.test(
+    /\bhire\b|\bintern\b|\binternship\b|\bjob\b|\bopportunity\b|\bfreelance\b|\bavailable\b|\bcontract\b|\bwork with\b/.test(
       s,
     )
   ) {
-    return "Yes! Bisu is actively open to internships, freelance projects, and security-focused software work, especially around Telegram bots, automated CLI utilities, and full-stack web applications. Feel free to shoot him an [email](mailto:bisu.ghlan@gmail.com) or reach out on [LinkedIn](https://www.linkedin.com/in/bisug/) to talk details!";
+    return "Yes — he's open to internships and freelance work, especially around security tooling, CLI utilities, and full-stack web apps. Easiest way to reach him is [email](mailto:bisu.ghlan@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bisug/).";
   }
 
   // 7. Contact information
   if (
-    /contact|email|reach|linkedin|github|instagram|social|talk|message/.test(s)
+    /\bcontact\b|\bemail\b|\breach\b|\blinkedin\b|\bgithub\b|\binstagram\b|\bsocial\b|\btalk\b|\bmessage\b/.test(
+      s,
+    )
   ) {
-    return "You can get in touch with Bisu via [email](mailto:bisu.ghlan@gmail.com), explore his public code on [GitHub](https://github.com/bisug), or connect professionally on [LinkedIn](https://www.linkedin.com/in/bisug/). Head over to the [Contact page](https://bisu.com.np/contact) for direct links!";
+    return "Best ways to reach him: [email](mailto:bisu.ghlan@gmail.com), [GitHub](https://github.com/bisug), or [LinkedIn](https://www.linkedin.com/in/bisug/). The [Contact page](https://bisu.com.np/contact) has everything in one place.";
   }
 
   // 8. Hackathons & experience
   if (
-    /experience|hackathon|junction|build nepal|runtime terrors|team|competition/.test(
+    /\bexperience\b|\bhackathon\b|\bjunction\b|\bbuild nepal\b|\bruntime terrors\b|\bteam\b|\bcompetition\b/.test(
       s,
     )
   ) {
-    return "Bisu loves the fast-paced intensity of hackathons! He teamed up with Runtime Terrors to build Paila at JunctionX Kathmandu (May 2026), and collaborated with Team Bugger on NetGuard at the Build Nepal Hackathon (August 2026). Check out the [Experience page](https://bisu.com.np/experience) for the full breakdown!";
+    return "Two hackathons so far: JunctionX Kathmandu (May 2026) with Team Runtime Terrors — built Paila. Then Build Nepal (August 2026) with Team Bugger — built NetGuard, an intrusion detection tool. Details on the [Experience page](https://bisu.com.np/experience).";
   }
 
   // 9. Personal & hobbies
   if (
-    /who (is|are)|about (bisu|him)|where|nepal|bhaktapur|hobby|hobbies|football|travel|anime/.test(
+    /\bwho (is|are)\b|\babout (bisu|him)\b|\bwhere\b|\bnepal\b|\bbhaktapur\b|\bhobby\b|\bhobbies\b|\bfootball\b|\btravel\b|\banime\b/.test(
       s,
     )
   ) {
-    return "Bisu Ghalan is a developer and security researcher from historic Bhaktapur, Nepal. When he is away from the keyboard, he is passionate about football, exploring hiking trails across Nepal, and watching anime.";
+    return "Bisu's based in Bhaktapur, Nepal. Off the keyboard: football, hiking around Nepal, and anime.";
   }
 
   // 10. Jokes, fun facts, and Easter eggs
-  if (/joke|funny|laugh/.test(s)) {
-    return "Why do programmers prefer dark mode? Because light attracts bugs! (Though Bisu made sure the light mode toggle on this portfolio looks ultra-smooth too!)";
+  if (/\bjoke\b|\bfunny\b|\blaugh\b/.test(s)) {
+    return "Why do programmers prefer dark mode? Light attracts bugs.";
   }
 
-  if (/fun fact|easter egg|secret/.test(s)) {
-    return "Fun fact: Bisu once wrote a complete Linux telemetry CLI in Nim (ninfo) just because standard shell scripts were taking more than 50 milliseconds to report system specs!";
+  if (/\bfun fact\b|\beaster egg\b|\bsecret\b/.test(s)) {
+    return "He wrote ninfo (a Linux telemetry CLI in Nim) because shell scripts were taking 50ms+ to report system specs. Now it's instant.";
   }
 
-  if (/who are you|what are you|your name|bot\b/.test(s)) {
-    return "I'm Bisu's virtual portfolio co-pilot! Think of me as your interactive guide: here to answer questions about his software, break down his tech stack, or help you connect with him.";
+  if (/\bwho are you\b|\bwhat are you\b|\byour name\b|\bbot\b/.test(s)) {
+    return "I'm Bisu's portfolio assistant — here to answer questions about his work, his stack, or how to reach him.";
   }
 
   // 11. Natural fallback
-  return "That is a great question! I know all about Bisu's Telegram bots, security tools, web projects, and technical skills. What specific part of his work would you like to explore?";
+  return "I can tell you about his projects, his stack, his hackathon work, or how to get in touch. What are you curious about?";
 }
 
 // Mirror of the server safeUrl(): never render javascript:/data: targets as
@@ -196,11 +202,14 @@ function ChatAssistant() {
       role: "assistant",
       content:
         "Hey! I'm Bisu's virtual companion. Ask me anything about his projects, cybersecurity experiments, tech stack, or what he's building next!",
+      ts: Date.now(),
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [rateLimited, setRateLimited] = useState(false);
+  const [lastFailed, setLastFailed] = useState<string | null>(null);
   const idRef = useRef(1);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -221,9 +230,14 @@ function ChatAssistant() {
         role: "assistant",
         content:
           "Hey! I'm Bisu's virtual companion. Ask me anything about his projects, cybersecurity experiments, tech stack, or what he's building next!",
+        ts: Date.now(),
       },
     ]);
     setInput("");
+    setFailed(false);
+    setRateLimited(false);
+    setLastFailed(null);
+    inputRef.current?.focus();
   }, []);
 
   useEffect(() => {
@@ -268,7 +282,7 @@ function ChatAssistant() {
     setInput("");
     const next: Msg[] = [
       ...msgs,
-      { id: idRef.current++, role: "user", content: q },
+      { id: idRef.current++, role: "user", content: q, ts: Date.now() },
     ];
     setMsgs(next);
     setLoading(true);
@@ -282,21 +296,48 @@ function ChatAssistant() {
             .map((m) => ({ role: m.role, content: m.content })),
         }),
       });
+      if (res.status === 429) {
+        setRateLimited(true);
+        setLastFailed(q);
+        setMsgs([
+          ...next,
+          {
+            id: idRef.current++,
+            role: "assistant",
+            content:
+              "Slow down a bit — too many requests. Try again in a minute, or ask me something else.",
+          },
+        ]);
+        return;
+      }
       if (!res.ok || !res.body) throw new Error(`http ${res.status}`);
       const data = (await res.json()) as { response?: string; error?: string };
       if (!data.response?.trim())
         throw new Error(data.error ?? `http ${res.status}`);
       const cleaned = clean(data.response);
       setFailed(false);
+      setRateLimited(false);
+      setLastFailed(null);
       setMsgs([
         ...next,
-        { id: idRef.current++, role: "assistant", content: cleaned },
+        {
+          id: idRef.current++,
+          role: "assistant",
+          content: cleaned,
+          ts: Date.now(),
+        },
       ]);
     } catch {
       setFailed(true);
+      setLastFailed(q);
       setMsgs([
         ...next,
-        { id: idRef.current++, role: "assistant", content: localReply(q) },
+        {
+          id: idRef.current++,
+          role: "assistant",
+          content: localReply(q),
+          ts: Date.now(),
+        },
       ]);
     } finally {
       setLoading(false);
@@ -304,20 +345,19 @@ function ChatAssistant() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 sm:right-6 z-50 flex flex-col items-end gap-3">
       {open && (
         <div
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label="Chat with Bisu's AI assistant"
-          className="flex h-[min(510px,75vh)] w-[min(375px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200"
+          className="flex h-[min(510px,75vh)] w-[min(375px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
         >
           {/* Header Bar */}
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-white/[0.02]">
             <div className="flex items-center gap-2.5">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fun-accent opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-fun-accent" />
               </span>
               <div>
@@ -373,16 +413,32 @@ function ChatAssistant() {
             {msgs.map((m) => (
               <div
                 key={m.id}
-                className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed transition-all ${
-                  m.role === "user"
-                    ? "ml-auto bg-fun-accent text-fun-navy-darkest font-semibold rounded-br-sm shadow-md shadow-fun-accent/15"
-                    : "bg-white/[0.06] text-fun-gray-light rounded-bl-sm border border-white/5"
-                }`}
+                className={
+                  m.role === "user" ? "ml-auto max-w-[85%]" : "max-w-[85%]"
+                }
               >
-                {m.role === "assistant" ? (
-                  <Reply text={m.content || "..."} />
-                ) : (
-                  m.content || "..."
+                <div
+                  className={`rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed transition-all ${
+                    m.role === "user"
+                      ? "bg-fun-accent text-fun-navy-darkest font-semibold rounded-br-sm shadow-md shadow-fun-accent/15"
+                      : "bg-white/[0.06] text-fun-gray-light rounded-bl-sm border border-white/5"
+                  }`}
+                >
+                  {m.role === "assistant" ? (
+                    <Reply text={m.content || "..."} />
+                  ) : (
+                    m.content || "..."
+                  )}
+                </div>
+                {m.ts && (
+                  <p
+                    className={`mt-1 text-[10px] text-fun-gray ${m.role === "user" ? "text-right" : ""}`}
+                  >
+                    {new Date(m.ts).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
                 )}
               </div>
             ))}
@@ -393,23 +449,36 @@ function ChatAssistant() {
                 <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse" />
               </div>
             )}
+            {failed && lastFailed && !loading && (
+              <div className="flex justify-center pt-1">
+                <button
+                  type="button"
+                  onClick={() => send(lastFailed)}
+                  className="rounded-full border border-fun-accent/40 px-3 py-1.5 text-xs text-fun-accent hover:bg-fun-accent hover:text-fun-navy-darkest transition"
+                >
+                  Retry last message
+                </button>
+              </div>
+            )}
             <div ref={bottomRef} />
           </div>
 
-          {/* Contextual Suggestions Chips */}
-          <div className="flex flex-wrap gap-1.5 px-4 pb-2 pt-1 border-t border-white/5 bg-white/[0.01]">
-            {SUGGESTIONS.map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => send(s)}
-                disabled={loading}
-                className="rounded-full border border-white/15 bg-white/[0.02] px-2.5 py-1 text-[11px] text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
+          {/* Contextual Suggestions Chips — first turn only */}
+          {msgs.length <= 1 && (
+            <div className="flex flex-wrap gap-1.5 px-4 pb-2 pt-1 border-t border-white/5 bg-white/[0.01]">
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => send(s)}
+                  disabled={loading}
+                  className="min-h-[44px] rounded-full border border-white/15 bg-white/[0.02] px-3.5 py-2 text-xs text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Input Form */}
           <form
@@ -430,7 +499,7 @@ function ChatAssistant() {
               placeholder="Ask about projects, bots, security..."
               autoComplete="off"
               maxLength={1000}
-              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
+              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
             />
             <button
               type="submit"
@@ -444,7 +513,7 @@ function ChatAssistant() {
           {/* Footer Note */}
           <p className="border-t border-white/10 px-4 py-1.5 text-center text-[10px] leading-tight text-fun-gray">
             {failed
-              ? "Interactive answers · Live AI via Cloudflare Workers AI"
+              ? "Offline mode · Local answers"
               : "Powered by Cloudflare Workers AI · Llama 3.3 70B"}
           </p>
         </div>
