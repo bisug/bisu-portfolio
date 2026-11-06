@@ -32,6 +32,20 @@ function ThemeToggle() {
     } catch {}
   }
 
+  function applyThemeSmooth(next: boolean) {
+    const root = document.documentElement;
+    const isReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (isReducedMotion) {
+      applyTheme(next);
+      return;
+    }
+    root.classList.add("theme-transitioning");
+    applyTheme(next);
+    setTimeout(() => root.classList.remove("theme-transitioning"), 500);
+  }
+
   function toggle(event: React.MouseEvent<HTMLButtonElement>) {
     if (isTransitioningRef.current) return;
 
@@ -50,7 +64,7 @@ function ThemeToggle() {
 
     // Fallback if View Transitions API is not supported or reduced motion is requested
     if (!doc.startViewTransition || isReducedMotion) {
-      applyTheme(next);
+      applyThemeSmooth(next);
       return;
     }
 
@@ -83,8 +97,8 @@ function ThemeToggle() {
               clipPath,
             },
             {
-              duration: 350,
-              easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+              duration: 600,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
               pseudoElement: "::view-transition-new(root)",
             },
           );
@@ -103,7 +117,7 @@ function ThemeToggle() {
         isTransitioningRef.current = false;
       });
     } catch {
-      applyTheme(next);
+      applyThemeSmooth(next);
       isTransitioningRef.current = false;
     }
   }
@@ -121,7 +135,7 @@ function ThemeToggle() {
       >
         {/* Sun Icon (displayed in dark mode to prompt switching to light) */}
         <span
-          className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-300 ease-out will-change-transform ${
+          className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
             isLight
               ? "opacity-0 rotate-90 scale-0 pointer-events-none"
               : "opacity-100 rotate-0 scale-100 text-fun-accent group-hover:rotate-45"
@@ -132,7 +146,7 @@ function ThemeToggle() {
 
         {/* Moon Icon (displayed in light mode to prompt switching to dark) */}
         <span
-          className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-300 ease-out will-change-transform ${
+          className={`absolute inset-0 flex items-center justify-center transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
             isLight
               ? "opacity-100 rotate-0 scale-100 text-fun-accent group-hover:-rotate-12"
               : "opacity-0 -rotate-90 scale-0 pointer-events-none"
