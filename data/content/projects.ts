@@ -22,7 +22,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: "tgcrypto-c",
-    desc: "Maintained fork of pyrogram/tgcrypto: fast AES-256 IGE/CTR/CBC in C with AES-NI hardware acceleration, reusable streaming contexts, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.",
+    desc: "Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.",
     img: "/static/projects/tgcrypto-c.webp",
     link: "https://pypi.org/project/tgcrypto-c/",
     github: "https://github.com/bisug/tgcrypto-c",
@@ -31,7 +31,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: "ninfo",
-    desc: "Fast Linux system information CLI in Nim capturing a whole-system kernel and hardware snapshot as JSON.",
+    desc: "Built to explore Nim. A Linux system information CLI that captures a whole-system snapshot as JSON in a single call — system, CPU, memory, storage, network, processes, sensors, and battery. No root, no dependencies, single static binary.",
     img: "/static/projects/ninfo.webp",
     github: "https://github.com/bisug/ninfo",
     tags: ["Nim", "CLI", "Linux"],

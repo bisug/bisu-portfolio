@@ -32,14 +32,14 @@ Travel & community platform bridging tourists and local communities in Nepal, bu
 - Technologies: NextJS, TypeScript, TailwindCSS
 
 ### tgcrypto-c
-Maintained fork of pyrogram/tgcrypto: fast AES-256 IGE/CTR/CBC in C with AES-NI hardware acceleration, reusable streaming contexts, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.
+Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.
 - Page: https://bisu.com.np/projects/tgcrypto-c
 - Source Code: https://github.com/bisug/tgcrypto-c
 - Live Deployment: https://pypi.org/project/tgcrypto-c/
 - Technologies: C, Python, Cryptography
 
 ### ninfo
-Fast Linux system information CLI in Nim capturing a whole-system kernel and hardware snapshot as JSON.
+Built to explore Nim. A Linux system information CLI that captures a whole-system snapshot as JSON in a single call — system, CPU, memory, storage, network, processes, sensors, and battery. No root, no dependencies, single static binary.
 - Page: https://bisu.com.np/projects/ninfo
 - Source Code: https://github.com/bisug/ninfo
 - Technologies: Nim, CLI, Linux
