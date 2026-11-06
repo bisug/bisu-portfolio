@@ -32,7 +32,7 @@ Travel & community platform bridging tourists and local communities in Nepal, bu
 - Technologies: NextJS, TypeScript, TailwindCSS
 
 ### tgcrypto-c
-Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.
+Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for tgcrypto, works with Pyrogram and Kurigram.
 - Page: https://bisu.com.np/projects/tgcrypto-c
 - Source Code: https://github.com/bisug/tgcrypto-c
 - Live Deployment: https://pypi.org/project/tgcrypto-c/

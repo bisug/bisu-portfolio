@@ -42,7 +42,7 @@ function localReply(q: string): string {
   }
 
   if (/\btgcrypto\b|\btelegram\b|\bcrypto\b/.test(s)) {
-    return "His main project right now is [tgcrypto-c](https://github.com/bisug/tgcrypto-c) — a fork of pyrogram/tgcrypto. The original is unmaintained and doesn't support newer Python versions, so Bisu forked it and added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux, macOS, and Windows. Drop-in replacement for Pyrogram and Kurigram.";
+    return "His main project right now is [tgcrypto-c](https://github.com/bisug/tgcrypto-c) — a fork of pyrogram/tgcrypto. The original is unmaintained and doesn't support newer Python versions, so Bisu forked it and added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux, macOS, and Windows. Drop-in replacement for tgcrypto, works with Pyrogram and Kurigram.";
   }
 
   if (/ninfo\b/.test(s)) {

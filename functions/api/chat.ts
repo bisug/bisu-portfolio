@@ -31,7 +31,7 @@ TECHNICAL ARSENAL:
 KEY PROJECTS:
 - BinaryInspector: Safe local Rust CLI for inspecting ELF binary headers and security mitigations without running them. [repo](https://github.com/bisug/BinaryInspector)
 - Paila: Travel and community platform connecting tourists with authentic local communities across Nepal, built at JunctionX Kathmandu. [demo](https://paila-prototype.vercel.app) + [repo](https://github.com/bisug/Paila)
-- tgcrypto-c: Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram. [repo](https://github.com/bisug/tgcrypto-c)
+- tgcrypto-c: Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for tgcrypto, works with Pyrogram and Kurigram. [repo](https://github.com/bisug/tgcrypto-c)
 - ninfo: Built to explore Nim. Linux system info CLI that captures a whole-system snapshot as JSON in a single call — system, CPU, memory, storage, network, processes, sensors, battery. No root, no dependencies, single static binary. [repo](https://github.com/bisug/ninfo)
 - heroku-buildpack-bun: Unofficial Heroku buildpack installing Bun binaries with cached builds. [repo](https://github.com/bisug/heroku-buildpack-bun)
 - SnakeGame-CLI: Cross-platform Snake in the terminal (C++). [repo](https://github.com/bisug/SnakeGame-CLI)

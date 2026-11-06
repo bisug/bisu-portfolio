@@ -22,7 +22,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: "tgcrypto-c",
-    desc: "Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram.",
+    desc: "Forked pyrogram/tgcrypto because the original is unmaintained and doesn't support newer Python versions. Added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux/macOS/Windows. Drop-in replacement for tgcrypto, works with Pyrogram and Kurigram.",
     img: "/static/projects/tgcrypto-c.webp",
     link: "https://pypi.org/project/tgcrypto-c/",
     github: "https://github.com/bisug/tgcrypto-c",
