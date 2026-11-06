@@ -13,18 +13,15 @@ function Hero() {
         className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl w-auto text-4xl sm:text-6xl md:text-7xl tracking-tight mb-6 font-bold text-balance leading-[1.08]"
         style={{ animationDelay: "90ms" }}
       >
-        I enjoy <span className="text-fun-accent">building</span> products and
-        securing the web.
+        I build tools that <span className="text-fun-accent">break things</span>{" "}
+        — then fix them.
       </h1>
       <p
         className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl text-fun-gray text-base sm:text-lg mb-10 leading-relaxed text-balance"
         style={{ animationDelay: "180ms" }}
       >
-        CS student &amp; security researcher from Nepal. Building{" "}
-        <strong className="text-white font-medium">Telegram bots</strong>,{" "}
-        <strong className="text-white font-medium">command-line tools</strong>,
-        and{" "}
-        <strong className="text-white font-medium">full-stack web apps</strong>.
+        CS student and security researcher from Nepal. I build CLI tools, crypto
+        libraries, and web apps.
       </p>
       <div
         className="rise-in flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto px-4 sm:px-0"
@@ -34,7 +31,7 @@ function Hero() {
           href="/projects"
           className="w-full sm:w-auto text-center font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25"
         >
-          See featured work
+          View projects
         </Link>
         <a
           href="mailto:bisu.ghlan@gmail.com"

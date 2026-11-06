@@ -13,7 +13,7 @@ export default function Home() {
     <Page
       currentPage="Home"
       meta={{
-        desc: "I'm Bisu Ghalan, a CS student and security researcher from Nepal. I build Telegram bots, CLIs, and full-stack web apps, and break them to learn to defend them.",
+        desc: "CS student and security researcher from Nepal. I build security tools, CLI utilities, and web apps.",
       }}
     >
       <Hero />
@@ -23,7 +23,7 @@ export default function Home() {
             as="h2"
             title="Featured Work"
             doodle="/static/doodles/hero/code.svg"
-            subtitle="A few highlights from my recent projects in security tooling, Telegram bots, and web apps."
+            subtitle="A few highlights from recent projects in security tooling, crypto, and web apps."
             className="py-8 sm:py-12"
           />
           <div className="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch w-full max-w-5xl">

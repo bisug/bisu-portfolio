@@ -240,12 +240,9 @@ export const education: EducationItem[] = [
 export const hobbies: string[] = [
   "Music",
   "Movies",
-  "Web series",
   "Anime",
-  "Mobile gaming",
+  "Football",
+  "Hiking",
   "Volunteering",
   "DIY & crafting",
-  "Learning new technologies",
-  "CTF challenges",
-  "Open source",
 ];

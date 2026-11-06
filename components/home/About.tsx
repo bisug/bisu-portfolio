@@ -20,37 +20,24 @@ function About() {
             <strong className="text-white font-medium">
               Cyber Security &amp; Network Technology
             </strong>
-            . For me, security isn&apos;t just theory; the best way to protect
-            an application is to understand exactly how it fails under
-            real-world pressure.
+            . I learn to defend systems by understanding how they break.
           </p>
           <p>
-            Most of my time goes into writing{" "}
+            Most of my time goes into{" "}
             <strong className="text-white font-medium">
               Python, Go, or TypeScript
             </strong>
-            . I build software people rely on daily, ranging from
-            high-throughput{" "}
-            <strong className="text-white font-medium">Telegram bots</strong>{" "}
-            and lightning-fast{" "}
-            <strong className="text-white font-medium">CLI tools</strong> to
-            hackathon-winning{" "}
-            <strong className="text-white font-medium">web platforms</strong>{" "}
-            built under tight sprint deadlines.
+            . I build CLI tools, crypto libraries, and web apps.
           </p>
           <p>
             Based in{" "}
             <strong className="text-white font-medium">Bhaktapur, Nepal</strong>
-            . I&apos;m actively{" "}
-            <strong className="text-fun-accent font-medium">
-              seeking internships
-            </strong>{" "}
-            where I can ship resilient production code.
+            . Open to internships.
           </p>
         </div>
         <div className="text-center">
           <h3 className="font-mono text-xs uppercase tracking-widest text-fun-accent font-semibold mb-4">
-            Off the keyboard
+            Hobbies
           </h3>
           <ul className="flex flex-wrap justify-center gap-2 list-none">
             {hobbies.map((hobby) => (
