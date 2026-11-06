@@ -41,8 +41,8 @@ function localReply(q: string): string {
     return "BinaryInspector is a security CLI Bisu built in Rust. It safely analyzes ELF binary headers, sections, and compiler mitigation flags without executing untrusted code. Check out the [BinaryInspector repository](https://github.com/bisug/BinaryInspector) to see how it parses binaries!";
   }
 
-  if (/telegram|githubbot|deargit|melody|wordgame|bot\b/.test(s)) {
-    return "Telegram bots are Bisu's playground! Some favorites include [TG-GithubBot](https://github.com/bisug/TG-GithubBot) (live on Telegram as [DearGitNotifyBot](https://t.me/DearGitNotifyBot)) which streams GitHub push and deployment alerts, [Melody](https://github.com/bisug/Melody) for group call audio streaming, and [TG-WordGame](https://github.com/bisug/TG-WordGame) for multiplayer word challenges. Looking for custom bot development?";
+  if (/telegram|tgcrypto|bot\b/.test(s)) {
+    return "Telegram crypto is Bisu's playground! His flagship is [tgcrypto-c](https://github.com/bisug/tgcrypto-c), a maintained fork of pyrogram/tgcrypto with AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram. Looking for custom bot development?";
   }
 
   if (/ninfo\b/.test(s)) {
@@ -51,7 +51,7 @@ function localReply(q: string): string {
 
   // 3. General projects
   if (/project|built|build|work|portfolio|app|tool|cli\b/.test(s)) {
-    return "Bisu loves creating practical tools that live in the terminal or on Telegram! Top highlights:\n[Paila](https://paila-prototype.vercel.app) (community travel platform for Nepal)\n[TG-GithubBot](https://t.me/DearGitNotifyBot) (real-time GitHub alerts in Telegram)\n[BinaryInspector](https://github.com/bisug/BinaryInspector) (safe ELF binary inspector)\n[ninfo](https://github.com/bisug/ninfo) (Linux system metrics in JSON)\nExplore the full interactive showcase on the [Projects page](https://bisu.com.np/projects)! Which one catches your eye?";
+    return "Bisu loves creating practical tools that live in the terminal or in crypto! Top highlights:\n[Paila](https://paila-prototype.vercel.app) (community travel platform for Nepal)\n[tgcrypto-c](https://github.com/bisug/tgcrypto-c) (fast AES-256 for Telegram, AES-NI accelerated)\n[BinaryInspector](https://github.com/bisug/BinaryInspector) (safe ELF binary inspector)\n[ninfo](https://github.com/bisug/ninfo) (Linux system metrics in JSON)\nExplore the full interactive showcase on the [Projects page](https://bisu.com.np/projects)! Which one catches your eye?";
   }
 
   // 4. Skills and tech stack

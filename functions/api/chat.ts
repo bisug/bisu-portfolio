@@ -31,10 +31,8 @@ TECHNICAL ARSENAL:
 KEY PROJECTS:
 - BinaryInspector: Safe local Rust CLI for inspecting ELF binary headers and security mitigations without running them. [repo](https://github.com/bisug/BinaryInspector)
 - Paila: Travel and community platform connecting tourists with authentic local communities across Nepal, built at JunctionX Kathmandu. [demo](https://paila-prototype.vercel.app) + [repo](https://github.com/bisug/Paila)
-- TG-GithubBot: High-performance Go bot piping GitHub webhook events directly into Telegram channels. [DearGitNotifyBot](https://t.me/DearGitNotifyBot) · [repo](https://github.com/bisug/TG-GithubBot)
+- tgcrypto-c: Maintained fork of pyrogram/tgcrypto: fast AES-256 IGE/CTR/CBC in C with AES-NI hardware acceleration, reusable streaming contexts, and wheels for Linux/macOS/Windows. Drop-in replacement for Pyrogram and Kurigram. [repo](https://github.com/bisug/tgcrypto-c)
 - ninfo: Lightning-fast Linux system snapshot CLI in Nim delivering whole-system kernel and hardware telemetry as clean JSON. [repo](https://github.com/bisug/ninfo)
-- TG-WordGame: Multiplayer and solo Wordle-style game for Telegram groups with daily rounds and leaderboards. [repo](https://github.com/bisug/TG-WordGame)
-- Melody: Telegram group voice chat music streamer built in Python and Pyrogram. [repo](https://github.com/bisug/Melody)
 - heroku-buildpack-bun: Unofficial Heroku buildpack installing Bun binaries with cached builds. [repo](https://github.com/bisug/heroku-buildpack-bun)
 - SnakeGame-CLI: Cross-platform Snake in the terminal (C++). [repo](https://github.com/bisug/SnakeGame-CLI)
 - NetGuard: Explainable intrusion detection and prevention system for small teams, built during the Build Nepal Hackathon.
