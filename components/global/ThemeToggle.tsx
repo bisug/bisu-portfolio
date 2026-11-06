@@ -3,7 +3,11 @@ import { flushSync } from "react-dom";
 
 function ThemeToggle() {
   const [isLight, setIsLight] = useState<boolean | null>(null);
+  const [ripples, setRipples] = useState<
+    { id: number; x: number; y: number }[]
+  >([]);
   const isTransitioningRef = useRef(false);
+  const rippleIdRef = useRef(0);
 
   useEffect(() => {
     setIsLight(document.documentElement.classList.contains("light"));
@@ -49,6 +53,14 @@ function ThemeToggle() {
   function toggle(event: React.MouseEvent<HTMLButtonElement>) {
     if (isTransitioningRef.current) return;
 
+    // Ripple effect at click point
+    const rect = event.currentTarget.getBoundingClientRect();
+    const rx = event.clientX - rect.left;
+    const ry = event.clientY - rect.top;
+    const id = rippleIdRef.current++;
+    setRipples((r) => [...r, { id, x: rx, y: ry }]);
+    setTimeout(() => setRipples((r) => r.filter((p) => p.id !== id)), 600);
+
     const next = !isLight;
 
     const doc = document as Document & {
@@ -70,7 +82,6 @@ function ThemeToggle() {
 
     isTransitioningRef.current = true;
 
-    const rect = event.currentTarget.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
 
@@ -127,10 +138,23 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      className="group relative flex h-11 w-11 items-center justify-center rounded-xl text-gray-100 transition-colors duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
+      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl text-gray-100 transition-colors duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
     >
+      {ripples.map((r) => (
+        <span
+          key={r.id}
+          aria-hidden="true"
+          className="pointer-events-none absolute z-0 rounded-full bg-fun-accent/40 animate-[ripple_0.6s_ease-out_forwards]"
+          style={{
+            left: r.x,
+            top: r.y,
+            width: 120,
+            height: 120,
+          }}
+        />
+      ))}
       <div
-        className="relative h-5 w-5 flex items-center justify-center"
+        className="relative z-10 h-5 w-5 flex items-center justify-center"
         aria-hidden="true"
       >
         {/* Sun Icon (displayed in dark mode to prompt switching to light) */}
