@@ -13,8 +13,8 @@ function Hero() {
         className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl w-auto text-4xl sm:text-6xl md:text-7xl tracking-tight mb-6 font-bold text-balance leading-[1.08]"
         style={{ animationDelay: "90ms" }}
       >
-        I enjoy <span className="text-fun-accent">building</span> products and{" "}
-        <span className="text-fun-accent">securing</span> the web.
+        I enjoy <span className="text-fun-accent">building</span> products and
+        securing the web.
       </h1>
       <p
         className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl text-fun-gray text-base sm:text-lg mb-10 leading-relaxed text-balance"

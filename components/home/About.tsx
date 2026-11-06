@@ -13,7 +13,7 @@ function About() {
         className="py-8 sm:py-12"
       />
       <div className="max-w-3xl mx-auto w-full space-y-8">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed">
+        <div className="border-l-2 border-white/15 pl-5 sm:pl-7 space-y-4 text-fun-gray text-sm sm:text-base leading-relaxed">
           <p>
             I&apos;m a computer science student at Lincoln International College
             in Kathmandu, specializing in{" "}
@@ -56,7 +56,7 @@ function About() {
             {hobbies.map((hobby) => (
               <li
                 key={hobby}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-fun-gray-light hover:border-fun-accent/40 hover:text-white transition-colors duration-150"
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs text-fun-gray-light"
               >
                 {hobby}
               </li>

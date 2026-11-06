@@ -124,7 +124,7 @@ function Contact({ compact = false }: { compact?: boolean }) {
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group rounded-2xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 hover:border-fun-accent/50 open:border-fun-accent/60 open:bg-white/[0.04] open:shadow-xl open:shadow-fun-accent/5"
+              className="group border-b border-white/10 py-4 transition-colors duration-300 hover:border-fun-accent/50 open:border-fun-accent/60"
             >
               <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-sm sm:text-base text-white select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent rounded-xl">
                 <span>{faq.question}</span>
@@ -147,7 +147,7 @@ function Contact({ compact = false }: { compact?: boolean }) {
                   </svg>
                 </span>
               </summary>
-              <div className="mt-3 pt-3 border-t border-white/5 text-xs sm:text-sm leading-relaxed text-fun-gray-light">
+              <div className="mt-3 pt-3 border-t border-white/5 text-sm leading-relaxed text-fun-gray-light">
                 <p>{faq.answer}</p>
               </div>
             </details>

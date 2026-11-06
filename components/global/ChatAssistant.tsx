@@ -304,7 +304,7 @@ function ChatAssistant() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 sm:right-6 z-50 flex flex-col items-end gap-3">
       {open && (
         <div
           ref={dialogRef}
@@ -317,7 +317,6 @@ function ChatAssistant() {
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-white/[0.02]">
             <div className="flex items-center gap-2.5">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-fun-accent opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-fun-accent" />
               </span>
               <div>
@@ -404,7 +403,7 @@ function ChatAssistant() {
                 type="button"
                 onClick={() => send(s)}
                 disabled={loading}
-                className="rounded-full border border-white/15 bg-white/[0.02] px-2.5 py-1 text-[11px] text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
+                className="min-h-[44px] rounded-full border border-white/15 bg-white/[0.02] px-3.5 py-2 text-xs text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
               >
                 {s}
               </button>
@@ -430,7 +429,7 @@ function ChatAssistant() {
               placeholder="Ask about projects, bots, security..."
               autoComplete="off"
               maxLength={1000}
-              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
+              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
             />
             <button
               type="submit"

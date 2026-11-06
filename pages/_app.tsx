@@ -34,7 +34,14 @@ function RouteProgress() {
   }, [router]);
 
   if (!active) return null;
-  return <div className="route-progress" aria-hidden="true" />;
+  return (
+    <>
+      <div className="route-progress" aria-hidden="true" />
+      <span role="status" aria-live="polite" className="sr-only">
+        Loading…
+      </span>
+    </>
+  );
 }
 
 /* Keyed by route: a navigation remounts this div, replaying the entrance

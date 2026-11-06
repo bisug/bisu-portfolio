@@ -129,11 +129,13 @@ function Page({
         <Reveal>
           <PageNav currentPage={currentPage} />
         </Reveal>
-        {currentPage !== "Contact" && currentPage !== "404" && (
-          <Reveal>
-            <Contact compact />
-          </Reveal>
-        )}
+        {currentPage !== "Contact" &&
+          currentPage !== "404" &&
+          currentPage !== "Home" && (
+            <Reveal>
+              <Contact compact />
+            </Reveal>
+          )}
       </main>
       <Footer />
     </div>
