@@ -48,6 +48,8 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
       meta={{
         title: `${capsTag} Projects`,
         desc: `${count} open source ${capsTag} project${count === 1 ? "" : "s"} by Bisu Ghalan: ${names}.`,
+        // Filter views help visitors browse but do not add standalone search value.
+        noindex: true,
       }}
     >
       <Heading

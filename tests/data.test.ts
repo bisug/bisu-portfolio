@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+import { readFileSync } from "node:fs";
 import projects, {
   allKebabTags,
   allTags,
@@ -37,6 +38,18 @@ describe("projects data", () => {
     expect(allKebabTags.length).toBe(allTags.length);
     const uniqueTags = new Set(allTags);
     expect(uniqueTags.size).toBe(allTags.length);
+  });
+
+  it("keeps the AI summary aligned with generated project routes", () => {
+    const llms = readFileSync("public/llms.txt", "utf8");
+    const projectPaths = [
+      ...llms.matchAll(/https:\/\/bisu\.com\.np\/projects\/([a-z0-9-]+)/g),
+    ]
+      .map((match) => match[1])
+      .sort();
+    const expectedPaths = projects.map(projectSlug).sort();
+
+    expect(projectPaths).toEqual(expectedPaths);
   });
 });
 

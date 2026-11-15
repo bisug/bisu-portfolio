@@ -142,13 +142,13 @@ Design tokens (colors, fonts, animations) are defined once in the `@theme` block
 
 1. Create `pages/<name>.tsx` wrapping content in `<Page currentPage="..." path="/<name>" meta={{...}}>`.
 2. Add the route to `routes` in `data/global.ts`: this auto-updates the nav, PageNav prev/next, and sitemap.
-3. `bun run sitemap` is run automatically by `bun run build`; also add the page to `public/llms.txt` (manual, for AI crawlers).
+3. `bun run sitemap` and `bun run llms` run automatically during `bun run build`.
 
 ### Add a project
 
 1. Append to `projects` in `data/content/projects.ts` (title, desc, tags, GitHub/live links, image name).
 2. Drop the screenshot in `public/static/projects/<Name>.png|jpg`, then run `bun run images`: it generates the 1200px and 600px WebP variants (the PNG stays as the og:image source).
-3. Update the Projects list in `public/llms.txt`.
+3. `bun run llms` updates both AI crawler summaries from the project data.
 
 ### Edit meta / SEO
 

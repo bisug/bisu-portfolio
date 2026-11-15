@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { faqs } from "@/data/content/faq";
 import { education, events, skills } from "@/data/content/home";
 import projects, { projectSlug } from "@/data/content/projects";
-import { SITE_DESC, SITE_NAME, SITE_URL, socials } from "@/data/global";
+import { routes, SITE_DESC, SITE_NAME, SITE_URL, socials } from "@/data/global";
 
 /**
  * Generates public/llms-full.txt from data sources.
@@ -77,6 +77,46 @@ const faqsMarkdown = faqs
 
 const socialsMarkdown = socials.map((s) => `- ${s.name}: ${s.link}`).join("\n");
 
+const pagesMarkdown = routes
+  .map(
+    (route) => `- [${route.title}](${SITE_URL}${route.path}): ${route.desc}.`,
+  )
+  .join("\n");
+
+const projectsSummaryMarkdown = projects
+  .map((project) => {
+    const links = [
+      `[Project page](${SITE_URL}/projects/${projectSlug(project)})`,
+      project.github ? `[source](${project.github})` : null,
+      project.link ? `[live site](${project.link})` : null,
+    ]
+      .filter(Boolean)
+      .join("; ");
+    return `- **${project.title}**: ${project.desc} ${links}`;
+  })
+  .join("\n");
+
+const summary = `# ${SITE_NAME}
+
+> ${SITE_DESC}
+
+Site: ${SITE_URL}
+Full context: ${SITE_URL}/llms-full.txt
+Language: English
+
+## Pages
+
+${pagesMarkdown}
+
+## Projects
+
+${projectsSummaryMarkdown}
+
+## Contact
+
+${socialsMarkdown}
+`;
+
 const content = `# ${SITE_NAME}: Complete Profile & Knowledge Base
 
 > ${SITE_DESC}
@@ -131,4 +171,7 @@ ${socialsMarkdown}
 `;
 
 writeFileSync(new URL("../public/llms-full.txt", import.meta.url), content);
-console.log("llms-full: wrote public/llms-full.txt successfully");
+writeFileSync(new URL("../public/llms.txt", import.meta.url), summary);
+console.log(
+  "llms: wrote public/llms.txt and public/llms-full.txt successfully",
+);
