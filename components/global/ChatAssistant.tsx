@@ -18,6 +18,16 @@ const SUGGESTIONS = [
 
 const INITIAL_MESSAGE =
   "Ask about a project, Bisu's security work, or how to get in touch. I will stick to what is documented on this site.";
+const RATE_LIMIT_MS = 60_000;
+
+function isPortfolioLink(href: string) {
+  try {
+    const host = new URL(href, window.location.origin).hostname;
+    return host === "bisu.com.np" || host === "www.bisu.com.np";
+  } catch {
+    return false;
+  }
+}
 
 // Offline/local fallback so the widget still answers when /api/chat is
 // unreachable (AI binding missing, adblocker, offline).
@@ -183,12 +193,13 @@ function Reply({ text }: { text: string }) {
   let key = 0;
   const pushLink = (label: string, href: string | null) => {
     if (!href) return false;
+    const opensInNewTab = !href.startsWith("mailto:") && !isPortfolioLink(href);
     parts.push(
       <a
         key={key++}
         href={href}
-        target={href.startsWith("mailto:") ? undefined : "_blank"}
-        rel="noopener noreferrer"
+        target={opensInNewTab ? "_blank" : undefined}
+        rel={opensInNewTab ? "noopener noreferrer" : undefined}
         className="text-fun-accent underline underline-offset-2 hover:brightness-125 transition-colors font-medium"
       >
         {label}
@@ -224,7 +235,8 @@ function ChatAssistant() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [_rateLimited, setRateLimited] = useState(false);
+  const [rateLimitUntil, setRateLimitUntil] = useState<number | null>(null);
+  const [now, setNow] = useState(Date.now());
   const [lastFailed, setLastFailed] = useState<string | null>(null);
   const idRef = useRef(1);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -232,6 +244,10 @@ function ChatAssistant() {
   const dialogRef = useRef<HTMLDivElement>(null);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const msgCount = msgs.length;
+  const retrySeconds = rateLimitUntil
+    ? Math.max(0, Math.ceil((rateLimitUntil - now) / 1000))
+    : 0;
+  const rateLimited = retrySeconds > 0;
 
   const closeChat = useCallback(() => {
     setOpen(false);
@@ -250,10 +266,22 @@ function ChatAssistant() {
     ]);
     setInput("");
     setFailed(false);
-    setRateLimited(false);
+    setRateLimitUntil(null);
     setLastFailed(null);
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (!rateLimitUntil) return;
+    const updateTimer = () => {
+      const currentTime = Date.now();
+      setNow(currentTime);
+      if (currentTime >= rateLimitUntil) setRateLimitUntil(null);
+    };
+    updateTimer();
+    const timer = window.setInterval(updateTimer, 1_000);
+    return () => window.clearInterval(timer);
+  }, [rateLimitUntil]);
 
   useEffect(() => {
     if (!open) return;
@@ -309,7 +337,7 @@ function ChatAssistant() {
 
   async function send(text: string) {
     const q = text.trim();
-    if (!q || loading) return;
+    if (!q || loading || rateLimited) return;
     setInput("");
     const next: Msg[] = [
       ...msgs,
@@ -328,17 +356,10 @@ function ChatAssistant() {
         }),
       });
       if (res.status === 429) {
-        setRateLimited(true);
-        setLastFailed(q);
-        setMsgs([
-          ...next,
-          {
-            id: idRef.current++,
-            role: "assistant",
-            content:
-              "Slow down a bit — too many requests. Try again in a minute, or ask me something else.",
-          },
-        ]);
+        setFailed(false);
+        setRateLimitUntil(Date.now() + RATE_LIMIT_MS);
+        setInput(q);
+        setMsgs(msgs);
         return;
       }
       if (!res.ok || !res.body) throw new Error(`http ${res.status}`);
@@ -347,7 +368,7 @@ function ChatAssistant() {
         throw new Error(data.error ?? `http ${res.status}`);
       const cleaned = clean(data.response);
       setFailed(false);
-      setRateLimited(false);
+      setRateLimitUntil(null);
       setLastFailed(null);
       setMsgs([
         ...next,
@@ -430,6 +451,34 @@ function ChatAssistant() {
               </button>
             </div>
           </div>
+
+          {failed && (
+            <div
+              className="flex items-center justify-between gap-3 border-b border-amber-300/20 bg-amber-300/10 px-4 py-2 text-xs text-fun-gray-light"
+              role="status"
+            >
+              <span>AI is unavailable. Replies are from the portfolio guide.</span>
+              {lastFailed && (
+                <button
+                  type="button"
+                  onClick={() => send(lastFailed)}
+                  disabled={loading || rateLimited}
+                  className="shrink-0 font-semibold text-fun-accent underline underline-offset-2 transition hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Try AI again
+                </button>
+              )}
+            </div>
+          )}
+
+          {rateLimited && (
+            <div
+              className="border-b border-fun-accent/20 bg-fun-accent/10 px-4 py-2 text-xs text-fun-gray-light"
+              role="status"
+            >
+              Too many requests. Your message is ready to send in {retrySeconds}s.
+            </div>
+          )}
 
           {/* Messages Container */}
           <div
@@ -533,10 +582,10 @@ function ChatAssistant() {
             />
             <button
               type="submit"
-              disabled={loading || !input.trim()}
+              disabled={loading || rateLimited || !input.trim()}
               className="rounded-xl bg-fun-accent px-3.5 py-2 text-xs sm:text-sm font-bold text-fun-navy-darkest hover:brightness-110 active:scale-95 transition disabled:opacity-50"
             >
-              Send
+              {rateLimited ? `Wait ${retrySeconds}s` : "Send"}
             </button>
           </form>
 
@@ -556,7 +605,7 @@ function ChatAssistant() {
         onClick={() => (open ? closeChat() : setOpen(true))}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
         aria-expanded={open}
-        className="group relative flex h-12 w-12 items-center justify-center rounded-full bg-fun-accent text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
+        className="group relative flex h-12 items-center justify-center gap-2 rounded-full bg-fun-accent px-4 text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
       >
         <svg
           width="22"
@@ -581,6 +630,7 @@ function ChatAssistant() {
             />
           )}
         </svg>
+        {!open && <span className="text-sm font-bold">Ask about my work</span>}
       </button>
     </div>
   );
