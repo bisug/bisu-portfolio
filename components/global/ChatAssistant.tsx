@@ -521,11 +521,23 @@ function ChatAssistant() {
               </div>
             ))}
             {loading && msgs[msgs.length - 1]?.role === "user" && (
-              <div className="flex items-center gap-2 max-w-[85%] rounded-2xl rounded-bl-sm bg-white/[0.06] border border-white/5 px-3.5 py-2.5 text-fun-gray">
-                <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse [animation-delay:-0.3s]" />
-                <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse [animation-delay:-0.15s]" />
-                <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse" />
-                <span className="text-xs">Checking the portfolio</span>
+              <div
+                className="flex h-10 items-center gap-1.5 rounded-2xl rounded-bl-sm border border-white/5 bg-white/[0.06] px-4"
+                role="status"
+              >
+                <span className="sr-only">Assistant is responding</span>
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 animate-bounce rounded-full bg-fun-accent motion-reduce:animate-none [animation-delay:-0.3s]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 animate-bounce rounded-full bg-fun-accent motion-reduce:animate-none [animation-delay:-0.15s]"
+                />
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 animate-bounce rounded-full bg-fun-accent motion-reduce:animate-none"
+                />
               </div>
             )}
             {failed && lastFailed && !loading && (
@@ -583,9 +595,24 @@ function ChatAssistant() {
             <button
               type="submit"
               disabled={loading || rateLimited || !input.trim()}
-              className="rounded-xl bg-fun-accent px-3.5 py-2 text-xs sm:text-sm font-bold text-fun-navy-darkest hover:brightness-110 active:scale-95 transition disabled:opacity-50"
+              aria-label={rateLimited ? `Wait ${retrySeconds} seconds to send` : "Send message"}
+              title={rateLimited ? `Wait ${retrySeconds} seconds` : "Send message"}
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl bg-fun-accent p-2 text-fun-navy-darkest hover:brightness-110 active:scale-95 transition disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {rateLimited ? `Wait ${retrySeconds}s` : "Send"}
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m22 2-7 20-4-9-9-4Z" />
+                <path d="M22 2 11 13" />
+              </svg>
             </button>
           </form>
 
