@@ -9,11 +9,14 @@ import {
 type Role = "user" | "assistant";
 type Msg = { id: number; role: Role; content: string; ts?: number };
 
-const SUGGESTIONS = [
-  "Why was tgcrypto-c forked?",
-  "What does BinaryInspector inspect?",
-  "What came out of JunctionX Kathmandu?",
-  "How can I contact Bisu?",
+const STARTERS = [
+  { label: "Projects", prompt: "What projects has Bisu built?" },
+  {
+    label: "Skills & security",
+    prompt: "What are Bisu's skills and security interests?",
+  },
+  { label: "Experience", prompt: "Tell me about Bisu's experience and hackathons." },
+  { label: "Contact", prompt: "How can I contact Bisu?" },
 ];
 
 const INITIAL_MESSAGE =
@@ -407,15 +410,11 @@ function ChatAssistant() {
           className="flex h-[min(540px,75vh)] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
         >
           {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-white/[0.02]">
-            <div>
-              <p className="text-xs font-bold text-white leading-none">
-                Portfolio guide
-              </p>
-              <p className="text-[10px] text-fun-gray-light leading-none mt-1">
-                Grounded in this site
-              </p>
-            </div>
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 bg-white/[0.02]">
+            <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-fun-gray">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-fun-accent" />
+              Powered by Cloudflare Workers AI
+            </span>
             <div className="flex items-center gap-1">
               <button
                 type="button"
@@ -554,20 +553,25 @@ function ChatAssistant() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Specific examples make the first turn easier without pretending to know intent. */}
           {msgs.length <= 1 && (
-            <div className="flex flex-wrap gap-1.5 px-4 pb-2 pt-1 border-t border-white/5 bg-white/[0.01]">
-              {SUGGESTIONS.map((s) => (
+            <div className="border-t border-white/5 bg-white/[0.01] px-4 pb-3 pt-2">
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-fun-gray">
+                Start with a topic
+              </p>
+              <div className="grid grid-cols-2 gap-1.5">
+                {STARTERS.map(({ label, prompt }) => (
                 <button
-                  key={s}
+                  key={label}
                   type="button"
-                  onClick={() => send(s)}
+                  onClick={() => send(prompt)}
                   disabled={loading}
-                  className="min-h-[44px] rounded-lg border border-white/15 bg-white/[0.02] px-3.5 py-2 text-left text-xs text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
+                  aria-label={`Ask about ${label}`}
+                  className="min-h-11 rounded-lg border border-white/15 bg-white/[0.02] px-3 py-2 text-left text-xs font-medium text-fun-gray-light transition hover:border-fun-accent hover:bg-white/[0.06] hover:text-white disabled:opacity-50"
                 >
-                  {s}
+                  {label}
                 </button>
               ))}
+              </div>
             </div>
           )}
 
@@ -616,12 +620,6 @@ function ChatAssistant() {
             </button>
           </form>
 
-          {/* Footer Note */}
-          <p className="border-t border-white/10 px-4 py-1.5 text-center text-[10px] leading-tight text-fun-gray">
-            {failed
-              ? "Local portfolio answers"
-              : "Portfolio facts plus Cloudflare Workers AI"}
-          </p>
         </div>
       )}
 
