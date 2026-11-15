@@ -544,7 +544,7 @@ function ChatAssistant() {
           <p className="border-t border-white/10 px-4 py-1.5 text-center text-[10px] leading-tight text-fun-gray">
             {failed
               ? "Local portfolio answers"
-              : "Portfolio facts plus Gemma 4 26B"}
+              : "Portfolio facts plus Cloudflare Workers AI"}
           </p>
         </div>
       )}

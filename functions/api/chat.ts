@@ -1,9 +1,9 @@
 /* Cloudflare Pages Function: POST /api/chat
-   Proxies chat to Workers AI so the browser never sees credentials.
+   Proxies chat to Workers AI (free tier) so the browser never sees keys.
    Requires an "AI" Workers AI binding on the Pages project (dashboard:
    Pages project > Settings > Functions > Add binding > Workers AI > name "AI"),
    plus "ai": { "binding": "AI" } in wrangler.jsonc.
-   Model: @cf/google/gemma-4-26b-a4b-it. */
+   Model: @cf/meta/llama-3.3-70b-instruct-fp8-fast (Workers AI free tier). */
 
 import { ASSISTANT_CONTEXT } from "../../data/assistant";
 
@@ -11,9 +11,9 @@ type ChatMessage = { role: "system" | "user" | "assistant"; content: string };
 
 type Env = { AI: { run: (model: string, input: unknown) => Promise<unknown> } };
 
-const MODEL = "@cf/google/gemma-4-26b-a4b-it";
-const MODEL_LABEL = "Gemma 4 26B";
-const POWERED_BY = "Powered by Cloudflare Workers AI · Gemma 4 26B";
+const MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+const MODEL_LABEL = "Llama 3.3 70B";
+const POWERED_BY = "Powered by Cloudflare Workers AI · Llama 3.3 70B";
 
 const SYSTEM_PROMPT = `You are the AI companion on bisu.com.np, the personal website of Bisu Ghalan.
 
@@ -207,12 +207,9 @@ const handlePost: PagesFunction<Env> = async ({ request, env }) => {
   try {
     const out = (await env.AI.run(MODEL, {
       messages,
-      max_tokens: 768,
-      temperature: 0.5,
+      max_tokens: 512,
+      temperature: 0.7,
       top_p: 0.9,
-      chat_template_kwargs: {
-        enable_thinking: false,
-      },
     })) as { response?: string; content?: string };
     const raw = (out?.response ?? out?.content ?? "").trim();
     const text = sanitize(raw);

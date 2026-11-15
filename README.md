@@ -48,7 +48,7 @@ flowchart LR
         out --> pages["Cloudflare Pages<br/>static + _headers"]
         visitor["Browser"] -->|GET /*| pages
         visitor -->|POST /api/chat| fn["Pages Function<br/>functions/api/chat.ts"]
-        fn -->|Workers AI binding| ai["Gemma 4 26B"]
+        fn -->|Workers AI binding| ai["Llama 3.3 70B<br/>(free tier)"]
     end
 ```
 
@@ -101,7 +101,7 @@ Then enable the AI binding: two things must match:
 1. **`wrangler.jsonc`** already has `"ai": { "binding": "AI" }` (nothing to edit).
 2. **Dashboard binding:** Cloudflare dashboard → _Workers & Pages_ → this Pages project → _Settings_ → _Bindings_ (older UI: _Functions_ → _AI bindings_) → add a **Workers AI** binding named exactly `AI`. Git-connected deploys pick this up from `wrangler.jsonc`; direct `wrangler pages deploy` requires the dashboard binding.
 
-The binding uses Workers AI with `@cf/google/gemma-4-26b-a4b-it` (see `functions/api/chat.ts`). No API keys are stored in the application: the binding is authenticated by the deployment itself.
+The binding uses Workers AI on the free tier, model `@cf/meta/llama-3.3-70b-instruct-fp8-fast` (see `functions/api/chat.ts`). No API keys involved: the binding is authenticated by the deployment itself, so no secrets are stored anywhere.
 
 ### Test the chat function locally
 
@@ -160,7 +160,7 @@ Edit `public/_headers`. After deploy, verify with `curl -I https://bisu.com.np`.
 
 ### Chat assistant
 
-`components/global/ChatAssistant.tsx` (client) calls `POST /api/chat`, handled by the Cloudflare Pages Function in `functions/api/chat.ts`, which proxies to Workers AI (`Gemma 4 26B`). Its facts are derived from `data/assistant.ts`, which uses the portfolio content sources. Powered by Cloudflare Workers AI via the `AI` binding in `wrangler.jsonc`.
+`components/global/ChatAssistant.tsx` (client) calls `POST /api/chat`, handled by the Cloudflare Pages Function in `functions/api/chat.ts`, which proxies to Workers AI (Llama 3.3 70B). Its facts are derived from `data/assistant.ts`, which uses the portfolio content sources. Powered by Cloudflare Workers AI via the `AI` binding in `wrangler.jsonc`.
 
 ## <img src="https://img.shields.io/badge/Performance-DC2626?style=flat-square" height="20" valign="middle" alt="Performance" />
 
@@ -184,5 +184,5 @@ Built on the open-source portfolio template by [Brayden W](https://braydentw.io)
 
 - [Feather Icons](https://feathericons.com): icon set (self-hosted SVGs in `public/static/icons/`, redrawn to match).
 - [Simple Icons](https://simpleicons.org): tech-stack icons in `public/static/icons/tech/`.
-- [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/) + [Gemma 4 26B](https://developers.cloudflare.com/workers-ai/models/gemma-4-26b-a4b-it/): the chat assistant backend.
+- [Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai/) + [Llama 3.3 70B](https://www.llama.com): the chat assistant backend.
 - [shields.io](https://shields.io): badges in this README.
