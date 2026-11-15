@@ -152,9 +152,13 @@ function safeUrl(raw: string): string | null {
   return null;
 }
 
-// Mirror of the server sanitize(): strip markdown, keep validated links.
+// Mirror of the server sanitize(): strip markdown and thinking tags, keep validated links.
 function clean(text: string): string {
   return text
+    .replace(/<thought>[\s\S]*?<\/thought>/gi, "")
+    .replace(/<think>[\s\S]*?<\/think>/gi, "")
+    .replace(/<(thought|think)>[\s\S]*$/gi, "")
+    .replace(/<\/?(thought|think)>/gi, "")
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label: string, url: string) => {
       const safe = safeUrl(url);
