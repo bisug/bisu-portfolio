@@ -20,7 +20,7 @@ const STARTERS = [
 ];
 
 const INITIAL_MESSAGE =
-  "Ask about a project, Bisu's security work, or how to get in touch. I will stick to what is documented on this site.";
+  "I can help you find projects, experience, and contact details from this site.";
 const RATE_LIMIT_MS = 60_000;
 
 function isPortfolioLink(href: string) {
@@ -407,13 +407,16 @@ function ChatAssistant() {
           role="dialog"
           aria-modal="true"
           aria-label="Portfolio guide for Bisu Ghalan"
-          className="flex h-[min(540px,75vh)] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
+          className="flex h-[min(540px,calc(100dvh-6.5rem))] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none sm:h-[min(540px,75vh)] sm:w-[380px]"
         >
           {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-2 bg-white/[0.02]">
-            <span className="inline-flex items-center gap-1.5 font-mono text-[10px] text-fun-gray">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-fun-accent" />
-              Powered by Cloudflare Workers AI
+          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.02] px-4 py-2">
+            <span className="inline-flex items-center gap-1.5 text-[11px] text-fun-gray">
+              <span
+                aria-hidden="true"
+                className={`h-1.5 w-1.5 rounded-full ${failed ? "bg-amber-300" : "bg-fun-accent"}`}
+              />
+              {failed ? "Portfolio guide (offline)" : "Powered by Cloudflare Workers AI"}
             </span>
             <div className="flex items-center gap-1">
               <button
@@ -421,7 +424,7 @@ function ChatAssistant() {
                 onClick={resetChat}
                 title="Restart conversation"
                 aria-label="Restart conversation"
-                className="rounded-lg p-1.5 text-fun-gray hover:text-white hover:bg-white/10 transition-colors text-xs"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-fun-gray transition-colors hover:bg-white/10 hover:text-white"
               >
                 <svg
                   width="14"
@@ -444,7 +447,7 @@ function ChatAssistant() {
                 type="button"
                 onClick={closeChat}
                 aria-label="Close chat"
-                className="rounded-lg p-1.5 text-fun-gray hover:text-white hover:bg-white/10 transition-colors text-xs font-bold"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-fun-gray transition-colors hover:bg-white/10 hover:text-white"
               >
                 ✕
               </button>
@@ -453,16 +456,18 @@ function ChatAssistant() {
 
           {failed && (
             <div
-              className="flex items-center justify-between gap-3 border-b border-amber-300/20 bg-amber-300/10 px-4 py-2 text-xs text-fun-gray-light"
+              className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-amber-300/20 bg-amber-300/10 px-4 py-2 text-xs text-fun-gray-light"
               role="status"
             >
-              <span>AI is unavailable. Replies are from the portfolio guide.</span>
+              <span className="min-w-[190px] flex-1">
+                AI is unavailable. Replies are from the portfolio guide.
+              </span>
               {lastFailed && (
                 <button
                   type="button"
                   onClick={() => send(lastFailed)}
                   disabled={loading || rateLimited}
-                  className="shrink-0 font-semibold text-fun-accent underline underline-offset-2 transition hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="min-h-11 shrink-0 font-semibold text-fun-accent underline underline-offset-2 transition hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Try AI again
                 </button>
@@ -481,11 +486,12 @@ function ChatAssistant() {
 
           {/* Messages Container */}
           <div
-            className="flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm"
+            className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-3 text-sm"
             role="log"
             aria-live="polite"
             aria-relevant="additions text"
             aria-label="Conversation"
+            aria-busy={loading}
           >
             {msgs.map((m) => (
               <div
@@ -544,8 +550,8 @@ function ChatAssistant() {
 
           {msgs.length <= 1 && (
             <div className="border-t border-white/5 bg-white/[0.01] px-4 pb-3 pt-2">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-wider text-fun-gray">
-                Start with a topic
+              <p className="mb-2 text-xs text-fun-gray-light">
+                What would you like to explore?
               </p>
               <div className="grid grid-cols-2 gap-1.5">
                 {STARTERS.map(({ label, prompt }) => (
@@ -553,9 +559,9 @@ function ChatAssistant() {
                   key={label}
                   type="button"
                   onClick={() => send(prompt)}
-                  disabled={loading}
+                  disabled={loading || rateLimited}
                   aria-label={`Ask about ${label}`}
-                  className="min-h-11 rounded-lg border border-white/15 bg-white/[0.02] px-3 py-2 text-left text-xs font-medium text-fun-gray-light transition hover:border-fun-accent hover:bg-white/[0.06] hover:text-white disabled:opacity-50"
+                  className="min-h-12 rounded-xl border border-white/15 bg-white/[0.02] px-3 py-2 text-left text-xs font-semibold text-fun-gray-light transition hover:border-fun-accent hover:bg-white/[0.06] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {label}
                 </button>
@@ -566,7 +572,7 @@ function ChatAssistant() {
 
           {/* Input Form */}
           <form
-            className="flex gap-2 border-t border-white/10 p-3 bg-fun-navy-darkest"
+            className="flex gap-2 border-t border-white/10 bg-fun-navy-darkest p-3"
             onSubmit={(e) => {
               e.preventDefault();
               send(input);
@@ -580,10 +586,10 @@ function ChatAssistant() {
               id="chat-input"
               value={input}
               onChange={(e) => setInput(e.target.value.slice(0, 1000))}
-              placeholder="Ask a specific question"
+              placeholder="Ask about a project or experience"
               autoComplete="off"
               maxLength={1000}
-              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus-visible:outline-2 focus-visible:outline-fun-accent focus-visible:outline-offset-2"
+              className="min-h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base text-white placeholder:text-fun-gray focus:border-fun-accent focus-visible:outline-2 focus-visible:outline-fun-accent focus-visible:outline-offset-2 sm:text-sm"
             />
             <button
               type="submit"
