@@ -650,7 +650,7 @@ function ChatAssistant() {
             />
           )}
         </svg>
-        {!open && <span className="text-sm font-bold">Ask about my work</span>}
+        {!open && <span className="text-sm font-bold">Ask about Bisu</span>}
       </button>
     </div>
   );
