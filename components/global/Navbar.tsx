@@ -172,7 +172,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   }`}
                   aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                   aria-expanded={isMenuOpen}
-                  aria-haspopup="true"
+                  aria-controls="mobile-nav-menu"
                   type="button"
                   onClick={() => setIsMenuOpen((open) => !open)}
                 >
@@ -180,6 +180,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   <span className="text-sm font-medium">Menu</span>
                 </button>
                 <div
+                  id="mobile-nav-menu"
                   inert={!isMenuOpen}
                   className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right overflow-hidden rounded-2xl border border-white/15 bg-fun-navy-dark/95 backdrop-blur-xl shadow-2xl shadow-black/70 transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isMenuOpen

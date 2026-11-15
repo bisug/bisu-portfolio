@@ -123,7 +123,8 @@ function Page({
       <Navbar currentPage={currentPage} />
       <main
         id="main-content"
-        className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl mx-auto"
+        tabIndex={-1}
+        className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl mx-auto focus:outline-none"
       >
         {children}
         <Reveal>

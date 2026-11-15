@@ -208,7 +208,7 @@ function ChatAssistant() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [rateLimited, setRateLimited] = useState(false);
+  const [_rateLimited, setRateLimited] = useState(false);
   const [lastFailed, setLastFailed] = useState<string | null>(null);
   const idRef = useRef(1);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -267,8 +267,24 @@ function ChatAssistant() {
         }
       }
     }
+    function handlePointerDown(event: PointerEvent) {
+      const target = event.target as Node | null;
+      if (
+        dialogRef.current &&
+        !dialogRef.current.contains(target) &&
+        toggleBtnRef.current &&
+        !toggleBtnRef.current.contains(target)
+      ) {
+        closeChat();
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [open, closeChat]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on any new message/open/loading tick.
