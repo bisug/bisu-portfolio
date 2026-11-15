@@ -407,18 +407,45 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply bg-bg;
+  --scrollbar-thumb: #fff2;
+  --scrollbar-track: transparent;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-body::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
+:root.light body {
+  --scrollbar-thumb: #0002;
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #fff2;
-  border-radius: 10px;
+@supports not (scrollbar-color: auto) {
+  body::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #fff2;
+    border-radius: 10px;
+  }
+
+  :root.light body::-webkit-scrollbar-thumb {
+    background-color: #0002;
+  }
 }
 
-:root.light body::-webkit-scrollbar-thumb {
-  background-color: #0002;
+/* Smooth accordion animations using native details::details-content */
+details::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+}
+
+details:not([open])::details-content {
+  block-size: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  details::details-content {
+    transition:
+      block-size 0.3s ease-in-out,
+      content-visibility 0.3s allow-discrete;
+  }
 }

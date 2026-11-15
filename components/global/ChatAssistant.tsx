@@ -1,19 +1,32 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  findProject,
+  hobbiesSummary,
+  projectPage,
+  skillsSummary,
+} from "@/data/assistant";
 
 type Role = "user" | "assistant";
 type Msg = { id: number; role: Role; content: string; ts?: number };
 
 const SUGGESTIONS = [
-  "What has Bisu built?",
-  "What is tgcrypto-c?",
-  "Is he open to work?",
-  "Tell me a fun fact!",
+  "Why was tgcrypto-c forked?",
+  "What does BinaryInspector inspect?",
+  "What came out of JunctionX Kathmandu?",
+  "How can I contact Bisu?",
 ];
+
+const INITIAL_MESSAGE =
+  "Ask about a project, Bisu's security work, or how to get in touch. I will stick to what is documented on this site.";
 
 // Offline/local fallback so the widget still answers when /api/chat is
 // unreachable (AI binding missing, adblocker, offline).
 function localReply(q: string): string {
   const s = q.toLowerCase();
+  const binaryInspector = findProject("BinaryInspector");
+  const paila = findProject("Paila");
+  const tgcrypto = findProject("tgcrypto-c");
+  const ninfo = findProject("ninfo");
 
   // 1. Greetings
   if (
@@ -25,28 +38,28 @@ function localReply(q: string): string {
     s === "hey"
   ) {
     const greetings = [
-      "Namaste! I'm Bisu's assistant. Ask me about his projects, his crypto work, or how to reach him.",
-      "Hey! Welcome to Bisu's portfolio. I can walk you through what he's built, his stack, or his hackathon work.",
-      "Hello! Happy to introduce Bisu. Curious about his security tools, CLI work, or background in Nepal? Fire away.",
+      "Namaste. Ask about a project, Bisu's security work, or how to get in touch.",
+      "Hi. I can point you to the relevant project page or share what this portfolio documents.",
+      "Hello. Try a specific project, the tech stack, or a question about Bisu's experience.",
     ];
     return greetings[Math.floor(Math.random() * greetings.length)];
   }
 
   // 2. Specific project queries
-  if (/paila\b/.test(s)) {
-    return "Paila came out of JunctionX Kathmandu — Bisu's team (Runtime Terrors) built a platform that connects travelers with local hosts in Nepal. It's live at [paila-prototype.vercel.app](https://paila-prototype.vercel.app) if you want to poke around.";
+  if (/paila\b/.test(s) && paila) {
+    return `${paila.desc} [Project page](${projectPage(paila)}).`;
   }
 
-  if (/binary|inspector|elf\b/.test(s)) {
-    return "BinaryInspector is a Rust CLI that reads ELF binaries — headers, sections, mitigation flags — without ever running them. Handy for security work where you don't trust the binary. Code's on [GitHub](https://github.com/bisug/BinaryInspector).";
+  if (/binary|inspector|elf\b/.test(s) && binaryInspector) {
+    return `${binaryInspector.desc} [Project page](${projectPage(binaryInspector)}).`;
   }
 
-  if (/\btgcrypto\b|\btelegram\b|\bcrypto\b/.test(s)) {
-    return "His main project right now is [tgcrypto-c](https://github.com/bisug/tgcrypto-c) — a fork of pyrogram/tgcrypto. The original is unmaintained and doesn't support newer Python versions, so Bisu forked it and added AES-NI hardware acceleration (6-14x faster), reusable streaming contexts, type stubs, and wheels for Linux, macOS, and Windows. Drop-in replacement for tgcrypto, works with Pyrogram and Kurigram.";
+  if (/\btgcrypto\b|\btelegram\b|\bcrypto\b/.test(s) && tgcrypto) {
+    return `${tgcrypto.desc} [Project page](${projectPage(tgcrypto)}).`;
   }
 
-  if (/ninfo\b/.test(s)) {
-    return "ninfo is a Linux system info CLI Bisu wrote to explore Nim. It grabs system, CPU, memory, storage, network, processes, sensors, and battery in one call and dumps it as JSON. No root needed, no dependencies, single static binary. [Repo here](https://github.com/bisug/ninfo).";
+  if (/ninfo\b/.test(s) && ninfo) {
+    return `${ninfo.desc} [Project page](${projectPage(ninfo)}).`;
   }
 
   // 3. General projects
@@ -55,7 +68,7 @@ function localReply(q: string): string {
       s,
     )
   ) {
-    return "A few highlights:\n[Paila](https://paila-prototype.vercel.app) — travel platform connecting tourists with local hosts in Nepal\n[tgcrypto-c](https://github.com/bisug/tgcrypto-c) — fast AES-256 crypto for Telegram, AES-NI accelerated\n[BinaryInspector](https://github.com/bisug/BinaryInspector) — safe ELF binary inspector in Rust\n[ninfo](https://github.com/bisug/ninfo) — Linux system metrics as JSON, written in Nim\nFull list on the [Projects page](https://bisu.com.np/projects). Want details on any of these?";
+    return "The portfolio includes [BinaryInspector](https://bisu.com.np/projects/binary-inspector), [Paila](https://bisu.com.np/projects/paila), [tgcrypto-c](https://bisu.com.np/projects/tgcrypto-c), and [ninfo](https://bisu.com.np/projects/ninfo). The [Projects page](https://bisu.com.np/projects) has the full list.";
   }
 
   // 4. Skills and tech stack
@@ -64,7 +77,7 @@ function localReply(q: string): string {
       s,
     )
   ) {
-    return "Day to day it's Python, TypeScript, and Go. For web and backend: FastAPI, Next.js, Kurigram. Data: PostgreSQL, MongoDB, Redis. Everything runs on Linux (Kali and Mint) with Docker. Full breakdown on the [Tech Stack page](https://bisu.com.np/tech-stack).";
+    return `Bisu works with ${skillsSummary}. Full breakdown on the [Tech Stack page](https://bisu.com.np/tech-stack).`;
   }
 
   // 5. Cyber security & education
@@ -73,7 +86,7 @@ function localReply(q: string): string {
       s,
     )
   ) {
-    return "He's studying Cyber Security & Network Technology at Lincoln International College in Kathmandu. His take: you learn to defend systems by understanding how they break. Focus is defensive architecture, secure automation, and binary analysis. More on the [Education page](https://bisu.com.np/education).";
+    return "Bisu is studying Cyber Security & Network Technology at Lincoln International College in Kathmandu. The [Education page](https://bisu.com.np/education) has the documented course and school details.";
   }
 
   // 6. Hiring & internships
@@ -82,7 +95,7 @@ function localReply(q: string): string {
       s,
     )
   ) {
-    return "Yes — he's open to internships and freelance work, especially around security tooling, CLI utilities, and full-stack web apps. Easiest way to reach him is [email](mailto:bisu.ghlan@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bisug/).";
+    return "Bisu is open to internships and freelance work. Reach him by [email](mailto:bisu.ghlan@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bisug/).";
   }
 
   // 7. Contact information
@@ -100,7 +113,7 @@ function localReply(q: string): string {
       s,
     )
   ) {
-    return "Two hackathons so far: JunctionX Kathmandu (May 2026) with Team Runtime Terrors — built Paila. Then Build Nepal (August 2026) with Team Bugger — built NetGuard, an intrusion detection tool. Details on the [Experience page](https://bisu.com.np/experience).";
+    return "At JunctionX Kathmandu in May 2026, Team Runtime Terrors built Paila. At Build Nepal in August 2026, Team Bugger built NetGuard. The [Experience page](https://bisu.com.np/experience) has the event details.";
   }
 
   // 9. Personal & hobbies
@@ -109,7 +122,7 @@ function localReply(q: string): string {
       s,
     )
   ) {
-    return "Bisu's based in Bhaktapur, Nepal. Off the keyboard: football, hiking around Nepal, and anime.";
+    return `Bisu is based in Bhaktapur, Nepal. Outside of work, he enjoys ${hobbiesSummary}.`;
   }
 
   // 10. Jokes, fun facts, and Easter eggs
@@ -118,15 +131,15 @@ function localReply(q: string): string {
   }
 
   if (/\bfun fact\b|\beaster egg\b|\bsecret\b/.test(s)) {
-    return "He wrote ninfo (a Linux telemetry CLI in Nim) because shell scripts were taking 50ms+ to report system specs. Now it's instant.";
+    return "ninfo started as an exploration of Nim. It returns a Linux system snapshot as JSON in one call, without root access or dependencies.";
   }
 
   if (/\bwho are you\b|\bwhat are you\b|\byour name\b|\bbot\b/.test(s)) {
-    return "I'm Bisu's portfolio assistant — here to answer questions about his work, his stack, or how to reach him.";
+    return "I am the guide for this portfolio. I can answer from the projects, experience, education, and contact details published here.";
   }
 
   // 11. Natural fallback
-  return "I can tell you about his projects, his stack, his hackathon work, or how to get in touch. What are you curious about?";
+  return "I do not have that detail in the portfolio. Try a project name, Bisu's tech stack, experience, or contact information.";
 }
 
 // Mirror of the server safeUrl(): never render javascript:/data: targets as
@@ -200,15 +213,14 @@ function ChatAssistant() {
     {
       id: 0,
       role: "assistant",
-      content:
-        "Hey! I'm Bisu's virtual companion. Ask me anything about his projects, cybersecurity experiments, tech stack, or what he's building next!",
+      content: INITIAL_MESSAGE,
       ts: Date.now(),
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [rateLimited, setRateLimited] = useState(false);
+  const [_rateLimited, setRateLimited] = useState(false);
   const [lastFailed, setLastFailed] = useState<string | null>(null);
   const idRef = useRef(1);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -228,8 +240,7 @@ function ChatAssistant() {
       {
         id: 0,
         role: "assistant",
-        content:
-          "Hey! I'm Bisu's virtual companion. Ask me anything about his projects, cybersecurity experiments, tech stack, or what he's building next!",
+        content: INITIAL_MESSAGE,
         ts: Date.now(),
       },
     ]);
@@ -267,8 +278,24 @@ function ChatAssistant() {
         }
       }
     }
+    function handlePointerDown(event: PointerEvent) {
+      const target = event.target as Node | null;
+      if (
+        dialogRef.current &&
+        !dialogRef.current.contains(target) &&
+        toggleBtnRef.current &&
+        !toggleBtnRef.current.contains(target)
+      ) {
+        closeChat();
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [open, closeChat]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on any new message/open/loading tick.
@@ -351,23 +378,18 @@ function ChatAssistant() {
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Chat with Bisu's AI assistant"
-          className="flex h-[min(510px,75vh)] w-[min(375px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
+          aria-label="Portfolio guide for Bisu Ghalan"
+          className="flex h-[min(540px,75vh)] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
         >
           {/* Header Bar */}
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 bg-white/[0.02]">
-            <div className="flex items-center gap-2.5">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-fun-accent" />
-              </span>
-              <div>
-                <p className="text-xs font-bold text-white leading-none">
-                  Bisu AI Assistant
-                </p>
-                <p className="text-[10px] text-fun-gray-light leading-none mt-1">
-                  Online &amp; ready
-                </p>
-              </div>
+            <div>
+              <p className="text-xs font-bold text-white leading-none">
+                Portfolio guide
+              </p>
+              <p className="text-[10px] text-fun-gray-light leading-none mt-1">
+                Grounded in this site
+              </p>
             </div>
             <div className="flex items-center gap-1">
               <button
@@ -408,7 +430,10 @@ function ChatAssistant() {
           {/* Messages Container */}
           <div
             className="flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm"
+            role="log"
             aria-live="polite"
+            aria-relevant="additions text"
+            aria-label="Conversation"
           >
             {msgs.map((m) => (
               <div
@@ -443,10 +468,11 @@ function ChatAssistant() {
               </div>
             ))}
             {loading && msgs[msgs.length - 1]?.role === "user" && (
-              <div className="flex items-center gap-1.5 max-w-[85%] rounded-2xl rounded-bl-sm bg-white/[0.06] border border-white/5 px-3.5 py-2.5 text-fun-gray">
+              <div className="flex items-center gap-2 max-w-[85%] rounded-2xl rounded-bl-sm bg-white/[0.06] border border-white/5 px-3.5 py-2.5 text-fun-gray">
                 <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse [animation-delay:-0.3s]" />
                 <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse [animation-delay:-0.15s]" />
                 <span className="h-1.5 w-1.5 rounded-full bg-fun-accent animate-pulse" />
+                <span className="text-xs">Checking the portfolio</span>
               </div>
             )}
             {failed && lastFailed && !loading && (
@@ -454,7 +480,7 @@ function ChatAssistant() {
                 <button
                   type="button"
                   onClick={() => send(lastFailed)}
-                  className="rounded-full border border-fun-accent/40 px-3 py-1.5 text-xs text-fun-accent hover:bg-fun-accent hover:text-fun-navy-darkest transition"
+                  className="rounded-lg border border-fun-accent/40 px-3 py-1.5 text-xs text-fun-accent hover:bg-fun-accent hover:text-fun-navy-darkest transition"
                 >
                   Retry last message
                 </button>
@@ -463,7 +489,7 @@ function ChatAssistant() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Contextual Suggestions Chips — first turn only */}
+          {/* Specific examples make the first turn easier without pretending to know intent. */}
           {msgs.length <= 1 && (
             <div className="flex flex-wrap gap-1.5 px-4 pb-2 pt-1 border-t border-white/5 bg-white/[0.01]">
               {SUGGESTIONS.map((s) => (
@@ -472,7 +498,7 @@ function ChatAssistant() {
                   type="button"
                   onClick={() => send(s)}
                   disabled={loading}
-                  className="min-h-[44px] rounded-full border border-white/15 bg-white/[0.02] px-3.5 py-2 text-xs text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
+                  className="min-h-[44px] rounded-lg border border-white/15 bg-white/[0.02] px-3.5 py-2 text-left text-xs text-fun-gray-light hover:border-fun-accent hover:text-white hover:bg-white/[0.06] transition disabled:opacity-50"
                 >
                   {s}
                 </button>
@@ -496,10 +522,10 @@ function ChatAssistant() {
               id="chat-input"
               value={input}
               onChange={(e) => setInput(e.target.value.slice(0, 1000))}
-              placeholder="Ask about projects, bots, security..."
+              placeholder="Ask a specific question"
               autoComplete="off"
               maxLength={1000}
-              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus:outline-none"
+              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base sm:text-sm text-white placeholder:text-fun-gray focus:border-fun-accent focus-visible:outline-2 focus-visible:outline-fun-accent focus-visible:outline-offset-2"
             />
             <button
               type="submit"
@@ -513,8 +539,8 @@ function ChatAssistant() {
           {/* Footer Note */}
           <p className="border-t border-white/10 px-4 py-1.5 text-center text-[10px] leading-tight text-fun-gray">
             {failed
-              ? "Offline mode · Local answers"
-              : "Powered by Cloudflare Workers AI · Llama 3.3 70B"}
+              ? "Local portfolio answers"
+              : "Portfolio facts plus Gemma 4 26B"}
           </p>
         </div>
       )}

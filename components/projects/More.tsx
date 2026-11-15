@@ -6,7 +6,7 @@ function More() {
       href="https://github.com/bisug"
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-full min-h-[220px] flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-white/20 bg-white/[0.02] p-5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-fun-accent/60 hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-fun-accent/10"
+      className="group flex h-full min-h-[220px] flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-white/20 bg-white/[0.02] p-5 text-center transition-all duration-300 hover:-translate-y-1.5 hover:border-fun-accent/60 hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-fun-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
     >
       <div className="rounded-full bg-white/5 p-3.5 group-hover:bg-fun-accent/10 transition-colors">
         <Image

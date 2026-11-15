@@ -55,7 +55,7 @@ function Education() {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block h-full focus-visible:outline-none"
+                  className="block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                 >
                   {Card}
                 </a>

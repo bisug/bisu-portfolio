@@ -8,7 +8,7 @@ import TagChips from "./TagChips";
 function ProjectCard({ project }: { project: Project }) {
   const slug = projectSlug(project);
   return (
-    <div className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] transition-all duration-300 hover:-translate-y-1.5 hover:border-fun-accent/60 hover:shadow-2xl hover:shadow-fun-accent/10">
+    <div className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] transition-all duration-300 hover:-translate-y-1.5 hover:border-fun-accent/60 hover:shadow-2xl hover:shadow-fun-accent/10 focus-within:border-fun-accent/80 focus-within:ring-2 focus-within:ring-fun-accent/80">
       <Link
         href={`/projects/${slug}`}
         className="relative block aspect-[2/1] overflow-hidden bg-fun-navy-darkest"
@@ -43,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live site`}
-                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-accent"
+                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-accent rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:opacity-100"
               >
                 <Image
                   src="/static/icons/external-link.svg"
@@ -61,7 +61,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} source code`}
-                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-gray-light"
+                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-gray-light rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:opacity-100"
               >
                 <Image
                   src="/static/icons/github.svg"
