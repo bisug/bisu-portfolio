@@ -539,17 +539,6 @@ function ChatAssistant() {
                 />
               </div>
             )}
-            {failed && lastFailed && !loading && (
-              <div className="flex justify-center pt-1">
-                <button
-                  type="button"
-                  onClick={() => send(lastFailed)}
-                  className="rounded-lg border border-fun-accent/40 px-3 py-1.5 text-xs text-fun-accent hover:bg-fun-accent hover:text-fun-navy-darkest transition"
-                >
-                  Retry last message
-                </button>
-              </div>
-            )}
             <div ref={bottomRef} />
           </div>
 
