@@ -160,7 +160,7 @@ Edit `public/_headers`. After deploy, verify with `curl -I https://bisu.com.np`.
 
 ### Chat assistant
 
-`components/global/ChatAssistant.tsx` (client) calls `POST /api/chat`, handled by the Cloudflare Pages Function in `functions/api/chat.ts`, which proxies to Workers AI (Llama 3.3 70B). The persona/project facts live in the `SYSTEM_PROMPT` there: update it whenever projects or skills change. Powered by Cloudflare Workers AI via the `AI` binding in `wrangler.jsonc`.
+`components/global/ChatAssistant.tsx` (client) calls `POST /api/chat`, handled by the Cloudflare Pages Function in `functions/api/chat.ts`, which proxies to Workers AI (Llama 3.3 70B). Its facts are derived from `data/assistant.ts`, which uses the portfolio content sources. Powered by Cloudflare Workers AI via the `AI` binding in `wrangler.jsonc`.
 
 ## <img src="https://img.shields.io/badge/Performance-DC2626?style=flat-square" height="20" valign="middle" alt="Performance" />
 

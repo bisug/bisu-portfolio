@@ -1,5 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { readFileSync } from "node:fs";
+import { ASSISTANT_CONTEXT, projectPage } from "@/data/assistant";
 import projects, {
   allKebabTags,
   allTags,
@@ -50,6 +51,13 @@ describe("projects data", () => {
     const expectedPaths = projects.map(projectSlug).sort();
 
     expect(projectPaths).toEqual(expectedPaths);
+  });
+
+  it("keeps the assistant context aligned with project data", () => {
+    for (const project of projects) {
+      expect(ASSISTANT_CONTEXT).toContain(project.title);
+      expect(ASSISTANT_CONTEXT).toContain(projectPage(project));
+    }
   });
 });
 
