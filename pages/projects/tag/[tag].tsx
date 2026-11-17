@@ -61,7 +61,7 @@ function PostPage({ filteredProjects, tag }: TagPageProps) {
       <div className="flex justify-center mt-4 mb-12">
         <Link
           href="/projects"
-          className="inline-flex items-center justify-center gap-2 font-bold px-8 py-3.5 rounded-full text-fun-accent border border-fun-accent/40 bg-fun-navy-dark hover:bg-fun-accent hover:text-fun-navy-darkest transition shadow-lg shadow-fun-accent/10 text-center"
+          className="btn border border-accent/40 text-accent hover:bg-accent hover:text-on-accent shadow-lg shadow-accent/10"
         >
           ← View All Projects
         </Link>

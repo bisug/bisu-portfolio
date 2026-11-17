@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Project } from "types";
 import Reveal from "@/components/utility/Reveal";
 import projects from "@/data/content/projects";
@@ -25,6 +26,19 @@ function Projects({ overwriteProjects }: ProjectProps) {
           <Reveal delay={(projectsList.length % 3) * 75} className="h-full">
             <More />
           </Reveal>
+        )}
+        {projectsList.length === 0 && (
+          <div className="card col-span-full mx-auto max-w-md p-8 text-center">
+            <p className="font-bold text-ink">
+              No projects found for this tag.
+            </p>
+            <p className="mt-2 text-sm text-muted">
+              Browse the full list to find something else.
+            </p>
+            <Link href="/projects" className="btn btn-outline mt-5">
+              View all projects
+            </Link>
+          </div>
         )}
       </div>
     </>

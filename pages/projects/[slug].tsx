@@ -56,16 +56,12 @@ function ProjectPage({ project }: ProjectPageProps) {
       <article className="w-full max-w-4xl mx-auto pt-8 sm:pt-14 pb-16">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-1.5 py-1.5 font-mono text-xs uppercase tracking-widest text-fun-accent hover:underline decoration-fun-accent/40 underline-offset-4"
+          className="inline-flex items-center gap-1.5 py-1.5 font-mono text-xs uppercase tracking-widest text-accent hover:underline decoration-accent/40 underline-offset-4"
         >
           ← All projects
         </Link>
-        <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white text-balance leading-tight">
-          {project.title}
-        </h1>
-        <p className="mt-3 max-w-2xl text-fun-gray text-base sm:text-lg leading-relaxed text-balance">
-          {project.desc}
-        </p>
+        <h1 className="heading-h1 mt-4 leading-tight">{project.title}</h1>
+        <p className="lead mt-3 max-w-2xl">{project.desc}</p>
 
         <FadeImage
           src={project.img}
@@ -77,7 +73,7 @@ function ProjectPage({ project }: ProjectPageProps) {
           loading="eager"
           fetchPriority="high"
           shellClassName="mt-8 block w-full"
-          className="w-full rounded-2xl border border-white/10 shadow-2xl"
+          className="w-full rounded-card border border-line shadow-xl"
         />
 
         <TagChips tags={project.tags} className="mt-6" />
@@ -88,7 +84,7 @@ function ProjectPage({ project }: ProjectPageProps) {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 font-bold whitespace-nowrap rounded-full border border-fun-accent bg-fun-navy-dark px-8 py-3.5 text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest shadow-lg shadow-fun-accent/10 text-center"
+              className="btn border border-accent text-accent hover:bg-accent hover:text-on-accent shadow-lg shadow-accent/10 whitespace-nowrap"
             >
               Live site
               <img
@@ -106,7 +102,7 @@ function ProjectPage({ project }: ProjectPageProps) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 font-bold whitespace-nowrap rounded-full border border-white/20 px-8 py-3.5 text-fun-gray-light transition hover:border-fun-accent hover:text-white text-center"
+              className="btn btn-outline whitespace-nowrap"
             >
               Source code
               <img

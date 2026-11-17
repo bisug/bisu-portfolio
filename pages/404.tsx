@@ -52,40 +52,40 @@ function Page404() {
     >
       <div className="flex min-h-[60vh] w-full flex-col items-center justify-center py-20 text-center">
         <h1
-          className="error-glitch font-mono font-bold text-white text-7xl sm:text-8xl"
+          className="error-glitch font-mono font-bold text-ink text-7xl sm:text-8xl"
           data-text="404"
         >
           404
         </h1>
-        <p className="mt-2 font-mono text-xs uppercase tracking-widest text-fun-gray">
+        <p className="mt-2 font-mono text-xs uppercase tracking-widest text-faint">
           lost packet · route not found
         </p>
 
         <div
           aria-hidden="true"
-          className="mt-10 w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 text-left font-mono text-xs sm:text-sm shadow-xl"
+          className="mt-10 w-full max-w-md rounded-card border border-line bg-surface p-5 sm:p-6 text-left font-mono text-xs sm:text-sm shadow-xl"
         >
-          <p className="text-fun-gray-light">
+          <p className="text-muted">
             {line1}
             {!line1Done && <span className="terminal-caret" />}
           </p>
           {line1Done && (
-            <p className="mt-2 text-fun-accent">
+            <p className="mt-2 text-accent">
               {line2}
               {!line2Done && <span className="terminal-caret" />}
             </p>
           )}
           {line2Done && (
-            <p className="mt-2 text-fun-gray-light">
+            <p className="mt-2 text-muted">
               {line3}
               {!line3Done && <span className="terminal-caret" />}
             </p>
           )}
         </div>
 
-        <p className="mt-8 text-fun-gray sm:text-lg">
+        <p className="mt-8 text-muted sm:text-lg">
           Sorry, that page wandered off.{" "}
-          <strong className="text-white font-medium">
+          <strong className="text-ink font-medium">
             Here&apos;s where to go:
           </strong>
         </p>
@@ -95,14 +95,14 @@ function Page404() {
             <Link
               key={route.path}
               href={route.path}
-              className="rounded-full border border-white/20 px-5 py-2 text-sm text-fun-gray-light transition hover:border-fun-accent hover:text-white"
+              className="rounded-full border border-line-strong px-5 py-2 text-sm text-muted transition hover:border-accent hover:text-ink"
             >
               {route.title}
             </Link>
           ))}
           <Link
             href="/"
-            className="rounded-full border border-fun-accent bg-fun-navy-dark px-6 py-2 text-sm font-bold text-fun-accent transition-colors hover:bg-fun-accent hover:text-fun-navy-darkest shadow-lg shadow-fun-accent/10"
+            className="rounded-full border border-accent bg-surface px-6 py-2 text-sm font-bold text-accent transition-colors hover:bg-accent hover:text-on-accent shadow-lg shadow-accent/10"
           >
             Return Home
           </Link>

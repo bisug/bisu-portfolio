@@ -8,10 +8,10 @@ import TagChips from "./TagChips";
 function ProjectCard({ project }: { project: Project }) {
   const slug = projectSlug(project);
   return (
-    <div className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] transition-all duration-300 hover:-translate-y-1.5 hover:border-fun-accent/60 hover:shadow-2xl hover:shadow-fun-accent/10 focus-within:border-fun-accent/80 focus-within:ring-2 focus-within:ring-fun-accent/80">
+    <div className="group relative flex flex-col h-full card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/10 focus-within:border-accent/80 focus-within:ring-2 focus-within:ring-accent/80">
       <Link
         href={`/projects/${slug}`}
-        className="relative block aspect-[2/1] overflow-hidden bg-fun-navy-darkest"
+        className="relative block aspect-[2/1] overflow-hidden bg-surface"
         tabIndex={-1}
         aria-hidden="true"
       >
@@ -32,7 +32,7 @@ function ProjectCard({ project }: { project: Project }) {
             href={`/projects/${slug}`}
             className="after:absolute after:inset-0 focus-visible:outline-none"
           >
-            <h3 className="text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-fun-accent transition-colors leading-snug">
+            <h3 className="text-base sm:text-lg font-bold tracking-tight text-ink group-hover:text-accent transition-colors leading-snug">
               {project.title}
             </h3>
           </Link>
@@ -43,7 +43,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live site`}
-                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-accent rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:opacity-100"
+                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-accent rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:opacity-100"
               >
                 <Image
                   src="/static/icons/external-link.svg"
@@ -61,7 +61,7 @@ function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} source code`}
-                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-fun-gray-light rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:opacity-100"
+                className="flex h-11 w-11 items-center justify-center opacity-60 transition hover:opacity-100 text-muted rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:opacity-100"
               >
                 <Image
                   src="/static/icons/github.svg"
@@ -75,7 +75,7 @@ function ProjectCard({ project }: { project: Project }) {
             )}
           </div>
         </div>
-        <p className="mt-2 text-left text-sm leading-relaxed text-fun-gray flex-1">
+        <p className="mt-2 text-left text-sm leading-relaxed text-muted flex-1">
           {project.desc}
         </p>
         <TagChips tags={project.tags} className="relative z-10 mt-3.5 pt-1" />
