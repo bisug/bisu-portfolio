@@ -8,9 +8,9 @@ function Education() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
         {education.map((item, index) => {
           const Card = (
-            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 border-t border-white/10 pt-5 transition-colors duration-300 hover:border-fun-accent/60">
+            <div className="h-full flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 hairline-top pt-5 transition-colors duration-300 hover:border-accent/60">
               {item.logo && (
-                <div className="shrink-0 rounded-xl bg-[#ffffff] p-2.5 self-start shadow-sm">
+                <div className="shrink-0 rounded-card bg-white p-2.5 self-start shadow-sm">
                   <FadeImage
                     src={item.logo}
                     alt={`${item.school} logo`}
@@ -21,10 +21,10 @@ function Education() {
                 </div>
               )}
               <div className="min-w-0 flex-1">
-                <h2 className="text-base sm:text-lg font-bold tracking-tight leading-snug text-white">
+                <h2 className="text-base sm:text-lg font-bold tracking-tight leading-snug text-ink">
                   {item.degree}
                 </h2>
-                <p className="text-fun-accent text-sm mt-1 flex items-center gap-1.5 font-medium">
+                <p className="text-accent text-sm mt-1 flex items-center gap-1.5 font-medium">
                   {item.school}
                   {item.link && (
                     <img
@@ -37,11 +37,11 @@ function Education() {
                     />
                   )}
                 </p>
-                <p className="text-fun-gray text-xs font-mono mt-1 tracking-wide">
+                <p className="text-faint text-xs font-mono mt-1 tracking-wide">
                   {item.period}
                 </p>
                 {item.desc && (
-                  <p className="text-fun-gray text-sm mt-2.5 leading-relaxed">
+                  <p className="text-muted text-sm mt-2.5 leading-relaxed">
                     {item.desc}
                   </p>
                 )}

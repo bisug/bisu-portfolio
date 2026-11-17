@@ -4,20 +4,20 @@ function Hero() {
   return (
     <div className="hero-section relative w-full m-auto flex justify-center text-center flex-col items-center pt-10 pb-14 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28">
       <p
-        className="rise-in text-sm sm:text-base font-mono text-fun-accent mb-4 tracking-wide font-medium"
+        className="rise-in font-mono text-sm sm:text-base text-muted mb-4 tracking-wide font-medium"
         style={{ animationDelay: "0ms" }}
       >
         Hey, I&apos;m Bisu Ghalan
       </p>
       <h1
-        className="rise-in max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl w-auto text-4xl sm:text-6xl md:text-7xl tracking-tight mb-6 font-bold text-balance leading-[1.08]"
+        className="rise-in heading-display max-w-4xl mb-6 leading-[1.06]"
         style={{ animationDelay: "90ms" }}
       >
-        I build tools that <span className="text-fun-accent">break things</span>{" "}
-        — then fix them.
+        I build tools that <span className="text-accent">break things</span>,
+        then fix them.
       </h1>
       <p
-        className="rise-in max-w-xl md:max-w-2xl lg:max-w-3xl text-fun-gray text-base sm:text-lg mb-10 leading-relaxed text-balance"
+        className="rise-in lead max-w-2xl mb-10"
         style={{ animationDelay: "180ms" }}
       >
         CS student and security researcher from Nepal. I build CLI tools, crypto
@@ -29,13 +29,13 @@ function Hero() {
       >
         <Link
           href="/projects"
-          className="w-full sm:w-auto text-center font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25"
+          className="btn btn-primary w-full sm:w-auto text-base whitespace-nowrap shadow-lg shadow-accent/20"
         >
           View projects
         </Link>
         <a
           href="mailto:bisu.ghlan@gmail.com"
-          className="w-full sm:w-auto text-center font-bold whitespace-nowrap px-8 py-3.5 text-base rounded-full text-fun-gray-light border border-white/20 hover:border-fun-accent hover:text-white transition"
+          className="btn btn-outline w-full sm:w-auto text-base whitespace-nowrap"
         >
           Get in touch
         </a>

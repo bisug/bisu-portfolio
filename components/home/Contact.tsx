@@ -22,14 +22,14 @@ function ContactActions({ small = false }: { small?: boolean }) {
       <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
         <a
           href={`mailto:${EMAIL}`}
-          className="font-bold text-sm text-fun-accent underline decoration-fun-accent/40 underline-offset-4 transition hover:decoration-fun-accent"
+          className="font-bold text-sm text-accent underline decoration-accent/40 underline-offset-4 transition hover:decoration-accent"
         >
           Say hello
         </a>
         <button
           type="button"
           onClick={copyEmail}
-          className="font-mono text-xs text-fun-gray transition-colors hover:text-white"
+          className="font-mono text-xs text-faint transition-colors hover:text-ink"
           aria-live="polite"
         >
           {copied ? "Copied!" : "Copy email"}
@@ -44,14 +44,14 @@ function ContactActions({ small = false }: { small?: boolean }) {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-sm sm:max-w-none mx-auto w-full">
         <a
           href={`mailto:${EMAIL}`}
-          className="w-full sm:w-auto text-center inline-block cursor-pointer font-bold whitespace-nowrap px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-fun-navy-darkest bg-fun-accent hover:brightness-110 hover:-translate-y-0.5 transition shadow-lg shadow-fun-accent/25 text-base"
+          className="btn btn-primary w-full sm:w-auto text-base whitespace-nowrap shadow-lg shadow-accent/20"
         >
           Say hello
         </a>
         <button
           type="button"
           onClick={copyEmail}
-          className="w-full sm:w-auto text-center font-mono text-xs sm:text-sm px-6 py-3 rounded-full border border-white/20 text-fun-gray-light hover:border-fun-accent hover:text-white transition"
+          className="btn btn-outline w-full sm:w-auto font-mono text-xs sm:text-sm"
           aria-live="polite"
         >
           {copied ? "Copied!" : "Copy email"}
@@ -71,10 +71,7 @@ function Contact({ compact = false }: { compact?: boolean }) {
         aria-labelledby="contact-heading"
         className="w-full pt-8 pb-4 text-center"
       >
-        <h2
-          id="contact-heading"
-          className="text-lg font-bold tracking-tight mb-4"
-        >
+        <h2 id="contact-heading" className="heading-h3 mb-4">
           Let&apos;s connect
         </h2>
         <ContactActions small />
@@ -95,38 +92,35 @@ function Contact({ compact = false }: { compact?: boolean }) {
       <p className="font-mono text-sm text-fun-accent mb-3 font-medium">
         Get in touch
       </p>
-      <h1
-        id="contact-heading"
-        className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance"
-      >
+      <h1 id="contact-heading" className="heading-h1 mb-4">
         Let&apos;s connect
       </h1>
-      <p className="text-fun-gray max-w-md mx-auto mb-2 text-sm sm:text-base leading-relaxed text-balance">
+      <p className="lead max-w-md mx-auto mb-2">
         I&apos;m always open to discussing{" "}
-        <strong className="text-white font-medium">new projects</strong>,{" "}
-        <strong className="text-white font-medium">creative ideas</strong>, or{" "}
-        <strong className="text-white font-medium">new opportunities</strong>.
+        <strong className="text-ink font-medium">new projects</strong>,{" "}
+        <strong className="text-ink font-medium">creative ideas</strong>, or{" "}
+        <strong className="text-ink font-medium">new opportunities</strong>.
       </p>
-      <p className="font-mono text-xs text-fun-gray mb-10">
-        <strong className="text-white font-medium">Bhaktapur, Nepal</strong> ·
+      <p className="font-mono text-xs text-faint mb-10">
+        <strong className="text-ink font-medium">Bhaktapur, Nepal</strong> ·
         usually replies within a few days
       </p>
       <ContactActions />
 
       <div className="mt-20 max-w-3xl mx-auto text-left">
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2 text-center">
+        <h2 className="heading-h2 mb-2 text-center">
           Frequently asked questions
         </h2>
-        <p className="text-center text-xs sm:text-sm text-fun-gray mb-8">
+        <p className="text-center text-xs sm:text-sm text-faint mb-8">
           Click any question to view details.
         </p>
         <div className="space-y-3">
           {faqs.map((faq) => (
             <details
               key={faq.question}
-              className="group border-b border-white/10 py-4 transition-colors duration-300 hover:border-fun-accent/50 open:border-fun-accent/60"
+              className="group border-b border-line py-4 transition-colors duration-300 hover:border-accent/50 open:border-accent/60"
             >
-              <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-sm sm:text-base text-white select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent rounded-xl">
+              <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-sm sm:text-base text-ink select-none list-none [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-control">
                 <span>{faq.question}</span>
                 <span
                   aria-hidden="true"
@@ -147,7 +141,7 @@ function Contact({ compact = false }: { compact?: boolean }) {
                   </svg>
                 </span>
               </summary>
-              <div className="mt-3 pt-3 border-t border-white/5 text-sm leading-relaxed text-fun-gray-light">
+              <div className="mt-3 pt-3 border-t border-line text-sm leading-relaxed text-muted">
                 <p>{faq.answer}</p>
               </div>
             </details>

@@ -16,11 +16,11 @@ function Skills() {
             <div className="flex items-center gap-3">
               <h2
                 id={`skill-category-${category}`}
-                className="font-mono text-xs sm:text-sm uppercase tracking-widest text-fun-accent font-semibold"
+                className="eyebrow sm:text-[0.8rem]"
               >
                 {category}
               </h2>
-              <div className="h-px flex-1 bg-white/10" aria-hidden="true" />
+              <div className="rule" aria-hidden="true" />
             </div>
             <div className="grid grid-cols-2 min-[440px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4">
               {items.map((item, index) => {
@@ -32,7 +32,7 @@ function Skills() {
                   >
                     <div
                       title={item.title}
-                      className="group flex h-full flex-col items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.02] p-3 sm:py-4 sm:px-3 transition-all duration-200 hover:-translate-y-1 hover:border-fun-accent/50 hover:bg-white/[0.04] hover:shadow-lg hover:shadow-fun-accent/10"
+                      className="card group flex h-full flex-col items-center justify-center gap-2.5 p-3 sm:py-4 sm:px-3 transition-all duration-200 hover:-translate-y-1 hover:border-accent/50 hover:bg-surface-raised"
                     >
                       <FadeImage
                         src={item.icon}
@@ -41,7 +41,7 @@ function Skills() {
                         height={36}
                         className={`${item.mono ? "icon-invert-light " : ""}${item.invertDark ? "icon-invert-dark " : ""}h-8 w-8 sm:h-9 sm:w-9 object-contain transition-transform duration-300 group-hover:scale-110`}
                       />
-                      <p className="text-xs text-fun-gray-light font-semibold group-hover:text-white transition-colors text-center leading-tight">
+                      <p className="text-xs text-muted font-semibold group-hover:text-ink transition-colors text-center leading-tight">
                         {item.title}
                       </p>
                     </div>

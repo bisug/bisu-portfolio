@@ -33,7 +33,7 @@ export default function Home() {
           </div>
           <Link
             href="/projects"
-            className="mt-10 inline-flex items-center gap-2 font-bold px-8 py-3.5 rounded-full text-fun-accent border border-fun-accent/40 bg-fun-navy-dark hover:bg-fun-accent hover:text-fun-navy-darkest transition shadow-lg shadow-fun-accent/10"
+            className="btn mt-10 gap-2 border border-accent/40 text-accent hover:bg-accent hover:text-on-accent shadow-lg shadow-accent/10"
           >
             Explore all projects →
           </Link>
