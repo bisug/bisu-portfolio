@@ -634,7 +634,9 @@ function ChatAssistant() {
         ref={toggleBtnRef}
         type="button"
         onClick={() => (open ? closeChat() : setOpen(true))}
-        aria-label={open ? "Close AI assistant" : "Open AI assistant"}
+        aria-label={
+          open ? "Close AI assistant" : "Ask about Bisu, open AI assistant"
+        }
         aria-expanded={open}
         className="group relative flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-4 text-on-accent shadow-lg shadow-accent/20 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
       >

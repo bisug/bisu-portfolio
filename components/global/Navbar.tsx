@@ -114,7 +114,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
           <div className="flex w-full items-center justify-between py-4">
             <Link
               href="/"
-              aria-label="Home"
+              aria-label="Bisu, home"
               className="flex items-center gap-2 font-black text-xl tracking-tight text-ink"
             >
               <img
