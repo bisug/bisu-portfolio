@@ -5,43 +5,78 @@
   --font-mono: var(--font-mono-v), monospace;
 }
 
-/* Colors stay in a non-inline @theme so utilities emit var(--color-*),
-   letting the .light overrides in :root.light take effect at runtime. */
+/* Palette -------------------------------------------------------------------
+   Dark is the default. Semantic tokens are the only source of truth; the
+   fun-* aliases keep every existing utility working after the value swap.
+   Values are OKLCH so light/dark stay perceptually even. */
 @theme {
-  --color-bg: #000a1f;
-  --color-fun-gray-light: #b2bbcf;
-  --color-fun-gray: #7b89a8;
-  --color-fun-accent: #00c7ff;
-  --color-fun-navy-dark: #000f2e;
-  --color-fun-navy-darkest: #000c24;
-  --color-fun-navy: #192742;
+  /* Tier 1 -> 2: neutral ramp plus one accent and one signal. */
+  --color-paper: oklch(0.155 0.038 258);
+  --color-surface: oklch(0.195 0.042 258);
+  --color-surface-raised: oklch(0.245 0.048 258);
+  --color-ink: oklch(0.965 0.008 250);
+  --color-muted: oklch(0.79 0.022 255);
+  --color-faint: oklch(0.68 0.028 255);
+  --color-line: oklch(0.34 0.035 258);
+  --color-line-strong: oklch(0.54 0.035 258);
+  --color-accent: oklch(0.82 0.14 210);
+  --color-accent-strong: oklch(0.88 0.11 205);
+  --color-on-accent: oklch(0.15 0.04 259);
+  --color-signal: oklch(0.8 0.13 72);
+
+  /* Back-compat aliases: no component rename needed. */
+  --color-bg: var(--color-paper);
+  --color-fun-accent: var(--color-accent);
+  --color-fun-gray-light: var(--color-muted);
+  --color-fun-gray: var(--color-faint);
+  --color-fun-navy-darkest: var(--color-on-accent);
+  --color-fun-navy-dark: var(--color-surface);
+  --color-fun-navy: var(--color-surface-raised);
+
+  /* Fluid scale: one curve, no jump at a breakpoint. */
+  --text-display: clamp(2.75rem, 1.9rem + 4.2vw, 5rem);
+  --text-h1: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+  --text-h2: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  --text-h3: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --text-lead: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+
+  /* Shape + rhythm. */
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+  --section-y: clamp(4rem, 3rem + 4vw, 7rem);
+  --gutter: clamp(1.25rem, 1rem + 1.25vw, 3rem);
 }
 
-/* Light theme: dark is the default; .light on <html> flips the palette.
-   Overriding --color-white/--color-gray-100 also flips every white/*
-   utility (text, borders, overlays) since utilities reference the vars. */
+/* Light theme overrides semantics only; aliases follow automatically. */
 :root.light {
-  --color-bg: #f4f7fc;
-  --color-fun-gray-light: #3c4a63;
-  --color-fun-gray: #5a6a86;
-  /* Darker than dark-mode cyan: keeps accent text/buttons above 4.5:1 on light surfaces. */
-  --color-fun-accent: #006b8f;
-  --color-fun-navy-dark: #ffffff;
-  --color-fun-navy-darkest: #e8edf6;
-  --color-fun-navy: #d5deed;
-  --color-white: #0a1224;
-  --color-gray-100: #1a2338;
+  --color-paper: oklch(0.975 0.008 250);
+  --color-surface: oklch(1 0 0);
+  --color-surface-raised: oklch(0.945 0.012 250);
+  --color-ink: oklch(0.21 0.04 259);
+  --color-muted: oklch(0.43 0.035 258);
+  --color-faint: oklch(0.45 0.032 258);
+  --color-line: oklch(0.86 0.014 250);
+  --color-line-strong: oklch(0.56 0.03 258);
+  --color-accent: oklch(0.49 0.11 224);
+  --color-accent-strong: oklch(0.43 0.11 224);
+  --color-on-accent: oklch(0.99 0 0);
+  --color-signal: oklch(0.5 0.14 62);
+
+  /* Flip white utilities so text and borders follow the surface. */
+  --color-white: var(--color-ink);
+  --color-gray-100: var(--color-ink);
 }
 
-/* Match UA widgets (scrollbars, form controls) to the active theme. */
 html {
   color-scheme: dark;
+  accent-color: var(--color-accent);
 }
+
 :root.light {
   color-scheme: light;
 }
 
-/* Theme switch circular reveal animation (View Transitions API) */
+/* Theme switch circular reveal (View Transitions API). */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -61,7 +96,6 @@ html {
   will-change: clip-path;
 }
 
-/* Theme toggle ripple */
 @keyframes ripple {
   from {
     transform: translate(-50%, -50%) scale(0);
@@ -73,7 +107,7 @@ html {
   }
 }
 
-/* Fallback smooth transition when View Transitions is not active */
+/* Fallback transition when View Transitions is unavailable. */
 html.theme-transitioning body,
 html.theme-transitioning body *,
 html.theme-transitioning body *::before,
@@ -92,7 +126,7 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* Honor reduced-motion for every animation and transition in the app. */
+/* One switch covers every animation and transition in the app. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -104,28 +138,24 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* White SVG icons need inverting to stay visible on light surfaces. */
+/* White SVGs invert on light surfaces; cyan SVGs darken instead. */
 :root.light .icon-invert-light {
   filter: invert(1);
 }
 
-/* Accent-cyan SVG icons: inverting them turns them orange, so just darken
-   toward the light-theme accent (#00c7ff * 0.55 ≈ #006e8c ≈ #006b8f). */
 :root.light .icon-accent-light {
   filter: brightness(0.55);
 }
 
-/* Black SVG icons need inverting on dark surfaces, but must stay as-is in
-   light mode (invert(1) would make them white-on-white). */
 .icon-invert-dark {
   filter: invert(1);
 }
+
 :root.light .icon-invert-dark {
   filter: none;
 }
 
-/* Scroll-reveal: hidden until Reveal adds .reveal-visible.
-   The global prefers-reduced-motion rule zeroes this transition. */
+/* Scroll reveal: hidden until Reveal adds .reveal-visible. */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -139,9 +169,7 @@ html.theme-transitioning body *::after {
   transform: none;
 }
 
-/* Page transition: keyed on route in _app, so the wrapper remounts per
-   navigation and the animation replays. `both` holds opacity 0 until the
-   start; the global reduced-motion rule zeroes the duration. */
+/* Route entrance: keyed on route in _app so it replays per navigation. */
 .page-enter {
   animation: page-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -157,9 +185,7 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* Above-the-fold entrance: staggered per element via inline animationDelay.
-   Runs on mount without JS; fill-mode both keeps later elements hidden
-   during their delay. */
+/* Above-the-fold entrance, staggered via inline animationDelay. */
 .rise-in {
   animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -175,22 +201,75 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* Scattered sketch doodles floating behind the content.
-   z-index -1 works because the app wrapper establishes a stacking
-   context (isolate), so these sit above the page background but
-   below everything else. Reduced-motion users get them frozen. */
+/* Reusable surface tokens ---------------------------------------------------
+   Replace repeated utility strings with one semantic class. */
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl;
+    padding-inline: var(--gutter);
+  }
+
+  .section-y {
+    padding-block: var(--section-y);
+  }
+
+  .eyebrow {
+    @apply font-mono text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-faint;
+  }
+
+  .rule {
+    @apply h-px flex-1 bg-line;
+  }
+
+  .heading-display {
+    @apply text-display font-bold tracking-tight text-ink text-balance;
+  }
+
+  .heading-h1 {
+    @apply text-h1 font-bold tracking-tight text-ink text-balance;
+  }
+
+  .heading-h2 {
+    @apply text-h2 font-bold tracking-tight text-ink text-balance;
+  }
+
+  .lead {
+    @apply text-lead text-muted leading-relaxed text-balance;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-7 py-3 font-bold transition duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-on-accent hover:brightness-110 hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border border-line-strong text-muted hover:border-accent hover:text-ink;
+  }
+
+  .card {
+    @apply rounded-card border border-line bg-surface;
+  }
+
+  .hairline-top {
+    @apply border-t border-line;
+  }
+}
+
+/* Decorative doodles, fixed behind content. Slow, low-amplitude drift keeps
+   the field-notes mood without competing with text. Frozen on short landscape
+   viewports and under reduced motion. */
 .doodle-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  /* Keeps the six drifting doodles from invalidating layout/paint anywhere
-     outside this layer. */
   contain: paint;
 }
 
-/* On short landscape viewports (phones rotated horizontally), hide floating doodles */
 @media (max-height: 500px) and (orientation: landscape) {
   .doodle-bg {
     display: none;
@@ -205,37 +284,37 @@ html.theme-transitioning body *::after {
 .doodle img {
   width: 100%;
   display: block;
-  opacity: 0.45;
+  opacity: 0.35;
 }
 
 :root.light .doodle img {
-  opacity: 0.3;
+  opacity: 0.22;
 }
 
 .doodle-float-a,
 .doodle-float-b,
 .doodle-float-c {
-  animation: doodle-float 9s ease-in-out infinite alternate;
+  animation: doodle-float 14s ease-in-out infinite alternate;
 }
 
 .doodle-float-b {
-  animation-duration: 12s;
+  animation-duration: 18s;
 }
 
 .doodle-float-c {
-  animation-duration: 15s;
+  animation-duration: 22s;
 }
 
 @keyframes doodle-float {
   from {
-    transform: translateY(-10px) rotate(-4deg);
+    transform: translateY(-6px) rotate(-2deg);
   }
   to {
-    transform: translateY(10px) rotate(4deg);
+    transform: translateY(6px) rotate(2deg);
   }
 }
 
-/* Route progress bar: fixed top, fills left-to-right while navigating. */
+/* Route progress bar. */
 .route-progress {
   position: fixed;
   top: 0;
@@ -243,7 +322,7 @@ html.theme-transitioning body *::after {
   z-index: 50;
   height: 2px;
   width: 30%;
-  background: var(--color-fun-accent);
+  background: var(--color-accent);
   border-radius: 0 2px 2px 0;
   animation: route-progress-fill 1.2s ease-out forwards;
   pointer-events: none;
@@ -258,8 +337,7 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* 404: glitch flicker on the big code: accent shadows split and snap back.
-   Static when reduced-motion is on (global rule zeroes the animation). */
+/* 404 glitch: accent shadows split and snap back. */
 .error-glitch {
   position: relative;
   animation: error-glitch 3.2s infinite;
@@ -274,12 +352,12 @@ html.theme-transitioning body *::after {
 }
 
 .error-glitch::before {
-  color: var(--color-fun-accent);
+  color: var(--color-accent);
   animation: error-glitch-shift 3.2s infinite;
 }
 
 .error-glitch::after {
-  color: var(--color-fun-gray);
+  color: var(--color-faint);
   animation: error-glitch-shift 3.2s infinite reverse;
 }
 
@@ -318,14 +396,14 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* 404 terminal: block caret blinking after the active line. */
+/* 404 terminal caret. */
 .terminal-caret {
   display: inline-block;
   width: 0.55em;
   height: 1.1em;
   margin-left: 2px;
   vertical-align: text-bottom;
-  background: var(--color-fun-accent);
+  background: var(--color-accent);
   animation: terminal-blink 1s steps(1) infinite;
 }
 
@@ -335,8 +413,8 @@ html.theme-transitioning body *::after {
   }
 }
 
-/* Image fade-in: each img sits in an .img-shell wrapper that shows a
-   shimmer while the image loads; the img fades in over it on load. */
+/* Shimmer shell behind every FadeImage. Transform-based so a page with 30+
+   shells does not repaint each frame while scrolling. */
 img.img-loading {
   opacity: 0;
 }
@@ -351,20 +429,15 @@ img.img-loaded {
   overflow: hidden;
 }
 
-/* The shimmer sweeps a gradient overlay with transform, not background-position:
-   transform is compositor-accelerated, so it costs no per-frame repaint. A page
-   can hold 30+ shells at once (tech-stack) and any image still in img-loading
-   (every below-fold lazy image) keeps its animation running, so a repainting
-   animation here is a continuous jank source while scrolling. */
 .img-shell:has(> img.img-loading)::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     100deg,
-    var(--color-fun-navy-darkest) 40%,
-    var(--color-fun-navy) 50%,
-    var(--color-fun-navy-darkest) 60%
+    var(--color-surface) 40%,
+    var(--color-surface-raised) 50%,
+    var(--color-surface) 60%
   );
   background-size: 200% 100%;
   animation: img-shimmer 1.6s linear infinite;
@@ -381,11 +454,16 @@ img.img-loaded {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-fun-accent);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-/* Short-height landscape viewports (e.g. mobile phones rotated horizontally) */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
+}
+
 @media (max-height: 500px) and (orientation: landscape) {
   .hero-section {
     padding-top: 1.75rem !important;
@@ -394,8 +472,8 @@ img.img-loaded {
 }
 
 ::selection {
-  background-color: var(--color-fun-accent);
-  color: var(--color-fun-navy-darkest);
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
 }
 
 body {
@@ -406,7 +484,7 @@ body {
   padding-right: env(safe-area-inset-right, 0px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-bg;
+  @apply bg-bg text-ink;
   --scrollbar-thumb: #fff2;
   --scrollbar-track: transparent;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
@@ -432,7 +510,7 @@ body {
   }
 }
 
-/* Smooth accordion animations using native details::details-content */
+/* Native accordion animation. */
 details::details-content {
   interpolate-size: allow-keywords;
   overflow: clip;
