@@ -14,7 +14,7 @@ function SocialIcons() {
             rel={isEmail ? undefined : "noopener noreferrer"}
             aria-label={item.name}
             title={item.name}
-            className="flex h-11 w-11 items-center justify-center rounded-lg opacity-70 transition hover:-translate-y-0.5 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent focus-visible:opacity-100"
+            className="flex h-11 w-11 items-center justify-center rounded-lg transition hover:-translate-y-0.5 hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <Image
               src={item.icon}
@@ -22,9 +22,7 @@ function SocialIcons() {
               height={20}
               alt=""
               aria-hidden="true"
-              className={
-                item.accentIcon ? "icon-accent-light" : "icon-invert-light"
-              }
+              className={item.accentIcon ? "icon-accent-light" : ""}
             />
           </a>
         );

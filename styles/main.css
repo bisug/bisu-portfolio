@@ -278,7 +278,6 @@ html.theme-transitioning body *::after {
 
 .doodle {
   position: absolute;
-  display: block;
 }
 
 .doodle img {
