@@ -15,7 +15,10 @@ const STARTERS = [
     label: "Skills & security",
     prompt: "What are Bisu's skills and security interests?",
   },
-  { label: "Experience", prompt: "Tell me about Bisu's experience and hackathons." },
+  {
+    label: "Experience",
+    prompt: "Tell me about Bisu's experience and hackathons.",
+  },
   { label: "Contact", prompt: "How can I contact Bisu?" },
 ];
 
@@ -407,16 +410,18 @@ function ChatAssistant() {
           role="dialog"
           aria-modal="true"
           aria-label="Portfolio guide for Bisu Ghalan"
-          className="flex h-[min(540px,calc(100dvh-6.5rem))] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-fun-navy-darkest shadow-2xl shadow-black/70 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none sm:h-[min(540px,75vh)] sm:w-[380px]"
+          className="flex h-[min(540px,calc(100dvh-6.5rem))] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-card border border-line-strong bg-paper shadow-2xl shadow-black/40 animate-in fade-in zoom-in-95 duration-200 motion-reduce:animate-none sm:h-[min(540px,75vh)] sm:w-[380px]"
         >
           {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.02] px-4 py-2">
-            <span className="inline-flex items-center gap-1.5 text-[11px] text-fun-gray">
+          <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-2">
+            <span className="inline-flex items-center gap-1.5 text-[0.7rem] text-faint">
               <span
                 aria-hidden="true"
-                className={`h-1.5 w-1.5 rounded-full ${failed ? "bg-amber-300" : "bg-fun-accent"}`}
+                className={`h-1.5 w-1.5 rounded-full ${failed ? "bg-signal" : "bg-accent"}`}
               />
-              {failed ? "Portfolio guide (offline)" : "Powered by Cloudflare Workers AI"}
+              {failed
+                ? "Portfolio guide (offline)"
+                : "Powered by Cloudflare Workers AI"}
             </span>
             <div className="flex items-center gap-1">
               <button
@@ -424,7 +429,7 @@ function ChatAssistant() {
                 onClick={resetChat}
                 title="Restart conversation"
                 aria-label="Restart conversation"
-                className="flex h-11 w-11 items-center justify-center rounded-lg text-fun-gray transition-colors hover:bg-white/10 hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-faint transition-colors hover:bg-surface hover:text-ink"
               >
                 <svg
                   width="14"
@@ -447,7 +452,7 @@ function ChatAssistant() {
                 type="button"
                 onClick={closeChat}
                 aria-label="Close chat"
-                className="flex h-11 w-11 items-center justify-center rounded-lg text-fun-gray transition-colors hover:bg-white/10 hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-faint transition-colors hover:bg-surface hover:text-ink"
               >
                 ✕
               </button>
@@ -456,7 +461,7 @@ function ChatAssistant() {
 
           {failed && (
             <div
-              className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-amber-300/20 bg-amber-300/10 px-4 py-2 text-xs text-fun-gray-light"
+              className="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-signal/20 bg-signal/10 px-4 py-2 text-xs text-muted"
               role="status"
             >
               <span className="min-w-[190px] flex-1">
@@ -467,7 +472,7 @@ function ChatAssistant() {
                   type="button"
                   onClick={() => send(lastFailed)}
                   disabled={loading || rateLimited}
-                  className="min-h-11 shrink-0 font-semibold text-fun-accent underline underline-offset-2 transition hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="min-h-11 shrink-0 font-semibold text-accent underline underline-offset-2 transition hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Try AI again
                 </button>
@@ -477,10 +482,11 @@ function ChatAssistant() {
 
           {rateLimited && (
             <div
-              className="border-b border-fun-accent/20 bg-fun-accent/10 px-4 py-2 text-xs text-fun-gray-light"
+              className="border-b border-accent/20 bg-accent/10 px-4 py-2 text-xs text-muted"
               role="status"
             >
-              Too many requests. Your message is ready to send in {retrySeconds}s.
+              Too many requests. Your message is ready to send in {retrySeconds}
+              s.
             </div>
           )}
 
@@ -503,8 +509,8 @@ function ChatAssistant() {
                 <div
                   className={`rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed transition-all ${
                     m.role === "user"
-                      ? "bg-fun-accent text-fun-navy-darkest font-semibold rounded-br-sm shadow-md shadow-fun-accent/15"
-                      : "bg-white/[0.06] text-fun-gray-light rounded-bl-sm border border-white/5"
+                      ? "bg-accent text-on-accent font-semibold rounded-br-sm shadow-md shadow-accent/15"
+                      : "bg-surface text-muted rounded-bl-sm border border-line"
                   }`}
                 >
                   {m.role === "assistant" ? (
@@ -515,7 +521,7 @@ function ChatAssistant() {
                 </div>
                 {m.ts && (
                   <p
-                    className={`mt-1 text-[10px] text-fun-gray ${m.role === "user" ? "text-right" : ""}`}
+                    className={`mt-1 text-[10px] text-faint ${m.role === "user" ? "text-right" : ""}`}
                   >
                     {new Date(m.ts).toLocaleTimeString([], {
                       hour: "2-digit",
@@ -527,7 +533,7 @@ function ChatAssistant() {
             ))}
             {loading && msgs[msgs.length - 1]?.role === "user" && (
               <div
-                className="flex h-10 items-center gap-1.5 rounded-2xl rounded-bl-sm border border-white/5 bg-white/[0.06] px-4"
+                className="flex h-10 items-center gap-1.5 rounded-2xl rounded-bl-sm border border-line bg-surface px-4"
                 role="status"
               >
                 <span className="sr-only">Assistant is responding</span>
@@ -549,30 +555,30 @@ function ChatAssistant() {
           </div>
 
           {msgs.length <= 1 && (
-            <div className="border-t border-white/5 bg-white/[0.01] px-4 pb-3 pt-2">
-              <p className="mb-2 text-xs text-fun-gray-light">
+            <div className="border-t border-line bg-surface px-4 pb-3 pt-2">
+              <p className="mb-2 text-xs text-muted">
                 What would you like to explore?
               </p>
               <div className="grid grid-cols-2 gap-1.5">
                 {STARTERS.map(({ label, prompt }) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => send(prompt)}
-                  disabled={loading || rateLimited}
-                  aria-label={`Ask about ${label}`}
-                  className="min-h-12 rounded-xl border border-white/15 bg-white/[0.02] px-3 py-2 text-left text-xs font-semibold text-fun-gray-light transition hover:border-fun-accent hover:bg-white/[0.06] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {label}
-                </button>
-              ))}
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => send(prompt)}
+                    disabled={loading || rateLimited}
+                    aria-label={`Ask about ${label}`}
+                    className="min-h-12 rounded-control border border-line-strong bg-paper px-3 py-2 text-left text-xs font-semibold text-muted transition hover:border-accent hover:bg-surface hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
           )}
 
           {/* Input Form */}
           <form
-            className="flex gap-2 border-t border-white/10 bg-fun-navy-darkest p-3"
+            className="flex gap-2 border-t border-line bg-paper p-3"
             onSubmit={(e) => {
               e.preventDefault();
               send(input);
@@ -589,14 +595,20 @@ function ChatAssistant() {
               placeholder="Ask about a project or experience"
               autoComplete="off"
               maxLength={1000}
-              className="min-h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-base text-white placeholder:text-fun-gray focus:border-fun-accent focus-visible:outline-2 focus-visible:outline-fun-accent focus-visible:outline-offset-2 sm:text-sm"
+              className="min-h-11 min-w-0 flex-1 rounded-control border border-line-strong bg-surface px-3 py-2 text-base text-ink placeholder:text-faint focus:border-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 sm:text-sm"
             />
             <button
               type="submit"
               disabled={loading || rateLimited || !input.trim()}
-              aria-label={rateLimited ? `Wait ${retrySeconds} seconds to send` : "Send message"}
-              title={rateLimited ? `Wait ${retrySeconds} seconds` : "Send message"}
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl bg-fun-accent p-2 text-fun-navy-darkest hover:brightness-110 active:scale-95 transition disabled:cursor-not-allowed disabled:opacity-50"
+              aria-label={
+                rateLimited
+                  ? `Wait ${retrySeconds} seconds to send`
+                  : "Send message"
+              }
+              title={
+                rateLimited ? `Wait ${retrySeconds} seconds` : "Send message"
+              }
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-control bg-accent p-2 text-on-accent hover:brightness-110 active:scale-95 transition disabled:cursor-not-allowed disabled:opacity-50"
             >
               <svg
                 width="18"
@@ -614,7 +626,6 @@ function ChatAssistant() {
               </svg>
             </button>
           </form>
-
         </div>
       )}
 
@@ -625,7 +636,7 @@ function ChatAssistant() {
         onClick={() => (open ? closeChat() : setOpen(true))}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
         aria-expanded={open}
-        className="group relative flex h-12 items-center justify-center gap-2 rounded-full bg-fun-accent px-4 text-fun-navy-darkest shadow-lg shadow-fun-accent/25 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
+        className="group relative flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-4 text-on-accent shadow-lg shadow-accent/20 hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition"
       >
         <svg
           width="22"

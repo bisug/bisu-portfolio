@@ -28,7 +28,7 @@ function Page({
   const ogImage = image ? `${SITE_URL}${image}` : OG_IMAGE;
   const ogImageAlt = image ? `${title ?? currentPage}: preview` : OG_IMAGE_ALT;
   return (
-    <div className="w-full m-auto flex flex-col items-center min-h-screen text-white">
+    <div className="w-full m-auto flex flex-col items-center min-h-screen text-ink">
       <Head>
         <title>{pageTitle}</title>
 
@@ -63,13 +63,13 @@ function Page({
         <meta
           key="theme-color-dark"
           name="theme-color"
-          content="#000a1f"
+          content="#0a1635"
           media="(prefers-color-scheme: dark)"
         />
         <meta
           key="theme-color-light"
           name="theme-color"
-          content="#f4f7fc"
+          content="#f7f9fd"
           media="(prefers-color-scheme: light)"
         />
         <link
@@ -115,7 +115,7 @@ function Page({
 
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-fun-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-fun-navy-darkest"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-control focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-on-accent"
       >
         Skip to content
       </a>
@@ -124,7 +124,7 @@ function Page({
       <main
         id="main-content"
         tabIndex={-1}
-        className="px-5 sm:px-8 md:px-12 w-full flex-1 max-w-7xl mx-auto focus:outline-none"
+        className="page-shell flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
       >
         {children}
         <Reveal>

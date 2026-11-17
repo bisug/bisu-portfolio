@@ -138,7 +138,7 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl text-gray-100 transition-colors duration-200 hover:bg-white/10 hover:text-fun-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fun-accent"
+      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-control text-ink transition-colors duration-200 hover:bg-surface hover:text-accent active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       {ripples.map((r) => (
         <span

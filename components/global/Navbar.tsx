@@ -105,7 +105,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
   return (
     <header
       onFocusCapture={() => setIsVisible(true)}
-      className={`sticky top-0 z-40 w-full border-b border-white/10 bg-bg/85 backdrop-blur-md transition-transform duration-300 ease-out will-change-transform motion-reduce:transition-none ${
+      className={`sticky top-0 z-40 w-full border-b border-line bg-paper/85 backdrop-blur-md transition-transform duration-300 ease-out will-change-transform motion-reduce:transition-none ${
         shouldShow ? "translate-y-0" : "-translate-y-full pointer-events-none"
       }`}
     >
@@ -115,7 +115,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
             <Link
               href="/"
               aria-label="Home"
-              className="flex items-center gap-2 font-black text-xl"
+              className="flex items-center gap-2 font-black text-xl tracking-tight text-ink"
             >
               <img
                 className="transition-transform duration-300 hover:scale-95"
@@ -150,8 +150,8 @@ function Navbar({ currentPage }: { currentPage: string }) {
                     }
                     className={`rounded-lg px-3.5 py-2.5 min-h-[44px] inline-flex items-center text-sm font-medium transition-colors ${
                       currentPage === item.title
-                        ? "bg-white/10 text-fun-accent font-semibold"
-                        : "text-white/75 hover:bg-white/5 hover:text-white"
+                        ? "bg-surface text-accent font-semibold"
+                        : "text-muted hover:bg-surface hover:text-ink"
                     }`}
                   >
                     {item.title}
@@ -167,8 +167,8 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   ref={buttonRef}
                   className={`flex h-11 items-center gap-2 rounded-xl px-3 transition-colors duration-200 ${
                     isMenuOpen
-                      ? "bg-white/10 text-white"
-                      : "text-gray-100 hover:bg-white/10"
+                      ? "bg-surface text-ink"
+                      : "text-ink hover:bg-surface"
                   }`}
                   aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                   aria-expanded={isMenuOpen}
@@ -182,7 +182,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                 <div
                   id="mobile-nav-menu"
                   inert={!isMenuOpen}
-                  className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right overflow-hidden rounded-2xl border border-white/15 bg-fun-navy-dark/95 backdrop-blur-xl shadow-2xl shadow-black/70 transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right overflow-hidden rounded-card border border-line-strong bg-paper/95 backdrop-blur-xl shadow-2xl shadow-black/40 transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isMenuOpen
                       ? "scale-100 opacity-100 translate-y-0"
                       : "pointer-events-none -translate-y-2 scale-95 opacity-0"
@@ -199,8 +199,8 @@ function Navbar({ currentPage }: { currentPage: string }) {
                           }
                           className={`block rounded-xl px-4 py-3 min-h-[44px] text-sm font-medium transition-colors ${
                             currentPage === item.title
-                              ? "bg-white/10 text-fun-accent font-semibold"
-                              : "text-white/75 hover:bg-white/5 hover:text-white"
+                              ? "bg-surface text-accent font-semibold"
+                              : "text-muted hover:bg-surface hover:text-ink"
                           }`}
                         >
                           {item.title}
@@ -210,7 +210,7 @@ function Navbar({ currentPage }: { currentPage: string }) {
                   </ul>
                   <a
                     href="mailto:bisu.ghlan@gmail.com"
-                    className="block border-t border-white/10 px-5 py-3 font-mono text-xs text-fun-gray-light transition-colors hover:text-white"
+                    className="block border-t border-line px-5 py-3 font-mono text-xs text-muted transition-colors hover:text-ink"
                   >
                     bisu.ghlan@gmail.com
                   </a>

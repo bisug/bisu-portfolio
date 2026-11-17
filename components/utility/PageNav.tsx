@@ -50,7 +50,7 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
   return (
     <Link
       href={route.path}
-      className={`group flex items-center gap-3 border-t border-white/10 py-3.5 transition-colors duration-200 hover:border-fun-accent/60 ${
+      className={`group hairline-top flex items-center gap-3 py-3.5 transition-colors duration-200 hover:border-accent/60 ${
         isNext ? "flex-row-reverse text-right" : ""
       } ${className ?? ""}`}
     >
@@ -62,13 +62,13 @@ function NavCard({ label, route, direction, className }: NavCardProps) {
         <ArrowIcon direction={direction} />
       </span>
       <span className="min-w-0">
-        <span className="font-mono text-xs uppercase tracking-widest text-fun-gray-light">
+        <span className="font-mono text-xs uppercase tracking-widest text-faint">
           {label}
         </span>
-        <span className="mt-0.5 block truncate text-sm font-bold text-white">
+        <span className="mt-0.5 block truncate text-sm font-bold text-ink">
           {route.title}
         </span>
-        <span className="mt-0.5 hidden truncate text-xs text-fun-gray-light sm:block">
+        <span className="mt-0.5 hidden truncate text-xs text-muted sm:block">
           {route.desc}
         </span>
       </span>
