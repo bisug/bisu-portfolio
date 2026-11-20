@@ -579,9 +579,8 @@ function ChatAssistant() {
           {/* Input Form */}
           <form
             className="flex gap-2 border-t border-line bg-paper p-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              send(input);
+            action={async (formData) => {
+              await send(String(formData.get("message") ?? ""));
             }}
           >
             <label htmlFor="chat-input" className="sr-only">
@@ -590,6 +589,7 @@ function ChatAssistant() {
             <input
               ref={inputRef}
               id="chat-input"
+              name="message"
               value={input}
               onChange={(e) => setInput(e.target.value.slice(0, 1000))}
               placeholder="Ask about a project or experience"

@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // Fully static site: every route is prerendered from repo data, so the
   // build output in `out/` can be dropped on any static host.
   output: "export",
+  typedRoutes: true,
   poweredByHeader: false,
   // Static export has no image optimizer; assets are pre-sized (webp) instead.
   images: { unoptimized: true },

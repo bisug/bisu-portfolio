@@ -68,15 +68,15 @@ bun install
 bun run dev        # http://localhost:3000
 ```
 
-| Script              | Purpose                                                                 |
-| ------------------- | ----------------------------------------------------------------------- |
-| `bun run dev`       | Dev server                                                              |
-| `bun run build`     | Static export to `out/` (every route prerendered)                       |
-| `bun run start`     | Serve the exported `out/` locally                                       |
-| `bun run sitemap`   | Regenerate `public/sitemap.xml` (run after changing routes or projects) |
-| `bun run typecheck` | `tsc --noEmit`                                                          |
-| `bun test`          | Run test suite with Bun's native test runner                            |
-| `bun run check`     | bun fmt --check (read-only verify)                                      |
+| Script                 | Purpose                                                                 |
+| ---------------------- | ----------------------------------------------------------------------- |
+| `bun run dev`          | Dev server                                                              |
+| `bun run build`        | Static export to `out/` (every route prerendered)                       |
+| `bun run start`        | Serve the exported `out/` locally                                       |
+| `bun run sitemap`      | Regenerate `public/sitemap.xml` (run after changing routes or projects) |
+| `bun run typecheck`    | `bun check` (Bun's type checker, read-only)                             |
+| `bun test`             | Run test suite with Bun's native test runner                            |
+| `bun run format:check` | `bun fmt --check` (read-only verify)                                    |
 
 ## <img src="https://img.shields.io/badge/Deploy-EA580C?style=flat-square&logo=cloudflarepages&logoColor=white" height="20" valign="middle" alt="Deploy" />
 
